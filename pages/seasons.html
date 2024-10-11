@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="sortable-table.js"></script>
+
+<title>Amsterdam Mustangs</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+/* Style the header */
+.header {
+  padding: 30px;
+  text-align: center;
+  background: #e12800;
+  color: black;
+}
+
+.header img {
+  float: left;
+    width: 150px;
+  height: 125px;
+  
+}
+
+/* Increase the font size of the h1 element */
+.header h1 {
+  font-size: 40px;
+    position: relative;
+  top: 18px;
+  left: 10px;
+}
+
+/* Style the top navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+/* Right-aligned link */
+.navbar a.right {
+  float: right;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Column container */
+.row {  
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  flex: 30%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+/* Table */
+
+.table-container {
+  margin: auto;
+  max-width: 1200px;
+  min-height: 100vh;
+  overflow: scroll;
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead tr {
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  height: 1px;
+}
+
+th {
+  font-weight: bold;
+  height: inherit;
+  padding: 0;
+}
+
+th:not(:first-of-type) {
+  border-left: 1px solid #ddd;
+}
+
+th button {
+  background-color: #eee;
+  border: none;
+  cursor: pointer;
+  display: block;
+  font: inherit;
+  height: 100%;
+  margin: 0;
+  min-width: max-content;
+  padding: 0.5rem 1rem;
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+
+th button::after {
+  position: absolute;
+  right: 0.5rem;
+}
+
+th button[data-dir="asc"]::after {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='0, 0 8,0 4,8 8' fill='%23818688'/%3E%3C/svg%3E");
+}
+
+th button[data-dir="desc"]::after {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='4 0,8 8,0 8' fill='%23818688'/%3E%3C/svg%3E");
+}
+
+tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+td {
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+footer {
+  background-color: #ffdfb9;
+  margin: 2rem -8px -8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+footer .heart {
+  color: #dc143c;
+}
+
+/* Main column */
+.main {   
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+.main img {
+  float: left;
+  display: block;
+  max-width:135px;
+  max-height:100px;
+  width: auto;
+  height: auto;
+  
+}
+
+/* Fake image, just for this example */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width:100%;
+  }
+}
+</style>
+</head>
+<body>
+<div class="header">
+  <img src="../images/Mustangs_Logo.png" alt="Amsterdam Mustangs">
+  <h1>Amsterdam Mustangs</h1>
+  <p>The new home of the Amsterdam Mustangs hockey team.</p>
+</div>
+
+<div class="navbar">
+  <a href="index2024_2025.html">2024-2025 Home</a>
+  <a href="roster2024_2025.html">Roster</a>
+  <a href="schedule2024_2025.html">Schedule/Results</a>
+  <a href="standings2024_2025.html">Standings</a>  
+  <a href="stats2024_2025.html">Statistics</a>
+  <a href="https://www.ijshockeynederland.nl/competities/2024-2025/vierde-divisie/vierde-divisie-noord" target="_blank">League Website</a>
+  <a href="#" class="right">Contact</a>
+  <a href="seasons.html" class="right">Past Seasons</a>
+  <a href="videos.html" class="right">Videos</a>
+  <a href="photos.html" class="right">Photos</a>
+</div>
+<div class="main">
+    
+    
+<div style="overflow-x:auto;">
+  <table style="width:600px">
+    <tr>
+      <th style="width:200px">Season</th>
+      <th style="width:400px">League</th>
+    </tr>
+    <tr>
+      <td><a href="index2024_2025.html">2024-2025</a></td>
+      <td>Netherlands-4th Division-North</td>
+    </tr>
+    <tr>
+      <td><a href="index2023_2024.html">2023-2024</a></td>
+      <td>Netherlands-4th Division-North</td>
+    </tr>
+    <tr>
+      <td><a href="index2022_2023.html">2022-2023</a></td>
+      <td>Netherlands-4th Division-North</td>
+    </tr>
+    <tr>
+      <td><a href="index2021_2022.html">2021-2022</a></td>
+      <td>Netherlands-5th Division-North</td>
+    </tr>
+    <tr>
+      <td>2020-2021</td>
+      <td>Cancelled due to COVID pandemic</td>
+    </tr>
+    <tr>
+      <td><a href="index2019_2020.html">2019-2020</a></td>
+      <td>Netherlands-4th Division-North</td>
+    </tr>
+    <tr>
+      <td><a href="index2018_2019.html">2018-2019</a></td>
+      <td>Netherlands-4th Division-North</td>
+    </tr>
+    <tr>
+      <td><a href="index2017_2018.html">2017-2018</a></td>
+      <td>Netherlands-4th Division-North</td>
+    </tr>
+  </table>
+</div>
+<br>
+</div>
+
+<div class="footer">
+  <h2>&copy; 2024 Amsterdam Mustangs</h2>
+</div>
+
+</body>
+</html>
