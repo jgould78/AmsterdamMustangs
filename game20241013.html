@@ -13,7 +13,7 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
+  margin: 10;
 }
 
 /* Style the header */
@@ -105,6 +105,8 @@ th {
   font-weight: bold;
   height: inherit;
   padding: 0;
+  
+
 }
 
 th:not(:first-of-type) {
@@ -140,12 +142,26 @@ th button[data-dir="desc"]::after {
 }
 
 tbody tr {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 0px solid #ddd;
 }
 
 td {
   padding: 0.5rem 1rem;
   text-align: center;
+    
+}
+
+.scoring_name {
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.assist_name {
+  
+  text-align: left;
+  font-size: 15px;
+  font-weight: normal;
 }
 
 footer {
@@ -228,460 +244,772 @@ footer .heart {
     width:100%;
   }
 }
+
+
+
+.box { 
+  width: 750px;
+  padding: 10px; 
+  background-color: #fff;
+  border: 3px solid #eaeaea;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #dedede;
+  margin-bottom: 10px;  
+}
+
+.box2 { 
+  width: 450px;
+  padding: 10px; 
+  background-color: #fff;
+  border: 3px solid #eaeaea;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #dedede;
+  margin-bottom: 10px;  
+}
+
+
+.box3 { 
+  width: 450px;
+  padding: 10px; 
+  background-color: #fff;
+  border: 3px solid #eaeaea;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #dedede;
+  margin-bottom: 10px;  
+      padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+.games{
+  align-items: center;
+  display: flex;
+}
+
+.lines{
+  align-items: center;
+    display: flex;
+}
+
+.game_space{
+  align-items: center;
+    display: flex;
+    margin-bottom: 10px;  
+}
+
+.game_space2{
+  align-items: center;
+    display: flex;
+    margin-bottom: 5px;  
+}
+
+.team_logos {
+    width: 100px;
+    border-right: 0px solid #d4d4d4;
+    display: flex;
+    align-items: center;
+  justify-content: space-between;     
+}
+
+.team_logo{
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 20px;
+
+}
+
+
+
+
+.team_names {
+    width: 375px;
+    border-right: 0px solid #d4d4d4;
+    display: flex;
+    align-items: center;
+  justify-content: space-between;     
+}
+
+.team_scores {
+    width: 450px;
+    border-right: 0px solid #d4d4d4;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+  justify-content: space-between;     
+}
+
+
+
+.team_goalies {
+    width: 450px;
+    border-right: 0px solid #d4d4d4;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+  justify-content: space-between;     
+}
+
+.officials {
+    width: 425px;
+    border-right: 0px solid #d4d4d4;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+  justify-content: space-between; 
+      font-weight: bold;    
+}
+
+.official {
+    width: 150px;
+    border-right: 0px solid #d4d4d4;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+  justify-content: space-between;   
+
+}
+
+.official_name {
+    font-weight: normal;
+    
+        width: 400px;
+
+}
+
+.game_status {
+    width: 300px;
+    text-align: center; 
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.game_location {
+    width: 300px;
+    text-align: center; 
+    
+    margin-bottom: 30px;
+}
+
+
+
+.team_name {
+    font-weight: normal;
+    font-size: 20px;  
+
+}
+
+
+.goalie_name {
+    font-weight: normal;
+     
+
+}
+
+.score {
+    position: relative;
+    font-size: 25px;
+    font-weight: normal;
+    justify-content: space-between;
+    margin-right: 10px;
+}
+
+.score_winning {
+    position: relative;
+    font-size: 25px;
+    font-weight: bold;
+    justify-content: space-between;
+    margin-right: 10px;
+}
+
+.team_logos_linescore {
+    width: 200px;
+    border-right: 0px solid #d4d4d4;
+    display: flex;
+    align-items: center;
+  justify-content: space-between;     
+}
+
+.team_logo_linescore {
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 20px;
+
+}
+
+.team_logo_statsline {
+    margin-right: 10px;
+    padding-left: 20px;
+    padding-right: 10px;
+
+}
+
+
+
+.team_linescores {
+    width: 400px;
+    border-right: 0px solid #d4d4d4;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+  justify-content: space-between;     
+}
+
+
+
+.team_name_linescore {
+    font-weight: bold;
+        width: 150px;
+
+}
+
+
+.stats {
+  align-items: center;
+  display: flex;
+}
+
+.stats_lines {
+    width: 400px;
+
+    display: flex;
+    align-items: center;
+  justify-content: space-between;     
+}
+
+.stats_category_title {
+    font-weight: bold;
+    font-size: 18px;  
+    width: 150px;
+    align-items: center;
+
+    text-align: center;
+
+}
+
+.stats_category {
+    font-weight: bold;
+    font-size: 18px;  
+    color: grey;
+            width: 150px;
+    align-items: center;
+
+        text-align: center;
+
+}
+
+
+.stats_figure {
+    font-weight: normal;
+    font-size: 18px;  
+    width: 150px;
+    align-items: center;
+    text-align: center;
+
+}
+
+
+.linescore_header1 {
+    position: relative;
+    
+    font-weight: bold;
+    justify-content: space-between;
+    margin-right: 10px;
+    padding-left: 5px;
+    padding-right: 0px;
+}
+
+.linescore_header2 {
+    position: relative;
+    
+    font-weight: bold;
+    justify-content: space-between;
+    margin-right: 10px;
+    padding-left: 5px;
+    padding-right: 0px;
+}
+
+.linescore_header3 {
+    position: relative;
+    
+    font-weight: bold;
+    justify-content: space-between;
+    margin-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+.linescore_header4 {
+    position: relative;
+    
+    font-weight: bold;
+    justify-content: space-between;
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.linescore {
+    position: relative;
+    
+    font-weight: normal;
+    justify-content: space-between;
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.linescore_winning {
+    position: relative;
+    
+    font-weight: bold;
+    justify-content: space-between;
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 </style>
 </head>
 <body>
-<div class="header">
-  <img src="images/Mustangs_logo.png" alt="Amsterdam Mustangs">
-  <h1>Amsterdam Mustangs</h1>
-  <p>The new home of the Amsterdam Mustangs hockey team.</p>
-</div>
 
-<div class="navbar">
-  <a href="index2024_2025.html">2024-2025 Home</a>
-  <a href="roster2024_2025.html">Roster</a>
-  <a href="schedule2024_2025.html">Schedule/Results</a>
-  <a href="standings2024_2025.html">Standings</a>  
-  <a href="stats2024_2025.html">Statistics</a>
-  <a href="https://www.ijshockeynederland.nl/competities/2024-2025/vierde-divisie/vierde-divisie-noord" target="_blank">League Website</a>
-  <a href="#" class="right">Contact</a>
-  <a href="seasons.html" class="right">Past Seasons</a>
-  <a href="videos.html" class="right">Videos</a>
-  <a href="photos.html" class="right">Photos</a>
-</div>
-  <h3><a target="_blank" href="https://api.hockeydata.net/data/ih/GameDocument?apiKey=a0a1258810e90e77a2367f403c6635d1&referer=https://www.ijshockeynederland.nl/&timestamp=1661761801761&gameId=0daa5cc0-d2de-4398-bfb8-af80d5585781&lang=en&docType=gameReport">League Gamesheet</a></h3>
-<div class="column" style="width:1000px;">
 
-  <div style="overflow-x:auto;">
-    <table style="width:900px">
-      <tr>
-        <th style="width:30px"></th>
-        <th style="width:220px">Away</th>
-        <th style="width:135px"></th>
-        <th style="width:220px"></th>
-        <th style="width:135px"></th>
-        <th style="width:220px">Home</th>
-       <th style="width:30px"></th>
-      </tr>
-      <tr>
-        <td><font size="6" color="#696969"><b>3</b></font></td>
-        <td><b>Amsterdam<br>Mustangs</b></td>
-        <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-              <img src="images/Mustangs_logo.png" style="max-height:100%; max-width:100%" />
-        </td>
-        <td><b>FINAL</b><br>13-Oct-2024</td>
-        <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-              <img src="images/leiden_lions_logo.png" style="max-height:100%; max-width:100%" />
-        </td>
-        <td><b>Leiden<br>Lions</b></td>
-        <td><font size="6"><b>7</b></font></td>
+<div class="column" style="width:760px;">
 
-      </tr>
-   </table>
+  <h3>13th October 2024 - <a target="_blank" href="https://api.hockeydata.net/data/ih/GameDocument?apiKey=a0a1258810e90e77a2367f403c6635d1&referer=https://www.ijshockeynederland.nl/&timestamp=1661761801761&gameId=0daa5cc0-d2de-4398-bfb8-af80d5585781&lang=en&docType=gameReport">Official Gamesheet</a></h3>
+  <div class=box>
+    <br><div class="games">
+        <div class="team_scores">
+        <div class="team_logos">
+          <img class="team_logo" src="images/Mustangs_logo.png" style="max-height:75px; max-width:75px">
+        </div>
+        <div class="team_names">
+              <div class="team_name">
+                Amsterdam<br>Mustangs
+              </div>
+        </div>
+        <div class="score">
+                3
+              </div>
+      </div>
+      <div class="game_status">
+          FINAL
+        </div>
+      </div>
+      <div class="game_space"></div>
+    <div class="games">
+        <div class="team_scores">
+        <div class="team_logos">
+          <img class="team_logo" src="images/leiden_lions_logo.png" style="max-height:75px; max-width:75px">
+        </div>
+        <div class="team_names">
+              <div class="team_name">
+                Leiden<br>Lions
+              </div>
+        </div>
+        <div class="score_winning">
+                7
+              </div>
+      </div>
+      <div class="game_location">
+          Ijshal de Vliet<br>Leiden, Netherlands
+        </div>  
+      </div>
+
   </div>
 
-    <br>    <br>
-
+  
+  <div class=box>
   <h2>Mustangs fall to Lions in season opener.</h2>
   <h5>13-Oct-2024</h5>
-  <p>LEIDEN, The Netherlands -- Some text..</p>
-<br><br>
-  <h2>Scoring</h2>
+  <p>LEIDEN, The Netherlands -- The Mustangs opened their season on the road against the Leiden Lions, suffering a 7-3 defeat. </p>
+  <p>The Lions dominated early as they jumped to a commanding 3-0 lead in the first period with goals from Diemer van Gent, Steiner Hoos, and Mike van der Horst. The Mustangs fought back in the first period with back-to-back goals from Petteri Hyytiäinen and Krisztian Vizsy to cut the deficit to 3-2, demonstrating resilience despite the initial deficit.</p>
+  <p>In the second period, the Lions maintained control of the score as they extended their lead with a goal from Jeroen Maas.</p>
+  <p>The Lions also surged in the third period with a goal from Diemer van Gent and 2 goals from Thomas Hoos to secure their victory. The Mustangs managed a late goal from Sergey Baradyntsev, but it was insufficient to alter the outcome.</p>
+  <p>The Mustangs struggled offensively, managing only three goals on approximately 60 shots. The Mustangs will need to address their offensive struggles if they hope to be competitive this season.</p>
+  <p>The Mustangs season continues on November 3rd with their home opener against GIJS Groningen 3.</p>
+</div>
+
+  <div class=box>
+  <h2>Scoring Summary</h2>
   <h3>1st Period</h3>
     <div style="overflow-x:auto;">
-    <table style="width:900px">
+    <table style="width:700px">
       <tr>
         <th style="width:50px"></th>
+        <th style="width:100px"></th>
         <th style="width:450px"></th>
-        <th style="width:200px"></th>
         <th style="width:100px"></th>
-        <th style="width:100px"></th>
-
       </tr>
       <tr>
         <td><img src="images/leiden_lions_logo.png" style="max-height:50px; max-width:50px" /></td>
-        <td><font size="4" style="text-align:left"><b>Diemer van Gent (1)</b></font><br><font size="3" style="text-align:left">Mike van der Horst (1), Marnix Vlug (1)</font></td>
-        <td></td>
-        <td><b>1-0 LEI</b><br>Score</td>
         <td><b>08:14</b><br>Time</td>
-        <td></td>
+        <td><div class="scoring_name">Diemer van Gent (1)</div><div class="assist_name">Mike van der Horst (1), Marnix Vlug (1)</div></td>
+        <td><b>1-0 LEI</b><br>Score</td>
       </tr>
       <tr>
         <td><img src="images/leiden_lions_logo.png" style="max-height:50px; max-width:50px" /></td>
-        <td><font size="4" style="text-align:left"><b>Steiner Hoos (1)</b></font><br><font size="3" style="text-align:left">Thomas Hoos (1)</font></td>
-        <td></td>
-        <td><b>2-0 LEI</b><br>Score</td>
         <td><b>08:40</b><br>Time</td>
-        <td></td>
+        <td><div class="scoring_name">Steiner Hoos (1)</div><div class="assist_name">Thomas Hoos (1)</div></td>
+        
+        <td><b>2-0 LEI</b><br>Score</td>
       </tr>
       <tr>
         <td><img src="images/leiden_lions_logo.png" style="max-height:50px; max-width:50px" /></td>
-        <td><font size="4" style="text-align:left"><b>Mike van der Horst (1)</b></font><br><font size="3" style="text-align:left">Mike Oppelaar (1), Olivier Prinsen (1)</font></td>
-        <td></td>
-        <td><b>3-0 LEI</b><br>Score</td>
         <td><b>10:04</b><br>Time</td>
-        <td></td>
+        <td><div class="scoring_name">Mike van der Horst (1)</div><div class="assist_name">Mike Oppelaar (1), Olivier Prinsen (1)</div></td>
+        <td><b>3-0 LEI</b><br>Score</td>
       </tr>
       <tr>
         <td><img src="images/Mustangs_logo.png" style="max-height:50px; max-width:50px" /></td>
-        <td><font size="4" style="text-align:left"><b>Petteri Hyytiäinen (1)</b></font><br><font size="3" style="text-align:left">Krisztian Vizsy (1)</font></td>
-        <td></td>
-        <td><b>3-1 LEI</b><br>Score</td>
         <td><b>13:43</b><br>Time</td>
-        <td></td>
+        <td><div class="scoring_name">Petteri Hyytiäinen (1)</div><div class="assist_name">Krisztian Vizsy (1)</div></td>
+        <td><b>3-1 LEI</b><br>Score</td>
       </tr>
       <tr>
         <td><img src="images/Mustangs_logo.png" style="max-height:50px; max-width:50px" /></td>
-        <td><font size="4" style="text-align:left"><b>Krisztian Vizsy (1)</b></font><br><font size="3" style="text-align:left">Andrey Guschin (1)</font></td>
-        <td></td>
-        <td><b>3-2 LEI</b><br>Score</td>
         <td><b>17:48</b><br>Time</td>
-        <td></td>
+        <td><div class="scoring_name">Krisztian Vizsy (1)</div><div class="assist_name">Andrey Guschin (1)</div></td>
+        <td><b>3-2 LEI</b><br>Score</td>
       </tr>
    </table>
   </div>
     <h3>2nd Period</h3>
     <div style="overflow-x:auto;">
-    <table style="width:900px">
+    <table style="width:700px">
       <tr>
         <th style="width:50px"></th>
+        <th style="width:100px"></th>
         <th style="width:450px"></th>
-        <th style="width:200px"></th>
         <th style="width:100px"></th>
-        <th style="width:100px"></th>
-
       </tr>
       <tr>
         <td><img src="images/leiden_lions_logo.png" style="max-height:50px; max-width:50px" /></td>
-        <td><font size="4" style="text-align:left"><b>Jeroen Maas (1)</b></font><br><font size="3" style="text-align:left"></font></td>
-        <td></td>
-        <td><b>4-2 LEI</b><br>Score</td>
         <td><b>04:41</b><br>Time</td>
-        <td></td>
+        <td><div class="scoring_name">Jeroen Maas (1)</div><div class="assist_name"></div></td>
+        <td><b>4-2 LEI</b><br>Score</td>
       </tr>
    </table>
   </div>
     <h3>3rd Period</h3>
     <div style="overflow-x:auto;">
-    <table style="width:900px">
+    <table style="width:700px">
       <tr>
         <th style="width:50px"></th>
+        <th style="width:100px"></th>
         <th style="width:450px"></th>
-        <th style="width:200px"></th>
         <th style="width:100px"></th>
-        <th style="width:100px"></th>
-
       </tr>
       <tr>
         <td><img src="images/leiden_lions_logo.png" style="max-height:50px; max-width:50px" /></td>
-        <td><font size="4" style="text-align:left"><b>Diemer van Gent (2)</b></font><br><font size="3" style="text-align:left">Olivier Prinsen (2)</font></td>
-        <td></td>
-        <td><b>5-2 LEI</b><br>Score</td>
         <td><b>04:50</b><br>Time</td>
-        <td></td>
+        <td><div class="scoring_name">Diemer van Gent (2)</div><div class="assist_name">Olivier Prinsen (2)</div></td>
+        
+        <td><b>5-2 LEI</b><br>Score</td>
+        
+        
       </tr>
       <tr>
         <td><img src="images/leiden_lions_logo.png" style="max-height:50px; max-width:50px" /></td>
-        <td><font size="4" style="text-align:left"><b>Thomas Hoos (1)</b></font><br><font size="3" style="text-align:left">Bruno Zonderop (1), Mike Runge (1)</font></td>
-        <td></td>
-        <td><b>6-2 LEI</b><br>Score</td>
         <td><b>05:35</b><br>Time</td>
-        <td></td>
+        <td><div class="scoring_name">Thomas Hoos (1)</div><div class="assist_name">Bruno Zonderop (1), Mike Runge (1)</div></td>
+        
+        <td><b>6-2 LEI</b><br>Score</td>
+        
+        
       </tr>
       <tr>
         <td><img src="images/leiden_lions_logo.png" style="max-height:50px; max-width:50px" /></td>
-        <td><font size="4" style="text-align:left"><b>Thomas Hoos (2)</b></font><br><font size="3" style="text-align:left">Steiner Hoos (1)</font></td>
-        <td></td>
-        <td><b>7-2 LEI</b><br>Score</td>
         <td><b>17:18</b><br>Time</td>
-        <td></td>
+        <td><div class="scoring_name">Thomas Hoos (2)</div><div class="assist_name">Steiner Hoos (1)</div></td>
+        
+        <td><b>7-2 LEI</b><br>Score</td>
+        
+        
       </tr>
       <tr>
         <td><img src="images/Mustangs_logo.png" style="max-height:50px; max-width:50px" /></td>
-        <td><font size="4" style="text-align:left"><b>Sergey Baradyntsev (1)</b></font><br><font size="3" style="text-align:left">George Huber (1)</font></td>
-        <td></td>
-        <td><b>7-3 LEI</b><br>Score</td>
         <td><b>19:43</b><br>Time</td>
-        <td></td>
+        <td><div class="scoring_name">Sergey Baradyntsev (1)</div><div class="assist_name">George Huber (1)</div></td>
+        <td><b>7-3 LEI</b><br>Score</td>
       </tr>
    </table>
   </div>
-  <br><br>
-  <h2>Penalties</h2>
+  </div>
+  <div class=box>
+  <h2>Penalty Summary</h2>
     <h3>1st Period</h3>
     <div style="overflow-x:auto;">
-    <table style="width:900px">
+    <table style="width:700px">
       <tr>
         <th style="width:50px"></th>
         <th style="width:100px"></th>
+        <th style="width:350px"></th>
         <th style="width:250px"></th>
-        <th style="width:500px"></th>
       </tr>
       <tr>
         <td><img src="images/leiden_lions_logo.png" style="max-height:50px; max-width:50px" /></td>
         <td><b>13:43</b><br>Time</td>
-        <td><font size="4" style="text-align:left"><b>Thomas Hoos</b></td>
-        <td><font size="3" style="text-align:left"><b>Minor</b><br>Holding (2 Minutes)</font></td>
+        <td><div class="scoring_name">Thomas Hoos</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Holding</div></td>
       </tr>
-
    </table>
   </div>
-
-
     <h3>2nd Period</h3>
     <div style="overflow-x:auto;">
-    <table style="width:900px">
+    <table style="width:700px">
       <tr>
         <th style="width:50px"></th>
         <th style="width:100px"></th>
+        <th style="width:350px"></th>
         <th style="width:250px"></th>
-        <th style="width:500px"></th>
       </tr>
       <tr>
         <td><img src="images/leiden_lions_logo.png" style="max-height:50px; max-width:50px" /></td>
         <td><b>07:19</b><br>Time</td>
-        <td><font size="4" style="text-align:left"><b>Bruno Zonderop </b></td>
-        <td><font size="3" style="text-align:left"><b>Minor</b><br>Unsportsmanlike Conduct (2 Minutes)</font></td>
+        <td><div class="scoring_name">Bruno Zonderop</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Unsportsmanlike Conduct</div></td>
       </tr>
       <tr>
         <td><img src="images/leiden_lions_logo.png" style="max-height:50px; max-width:50px" /></td>
         <td><b>08:33</b><br>Time</td>
-        <td><font size="4" style="text-align:left"><b>Fedde van Gent</b></td>
-        <td><font size="3" style="text-align:left"><b>Minor</b><br>Interference (2 Minutes)</font></td>
+        <td><div class="scoring_name">Fedde van Gent</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Interference</div></td>
       </tr>
       <tr>
         <td><img src="images/Mustangs_logo.png" style="max-height:50px; max-width:50px" /></td>
         <td><b>17:23</b><br>Time</td>
-        <td><font size="4" style="text-align:left"><b>Jim Conboy</b></td>
-        <td><font size="3" style="text-align:left"><b>Minor</b><br>Slashing (2 Minutes)</font></td>
+        <td><div class="scoring_name">Jim Conboy</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Slashing</div></td>
       </tr>
    </table>
   </div>
-
     <h3>3rd Period</h3>
     <div style="overflow-x:auto;">
-    <table style="width:900px">
+    <table style="width:700px">
       <tr>
         <th style="width:50px"></th>
         <th style="width:100px"></th>
+        <th style="width:350px"></th>
         <th style="width:250px"></th>
-        <th style="width:500px"></th>
       </tr>
       <tr>
         <td><img src="images/leiden_lions_logo.png" style="max-height:50px; max-width:50px" /></td>
         <td><b>02:17</b><br>Time</td>
-        <td><font size="4" style="text-align:left"><b>Mike Runge </b></td>
-        <td><font size="3" style="text-align:left"><b>Minor</b><br>Hooking (2 Minutes)</font></td>
+        <td><div class="scoring_name">Mike Runge</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Hooking</div></td>
       </tr>
       <tr>
         <td><img src="images/leiden_lions_logo.png" style="max-height:50px; max-width:50px" /></td>
         <td><b>12:32</b><br>Time</td>
-        <td><font size="4" style="text-align:left"><b>Mike van der Horst</b></td>
-        <td><font size="3" style="text-align:left"><b>Minor</b><br>Roughing (2 Minutes)</font></td>
+        <td><div class="scoring_name">Mike van der Horst</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Roughing</div></td>
       </tr>
       <tr>
         <td><img src="images/Mustangs_logo.png" style="max-height:50px; max-width:50px" /></td>
         <td><b>12:43</b><br>Time</td>
-        <td><font size="4" style="text-align:left"><b>Jim Conboy</b></td>
-        <td><font size="3" style="text-align:left"><b>Minor</b><br>Hooking (2 Minutes)</font></td>
+        <td><div class="scoring_name">Jim Conboy</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Hooking</div></td>
       </tr>
    </table>
   </div>
- 
-
-
-
-  
+  </div>
 </div>
-  <div class="column" style="width:600px;">
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>       <br>    <br>
-    <h2>Linescore</h2>
-      <div style="overflow-x:auto;">
-      <table style="width:400px">
-      <tr>
-        <th style="width:50px"></th>
-        <th style="width:200px"></th>
-        <th style="width:50px">1st</th>
-        <th style="width:50px">2nd</th>
-        <th style="width:50px">3rd</th>
-        <th style="width:50px">T</th>
-      </tr>
-      <tr>
-        <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-              <img src="images/Mustangs_logo.png" style="max-height:80%; max-width:80%" />
-        </td>
-        <td><b>Mustangs</b></td>
-        <td><font size="4">2</font></td>
-        <td><font size="4">0</font></td>
-        <td><font size="4">1</font></td>
-        <td><font size="4"><b>3</b></font></td>
-      </tr>     
+  <div class="column" style="width:400px;">
+<br><br><br>
 
-      <tr>
-        <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-              <img src="images/leiden_lions_logo.png" style="max-height:80%; max-width:80%" />
-        </td>
-        <td><b>Lions</b></td>
-        <td><font size="4">3</font></td>
-        <td><font size="4">1</font></td>
-        <td><font size="4">3</font></td>
-        <td><font size="4"><b>7</b></font></td>
-      </tr>
-
-      </tr>
-   </table>
-  </div>
-    <br>    <br>
-
-      <div style="overflow-x:auto;">
-      <table style="width:400px">
-      <tr>
-        <th style="width:50px"></th>
-        <th style="width:300px"></th>
-        <th style="width:50px"></th>
-
-      </tr>
-      <tr>
-        <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-              <img src="images/Mustangs_logo.png" style="max-height:80%; max-width:80%" />
-        </td>
-        <td>    <h2>Game Stats</h2></td>
-        <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-              <img src="images/leiden_lions_logo.png" style="max-height:80%; max-width:80%" />
-        </td>
-      </tr>     
-
-      <tr>
-        <td><font size="4">~60</font></td>
-        <td><font size="4" color="grey">Shots on Goal</font></td>
-        <td><font size="4">~35</font></td>
-      </tr>
-      <tr>
-        <td><font size="4">4</font></td>
-        <td><font size="4" color="grey">Penalty Minutes</font></td>
-        <td><font size="4">10</font></td>
-      </tr>
-      <tr>
-        <td><font size="4">0%</font></td>
-        <td><font size="4" color="grey">Power Play %</font></td>
-        <td><font size="4">0%</font></td>
-      </tr>
-        <tr>
-        <td><font size="4">100%</font></td>
-        <td><font size="4" color="grey">Penalty Kill %</font></td>
-        <td><font size="4">100%</font></td>
-      </tr>
-
-      </tr>
-   </table>
-  </div>
-    <br>
+  <div class=box2>
     <h2>Goalies</h2>
-      <div style="overflow-x:auto;">
-      <table style="width:400px">
-      <tr>
-        <th style="width:50px"></th>
-        <th style="width:350px"></th>
-      </tr>
-      <tr>
-        <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-              <img src="images/Mustangs_logo.png" style="max-height:80%; max-width:80%" />
-        </td>
-        <td>Tori Holmes-Kirk</td>
-      </tr>     
+    <div class="team_goalies">
+      <div class="team_logos"><img class="team_logo" src="images/Mustangs_logo.png" style="max-height:70%; max-width:70%;">
+      </div>
+      <div class="team_names">
+        <div class="goalie_name">
+          Tori Holmes-Kirk
+        </div>
+      </div>
+    </div>
+    <div class="game_space"></div>
+    <div class="team_goalies">
+      <div class="team_logos"><img class="team_logo" src="images/leiden_lions_logo.png" style="max-height:70%; max-width:70%">
+      </div>
+      <div class="team_names">
+        <div class="goalie_name">
+          Bob Gase
+        </div>
+      </div>
+    </div>    <div class="game_space"></div>      
+  </div>
 
-      <tr>
-        <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-              <img src="images/leiden_lions_logo.png" style="max-height:80%; max-width:80%" />
-        </td>
-        <td>Bob Gase</td>
 
-      </tr>
-
-      </tr>
-   </table>
+ <div class=box2>
+   <h2>Linescore</h2>
+    <div class="games">
+     <div class="team_linescores">
+       <div class="team_logos_linescore">
+         
+       </div>
+       <div class="team_names">
+          <div class="team_name_linescore">
+          </div>
+       </div>
+       <div class="linescore_header1">
+          1st
+       </div>
+       <div class="linescore_header2">
+          2nd
+       </div>
+       <div class="linescore_header3">
+          3rd
+       </div>
+       <div class="linescore_header4">
+          T
+       </div>
+      </div>
+    </div>
+    <div class="game_space"></div>
+    <div class="games">
+     <div class="team_linescores">
+       <div class="team_logos_linescore">
+         <img class="team_logo_linescore" src="images/Mustangs_logo.png" style="max-height:90%; max-width:90%">
+       </div>
+       <div class="team_names">
+          <div class="team_name_linescore">
+            Mustangs
+          </div>
+       </div>
+       <div class="linescore">
+          2
+       </div>
+       <div class="linescore">
+          0
+       </div>
+       <div class="linescore">
+          1
+       </div>
+       <div class="linescore">
+          3
+       </div>
+      </div>
+    </div>
+    <div class="game_space"></div>
+    <div class="games">
+      <div class="team_linescores">
+        <div class="team_logos_linescore">
+          <img class="team_logo_linescore" src="images/leiden_lions_logo.png" style="max-height:90%; max-width:90%">
+        </div>
+        <div class="team_names">
+          <div class="team_name_linescore">
+            Lions
+          </div>
+        </div>
+        <div class="linescore">
+            3
+        </div>
+        <div class="linescore">
+            1
+        </div>
+        <div class="linescore">
+            3
+        </div>
+        <div class="linescore_winning">
+            7
+        </div>
+      </div>
+    </div><div class="game_space"></div>  
   </div>
 
 
 
 
+  <div class=box3>
 
-
-      <br>
-    <h2>Officials</h2>
-      <div style="overflow-x:auto;">
-      <table style="width:400px">
-      <tr>
-        <th style="width:150px"></th>
-        <th style="width:250px"></th>
-      </tr>
-      <tr>
-        <td><b>Referee</b></td>
-        <td>Gerben Straathof</td>
-      </tr>     
-
-      <tr>
-        <td><b>Referee</b></td>
-        <td>Johan van den Haak</td>
-      </tr>   
-
-      <tr>
-        <td><b>Official Scorer</b></td>
-        <td>Naomi Esztl</td>
-      </tr>   
-
-      <tr>
-        <td><b>Timekeeper</b></td>
-        <td>Anique van Gier</td>
-      </tr>   
-
-      </tr>
-
-      </tr>
-   </table>
+    <div class="stats">
+      <div class="stats_lines">
+        <div class="stats_figure"><img class="team_logo_statsline" src="images/Mustangs_logo.png" style="max-height:70%; max-width:70%"></div>
+        <div class="stats_category_title"><div class="stats_category_title"><h2>Game Stats</h2></div></div>
+        <div class="stats_figure"><img class="team_logo_statsline" src="images/leiden_lions_logo.png" style="max-height:60%; max-width:60%"></div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stats_lines">
+        <div class="stats_figure">~60</div>
+        <div class="stats_category"><div class="stats_category">Shots on Goal</div></div>
+        <div class="stats_figure">~35</div>
+      </div>
+    </div>
+    <div class="game_space"></div>    
+    <div class="stats">
+      <div class="stats_lines">
+        <div class="stats_figure">4</div>
+        <div class="stats_category"><div class="stats_category">Penalty Minutes</div></div>
+        <div class="stats_figure">10</div>
+      </div>
+    </div>
+    <div class="game_space"></div>
+    <div class="stats">
+      <div class="stats_lines">
+        <div class="stats_figure">0%</div>
+        <div class="stats_category"><div class="stats_category">Power Play %</div></div>
+        <div class="stats_figure">0%</div>
+      </div>
+    </div>
+    <div class="game_space"></div>
+    <div class="stats">
+      <div class="stats_lines">
+        <div class="stats_figure">100%</div>
+        <div class="stats_category"><div class="stats_category">Penalty Kill %</div></div>
+        <div class="stats_figure">100%</div>
+      </div>
+    </div>
+    <div class="game_space"></div>  
   </div>
-  </div> 
+
+
+  <div class=box2>
+  <h2>Officials</h2>
+    <div class="officials">
+        <div class="official">Referee
+        </div>
+        <div class="official_name">
+          Gerben Straathof
+        </div>
+    </div>
+    <div class="game_space2"></div> 
+    
+    <div class="officials">
+      <div class="official">Referee
+      </div>
+        <div class="official_name">
+          Johan van den Haak
+        </div>
+    </div>
+    <div class="game_space2"></div> 
+
+    <div class="officials">
+      <div class="official">Scorer
+      </div>
+        <div class="official_name">
+          Naomi Esztl
+        </div>
+    </div>
+    <div class="game_space2"></div> 
+
+    <div class="officials">
+      <div class="official">Timekeeper
+      </div>
+        <div class="official_name">
+          Anique van Gier
+        </div>
+    </div>
+    <div class="game_space"></div>  
+    <div class="game_space2"></div>  
+  </div>
 
   </div> 
-
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br><br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br><br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br><br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-<br><br><br><br>
-
-<div class="footer">
-  <h2>&copy; 2024 Amsterdam Mustangs</h2>
-</div>
-
 
 
 </body>
