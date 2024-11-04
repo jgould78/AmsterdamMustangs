@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="sortable-table.js"></script>
+
+<title>Amsterdam Mustangs</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 10;
+}
+
+/* Style the header */
+.header {
+  padding: 30px;
+  text-align: center;
+  background: #e12800;
+  color: black;
+}
+
+.header img {
+  float: left;
+    width: 150px;
+  height: 125px;
+  
+}
+
+/* Increase the font size of the h1 element */
+.header h1 {
+  font-size: 40px;
+    position: relative;
+  top: 18px;
+  left: 10px;
+}
+
+/* Style the top navigation bar */
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+}
+
+/* Right-aligned link */
+.navbar a.right {
+  float: right;
+}
+
+/* Change color on hover */
+.navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Column container */
+.row {  
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side {
+  flex: 30%;
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+/* Table */
+
+.table-container {
+  margin: auto;
+  max-width: 1200px;
+  min-height: 100vh;
+  overflow: scroll;
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead tr {
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  height: 1px;
+}
+
+th {
+  font-weight: bold;
+  height: inherit;
+  padding: 0;
+  
+
+}
+
+th:not(:first-of-type) {
+  border-left: 1px solid #ddd;
+}
+
+th button {
+  background-color: #eee;
+  border: none;
+  cursor: pointer;
+  display: block;
+  font: inherit;
+  height: 100%;
+  margin: 0;
+  min-width: max-content;
+  padding: 0.5rem 1rem;
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+
+th button::after {
+  position: absolute;
+  right: 0.5rem;
+}
+
+th button[data-dir="asc"]::after {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='0, 0 8,0 4,8 8' fill='%23818688'/%3E%3C/svg%3E");
+}
+
+th button[data-dir="desc"]::after {
+  content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpolygon points='4 0,8 8,0 8' fill='%23818688'/%3E%3C/svg%3E");
+}
+
+tbody tr {
+  border-bottom: 0px solid #ddd;
+}
+
+td {
+  padding: 0.5rem 1rem;
+  text-align: center;
+    
+}
+
+.scoring_name {
+  text-align: left;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.assist_name {
+  
+  text-align: left;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+footer {
+  background-color: #ffdfb9;
+  margin: 2rem -8px -8px;
+  padding: 1rem;
+  text-align: center;
+}
+
+footer a {
+  color: inherit;
+  text-decoration: none;
+}
+
+footer .heart {
+  color: #dc143c;
+}
+
+/* Main column */
+.main {   
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+.main img {
+  float: left;
+  display: block;
+  max-width:135px;
+  max-height:100px;
+  width: auto;
+  height: auto;
+  
+}
+
+
+
+/* Fake image, just for this example */
+.fakeimg {
+  background-color: #aaa;
+  width: 100%;
+  padding: 20px;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+  .row {   
+    flex-direction: column;
+  }
+}
+
+.column {
+  float: left;
+  padding: 10px;
+ 
+}
+
+.left {
+  width: 25%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
+@media screen and (max-width: 400px) {
+  .navbar a {
+    float: none;
+    width:100%;
+  }
+}
+
+
+
+.box { 
+  width: 750px;
+  padding: 10px; 
+  background-color: #fff;
+  border: 3px solid #eaeaea;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #dedede;
+  margin-bottom: 10px;  
+}
+
+.box2 { 
+  width: 450px;
+  padding: 10px; 
+  background-color: #fff;
+  border: 3px solid #eaeaea;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #dedede;
+  margin-bottom: 10px;  
+}
+
+
+.box3 { 
+  width: 450px;
+  padding: 10px; 
+  background-color: #fff;
+  border: 3px solid #eaeaea;
+  border-radius: 10px;
+  box-shadow: 0 0 5px #dedede;
+  margin-bottom: 10px;  
+      padding-left: 20px;
+    padding-right: 20px;
+}
+
+
+.games{
+  align-items: center;
+  display: flex;
+}
+
+.lines{
+  align-items: center;
+    display: flex;
+}
+
+.game_space{
+  align-items: center;
+    display: flex;
+    margin-bottom: 10px;  
+}
+
+.game_space2{
+  align-items: center;
+    display: flex;
+    margin-bottom: 5px;  
+}
+
+.team_logos {
+    width: 100px;
+    border-right: 0px solid #d4d4d4;
+    display: flex;
+    align-items: center;
+  justify-content: space-between;     
+}
+
+.team_logo{
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 20px;
+
+}
+
+
+
+
+.team_names {
+    width: 375px;
+    border-right: 0px solid #d4d4d4;
+    display: flex;
+    align-items: center;
+  justify-content: space-between;     
+}
+
+.team_scores {
+    width: 450px;
+    border-right: 0px solid #d4d4d4;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+  justify-content: space-between;     
+}
+
+
+
+.team_goalies {
+    width: 450px;
+    border-right: 0px solid #d4d4d4;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+  justify-content: space-between;     
+}
+
+.officials {
+    width: 425px;
+    border-right: 0px solid #d4d4d4;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+  justify-content: space-between; 
+      font-weight: bold;    
+}
+
+.official {
+    width: 150px;
+    border-right: 0px solid #d4d4d4;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+  justify-content: space-between;   
+
+}
+
+.official_name {
+    font-weight: normal;
+    
+        width: 400px;
+
+}
+
+.game_status {
+    width: 300px;
+    text-align: center; 
+    font-size: 25px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+
+.game_location {
+    width: 300px;
+    text-align: center; 
+    
+    margin-bottom: 30px;
+}
+
+
+
+.team_name {
+    font-weight: normal;
+    font-size: 20px;  
+
+}
+
+
+.goalie_name {
+    font-weight: normal;
+     
+
+}
+
+.score {
+    position: relative;
+    font-size: 25px;
+    font-weight: normal;
+    justify-content: space-between;
+    margin-right: 10px;
+}
+
+.score_winning {
+    position: relative;
+    font-size: 25px;
+    font-weight: bold;
+    justify-content: space-between;
+    margin-right: 10px;
+}
+
+.team_logos_linescore {
+    width: 200px;
+    border-right: 0px solid #d4d4d4;
+    display: flex;
+    align-items: center;
+  justify-content: space-between;     
+}
+
+.team_logo_linescore {
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 20px;
+
+}
+
+.team_logo_statsline {
+    margin-right: 10px;
+    padding-left: 20px;
+    padding-right: 10px;
+
+}
+
+
+
+.team_linescores {
+    width: 400px;
+    border-right: 0px solid #d4d4d4;
+    padding-right: 20px;
+    display: flex;
+    align-items: center;
+  justify-content: space-between;     
+}
+
+
+
+.team_name_linescore {
+    font-weight: bold;
+        width: 150px;
+
+}
+
+
+.stats {
+  align-items: center;
+  display: flex;
+}
+
+.stats_lines {
+    width: 400px;
+
+    display: flex;
+    align-items: center;
+  justify-content: space-between;     
+}
+
+.stats_category_title {
+    font-weight: bold;
+    font-size: 18px;  
+    width: 150px;
+    align-items: center;
+
+    text-align: center;
+
+}
+
+.stats_category {
+    font-weight: bold;
+    font-size: 18px;  
+    color: grey;
+            width: 150px;
+    align-items: center;
+
+        text-align: center;
+
+}
+
+
+.stats_figure {
+    font-weight: normal;
+    font-size: 18px;  
+    width: 150px;
+    align-items: center;
+    text-align: center;
+
+}
+
+
+.linescore_header1 {
+    position: relative;
+    
+    font-weight: bold;
+    justify-content: space-between;
+    margin-right: 10px;
+    padding-left: 5px;
+    padding-right: 0px;
+}
+
+.linescore_header2 {
+    position: relative;
+    
+    font-weight: bold;
+    justify-content: space-between;
+    margin-right: 10px;
+    padding-left: 5px;
+    padding-right: 0px;
+}
+
+.linescore_header3 {
+    position: relative;
+    
+    font-weight: bold;
+    justify-content: space-between;
+    margin-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+.linescore_header4 {
+    position: relative;
+    
+    font-weight: bold;
+    justify-content: space-between;
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.linescore {
+    position: relative;
+    
+    font-weight: normal;
+    justify-content: space-between;
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+
+.linescore_winning {
+    position: relative;
+    
+    font-weight: bold;
+    justify-content: space-between;
+    margin-right: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+</style>
+</head>
+<body>
+
+
+<div class="column" style="width:760px;">
+
+  <h3>3rd November 2024 - <a target="_blank" href="https://api.hockeydata.net/data/ih/GameDocument?apiKey=a0a1258810e90e77a2367f403c6635d1&referer=https://www.ijshockeynederland.nl/&timestamp=1661761801761&gameId=caac19b7-29d8-4696-9d9a-4983636073d3&lang=en&docType=gameReport">Official Gamesheet</a></h3>
+  <div class=box>
+    <br><div class="games">
+        <div class="team_scores">
+        <div class="team_logos">
+          <img class="team_logo" src="images/GIJS_logo.png" style="max-height:75px; max-width:75px">
+        </div>
+        <div class="team_names">
+              <div class="team_name">
+                Gijs<br>Groningen 3
+              </div>
+        </div>
+        <div class="score_winning">
+                7
+              </div>
+      </div>
+      <div class="game_status">
+          FINAL
+        </div>
+      </div>
+      <div class="game_space"></div>
+    <div class="games">
+        <div class="team_scores">
+        <div class="team_logos">
+          <img class="team_logo" src="images/Mustangs_logo.png" style="max-height:75px; max-width:75px">
+        </div>
+        <div class="team_names">
+              <div class="team_name">
+                Amsterdam<br>Mustangs
+              </div>
+        </div>
+        <div class="score">
+                6
+              </div>
+      </div>
+      <div class="game_location">
+          Jaap Eden Ijshal<br>Amsterdam, Netherlands
+        </div>  
+      </div>
+
+  </div>
+
+  
+  <div class=box>
+  <h2>Mustangs fight to the end but fall short in home opener.</h2>
+  <h5>03-Nov-2024</h5>
+  <p>AMSTERDAM, The Netherlands -- The Amsterdam Mustangs lost a hard-fought battle in their home opener against Groningen, falling 7-6 in a game that saw both sides rack up penalties. Despite a nail-biter that saw them tie the game multiple times and pull the goalie in the final minutes, the Mustangs couldn't tie up the game with the extra attacker.</p>
+  <p>The game was a back-and-forth affair. Groningen opened the scoring and took a 2-0 lead in the first period.  The Mustangs answered with a power-play goal from Jim Conboy and a goal from Daniel Watts to even the score. From that point, the game was always close with Groningen either leading or the game being tied throughout. The Mustangs continuously battled back but were never able to take the lead. Groningen regained the lead before the end of the first period, making it 3-2. The second period was won by the Mustangs and the game was tied after two periods.  The third period followed a similar pattern, with Groningen ultimately scoring the game-winning goal on a power play with under six minutes remaining.</p>
+  <p>Daniel Watts led the Mustangs with two goals, including one short-handed. Jim Conboy scored a power-play goal, while Jeremie Gould, Duane Mattos, and Jared Penner each added a goal. Gould managed to jam in a partially-covered puck before the whistle that generated complaints from Groningen. Groningen's offense was fueled by the Ukrainian duo of Nikita Murtyshchev and Maxim Kuzmenko, as well as Marcel Altepost. Murtyshchev had two goals and two assists, Kuzmenko had a goal and an assist, and Altepost scored twice and added an assist.</p>
+  <p>Both teams struggled with penalties, with the Mustangs taking 10 penalty minutes. Groningen found itself in the box for 14 penalty minutes. Jeroen Valentijn and Jared Penner each took multiple penalties for the Mustangs as did Edwin Pijl for Groningen.</p>
+  <p>Mustangs’ goalie Tori Holmes-Kirk had a strong game, making several key saves, including stopping a penalty shot by Edwin Pijl.</p>
+  <p>The Mustangs will look to rebound from this loss when they travel to face Hoorn on November 9th. Blue Mountain Cougars Hoorn 3 is currently struggling in second-to-last place with a minus 22 goal differential, providing an opportunity for the Mustangs to get back on track.</p>
+</div>
+
+  <div class=box>
+  <h2>Scoring Summary</h2>
+  <h3>1st Period</h3>
+    <div style="overflow-x:auto;">
+    <table style="width:700px">
+      <tr>
+        <th style="width:50px"></th>
+        <th style="width:100px"></th>
+        <th style="width:450px"></th>
+        <th style="width:100px"></th>
+      </tr>
+      <tr>
+        <td><img src="images/GIJS_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>02:09</b><br>Time</td>
+        <td><div class="scoring_name">Maksym Kuzmenko (1)</div><div class="assist_name">Mykyta Murtyshchev (1), Jaap Jan Hessels (1)</div></td>
+        <td><b>1-0 GIJ</b><br>Score</td>
+      </tr>
+      <tr>
+        <td><img src="images/GIJS_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>09:46</b><br>Time</td>
+        <td><div class="scoring_name">Mykyta Murtyshchev (1)</div><div class="assist_name">Jaap Jan Hessels (2)</div></td>
+        
+        <td><b>2-0 GIJ</b><br>Score</td>
+      </tr>
+      <tr>
+        <td><img src="images/Mustangs_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>15:05</b><br>Time</td>
+        <td><div class="scoring_name">Jim Conboy PP (1)</div><div class="assist_name"></div></td>
+        <td><b>2-1 GIJ</b><br>Score</td>
+      </tr>
+      <tr>
+        <td><img src="images/Mustangs_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>16:09</b><br>Time</td>
+        <td><div class="scoring_name">Daniel Watts (1)</div><div class="assist_name">Petteri Hyytiäinen (1)</div></td>
+        <td><b>2-2</b><br>Score</td>
+      </tr>
+      <tr>
+        <td><img src="images/GIJS_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>18:57</b><br>Time</td>
+        <td><div class="scoring_name">Marcel Altepost (1)</div><div class="assist_name">Ronald Hoving (1), Mykyta Murtyshchev (2)</div></td>
+        <td><b>3-2 GIJ</b><br>Score</td>
+      </tr>
+   </table>
+  </div>
+    <h3>2nd Period</h3>
+    <div style="overflow-x:auto;">
+    <table style="width:700px">
+      <tr>
+        <th style="width:50px"></th>
+        <th style="width:100px"></th>
+        <th style="width:450px"></th>
+        <th style="width:100px"></th>
+      </tr>
+      <tr>
+        <td><img src="images/Mustangs_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>01:01</b><br>Time</td>
+        <td><div class="scoring_name">Daniel Watts SH (2)</div><div class="assist_name">Jeremie Gould (1)</div></td>
+        <td><b>3-3</b><br>Score</td>
+      </tr>
+      <tr>
+        <td><img src="images/GIJS_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>04:29</b><br>Time</td>
+        <td><div class="scoring_name">Edwin Pijl (1)</div><div class="assist_name">Arjan Nolles (1), Weijer Putten (1)</div></td>
+        <td><b>4-3 GIJ</b><br>Score</td>
+      </tr>
+      <tr>
+        <td><img src="images/Mustangs_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>08:12</b><br>Time</td>
+        <td><div class="scoring_name">Duane Mattos (1)</div><div class="assist_name">Jared Penner (1), Mark van den Tempel (1)</div></td>
+        <td><b>4-4</b><br>Score</td>
+      </tr>
+   </table>
+  </div>
+    <h3>3rd Period</h3>
+    <div style="overflow-x:auto;">
+    <table style="width:700px">
+      <tr>
+        <th style="width:50px"></th>
+        <th style="width:100px"></th>
+        <th style="width:450px"></th>
+        <th style="width:100px"></th>
+      </tr>
+      <tr>
+        <td><img src="images/GIJS_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>02:43</b><br>Time</td>
+        <td><div class="scoring_name">Marcel Altepost (2)</div><div class="assist_name"></div></td>
+        <td><b>5-4 GIJ</b><br>Score</td>
+      </tr>
+      <tr>
+        <td><img src="images/GIJS_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>05:05</b><br>Time</td>
+        <td><div class="scoring_name">Weijer Putten (1)</div><div class="assist_name">Andrew Dijkhuizen (1)</div></td>
+        <td><b>6-4 GIJ</b><br>Score</td>
+      </tr>
+      <tr>
+        <td><img src="images/Mustangs_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>06:50</b><br>Time</td>
+        <td><div class="scoring_name">Jeremie Gould (1)</div><div class="assist_name"></div></td>
+        <td><b>6-5 GIJ</b><br>Score</td>
+      </tr>
+      <tr>
+        <td><img src="images/Mustangs_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>12:12</b><br>Time</td>
+        <td><div class="scoring_name">Jared Penner (1)</div><div class="assist_name">Andrey Gushchin (1)</div></td>
+        <td><b>6-6</b><br>Score</td>
+      </tr>
+      <tr>
+        <td><img src="images/GIJS_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>14:06</b><br>Time</td>
+        <td><div class="scoring_name">Mykyta Murtyshchev PP (2)</div><div class="assist_name">Marcel Altepost (1), Maksym Kuzmenko (1)</div></td>
+        <td><b>7-6 GIJ</b><br>Score</td>
+      </tr>
+   </table>
+  </div>
+  </div>
+  <div class=box>
+  <h2>Penalty Summary</h2>
+    <h3>1st Period</h3>
+    <div style="overflow-x:auto;">
+    <table style="width:700px">
+      <tr>
+        <th style="width:50px"></th>
+        <th style="width:100px"></th>
+        <th style="width:350px"></th>
+        <th style="width:250px"></th>
+      </tr>
+      <tr>
+        <td><img src="images/GIJS_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>06:00</b><br>Time</td>
+        <td><div class="scoring_name">Safan Pattiruhu</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Tripping</div></td>
+      </tr>
+      <tr>
+        <td><img src="images/Mustangs_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>11:22</b><br>Time</td>
+        <td><div class="scoring_name">Jeroen Valentijn</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Tripping</div></td>
+      </tr>
+      <tr>
+        <td><img src="images/GIJS_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>13:53</b><br>Time</td>
+        <td><div class="scoring_name">Arjan Nolles</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Holding-Stick</div></td>
+      </tr>
+      <tr>
+        <td><img src="images/Mustangs_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>19:31</b><br>Time</td>
+        <td><div class="scoring_name">Jeroen Valentijn</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Tripping</div></td>
+      </tr>
+   </table>
+  </div>
+    <h3>2nd Period</h3>
+    <div style="overflow-x:auto;">
+    <table style="width:700px">
+      <tr>
+        <th style="width:50px"></th>
+        <th style="width:100px"></th>
+        <th style="width:350px"></th>
+        <th style="width:250px"></th>
+      </tr>
+      <tr>
+        <td><img src="images/Mustangs_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>15:49</b><br>Time</td>
+        <td><div class="scoring_name">Jared Penner</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">High Sticking</div></td>
+      </tr>
+      <tr>
+        <td><img src="images/GIJS_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>18:23</b><br>Time</td>
+        <td><div class="scoring_name">Dennis van Kooten</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Interference</div></td>
+      </tr>
+      <tr>
+        <td><img src="images/GIJS_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>18:50</b><br>Time</td>
+        <td><div class="scoring_name">Edwin Pijl</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Tripping</div></td>
+      </tr>
+      <tr>
+        <td><img src="images/GIJS_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>18:50</b><br>Time</td>
+        <td><div class="scoring_name">Maksym Kuzmenko</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Cross-Checking</div></td>
+      </tr>
+   </table>
+  </div>
+    <h3>3rd Period</h3>
+    <div style="overflow-x:auto;">
+    <table style="width:700px">
+      <tr>
+        <th style="width:50px"></th>
+        <th style="width:100px"></th>
+        <th style="width:350px"></th>
+        <th style="width:250px"></th>
+      </tr>
+      <tr>
+        <td><img src="images/Mustangs_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>09:46</b><br>Time</td>
+        <td><div class="scoring_name">Jared Penner</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Tripping</div></td>
+      </tr>
+      <tr>
+        <td><img src="images/Mustangs_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>13:37</b><br>Time</td>
+        <td><div class="scoring_name">Brett Boss</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Hooking</div></td>
+      </tr>
+      <tr>
+        <td><img src="images/GIJS_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>14:27</b><br>Time</td>
+        <td><div class="scoring_name">Arjan Nolles</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Hooking</div></td>
+      </tr>
+      <tr>
+        <td><img src="images/GIJS_logo.png" style="max-height:50px; max-width:50px" /></td>
+        <td><b>15:52</b><br>Time</td>
+        <td><div class="scoring_name">Edwin Pijl</div></td>
+        <td><div class="scoring_name">Minor (2 mins)</div><div class="assist_name">Hooking</div></td>
+      </tr>
+   </table>
+  </div>
+  </div>
+</div>
+  <div class="column" style="width:400px;">
+<br><br><br>
+
+  <div class=box2>
+    <h2>Goalies</h2>
+    <div class="team_goalies">
+      <div class="team_logos"><img class="team_logo" src="images/GIJS_logo.png" style="max-height:70%; max-width:70%">
+      </div>
+      <div class="team_names">
+        <div class="goalie_name">
+          Vincent Pieters
+        </div>
+      </div>
+    </div>    <div class="game_space"></div>      
+    <div class="team_goalies">
+      <div class="team_logos"><img class="team_logo" src="images/Mustangs_logo.png" style="max-height:70%; max-width:70%;">
+      </div>
+      <div class="team_names">
+        <div class="goalie_name">
+          Tori Holmes-Kirk
+        </div>
+      </div>
+    </div>
+    <div class="game_space"></div>
+  </div>
+
+
+ <div class=box2>
+   <h2>Linescore</h2>
+    <div class="games">
+     <div class="team_linescores">
+       <div class="team_logos_linescore">
+         
+       </div>
+       <div class="team_names">
+          <div class="team_name_linescore">
+          </div>
+       </div>
+       <div class="linescore_header1">
+          1st
+       </div>
+       <div class="linescore_header2">
+          2nd
+       </div>
+       <div class="linescore_header3">
+          3rd
+       </div>
+       <div class="linescore_header4">
+          T
+       </div>
+      </div>
+    </div>
+    <div class="game_space"></div>
+    <div class="games">
+     <div class="team_linescores">
+       <div class="team_logos_linescore">
+         <img class="team_logo_linescore" src="images/GIJS_logo.png" style="max-height:90%; max-width:90%">
+       </div>
+       <div class="team_names">
+          <div class="team_name_linescore">
+            Gijs
+          </div>
+       </div>
+       <div class="linescore">
+          3
+       </div>
+       <div class="linescore">
+          1
+       </div>
+       <div class="linescore">
+          3
+       </div>
+       <div class="linescore_winning">
+          7
+       </div>
+      </div>
+    </div>
+    <div class="game_space"></div>
+    <div class="games">
+      <div class="team_linescores">
+        <div class="team_logos_linescore">
+          <img class="team_logo_linescore" src="images/Mustangs_logo.png" style="max-height:90%; max-width:90%">
+        </div>
+        <div class="team_names">
+          <div class="team_name_linescore">
+            Mustangs
+          </div>
+        </div>
+        <div class="linescore">
+            2
+        </div>
+        <div class="linescore">
+            2
+        </div>
+        <div class="linescore">
+            2
+        </div>
+        <div class="linescore">
+            6
+        </div>
+      </div>
+    </div><div class="game_space"></div>  
+  </div>
+
+
+
+
+  <div class=box3>
+
+    <div class="stats">
+      <div class="stats_lines">
+        <div class="stats_figure"><img class="team_logo_statsline" src="images/GIJS_logo.png" style="max-height:70%; max-width:70%"></div>
+        <div class="stats_category_title"><div class="stats_category_title"><h2>Game Stats</h2></div></div>
+        <div class="stats_figure"><img class="team_logo_statsline" src="images/Mustangs_logo.png" style="max-height:60%; max-width:60%"></div>
+      </div>
+    </div>
+    <div class="stats">
+      <div class="stats_lines">
+        <div class="stats_figure">?</div>
+        <div class="stats_category"><div class="stats_category">Shots on Goal</div></div>
+        <div class="stats_figure">?</div>
+      </div>
+    </div>
+    <div class="game_space"></div>    
+    <div class="stats">
+      <div class="stats_lines">
+        <div class="stats_figure">14</div>
+        <div class="stats_category"><div class="stats_category">Penalty Minutes</div></div>
+        <div class="stats_figure">10</div>
+      </div>
+    </div>
+    <div class="game_space"></div>
+    <div class="stats">
+      <div class="stats_lines">
+        <div class="stats_figure">20%</div>
+        <div class="stats_category"><div class="stats_category">Power Play %</div></div>
+        <div class="stats_figure">14.3%</div>
+      </div>
+    </div>
+    <div class="game_space"></div>
+    <div class="stats">
+      <div class="stats_lines">
+        <div class="stats_figure">85.7%</div>
+        <div class="stats_category"><div class="stats_category">Penalty Kill %</div></div>
+        <div class="stats_figure">80%</div>
+      </div>
+    </div>
+    <div class="game_space"></div>  
+  </div>
+
+
+  <div class=box2>
+  <h2>Officials</h2>
+    <div class="officials">
+        <div class="official">Referee
+        </div>
+        <div class="official_name">
+          Jason Roberton
+        </div>
+    </div>
+    <div class="game_space2"></div> 
+    
+    <div class="officials">
+      <div class="official">Referee
+      </div>
+        <div class="official_name">
+          Jon Attwell
+        </div>
+    </div>
+    <div class="game_space2"></div> 
+
+    <div class="officials">
+      <div class="official">Scorer
+      </div>
+        <div class="official_name">
+          Amanda Bond
+        </div>
+    </div>
+    <div class="game_space2"></div> 
+
+    <div class="officials">
+      <div class="official">Timekeeper
+      </div>
+        <div class="official_name">
+          Bram van Eijk
+        </div>
+    </div>
+    <div class="game_space"></div>  
+    <div class="game_space2"></div>  
+  </div>
+
+  </div> 
+
+
+</body>
+</html>
