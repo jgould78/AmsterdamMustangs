@@ -218,12 +218,62 @@ div.content {
 
 <body>
 
-<div class="main">
-  <h2>Amsterdam Mustangs</h2>
-  <div class="image"><img src="images/Mustangs_logo.png" alt="Amsterdam Mustangs"></div>
-  This is the main page.
-  <br>
+<div class="sidebar">
+<a href="#" onclick="parent.window.frames['main'].location = 'mainpage.html'">Home</a>
+
+
+<button class="accordion">2025-2026 | 3rd Division</button>
+<div class="panel">
+  <a href="#" onclick="parent.window.frames['main'].location = 'roster2024_2025.html'">Roster</a>
+  <a href="#" onclick="parent.window.frames['main'].location = 'schedule2024_2025.html'">Schedule/Results</a>
+  <a href="#" onclick="parent.window.frames['main'].location = 'standings2024_2025.html'">Standings</a>
+  <a href="#" onclick="parent.window.frames['main'].location = 'stats2024_2025.html'">Statistics</a>
 </div>
+
+<button class="accordion">2024-2025 | 4th Division</button>
+<div class="panel">
+  <a href="#" onclick="parent.window.frames['main'].location = 'roster2024_2025.html'">Roster</a>
+  <a href="#" onclick="parent.window.frames['main'].location = 'schedule2024_2025.html'">Schedule/Results</a>
+  <a href="#" onclick="parent.window.frames['main'].location = 'standings2024_2025.html'">Standings</a>
+  <a href="#" onclick="parent.window.frames['main'].location = 'stats2024_2025.html'">Statistics</a>
+</div>
+
+<button class="accordion">2023-2024 | 4th Division</button>
+<div class="panel">
+  <a href="#" onclick="parent.window.frames['main'].location = 'roster2024_2025.html'">Roster</a>
+  <a href="#" onclick="parent.window.frames['main'].location = 'schedule2024_2025.html'">Schedule/Results</a>
+  <a href="#" onclick="parent.window.frames['main'].location = 'standings2024_2025.html'">Standings</a>
+  <a href="#" onclick="parent.window.frames['main'].location = 'stats2024_2025.html'">Statistics</a>
+</div>
+
+
+
+  
+
+  <!--<a href="#" onclick="parent.window.frames['main'].location = 'https://www.ijshockey.nl/competities/2024-2025-2/vierde-divisie/vierde-divisie-noord'">League Website</a> -->
+  <a href="#" onclick="parent.window.frames['main'].location = 'photos.html'">Photos</a>
+  <a href="#" onclick="parent.window.frames['main'].location = 'videos.html'">Videos</a>
+  <a href="#" onclick="parent.window.frames['main'].location = 'contact.html'">Contact</a>
+</div>
+
+
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+</script>
 
 </body>
 </html>

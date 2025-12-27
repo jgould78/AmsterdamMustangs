@@ -165,12 +165,16 @@ footer .heart {
   color: #dc143c;
 }
 
+
+
 /* Main column */
 .main {   
   flex: 70%;
   background-color: white;
   padding: 20px;
-      max-width: 98%;
+  
+    
+    max-width: 98%;
     margin-left: 250px;
     margin-right: auto;
     
@@ -199,12 +203,72 @@ footer .heart {
   background: #ddd;
 }
 
-/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+
+/* The side navigation menu */
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
-  .row {   
-    flex-direction: column;
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
   }
 }
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
+
+
 
 /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
 @media screen and (max-width: 400px) {
@@ -213,6 +277,33 @@ footer .heart {
     width:100%;
   }
 }
+
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
 </style>
 </head>
 <body>
@@ -220,294 +311,170 @@ footer .heart {
 
 
 <div class="main">
-    <h2>2023-2024 Player Statistics</h2>
+    <h2>2025-2026 Roster</h2>
     
 <div style="overflow-x:auto;">
-  <table style="width:800px">
+  <table style="width:700px">
     <tr>
+      <th style="width:20px"></th>
       <th style="width:20px">#</th>
       <th style="width:250px">Player</th>
       <th style="width:60px">Position</th>
-      <th style="width:60px">GP</th>
-      <th style="width:60px">Goals</th>
-      <th style="width:60px">Assists</th>
-      <th style="width:60px">Points</th>
-      <th style="width:60px">PIM</th>
+      <th style="width:60px">Shoots</th>
+      <th style="width:100px">Nationality</th>
     </tr>
     <tr>
-      <td>77</td>
-      <td>Jeremie Gould</td>
-      <td>LW</td>
-      <td>13</td>
-      <td>8</td>
-      <td>14</td>
-      <td>22</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>46</td>
-      <td>Daniel Watts</td>
-      <td>C</td>
-      <td>11</td>
-      <td>9</td>
+      <td></td>
       <td>7</td>
-      <td>16</td>
-      <td>4</td>
+      <td>Wyatt Southard</td>
+      <td>D</td>
+      <td>Right</td>
+      <td>USA</td>
     </tr>
     <tr>
-      <td>19</td>
-      <td>Jared Penner</td>
-      <td>RW</td>
-      <td>14</td>
-      <td>7</td>
-      <td>9</td>
-      <td>16</td>
-      <td>4</td>
-    </tr>
-    <tr>
+      <td></td>
       <td>8</td>
       <td>Andrey Gushchin</td>
       <td>RW</td>
-      <td>13</td>
-      <td>6</td>
-      <td>9</td>
-      <td>15</td>
-      <td>10</td>
+      <td>Left</td>
+      <td>Russia</td>
     </tr>
     <tr>
-      <td>27</td>
-      <td>Jim Conboy</td>
-      <td>D</td>
-      <td>13</td>
-      <td>10</td>
-      <td>4</td>
-      <td>14</td>
-      <td>4</td>
-    </tr> 
-    <tr>
-      <td>47</td>
-      <td>Sergey Baradyntsev</td>
+      <td></td>
+      <td>9</td>
+      <td>Petteri Hyytiäinen</td>
       <td>C</td>
-      <td>11</td>
-      <td>7</td>
-      <td>3</td>
-      <td>10</td>
-      <td>2</td>
+      <td>Left</td>
+      <td>Finland</td>
     </tr>
     <tr>
-      <td>73</td>
-      <td>Dirk McLaughlin</td>
-      <td>D</td>
-      <td>9</td>
-      <td>1</td>
-      <td>9</td>
-      <td>10</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>Dzmitry Basenka</td>
-      <td>LW</td>
-      <td>5</td>
-      <td>7</td>
-      <td>2</td>
-      <td>9</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <td>24</td>
-      <td>Krisztian Vizsy</td>
-      <td>RW</td>
-      <td>7</td>
-      <td>5</td>
-      <td>4</td>
-      <td>9</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <td>89</td>
-      <td>Brett Boss</td>
-      <td>D</td>
-      <td>13</td>
-      <td>3</td>
-      <td>6</td>
-      <td>9</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <td>91</td>
-      <td>George Huber</td>
-      <td>LW</td>
-      <td>7</td>
-      <td>5</td>
-      <td>2</td>
-      <td>7</td>
-      <td>4</td>
-    </tr>    
-    <tr>
-      <td>96</td>
-      <td>Duane Mattos</td>
-      <td>LW</td>
-      <td>14</td>
-      <td>2</td>
-      <td>5</td>
-      <td>7</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <td>17</td>
-      <td>Jon Garrity</td>
-      <td>D</td>
-      <td>13</td>
-      <td>3</td>
-      <td>3</td>
-      <td>6</td>
-      <td>6</td>
-    </tr>
-    <tr>
-      <td>18</td>
-      <td>Chris Lesny</td>
-      <td>LW</td>
-      <td>12</td>
-      <td>3</td>
-      <td>2</td>
-      <td>5</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td>Mark van den Tempel</td>
-      <td>D</td>
-      <td>8</td>
-      <td>2</td>
-      <td>3</td>
-      <td>5</td>
-      <td>8</td>
-    </tr> 
-    <tr>
-      <td>11</td>
-      <td>Alexander Samoylov</td>
-      <td>D</td>
-      <td>12</td>
-      <td>1</td>
-      <td>4</td>
-      <td>5</td>
-      <td>0</td>
-    </tr>
-
-    <tr>
-      <td>15</td>
-      <td>Nikita Koutsman</td>
-      <td>LW</td>
-      <td>12</td>
-      <td>3</td>
-      <td>0</td>
-      <td>3</td>
-      <td>4</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>Alex Paquin</td>
-      <td>C</td>
-      <td>5</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>4</td>
-    </tr>
-    <tr>
+      <td></td>
       <td>13</td>
       <td>Jeroen Valentijn</td>
       <td>D</td>
-      <td>10</td>
-      <td>1</td>
-      <td>0</td>
-      <td>1</td>
-      <td>2</td>
+      <td>Right</td>
+      <td>Netherlands</td>
     </tr>
-
-  </table>
-</div>
-
-
-
-    <h2>2023-2024 Goalie Statistics</h2>
-    
-<div style="overflow-x:auto;">
-  <table style="width:800px">
     <tr>
-      <th style="width:20px">#</th>
-      <th style="width:250px">Player</th>
-      <th style="width:60px">GP</th>
-      <th style="width:60px">Wins</th>
-      <th style="width:60px">Losses</th>
-      <th style="width:60px">Ties</th>
-      <th style="width:60px">GA</th>
-      <th style="width:60px">GAA</th>
-      <th style="width:60px">Shutouts</th>
+      <td></td>
+      <td>15</td>
+      <td>Alex Paquin</td>
+      <td>LW</td>
+      <td>Left</td>
+      <td>Canada</td>
     </tr>
-
-
-
-   
     <tr>
+      <td></td>
+      <td>16</td>
+      <td>Christopher Price</td>
+      <td>C</td>
+      <td>Left</td>
+      <td>Canada</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>17</td>
+      <td>Jon Garrity</td>
+      <td>D</td>
+      <td>Left</td>
+      <td>USA</td>
+    </tr>
+    <tr>
+      <td>"A"</td>
+      <td>19</td>
+      <td>Jared Penner</td>
+      <td>RW</td>
+      <td>Right</td>
+      <td>Canada</td>
+    </tr>
+    <tr>
+      <td>"A"</td>
+      <td>27</td>
+      <td>Jim Conboy</td>
+      <td>D</td>
+      <td>Right</td>
+      <td>Canada</td>
+    </tr>  
+    <tr>
+      <td></td>
+      <td>29</td>
+      <td>Nils Klok</td>
+      <td>D</td>
+      <td>Right</td>
+      <td>Netherlands</td>
+    </tr>  
+    <tr>
+      <td></td>
       <td>31</td>
       <td>Tori Holmes-Kirk</td>
-      <td>9</td>
-      <td>3</td>
-      <td>6</td>
-      <td>0</td>
-      <td>56</td>
-      <td>6.22</td>
-      <td>0</td>
+      <td>G</td>
+      <td>Left</td>
+      <td>USA</td>
     </tr>
     <tr>
-      <td>41</td>
-      <td>Connor Harrington-Brandt</td>
-      <td>2</td>
-      <td>2</td>
-      <td>0</td>
-      <td>0</td>
-      <td>4</td>
-      <td>2.00</td>
-      <td>0</td>
+      <td></td>
+      <td>44</td>
+      <td>Krisztian Vizsy</td>
+      <td>LW</td>
+      <td>Left</td>
+      <td>Hungary</td>
     </tr>
     <tr>
-      <td>1</td>
-      <td>Frank Groen</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>1.00</td>
-      <td>0</td>
+      <td></td>
+      <td>46</td>
+      <td>Daniel Watts</td>
+      <td>C</td>
+      <td>Right</td>
+      <td>USA</td>
     </tr>
     <tr>
-      <td>98</td>
-      <td>Jimmy Berndsen</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>3</td>
-      <td>3.00</td>
-      <td>0</td>
+      <td></td>
+      <td>47</td>
+      <td>Sergey Baradyntsev</td>
+      <td>C</td>
+      <td>Left</td>
+      <td>Belarus</td>
     </tr>
     <tr>
-      <td>1</td>
-      <td>Mike van Leeuwen</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>5</td>
-      <td>5.00</td>
-      <td>0</td>
+      <td>"C"</td>
+      <td>77</td>
+      <td>Jeremie Gould</td>
+      <td>LW</td>
+      <td>Right</td>
+      <td>Canada</td>
     </tr>
-
-
-
+    <tr>
+      <td></td>
+      <td>83</td>
+      <td>Daniel Perrier</td>
+      <td>D</td>
+      <td>Left</td>
+      <td>Netherlands</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>89</td>
+      <td>Brett Boss</td>
+      <td>D</td>
+      <td>Right</td>
+      <td>USA</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>91</td>
+      <td>George Huber</td>
+      <td>LW</td>
+      <td>Left</td>
+      <td>Canada</td>
+    </tr>    
+    <tr>
+      <td></td>
+      <td>97</td>
+      <td>Miska Braun</td>
+      <td>RW</td>
+      <td>Right</td>
+      <td>Finland</td>
+    </tr>
   </table>
 </div>
 
@@ -532,6 +499,22 @@ footer .heart {
 <br>
 </div>
 
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+</script>
 
 </body>
 </html>

@@ -164,12 +164,7 @@ footer .heart {
   color: #dc143c;
 }
 
-/* Main column */
-.main {   
-  flex: 70%;
-  background-color: white;
-  padding: 20px;
-}
+
 
 .main img {
   float: left;
@@ -195,12 +190,89 @@ footer .heart {
   background: #ddd;
 }
 
-/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+
+/* Main column */
+.main {   
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+  
+    
+    max-width: 98%;
+    margin-left: 250px;
+    margin-right: auto;
+    
+    min-height: 100%;
+    left: 20%;
+}
+
+
+
+/* The side navigation menu */
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
+
+/* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
-  .row {   
-    flex-direction: column;
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
   }
 }
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+}
+
+
 
 /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
 @media screen and (max-width: 400px) {
@@ -209,9 +281,40 @@ footer .heart {
     width:100%;
   }
 }
+
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
 </style>
 </head>
 <body>
+
+
+
 
 <div class="main">
     <h2>2024-2025 Season Standings | Netherlands 4th Division</h2>
@@ -236,56 +339,57 @@ footer .heart {
             <img src="images/GIJS_logo.png" style="max-height:100%; max-width:100%" />
       </td>
       <td>GIJS Groningen 3</td>
+      <td>12</td>
       <td>11</td>
-      <td>10</td>
       <td>1</td>
       <td>0</td>
-      <td>137</td>
-      <td>43</td>
-      <td>+94</td>
-      <td>20</td>
-    </tr>
-    <tr>
-      <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-            <img src="images/leiden_lions_logo.png" style="max-height:100%; max-width:100%" />
-      </td>
-      <td>Leiden Lions</td>
-      <td>11</td>
-      <td>7</td>
-      <td>3</td>
-      <td>1</td>
-      <td>76</td>
-      <td>43</td>
-      <td>+33</td>
-      <td>15</td>
+      <td>153</td>
+      <td>49</td>
+      <td>+104</td>
+      <td>22</td>
     </tr>
     <tr>
       <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
             <img src="images/Mustangs_logo.png" style="max-height:100%; max-width:100%" />
       </td>
       <td>Amsterdam Mustangs</td>
-      <td>11</td>
-      <td>7</td>
+      <td>12</td>
+      <td>8</td>
       <td>4</td>
       <td>0</td>
-      <td>64</td>
-      <td>51</td>
-      <td>+13</td>
-      <td>14</td>
+      <td>78</td>
+      <td>60</td>
+      <td>+18</td>
+      <td>16</td>
     </tr>
+    <tr>
+      <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
+            <img src="images/leiden_lions_logo.png" style="max-height:100%; max-width:100%" />
+      </td>
+      <td>Leiden Lions</td>
+      <td>12</td>
+      <td>7</td>
+      <td>4</td>
+      <td>1</td>
+      <td>85</td>
+      <td>57</td>
+      <td>+28</td>
+      <td>15</td>
+    </tr>
+
 
     <tr>
       <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
             <img src="images/leiden_gladiators_logo.png" style="max-height:100%; max-width:100%" />
       </td>
       <td>Leiden Gladiators</td>
-      <td>11</td>
+      <td>12</td>
       <td>6</td>
-      <td>4</td>
+      <td>5</td>
       <td>1</td>
-      <td>51</td>
-      <td>39</td>
-      <td>+12</td>
+      <td>54</td>
+      <td>44</td>
+      <td>+10</td>
       <td>13</td>
     </tr>
 
@@ -295,14 +399,14 @@ footer .heart {
             <img src="images/AmsterdamThor_logo.png" style="max-height:100%; max-width:100%" />
       </td>
       <td>Thor Amsterdam</td>
-      <td>10</td>
-      <td>3</td>
+      <td>12</td>
+      <td>4</td>
       <td>6</td>
-      <td>1</td>
-      <td>58</td>
-      <td>55</td>
-      <td>+3</td>
-      <td>7</td>
+      <td>2</td>
+      <td>67</td>
+      <td>62</td>
+      <td>+5</td>
+      <td>10</td>
     </tr>
 
 
@@ -312,13 +416,13 @@ footer .heart {
             <img src="images/HeerenveenSlapsticks_logo.png" style="max-height:100%; max-width:100%" />
       </td>
       <td>Slapsticks Flyers Heerenveen</td>
-      <td>11</td>
+      <td>12</td>
       <td>2</td>
-      <td>8</td>
+      <td>9</td>
       <td>1</td>
-      <td>48</td>
-      <td>115</td>
-      <td>-67</td>
+      <td>54</td>
+      <td>131</td>
+      <td>-77</td>
       <td>5</td>
     </tr>
 
@@ -328,14 +432,14 @@ footer .heart {
             <img src="images/HoornCougars_logo.png" style="max-height:100%; max-width:100%" />
       </td>
       <td>Blue Mountain Cougars Hoorn 3</td>
-      <td>11</td>
+      <td>12</td>
       <td>1</td>
       <td>10</td>
-      <td>0</td>
-      <td>21</td>
-      <td>109</td>
+      <td>1</td>
+      <td>25</td>
+      <td>113</td>
       <td>-88</td>
-      <td>2</td>
+      <td>3</td>
     </tr>
 
 
@@ -361,13 +465,27 @@ footer .heart {
             <img src="images/RedEagles_logo.png" style="max-height:100%; max-width:100%" />
       </td>
       <td>Red Eagles Den Bosch</td>
+      <td>12</td>
       <td>11</td>
-      <td>10</td>
       <td>1</td>
       <td>0</td>
-      <td>66</td>
-      <td>27</td>
-      <td>+39</td>
+      <td>73</td>
+      <td>31</td>
+      <td>+42</td>
+      <td>22</td>
+    </tr>
+    <tr>
+      <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
+            <img src="images/NijmegenGladiators_logo.png" style="max-height:100%; max-width:100%" />
+      </td>
+      <td>Nijmegen Gladiators</td>
+      <td>12</td>
+      <td>10</td>
+      <td>2</td>
+      <td>0</td>
+      <td>85</td>
+      <td>40</td>
+      <td>+45</td>
       <td>20</td>
     </tr>
     <tr>
@@ -375,45 +493,28 @@ footer .heart {
             <img src="images/yetis_logo.png" style="max-height:100%; max-width:100%" />
       </td>
       <td>Yeti's Breda</td>
-      <td>11</td>
+      <td>12</td>
       <td>9</td>
-      <td>2</td>
+      <td>3</td>
       <td>0</td>
-      <td>50</td>
-      <td>15</td>
-      <td>+35</td>
+      <td>51</td>
+      <td>27</td>
+      <td>+24</td>
       <td>18</td>
     </tr>
-    <tr>
-      <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-            <img src="images/NijmegenGladiators_logo.png" style="max-height:100%; max-width:100%" />
-      </td>
-      <td>Nijmegen Gladiators</td>
-      <td>11</td>
-      <td>9</td>
-      <td>2</td>
-      <td>0</td>
-      <td>73</td>
-      <td>39</td>
-      <td>+34</td>
-      <td>18</td>
-    </tr>
-
-
-
 
     <tr>
       <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
             <img src="images/sweetlake_legends_logo.png" style="max-height:100%; max-width:100%" />
       </td>
       <td>Sweetlake Legends Zoetermeer</td>
-      <td>11</td>
+      <td>12</td>
       <td>5</td>
-      <td>5</td>
+      <td>6</td>
       <td>1</td>
-      <td>57</td>
-      <td>49</td>
-      <td>+8</td>
+      <td>61</td>
+      <td>56</td>
+      <td>+5</td>
       <td>11</td>
     </tr>
     <tr>
@@ -421,14 +522,14 @@ footer .heart {
             <img src="images/DordrechtLions_logo.png" style="max-height:100%; max-width:100%" />
       </td>
       <td>Dordrecht Lions 3</td>
-      <td>11</td>
-      <td>2</td>
+      <td>12</td>
+      <td>3</td>
       <td>8</td>
       <td>1</td>
-      <td>38</td>
-      <td>55</td>
-      <td>-17</td>
-      <td>5</td>
+      <td>44</td>
+      <td>56</td>
+      <td>-12</td>
+      <td>7</td>
     </tr>
     <tr>
       <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
@@ -452,13 +553,13 @@ footer .heart {
             <img src="images/OGs_logo.png" style="max-height:100%; max-width:100%" />
       </td>
       <td>Utrecht OG's 2</td>
-      <td>11</td>
+      <td>12</td>
       <td>0</td>
-      <td>10</td>
+      <td>11</td>
       <td>1</td>
-      <td>15</td>
-      <td>64</td>
-      <td>-49</td>
+      <td>16</td>
+      <td>70</td>
+      <td>-54</td>
       <td>1</td>
     </tr>
 
@@ -466,7 +567,7 @@ footer .heart {
   </table>
   <br>
   <h3>Playoffs</h2>
-  <h5>Super Sunday | TBD | TBD | TBD</h2>
+  <h5>Super Sunday | 06-Apr-2025 | Ijshaal de Vliet | Leiden, Netherlands</h2>
 
 <div style="overflow-x:auto;">
   <table style="width:915px" >
@@ -480,17 +581,17 @@ footer .heart {
       <th style="width:30px"></th>
     </tr>
     <tr>
-      <td><font size="6"><b>?</b></font></td>
-      <td><br>TBD</td>
+      <td><font size="6"><b>2</b></font></td>
+      <td><br>GIJS Groningen 3</td>
       <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-            <img src="images/EnschedeSlappingStuds_logo123.png" style="max-height:100%; max-width:100%" />
+            <img src="images/GIJS_logo.png" style="max-height:100%; max-width:100%" />
       </td>
       <td>vs.</td>
       <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-            <img src="images/EindhovenKemphanen_logo123.png" style="max-height:100%; max-width:100%" />
+            <img src="images/RedEagles_logo.png" style="max-height:100%; max-width:100%" />
       </td>
-      <td><br>TBD</td>
-      <td><font size="6"><b>?</b></font></td>
+      <td><center><b>Champions!</b><br>Red Eagles Den Bosch</center></td>
+      <td><font size="6"><b>5</b></font></td>
     </tr>
   </table>
 </div>
@@ -516,6 +617,26 @@ footer .heart {
 <br>
 </div>
 
-    <p><i>Updated 6-Mar-2025</i></p>
+    
+
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+</script>
+
+
 </body>
 </html>

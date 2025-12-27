@@ -22,7 +22,11 @@ body {
   text-align: center;
   background: #e12800;
   color: black;
+  position: fixed;
+
 }
+
+
 
 .header img {
   float: left;
@@ -128,14 +132,180 @@ body {
   }
 }
 
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #ccc;
+}
+
+
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+
+/* The side navigation menu */
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  background-color: #f1f1f1;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+/* Sidebar links */
+.sidebar a {
+  display: block;
+  color: black;
+  padding: 16px;
+  text-decoration: none;
+}
+
+/* Active/current link */
+.sidebar a.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/* Links on mouse-over */
+.sidebar a:hover:not(.active) {
+  background-color: #555;
+  color: white;
+}
+
+/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
+div.content {
+  margin-left: 200px;
+  padding: 1px 16px;
+  height: 1000px;
+}
 
 
 </style>
 </head>
 
 <body>
-<iframe name="header" src="header.html" width="100%" height="240" frameborder="no" border="0" scrolling="no"></iframe>
-<iframe name="main" src="mainpage.html" width="100%"  height="3300" frameborder="no" border="0" scrolling="no" ></iframe>
+<iframe name="header" src="header.html" width="100%" height="180" frameborder="no" border="0" scrolling="no"></iframe>
+
+<div class="box" >
+    
+  <div class="sidebar">
+  <a href="#" onclick="parent.window.frames['content'].location = 'mainpage.html'">Home</a>
+
+
+  <button class="accordion">2025-2026 | 3rd Division</button>
+  <div class="panel">
+    <a href="#" onclick="parent.window.frames['content'].location = 'roster2025_2026.html'">Roster</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'schedule2025_2026.html'">Schedule/Results</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'standings2025_2026.html'">Standings</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'stats2025_2026.html'">Statistics</a>
+  </div>
+
+  <button class="accordion">2024-2025 | 4th Division</button>
+  <div class="panel">
+    <a href="#" onclick="parent.window.frames['content'].location = 'roster2024_2025.html'">Roster</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'schedule2024_2025.html'">Schedule/Results</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'standings2024_2025.html'">Standings</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'stats2024_2025.html'">Statistics</a>
+  </div>
+
+  <button class="accordion">2023-2024 | 4th Division</button>
+  <div class="panel">
+    <a href="#" onclick="parent.window.frames['content'].location = 'roster2023_2024.html'">Roster</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'schedule2023_2024.html'">Schedule/Results</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'standings2023_2024.html'">Standings</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'stats2023_2024.html'">Statistics</a>
+  </div>
+
+  <button class="accordion">2022-2023 | 4th Division</button>
+  <div class="panel">
+    <a href="#" onclick="parent.window.frames['content'].location = 'roster2022_2023.html'">Roster</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'schedule2022_2023.html'">Schedule/Results</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'standings2022_2023.html'">Standings</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'stats2022_2023.html'">Statistics</a>
+  </div>  
+
+  <button class="accordion">2021-2022 | 5th Division</button>
+  <div class="panel">
+    <a href="#" onclick="parent.window.frames['content'].location = 'roster2021_2022.html'">Roster</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'schedule2021_2022.html'">Schedule/Results</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'standings2021_2022.html'">Standings</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'stats2021_2022.html'">Statistics</a>
+  </div> 
+
+  <a href="#" onclick="parent.window.frames['content'].location = 'COVID.html'"><i>2020-2021 | Cancelled</i></a>
+
+  <button class="accordion">2019-2020 | 4th Division</button>
+  <div class="panel">
+    <a href="#" onclick="parent.window.frames['content'].location = 'roster2019_2020.html'">Roster</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'schedule2019_2020.html'">Schedule/Results</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'standings2019_2020.html'">Standings</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'stats2019_2020.html'">Statistics</a>
+  </div>
+
+  <button class="accordion">2018-2019 | 4th Division</button>
+  <div class="panel">
+    <a href="#" onclick="parent.window.frames['content'].location = 'roster2018_2019.html'">Roster</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'schedule2018_2019.html'">Schedule/Results</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'standings2018_2019.html'">Standings</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'stats2018_2019.html'">Statistics</a>
+  </div>
+
+  <button class="accordion">2017-2018 | 4th Division</button>
+  <div class="panel">
+    <a href="#" onclick="parent.window.frames['content'].location = 'roster2017_2018.html'">Roster</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'schedule2017_2018.html'">Schedule/Results</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'standings2017_2018.html'">Standings</a>
+    <a href="#" onclick="parent.window.frames['content'].location = 'stats2017_2018.html'">Statistics</a>
+  </div>
+
+  <a href="#" onclick="parent.window.frames['content'].location = 'photos.html'">Photos</a>
+  <a href="#" onclick="parent.window.frames['content'].location = 'videos.html'">Videos</a>
+  <a href="#" onclick="parent.window.frames['content'].location = 'contact.html'">Contact</a>
+  </div>
+</div>
+
+<div class="box">
+  <iframe name="content" src="mainpage.html" width="100%"  height="3600" frameborder="no" border="0" scrolling="no" ></iframe>
+</div>
+
 <iframe name="footer" src="footer.html" width="100%" height="300" frameborder="no" border="0" scrolling="no"></iframe> 
+
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+  });
+}
+</script>
+
 </body>
 </html>

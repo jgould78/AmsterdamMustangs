@@ -181,6 +181,60 @@ footer .heart {
   
 }
 
+
+/* The dropdown container */
+.dropdown {
+  float: right;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 /* Fake image, just for this example */
 .fakeimg {
   background-color: #aaa;
@@ -218,31 +272,7 @@ footer .heart {
   <p>The new home of the Amsterdam Mustangs hockey team.</p>
 </div>
 
-<div class="navbar">
-  <a href="#" onclick="parent.window.frames['main'].location = 'mainpage.html'">Home</a>
-  <a href="#" onclick="parent.window.frames['main'].location = 'roster2024_2025.html'">Roster</a>
-  <a href="#" onclick="parent.window.frames['main'].location = 'schedule2024_2025.html'">Schedule/Results</a>
-  <a href="#" onclick="parent.window.frames['main'].location = 'standings2024_2025.html'">Standings</a>
-  <a href="#" onclick="parent.window.frames['main'].location = 'stats2024_2025.html'">Statistics</a>
-  <a href="#" onclick="parent.window.frames['main'].location = 'https://www.ijshockeynederland.nl/competities/2024-2025/vierde-divisie/vierde-divisie-noord'">League Website</a>
-  <!-- Temporarily hidden
-  <a href="#" class="right" onclick="parent.window.frames['main'].location = 'contact.html'">Contact</a>
-  <a href="#" class="right" onclick="parent.window.frames['main'].location = 'seasons.html'">Past Seasons</a>
-  <a href="#" class="right" onclick="parent.window.frames['main'].location = 'videos.html'">Videos</a>
-  <a href="#" class="right" onclick="parent.window.frames['main'].location = 'photos.html'">Photos</a>
-  -->
-<!-- OLD MENU
-  <a href="roster2024_2025.html">Roster</a>
-  <a href="schedule2024_2025.html">Schedule/Results</a>
-  <a href="standings2024_2025.html">Standings</a>  
-  <a href="stats2024_2025.html">Statistics</a>
 
-  <a href="https://www.ijshockeynederland.nl/competities/2024-2025/vierde-divisie/vierde-divisie-noord" target="_blank">League Website</a>
-  <a href="#" class="right">Contact</a>
-  <a href="seasons.html" class="right">Past Seasons</a>
-  <a href="videos.html" class="right">Videos</a>
-  <a href="photos.html" class="right">Photos</a>-->
-</div>
 
 
 </body>
