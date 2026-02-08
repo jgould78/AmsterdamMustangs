@@ -164,7 +164,18 @@ footer .heart {
   color: #dc143c;
 }
 
-
+/* Main column */
+.main {   
+  flex: 70%;
+  background-color: white;
+  padding: 20px;
+      max-width: 98%;
+    margin-left: 250px;
+    margin-right: auto;
+    
+    min-height: 100%;
+    left: 20%;
+}
 
 .main img {
   float: left;
@@ -190,89 +201,12 @@ footer .heart {
   background: #ddd;
 }
 
-
-/* Main column */
-.main {   
-  flex: 70%;
-  background-color: white;
-  padding: 20px;
-  
-    
-    max-width: 98%;
-    margin-left: 250px;
-    margin-right: auto;
-    
-    min-height: 100%;
-    left: 20%;
-}
-
-
-
-/* The side navigation menu */
-.sidebar {
-  margin: 0;
-  padding: 0;
-  width: 200px;
-  background-color: #f1f1f1;
-  position: fixed;
-  height: 100%;
-  overflow: auto;
-}
-
-/* Sidebar links */
-.sidebar a {
-  display: block;
-  color: black;
-  padding: 16px;
-  text-decoration: none;
-}
-
-/* Active/current link */
-.sidebar a.active {
-  background-color: #04AA6D;
-  color: white;
-}
-
-/* Links on mouse-over */
-.sidebar a:hover:not(.active) {
-  background-color: #555;
-  color: white;
-}
-
-/* Page content. The value of the margin-left property should match the value of the sidebar's width property */
-div.content {
-  margin-left: 200px;
-  padding: 1px 16px;
-  height: 1000px;
-}
-
-/* On screens that are less than 700px wide, make the sidebar into a topbar */
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 700px) {
-  .sidebar {
-    width: 100%;
-    height: auto;
-    position: relative;
-  }
-  .sidebar a {float: left;}
-  div.content {margin-left: 0;}
-}
-
-/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media screen and (max-width: 400px) {
-  .sidebar a {
-    text-align: center;
-    float: none;
+  .row {   
+    flex-direction: column;
   }
 }
-
-/* Footer */
-.footer {
-  padding: 20px;
-  text-align: center;
-  background: #ddd;
-}
-
-
 
 /* Responsive layout - when the screen is less than 400px wide, make the navigation links stack on top of each other instead of next to each other */
 @media screen and (max-width: 400px) {
@@ -281,44 +215,15 @@ div.content {
     width:100%;
   }
 }
-
-.accordion {
-  background-color: #eee;
-  color: #444;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-  transition: 0.4s;
-}
-
-.active, .accordion:hover {
-  background-color: #ccc;
-}
-
-
-
-.panel {
-  padding: 0 18px;
-  background-color: white;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-}
-
 </style>
 </head>
 <body>
 
 
 
-
 <div class="main">
-    <h2>2025-2026 Season Standings | Netherlands 3rd Division</h2>
-    <h3>North Conference          <a target="_blank" href="https://www.ijshockey.nl/competities/2025-2026/derde-divisie/derde-divisie-noord">(League Standings)</a></h3>
+    <h2>2021-2022 Season Standings | Netherlands 5th Division</h2>
+  <h3>North Conference          <a target="_blank" href="https://www.ijshockey.nl/competities/2021-2022/vijfde-divisie/vijfde-divisie-noord">(League Standings)</a></h3>
 
   <div style="overflow-x:auto;">
   <table style="width:850px">
@@ -334,100 +239,112 @@ div.content {
       <th style="width:20px">GD</th>
       <th style="width:20px">Pts</th>
     </tr>
+
     <tr>
       <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
             <img src="images/Mustangs_logo.png" style="max-height:100%; max-width:100%" />
       </td>
       <td>Amsterdam Mustangs</td>
-      <td>11</td>
-      <td>8</td>
-      <td>2</td>
-      <td>1</td>
-      <td>66</td>
-      <td>55</td>
-      <td>+11</td>
-      <td>17</td>
-    </tr>
-    <tr>
-      <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-            <img src="images/Cool_Mokum_logo.png" style="max-height:100%; max-width:100%" />
-      </td>
-      <td>Cool Mokum 2</td>
-      <td>11</td>
-      <td>8</td>
-      <td>3</td>
+      <td>12</td>
+      <td>12</td>
       <td>0</td>
-      <td>109</td>
-      <td>59</td>
-      <td>+50</td>
-      <td>16</td>
+      <td>0</td>
+      <td>148</td>
+      <td>32</td>
+      <td>+116</td>
+      <td>24</td>
     </tr>
     <tr>
       <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
             <img src="images/Amsterdam_Tigers_logo.png" style="max-height:100%; max-width:100%" />
       </td>
       <td>Amsterdam Tigers 6</td>
-      <td>11</td>
-      <td>7</td>
-      <td>2</td>
-      <td>2</td>
-      <td>93</td>
-      <td>57</td>
-      <td>+36</td>
-      <td>16</td>
+      <td>12</td>
+      <td>9</td>
+      <td>3</td>
+      <td>0</td>
+      <td>106</td>
+      <td>37</td>
+      <td>+69</td>
+      <td>18</td>
     </tr>
-
-
     <tr>
       <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
             <img src="images/HoornCougars_logo.png" style="max-height:100%; max-width:100%" />
       </td>
-      <td>Blue Mountain Cougars Hoorn 1</td>
-      <td>10</td>
-      <td>4</td>
-      <td>5</td>
-      <td>1</td>
-      <td>70</td>
-      <td>88</td>
-      <td>-18</td>
-      <td>9</td>
-    </tr>
-
-    <tr>
-      <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-            <img src="images/leiden_lions_logo.png" style="max-height:100%; max-width:100%" />
-      </td>
-      <td>Leiden Islanders</td>
-      <td>10</td>
-      <td>3</td>
+      <td>Blue Mountain Cougars Hoorn 2</td>
+      <td>12</td>
       <td>7</td>
-      <td>0</td>
-      <td>58</td>
-      <td>80</td>
-      <td>-22</td>
+      <td>3</td>
+      <td>2</td>
+      <td>68</td>
+      <td>62</td>
+      <td>+6</td>
+      <td>16</td>
+    </tr> 
+    <tr>
+      <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
+            <img src="images/HeerenveenSlapsticks_logo.png" style="max-height:100%; max-width:100%" />
+      </td>
+      <td>Slapsticks Flyers Heerenveen</td>
+      <td>12</td>
       <td>6</td>
+      <td>4</td>
+      <td>2</td>
+      <td>61</td>
+      <td>63</td>
+      <td>-2</td>
+      <td>14</td>
     </tr>
+    <tr>
+      <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
+            <img src="images/Alcmaria_Flames_logo.png" style="max-height:100%; max-width:100%" />
+      </td>
+      <td>Alcmaria Flames Alkmaar 2</td>
+      <td>12</td>
+      <td>4</td>
+      <td>8</td>
+      <td>0</td>
+      <td>79</td>
+      <td>65</td>
+      <td>+14</td>
+      <td>8</td>
+    </tr>
+    <tr>
+      <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
+            <img src="images/Leiden_Blues_logo.png" style="max-height:100%; max-width:100%" />
+      </td>
+      <td>Leiden Blues</td>
+      <td>12</td>
+      <td>2</td>
+      <td>10</td>
+      <td>0</td>
+      <td>55</td>
+      <td>105</td>
+      <td>-50</td>
+      <td>18</td>
+    </tr>
+
 
     <tr>
       <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-            <img src="images/Amsterdam_Snipers_Logo.png" style="max-height:100%; max-width:100%" />
+            <img src="images/EnschedeSlappingStuds_logo.png" style="max-height:100%; max-width:100%" />
       </td>
-      <td>Amsterdam Snipers</td>
-      <td>11</td>
+      <td>Striking Stallions Enschede</td>
+      <td>12</td>
       <td>0</td>
-      <td>11</td>
+      <td>12</td>
       <td>0</td>
-      <td>44</td>
-      <td>100</td>
-      <td>-56</td>
+      <td>22</td>
+      <td>175</td>
+      <td>-153</td>
       <td>0</td>
     </tr>
-
-
 
   </table>
   <br>
-  <h3>South Conference          <a target="_blank" href="https://www.ijshockey.nl/competities/2025-2026/derde-divisie/derde-divisie-zuid">(League Standings)</a></h3>
+  <h3>South Conference          <a target="_blank" href="https://www.ijshockey.nl/competities/2021-2022/vijfde-divisie/vijfde-divisie-zuid">(League Standings)</a></h3>
+
 <div style="overflow-x:auto;">
   <table style="width:850px" >
     <tr>
@@ -442,120 +359,97 @@ div.content {
       <th style="width:20px">GD</th>
       <th style="width:20px">Pts</th>
     </tr>
-
-
-    <tr>
-      <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-            <img src="images/NijmegenGladiators_logo.png" style="max-height:100%; max-width:100%" />
-      </td>
-      <td>Nijmegen Gladiators</td>
-      <td>10</td>
-      <td>9</td>
-      <td>0</td>
-      <td>1</td>
-      <td>66</td>
-      <td>27</td>
-      <td>+39</td>
-      <td>19</td>
-    </tr>
-
-
-    <tr>
-      <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-            <img src="images/BlackSheep_logo.png" style="max-height:100%; max-width:100%" />
-      </td>
-      <td>Black Sheep Dordrecht</td>
-      <td>9</td>
-      <td>6</td>
-      <td>1</td>
-      <td>2</td>
-      <td>52</td>
-      <td>35</td>
-      <td>+17</td>
-      <td>14</td>
-    </tr>
-
-    <tr>
-      <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-            <img src="images/HijsHokij_logo.png" style="max-height:100%; max-width:100%" />
-      </td>
-      <td>Hijs Hokij Den Haag Bullets</td>
-      <td>9</td>
-      <td>3</td>
-      <td>4</td>
-      <td>2</td>
-      <td>48</td>
-      <td>48</td>
-      <td>0</td>
-      <td>8</td>
-    </tr>
-    <tr>
-      <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-            <img src="images/Geleen_logo.png" style="max-height:100%; max-width:100%" />
-      </td>
-      <td>Smoke Eaters Geleen 2</td>
-      <td>8</td>
-      <td>2</td>
-      <td>3</td>
-      <td>3</td>
-      <td>32</td>
-      <td>33</td>
-      <td>-1</td>
-      <td>7</td>
-    </tr>
-
     <tr>
       <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
             <img src="images/RedEagles_logo.png" style="max-height:100%; max-width:100%" />
       </td>
-      <td>Red Eagles Den Bosch 2</td>
-      <td>8</td>
-      <td>2</td>
-      <td>5</td>
+      <td>Red Eagles Den Bosch</td>
+      <td>10</td>
+      <td>9</td>
       <td>1</td>
-      <td>33</td>
-      <td>49</td>
-      <td>-16</td>
-      <td>5</td>
+      <td>0</td>
+      <td>98</td>
+      <td>34</td>
+      <td>+64</td>
+      <td>18</td>
     </tr>
-
     <tr>
       <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-            <img src="images/Nijmegen_Saints_logo.png" style="max-height:100%; max-width:100%" />
+            <img src="images/HijsHokij_logo.png" style="max-height:100%; max-width:100%" />
       </td>
-      <td>Nijmegen Saints</td>
-      <td>9</td>
+      <td>Hijs Hokij Den Haag Ongetemd</td>
+      <td>10</td>
+      <td>7</td>
       <td>2</td>
+      <td>1</td>
+      <td>58</td>
+      <td>42</td>
+      <td>+16</td>
+      <td>15</td>
+    </tr>
+    <tr>
+      <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
+            <img src="images/DordrechtLions_logo.png" style="max-height:100%; max-width:100%" />
+      </td>
+      <td>Dordrecht Lions 3</td>
+      <td>10</td>
+      <td>4</td>
+      <td>5</td>
+      <td>1</td>
+      <td>58</td>
+      <td>46</td>
+      <td>+12</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
+            <img src="images/HijsHokij_logo.png" style="max-height:100%; max-width:100%" />
+      </td>
+      <td>Hijs Hokij Den Haag Herons</td>
+      <td>10</td>
+      <td>3</td>
       <td>6</td>
       <td>1</td>
-      <td>41</td>
-      <td>62</td>
-      <td>-21</td>
-      <td>5</td>
+      <td>55</td>
+      <td>71</td>
+      <td>-16</td>
+      <td>7</td>
     </tr>
+  
     <tr>
       <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-            <img src="images/Icehawks_logo.png" style="max-height:100%; max-width:100%" />
+            <img src="images/zoetermeer_panters_logo.png" style="max-height:100%; max-width:100%" />
       </td>
-      <td>Icehawks Eindhoven</td>
-      <td>9</td>
-      <td>2</td>
+      <td>Wild Panters Zoetermeer</td>
+      <td>10</td>
+      <td>3</td>
       <td>7</td>
       <td>0</td>
-      <td>32</td>
-      <td>50</td>
-      <td>-18</td>
-      <td>4</td>
+      <td>45</td>
+      <td>96</td>
+      <td>-51</td>
+      <td>6</td>
     </tr>
 
-
-
-
+    <tr>
+      <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
+            <img src="images/zoetermeer_panters_logo.png" style="max-height:100%; max-width:100%" />
+      </td>
+      <td>Zoetermeer Panters 2</td>
+      <td>10</td>
+      <td>2</td>
+      <td>7</td>
+      <td>1</td>
+      <td>52</td>
+      <td>77</td>
+      <td>-25</td>
+      <td>5</td>
+    </tr>
 
   </table>
   <br>
   <h3>Playoffs</h2>
-  <h5>Super Sunday | 12-Apr-2026 | Ijshaal de Vliet | Leiden, Netherlands</h2>
+  <h5>Super Sunday | 27-March-2022 | De Uithof | The Hague, Netherlands</h2>
 
 <div style="overflow-x:auto;">
   <table style="width:915px" >
@@ -569,61 +463,26 @@ div.content {
       <th style="width:30px"></th>
     </tr>
     <tr>
-      <td><font size="6"><b>?</b></font></td>
-      <td><br>Team A</td>
+      <td><font size="6"><b>4</b></font></td>
+      <td><br>Amsterdam Mustangs</td>
       <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-            <img src="images/xGIJS_logo.png" style="max-height:100%; max-width:100%" />
+            <img src="images/Mustangs_logo.png" style="max-height:100%; max-width:100%" />
       </td>
       <td>vs.</td>
       <td style="width:135px; height:75px; text-align:center; vertical-align:middle">
-            <img src="images/xRedEagles_logo.png" style="max-height:100%; max-width:100%" />
+            <img src="images/RedEagles_logo.png" style="max-height:100%; max-width:100%" />
       </td>
-      <td><br>Team B</td>
-      <td><font size="6"><b>?</b></font></td>
+      <td><center><b>Champions!</b><br>Red Eagles Den Bosch</center></td>
+      <td><font size="6"><b>13</b></font></td>
     </tr>
   </table>
 </div>
 
-<!-- draft sortable table 20241009
-<div class="table-container">
-  <table class="data-table">
-    <thead>
-      <tr>
-        <th><button id="fname">First Name</button></th>
-        <th><button id="lname">Last Name</button></th>
-        <th><button id="number">#</button></th>
-        <th><button id="position">Position</button></th>
-        <th><button id="hand">Shoots</button></th>
-        <th><button id="country">Nationality</button></th>
-      </tr>
-    </thead>
-    <tbody id="table-content"></tbody>
-  </table>
-</div>
--->
+
 
 <br>
 </div>
 
-    
-
-
-<script>
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    }
-  });
-}
-</script>
 
 
 </body>
