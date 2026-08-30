@@ -7,5 +7,5 @@ import react from "@vitejs/plugin-react";
 // including case. See README.md for details.
 export default defineConfig({
   plugins: [react()],
-  base: "/AmsterdamMustangs/",
+  base: "/",
 });
