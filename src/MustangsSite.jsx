@@ -1155,9 +1155,6 @@ export default function MustangsSite() {
                 <h1 style={{ fontFamily: FONTS.display, color: C.white, fontSize: "clamp(2.5rem, 7vw, 4.5rem)", lineHeight: 1 }}>
                   AMSTERDAM<br />MUSTANGS
                 </h1>
-                <p style={{ color: C.muted, marginTop: 12, maxWidth: 460 }}>
-                  The new home of the Amsterdam Mustangs hockey team.
-                </p>
                 <div style={{ fontFamily: FONTS.mono, color: C.red, letterSpacing: "0.2em", fontSize: 12, marginTop: 28 }}>
                   {isCancelled(season) ? "IJNL" : `IJNL \u00b7 ${divisionLabel(season).toUpperCase()}`}
                 </div>
@@ -1196,31 +1193,6 @@ export default function MustangsSite() {
               </div>
             </div>
 
-            <SampleNote>
-              Stats leaders aren't wired in yet — send over game sheets whenever you have them.
-            </SampleNote>
-
-            <div className="grid sm:grid-cols-3 gap-4">
-              {[
-                { icon: Users, label: "Roster", desc: "Full team by position", id: "roster" },
-                { icon: Calendar, label: "Schedule & Results", desc: "Every game, this season", id: "schedule" },
-                { icon: Trophy, label: "Standings", desc: "League table for this season", id: "standings" },
-              ].map((c) => {
-                const Icon = c.icon;
-                return (
-                  <button
-                    key={c.id}
-                    onClick={() => setTab(c.id)}
-                    className="text-left p-5 rounded-lg"
-                    style={{ background: C.surface, border: `1px solid ${C.line}` }}
-                  >
-                    <Icon size={20} color={C.red} />
-                    <div style={{ fontFamily: FONTS.display, color: C.white, fontSize: 18, marginTop: 10 }}>{c.label}</div>
-                    <div style={{ color: C.muted, fontSize: 13, marginTop: 4 }}>{c.desc}</div>
-                  </button>
-                );
-              })}
-            </div>
           </div>
         )}
 
