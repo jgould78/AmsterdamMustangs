@@ -516,6 +516,616 @@ const RELEGATION_PLAYOFFS = {
   },
 };
 
+// Per-game box score detail, keyed by season -> date (must match a SCHEDULE_DATA entry).
+// `sample: true` marks games where the data below is PLACEHOLDER, not yet verified
+// against a real source. `verified: true` + `source` marks games entered from an
+// official gamesheet (IJHN "Officieel Wedstrijdformulier" / hockeydata.net export).
+//
+// Gamesheet parsing note: official IJHN sheets for this team may list "Team A" as
+// "Amsterdam Tigers 5" rather than "Amsterdam Mustangs" — this is the same team
+// (confirmed); always display "Amsterdam Mustangs" on the site regardless of what
+// the sheet says. Dan Perrier is #83 (the gamesheet's "#71" for 2026-03-15 was an
+// error on the official form, corrected below).
+// Note: Dutch IJHN gamesheets don't track shots on goal, so there is no `shots`
+// field; the box score shows a period-by-period Goals/PIM/PP/SH summary instead.
+//
+// 2026-03-15 scoring/penalties were cross-referenced against a BenchApp game-stats
+// export. Where BenchApp and the federation PDF disagreed, BenchApp was treated as
+// correct — the official gamesheets have been known to contain scorer/roster errors
+// that BenchApp's own tracking catches. Confirmed corrections applied: Hoorn's #11
+// was Onno Dolsma, not "Jeroen Klappe" as the PDF's roster had it (goals/assists and
+// lineup both updated); the Mustangs' 09:11 goal was scored by Hyytiäinen, not Boss
+// (PDF had it backwards); Beukema's 37:38 goal was shorthanded (verified against the
+// penalty clock — Hoorn had a man in the box — though the PDF's own "Sit" column
+// called it even strength); Braun's 56:15 goal had an assist (Hyytiäinen) the PDF
+// omitted. General rule going forward: when a BenchApp export conflicts with an
+// official gamesheet for this team, prefer BenchApp.
+//
+// 2026-03-07 (vs Amsterdam Tigers 6, away game): penalty log and 6 of 8 goals for
+// each team matched the PDF exactly. BenchApp corrections applied: Conboy's 11:37
+// goal had an assist (Gushchin) the PDF omitted; Braun's 10:42 goal had a 2nd assist
+// (Huber) the PDF omitted; Baradyntsev's 30:01 goal had a 2nd assist (Price) the PDF
+// omitted; Braun's 23:55 goal was shorthanded, not even strength (verified against
+// the penalty clock — Mustangs' Price was still in the box), and its assist is
+// Hyytiäinen, not Boss as the PDF had it; Braun's 57:54 goal was unassisted, not
+// assisted by Boss as the PDF had it; Gubarev's 58:16 goal was an empty-netter (PDF
+// doesn't have an EN sit code, just listed EQ).
+//
+// 2026-02-22 (vs Leiden Islanders, home): penalty log matched the PDF exactly (5/5).
+// Goals mostly matched but several assists were corrected/added per BenchApp: Penner's
+// 18:33 goal (2nd assist Baradyntsev, not Boss), Garrity's 20:27 goal (2nd assist Watts,
+// not Price), Garrity's PP goal at 21:54 (assists Conboy+Braun, not Penner+Conboy),
+// Conboy's 33:09 goal (added a 2nd assist, Baradyntsev), Klok's 35:53 goal (assists
+// Mattos+Gushchin, not Braun — a full re-attribution), Garrity's 45:53 goal (added an
+// assist, Watts) and Price's 47:27 goal (added 2 assists, Braun+Watts). Dickhoff's
+// 48:48 goal was shorthanded for Leiden, not even strength (verified against the
+// penalty clock — Leiden's Henneman was still in the box). Leiden's goalie (Anique
+// de Gier) wasn't marked as "G" on the official gamesheet's position column, unlike
+// Hoorn's game where the opponent goalie was omitted entirely.
+//
+// 2026-02-13 (vs Blue Mountain Cougars Hoorn 1, away): this gamesheet dresses BOTH
+// Jeroen Klappe (#48) and Onno Dolsma (#11) as separate players, confirming they are
+// in fact two different people — validates the 2026-03-15 correction rather than
+// contradicting it. Two penalties (Koopmeiners 15:30 TRIP for Hoorn, Perrier 10:51
+// HOLD for Mustangs) appear only in the PDF, not the BenchApp export — kept them,
+// since the period-by-period PIM totals only reconcile to the PDF's own summary
+// table when they're included (BenchApp's export here just wasn't exhaustive, this
+// wasn't a contradiction to resolve in BenchApp's favor). Goal corrections applied
+// from BenchApp: Gould's 00:23 goal (2nd assist Conboy), Perrier's 05:35 goal (added
+// assist Watts), Hyytiäinen's 30:29 goal (added assist Klok). The PDF's 31:30 entry
+// credited a 2nd Hyytiäinen goal (assist Klok) — BenchApp instead has that goal
+// scored by Andrey Gushchin (assists Baradyntsev, Vizsy), a full scorer swap, not
+// just a missing assist; applied per BenchApp. Watts' 35:41 goal gained a 2nd assist
+// (Perrier). Hoorn dressed a backup goalie (Thom Zoey Deerenberg, #3) who didn't
+// play — the Goaliewissels table shows Larissa de Jong (#30) started and was never
+// relieved, so she's `goalie` and Deerenberg is `backupGoalie`, shown just below her.
+//
+// 2026-01-31 (vs Amsterdam Snipers, home): penalties matched the PDF exactly (6/6),
+// and 6 of 8 goals matched. Two corrections from BenchApp: Braun's 25:03 goal was
+// scored by Braun assisted by Garrity, not the reverse as the PDF had it (PDF's
+// scorer/assist columns were swapped); Penner's 40:41 goal was shorthanded, not even
+// strength as the PDF's "Sit" column claimed — verified against the penalty clock,
+// Conboy's 39:19 tripping minor was still running. Snipers' gamesheet roster listed
+// 36 names including 4 goalies — the club crosses a player off a given game's roster
+// by leaving their jersey as "0"/"00" rather than deleting the row, so those entries
+// (and the 3 non-playing goalies) are dropped from `dressed` below. General rule for
+// future Snipers gamesheets: treat jersey 0/00 as "not dressed for this game."
+//
+// 2026-01-25 (vs Amsterdam Tigers 6, away): penalties matched the PDF exactly
+// (10/10), and 7 of 8 goals matched. One correction from BenchApp: Huber's 34:53
+// goal gained an assist (Price) the PDF omitted. This gamesheet listed Jared Penner
+// as #73; corrected to his standard #19 (confirmed elsewhere: ROSTERS, STATS_DATA,
+// every other game) — a scorekeeper error, not a real number change. Separately,
+// Amsterdam Tigers 6 players wearing different numbers on this sheet vs their
+// 2026-03-07 sheet (Boot 21 vs 96, van Loon 7 vs 45, Nacht 26 vs 38) is NOT an error
+// — confirmed some of their players use different numbers for home vs away jerseys,
+// so each gamesheet's numbers are trusted as printed.
+//
+// 2026-01-10 (vs Leiden Islanders, home): Mustangs took zero penalties this game per
+// both sources — confirmed, not an omission. Islanders' 2 penalties matched the PDF
+// exactly. Goals were the messiest reconciliation yet: 7 of 14 needed a BenchApp
+// correction. Notably, the PDF listed two different Mustangs goals (Conboy, Vizsy)
+// under the identical timestamp 08:34 — BenchApp splits them into 08:34 and 11:52,
+// which was trusted as the more granular source; period-level goal totals still
+// reconcile either way since both goals fall in period 1. Other corrections: Braun's
+// 03:46 goal (2nd assist Penner, not Garrity), Vizsy's goal (2nd assist Baradyntsev,
+// not Conboy), Nepomnyashchiy's 14:34 goal (added assist, van der Spiegel),
+// Valentijn's 24:45 goal (added 2 assists, Braun+Hyytiäinen — PDF had it unassisted),
+// Gushchin's PP goal (added 2nd assist, Baradyntsev), van der Pol's 32:40 goal
+// (removed an assist — PDF had van Mulbregt, BenchApp says unassisted), Penner's
+// 34:55 goal (2nd assist Klok, not Braun), and Nepomnyashchiy's 37:05 goal (assists
+// Finadri+Henneman, not Voogd — a full re-attribution, not just an addition).
+//
+// 2025-12-21 (vs Cool Mokum 2, away): the official gamesheet lists "Team A" as
+// "Amsterdam Tigers 4" — same naming quirk as the Mustangs' own "Amsterdam Tigers 5"
+// registration, but here it applies to the OPPONENT: confirmed via roster + final
+// score that Team A is actually Cool Mokum 2, not another Amsterdam Tigers squad.
+// This sheet also has Dan Perrier as #71 again (same recurring gamesheet error as
+// 2026-03-15) — corrected to #83. Penalties matched the PDF exactly (10/10). Goals:
+// 6 of 7 Mustangs goals needed at least one assist added or corrected via BenchApp
+// (largely PDF only recording one of two assists). One goal's time was NOT taken
+// from BenchApp: Zaitsoff's 3rd-period PP goal shows as "05:46 into the 3rd Period"
+// in the BenchApp export (= 45:46 running clock), but the PDF's own penalty log cross
+// -validates 55:46 — Price's 54:30 tripping minor is recorded as cut short at exactly
+// 55:46, which only makes sense if the PP goal against him happened then, not 10
+// minutes earlier. Treated as a BenchApp typo (likely meant "15:46") and kept the
+// PDF's 55:46.
+// TIME CONVENTION: `time` fields on `scoring` and `penalties` entries always use a
+// single running 60-minute game clock, regardless of how the source states it.
+// Period 1 = 00:00–20:00, Period 2 = 20:01–40:00, Period 3 = 40:01–60:00 (OT beyond
+// 60:00). Sources that reset the clock each period (e.g. some BenchApp exports say
+// "09:12 into the 2nd Period") must be converted: add 20:00 for period 2, 40:00 for
+// period 3, etc., before entering the value here. Official IJHN gamesheets already
+// use the running clock, so those can be copied as-is.
+const GAME_DETAILS = {
+  "2025-2026": {
+    "2025-12-21": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-023",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["M. Winkeler", "Mark Philips"],
+        scorer: "Sander Kan",
+        timer: "Marco van den Berg",
+      },
+      scoring: [
+        { period: 1, time: "00:50", team: "them", scorer: "Joel van Baarsen", assists: [], strength: "EQ" },
+        { period: 1, time: "05:00", team: "them", scorer: "Ole Hupkes", assists: [], strength: "EQ" },
+        { period: 1, time: "14:01", team: "us", scorer: "Christopher Price", assists: [], strength: "PP" },
+        { period: 1, time: "15:44", team: "us", scorer: "Petteri Hyytiäinen", assists: ["Miska Braun"], strength: "EQ" },
+        { period: 1, time: "16:54", team: "them", scorer: "Ole Hupkes", assists: [], strength: "EQ" },
+        { period: 2, time: "20:47", team: "them", scorer: "Zaran Zaitsoff", assists: [], strength: "EQ" },
+        { period: 2, time: "21:21", team: "them", scorer: "Joel van Baarsen", assists: [], strength: "EQ" },
+        { period: 2, time: "23:36", team: "us", scorer: "Krisztian Vizsy", assists: ["Jon Garrity", "Sergey Baradyntsev"], strength: "EQ" },
+        { period: 2, time: "27:58", team: "us", scorer: "Christopher Price", assists: ["Jon Garrity", "Jeremie Gould"], strength: "EQ" },
+        { period: 2, time: "37:03", team: "us", scorer: "Jeremie Gould", assists: ["Nils Klok", "Jim Conboy"], strength: "PP" },
+        { period: 2, time: "37:16", team: "us", scorer: "Jon Garrity", assists: ["Sergey Baradyntsev", "Andrey Gushchin"], strength: "EQ" },
+        { period: 3, time: "43:16", team: "us", scorer: "Miska Braun", assists: ["Petteri Hyytiäinen", "Jim Conboy"], strength: "EQ" },
+        { period: 3, time: "55:46", team: "them", scorer: "Zaran Zaitsoff", assists: [], strength: "PP" },
+      ],
+      penalties: [
+        { period: 1, time: "13:48", team: "them", player: "Joel van Baarsen", code: "HOOK", min: 2 },
+        { period: 2, time: "35:46", team: "them", player: "Alexis Marsat", code: "INTRF", min: 2 },
+        { period: 2, time: "39:03", team: "them", player: "Britt Wortel", code: "TRIP", min: 2 },
+        { period: 2, time: "39:59", team: "us", player: "Sergey Baradyntsev", code: "TRIP", min: 2 },
+        { period: 3, time: "46:22", team: "us", player: "Jeremie Gould", code: "INTRF", min: 2 },
+        { period: 3, time: "49:06", team: "them", player: "Joel van Baarsen", code: "ILL-H", min: 2 },
+        { period: 3, time: "54:30", team: "us", player: "Christopher Price", code: "TRIP", min: 2 },
+        { period: 3, time: "54:40", team: "us", player: "Jeremie Gould", code: "DELAY", min: 2 },
+        { period: 3, time: "58:09", team: "them", player: "Zaran Zaitsoff", code: "ROUGH", min: 2 },
+        { period: 3, time: "58:09", team: "us", player: "Jon Garrity", code: "ROUGH", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 2, goalsThem: 3 },
+        { period: 2, goalsUs: 4, goalsThem: 2 },
+        { period: 3, goalsUs: 1, goalsThem: 1 },
+      ],
+      lineup: {
+        us: {
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "29 Nils Klok", "27 Jim Conboy", "17 Jon Garrity", "13 Jeroen Valentijn", "83 Dan Perrier",
+            "97 Miska Braun", "16 Christopher Price", "77 Jeremie Gould", "9 Petteri Hyytiäinen",
+            "47 Sergey Baradyntsev", "19 Jared Penner", "44 Krisztian Vizsy", "8 Andrey Gushchin",
+          ],
+        },
+        them: {
+          goalie: "1 Co de Groot",
+          dressed: [
+            "44 Mike Klop", "98 Alexis Marsat", "66 Mark Sweers", "76 Bob Altelaar", "21 Joel van Baarsen",
+            "41 Ole Hupkes", "18 Jean-Paul Terpstra", "13 Britt Wortel", "15 Zaran Zaitsoff",
+          ],
+        },
+      },
+    },
+    "2026-01-10": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-026",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["Jon Attwell", "Brian von Mansfeldt"],
+        scorer: "Nienke Hommes",
+        timer: "Silas de Jong",
+      },
+      scoring: [
+        { period: 1, time: "03:46", team: "us", scorer: "Miska Braun", assists: ["Petteri Hyytiäinen", "Jared Penner"], strength: "EQ" },
+        { period: 1, time: "07:17", team: "us", scorer: "Jared Penner", assists: ["Jim Conboy"], strength: "EQ" },
+        { period: 1, time: "07:49", team: "them", scorer: "Felix Feid", assists: ["Alexander Nepomnyashchiy"], strength: "EQ" },
+        { period: 1, time: "08:34", team: "us", scorer: "Jim Conboy", assists: [], strength: "EQ" },
+        { period: 1, time: "11:52", team: "us", scorer: "Krisztian Vizsy", assists: ["Sergey Baradyntsev", "Andrey Gushchin"], strength: "EQ" },
+        { period: 1, time: "14:20", team: "them", scorer: "Mattia Finadri", assists: [], strength: "EQ" },
+        { period: 1, time: "14:34", team: "them", scorer: "Alexander Nepomnyashchiy", assists: ["Johnny van der Spiegel"], strength: "EQ" },
+        { period: 2, time: "24:45", team: "us", scorer: "Jeroen Valentijn", assists: ["Miska Braun", "Petteri Hyytiäinen"], strength: "EQ" },
+        { period: 2, time: "26:44", team: "us", scorer: "Andrey Gushchin", assists: ["Krisztian Vizsy", "Sergey Baradyntsev"], strength: "PP" },
+        { period: 2, time: "32:11", team: "us", scorer: "Miska Braun", assists: ["Jim Conboy"], strength: "EQ" },
+        { period: 2, time: "32:40", team: "them", scorer: "Remco van der Pol", assists: [], strength: "EQ" },
+        { period: 2, time: "34:55", team: "us", scorer: "Jared Penner", assists: ["Petteri Hyytiäinen", "Nils Klok"], strength: "EQ" },
+        { period: 2, time: "37:05", team: "them", scorer: "Alexander Nepomnyashchiy", assists: ["Mattia Finadri", "Onno Henneman"], strength: "EQ" },
+        { period: 3, time: "49:49", team: "us", scorer: "Jeremie Gould", assists: ["George Huber", "Daniel Watts"], strength: "EQ" },
+      ],
+      penalties: [
+        { period: 2, time: "26:00", team: "them", player: "Johnny van der Spiegel", code: "DELAY", min: 2 },
+        { period: 3, time: "55:40", team: "them", player: "Johnny van der Spiegel", code: "INTRF", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 4, goalsThem: 3 },
+        { period: 2, goalsUs: 4, goalsThem: 2 },
+        { period: 3, goalsUs: 1, goalsThem: 0 },
+      ],
+      lineup: {
+        us: {
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "89 Brett Boss", "27 Jim Conboy", "17 Jon Garrity", "29 Nils Klok", "13 Jeroen Valentijn",
+            "47 Sergey Baradyntsev", "97 Miska Braun", "77 Jeremie Gould", "8 Andrey Gushchin", "91 George Huber",
+            "9 Petteri Hyytiäinen", "19 Jared Penner", "44 Krisztian Vizsy", "46 Daniel Watts",
+          ],
+        },
+        them: {
+          goalie: "29 Anique de Gier",
+          dressed: [
+            "13 Felix Feid", "19 Mattia Finadri", "12 Onno Henneman", "16 Jean-Pierre van Mulbregt",
+            "44 Remco van der Pol", "88 Johnny van der Spiegel", "3 Kees Voogd", "93 Alexander Nepomnyashchiy",
+          ],
+        },
+      },
+    },
+    "2026-01-25": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-030",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["Doug Schickler", "Jason Roberton"],
+        scorer: "Anouk Maij",
+        timer: "Anneloes van der Woude",
+      },
+      scoring: [
+        { period: 1, time: "00:41", team: "them", scorer: "Jesse Clarke", assists: [], strength: "EQ" },
+        { period: 1, time: "01:48", team: "them", scorer: "Robin Rensen", assists: ["Jan Maerten Smit"], strength: "EQ" },
+        { period: 2, time: "30:11", team: "us", scorer: "Christopher Price", assists: [], strength: "EQ" },
+        { period: 2, time: "34:53", team: "us", scorer: "George Huber", assists: ["Christopher Price"], strength: "EQ" },
+        { period: 2, time: "37:08", team: "them", scorer: "Kenneth McCann", assists: ["Jesse Clarke"], strength: "EQ" },
+        { period: 3, time: "41:01", team: "us", scorer: "Dan Perrier", assists: ["Christopher Price"], strength: "PP" },
+        { period: 3, time: "43:36", team: "them", scorer: "Willem Jan van Loon", assists: ["Travis Wetzlaugk"], strength: "PP" },
+        { period: 3, time: "54:13", team: "us", scorer: "Dan Perrier", assists: [], strength: "EQ" },
+      ],
+      penalties: [
+        { period: 1, time: "07:42", team: "us", player: "Jim Conboy", code: "INTRF", min: 2 },
+        { period: 1, time: "13:38", team: "them", player: "Robin Rensen", code: "TRIP", min: 2 },
+        { period: 2, time: "35:31", team: "them", player: "Willem Jan van Loon", code: "INTRF", min: 2 },
+        { period: 2, time: "37:01", team: "us", player: "Dan Perrier", code: "HI-ST", min: 2 },
+        { period: 2, time: "39:55", team: "them", player: "Jan Maerten Smit", code: "INTRF", min: 2 },
+        { period: 3, time: "40:35", team: "them", player: "Stephen Birarda", code: "HOOK", min: 2 },
+        { period: 3, time: "43:26", team: "us", player: "Andrey Gushchin", code: "HI-ST", min: 2 },
+        { period: 3, time: "48:24", team: "them", player: "Kenneth McCann", code: "ILL-H", min: 2 },
+        { period: 3, time: "50:22", team: "us", player: "Dan Perrier", code: "HOOK", min: 2 },
+        { period: 3, time: "58:54", team: "them", player: "Dan Wilson", code: "INTRF", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 0, goalsThem: 2 },
+        { period: 2, goalsUs: 2, goalsThem: 1 },
+        { period: 3, goalsUs: 2, goalsThem: 1 },
+      ],
+      lineup: {
+        us: {
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "17 Jon Garrity", "89 Brett Boss", "27 Jim Conboy", "29 Nils Klok", "7 Wyatt Southard",
+            "13 Jeroen Valentijn", "83 Dan Perrier", "16 Christopher Price", "47 Sergey Baradyntsev",
+            "97 Miska Braun", "77 Jeremie Gould", "8 Andrey Gushchin", "91 George Huber",
+            "9 Petteri Hyytiäinen", "6 Alex Paquin", "19 Jared Penner", "44 Krisztian Vizsy",
+            "46 Daniel Watts", "18 Chris Lesny", "96 Duane Mattos", "11 Alexander Samoylov",
+          ],
+        },
+        them: {
+          goalie: "21 Bas Boot",
+          dressed: [
+            "23 Christopher Acker", "16 Kristine Kotsbakk", "76 Dan Wilson", "5 Jon Attwell", "13 Lambert Baij",
+            "91 Stephen Birarda", "48 Jesse Clarke", "7 Willem Jan van Loon", "94 Kenneth McCann",
+            "26 Ryan Nacht", "72 Robin Rensen", "80 Jan Maerten Smit", "20 Travis Wetzlaugk",
+          ],
+        },
+      },
+    },
+    "2026-01-31": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-032",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["Jon"], // gamesheet gives first names only for officials on this one
+        scorer: "Hugo",
+        timer: "Mischa",
+      },
+      scoring: [
+        { period: 1, time: "04:08", team: "them", scorer: "Randy van Pel", assists: ["Martin Simonak", "Mervijn Denie"], strength: "EQ" },
+        { period: 2, time: "21:56", team: "us", scorer: "Petteri Hyytiäinen", assists: ["Miska Braun"], strength: "EQ" },
+        { period: 2, time: "25:03", team: "us", scorer: "Miska Braun", assists: ["Jon Garrity"], strength: "EQ" },
+        { period: 2, time: "37:56", team: "us", scorer: "Petteri Hyytiäinen", assists: ["Miska Braun", "Jon Garrity"], strength: "EQ" },
+        { period: 3, time: "40:41", team: "us", scorer: "Jared Penner", assists: [], strength: "SH" },
+        { period: 3, time: "45:59", team: "them", scorer: "Eric Kuiper", assists: ["Adam Shepherd", "Ryan Jenkins"], strength: "EQ" },
+        { period: 3, time: "48:37", team: "us", scorer: "Daniel Watts", assists: ["Jeremie Gould"], strength: "EQ" },
+        { period: 3, time: "52:27", team: "them", scorer: "Mervijn Denie", assists: ["Martin Simonak"], strength: "EQ" },
+      ],
+      penalties: [
+        { period: 1, time: "13:00", team: "us", player: "Jeroen Valentijn", code: "INTRF", min: 2 },
+        { period: 1, time: "19:56", team: "us", player: "Jon Garrity", code: "TRIP", min: 2 },
+        { period: 2, time: "35:06", team: "us", player: "Petteri Hyytiäinen", code: "TRIP", min: 2 },
+        { period: 2, time: "39:19", team: "us", player: "Jim Conboy", code: "TRIP", min: 2 },
+        { period: 3, time: "53:35", team: "them", player: "Joost Bos", code: "TRIP", min: 2 },
+        { period: 3, time: "54:55", team: "them", player: "Martin Simonak", code: "TRIP", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 0, goalsThem: 1 },
+        { period: 2, goalsUs: 3, goalsThem: 0 },
+        { period: 3, goalsUs: 2, goalsThem: 2 },
+      ],
+      lineup: {
+        us: {
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "17 Jon Garrity", "89 Brett Boss", "27 Jim Conboy", "29 Nils Klok", "7 Wyatt Southard",
+            "13 Jeroen Valentijn", "83 Dan Perrier", "16 Christopher Price", "47 Sergey Baradyntsev",
+            "97 Miska Braun", "77 Jeremie Gould", "8 Andrey Gushchin", "91 George Huber",
+            "9 Petteri Hyytiäinen", "6 Alex Paquin", "19 Jared Penner", "44 Krisztian Vizsy",
+            "46 Daniel Watts", "18 Chris Lesny", "96 Duane Mattos", "11 Alexander Samoylov",
+          ],
+        },
+        them: {
+          // Snipers' gamesheet roster listed 36 names (4 goalies + several players
+          // with jersey "0"/"00") — this club crosses players off the roster for a
+          // given game by leaving their jersey as 0/00 rather than removing the row,
+          // so those entries (and the 3 non-playing goalies) are excluded below.
+          // Actual goalie (Bob Gase) isn't on the gamesheet at all — confirmed
+          // separately by Jeremie.
+          goalie: "1 Bob Gase",
+          dressed: [
+            "22 Lorenzo Koeman", "69 Quincy Merk", "28 Egor Svertkov", "78 Stijn van Amelsvoort",
+            "15 Joost Bos", "18 Stefan Northman", "8 Bryan Gouwerok", "72 Ryan Jenkins",
+            "42 Boris Hubert", "21 Jair de Paauw", "17 Martin Simonak", "16 Guilliame Theman",
+            "88 Eric Kuiper", "93 Mervijn Denie", "36 Adam Shepherd", "44 Randy van Pel",
+          ],
+        },
+      },
+    },
+    "2026-02-13": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-036",
+      venue: "Optisport de Westfries, Hoorn",
+      officials: {
+        referees: ["L. Ditmar", "B. van Veen"],
+        scorer: "K. Stolting",
+        timer: "I. Visser",
+      },
+      scoring: [
+        { period: 1, time: "00:23", team: "us", scorer: "Jeremie Gould", assists: ["Daniel Watts", "Jim Conboy"], strength: "EQ" },
+        { period: 1, time: "04:06", team: "them", scorer: "Rombard Deerenberg", assists: [], strength: "EQ" },
+        { period: 1, time: "04:25", team: "them", scorer: "Neon Beck", assists: [], strength: "EQ" },
+        { period: 1, time: "05:35", team: "us", scorer: "Dan Perrier", assists: ["Daniel Watts"], strength: "EQ" },
+        { period: 1, time: "07:52", team: "them", scorer: "Danny van 't Veer", assists: ["Neon Beck", "Rombard Deerenberg"], strength: "EQ" },
+        { period: 1, time: "14:34", team: "them", scorer: "Mitchell Beukema", assists: ["Hessel van der Neut"], strength: "EQ" },
+        { period: 1, time: "18:09", team: "them", scorer: "Onno Dolsma", assists: [], strength: "EQ" },
+        { period: 2, time: "20:36", team: "them", scorer: "Danny van 't Veer", assists: [], strength: "EQ" },
+        { period: 2, time: "22:20", team: "them", scorer: "Jeroen Klappe", assists: [], strength: "EQ" },
+        { period: 2, time: "24:12", team: "them", scorer: "Danny van 't Veer", assists: ["Neon Beck"], strength: "EQ" },
+        { period: 2, time: "27:51", team: "them", scorer: "Neon Beck", assists: ["Jeroen Klappe"], strength: "EQ" },
+        { period: 2, time: "30:29", team: "us", scorer: "Petteri Hyytiäinen", assists: ["Nils Klok"], strength: "EQ" },
+        { period: 2, time: "31:30", team: "us", scorer: "Andrey Gushchin", assists: ["Sergey Baradyntsev", "Krisztian Vizsy"], strength: "EQ" },
+        { period: 2, time: "35:41", team: "us", scorer: "Daniel Watts", assists: ["Jeremie Gould", "Dan Perrier"], strength: "EQ" },
+        { period: 2, time: "37:50", team: "them", scorer: "Neon Beck", assists: ["Mikaël van der Dandonne"], strength: "EQ" },
+      ],
+      penalties: [
+        { period: 1, time: "01:39", team: "us", player: "Nils Klok", code: "ROUGH", min: 2 },
+        { period: 1, time: "01:39", team: "them", player: "Mikaël van der Dandonne", code: "HOLD", min: 2 },
+        { period: 1, time: "10:51", team: "us", player: "Dan Perrier", code: "HOLD", min: 2 },
+        { period: 1, time: "15:30", team: "them", player: "Fabrisio Koopmeiners", code: "TRIP", min: 2 },
+        { period: 2, time: "38:51", team: "us", player: "Jeremie Gould", code: "ROUGH", min: 5 },
+        { period: 2, time: "38:51", team: "them", player: "Onno Dolsma", code: "ROUGH", min: 5 },
+        { period: 2, time: "39:10", team: "us", player: "Petteri Hyytiäinen", code: "SLASH", min: 2 },
+        { period: 3, time: "48:03", team: "them", player: "Fabrisio Koopmeiners", code: "HOLD", min: 2 },
+        { period: 3, time: "49:13", team: "us", player: "Petteri Hyytiäinen", code: "SLASH", min: 2 },
+        { period: 3, time: "49:13", team: "them", player: "Neon Beck", code: "ROUGH", min: 2 },
+        { period: 3, time: "51:27", team: "them", player: "Jeroen Klappe", code: "TOO-M", min: 2 },
+        { period: 3, time: "55:58", team: "them", player: "Danny van 't Veer", code: "SLASH", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 2, goalsThem: 5 },
+        { period: 2, goalsUs: 3, goalsThem: 5 },
+        { period: 3, goalsUs: 0, goalsThem: 0 },
+      ],
+      lineup: {
+        us: {
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "89 Brett Boss", "27 Jim Conboy", "17 Jon Garrity", "29 Nils Klok", "83 Dan Perrier", "13 Jeroen Valentijn",
+            "47 Sergey Baradyntsev", "97 Miska Braun", "77 Jeremie Gould", "8 Andrey Gushchin", "91 George Huber",
+            "9 Petteri Hyytiäinen", "44 Krisztian Vizsy", "46 Daniel Watts",
+          ],
+        },
+        them: {
+          goalie: "30 Larissa de Jong",
+          backupGoalie: "3 Thom Zoey Deerenberg",
+          dressed: [
+            "27 Rombard Deerenberg", "11 Onno Dolsma", "48 Jeroen Klappe",
+            "4 Mark van 't Veer", "13 Jochem den Boer", "1 Neon Beck", "15 Mitchell Beukema",
+            "83 Mikaël van der Dandonne", "33 Ronald van de Geer", "10 Aleksei Katsman",
+            "95 Fabrisio Koopmeiners", "25 Hessel van der Neut", "61 Danny van 't Veer", "69 Bart Voet",
+          ],
+        },
+      },
+    },
+    "2026-02-22": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-039",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["Jason Roberton", "Sam Schickler"],
+        scorer: "Anouk Maij",
+        timer: "Nienke Hommes",
+      },
+      scoring: [
+        { period: 1, time: "04:26", team: "them", scorer: "Daan Dickhoff", assists: ["Felix Feid"], strength: "EQ" },
+        { period: 1, time: "14:52", team: "them", scorer: "Felix Feid", assists: ["Laurens Staats"], strength: "EQ" },
+        { period: 1, time: "17:18", team: "them", scorer: "Martijn Bos", assists: ["Onno Henneman"], strength: "EQ" },
+        { period: 1, time: "18:33", team: "us", scorer: "Jared Penner", assists: ["Jim Conboy", "Sergey Baradyntsev"], strength: "EQ" },
+        { period: 2, time: "20:27", team: "us", scorer: "Jon Garrity", assists: ["Miska Braun", "Daniel Watts"], strength: "EQ" },
+        { period: 2, time: "21:54", team: "us", scorer: "Jon Garrity", assists: ["Jim Conboy", "Miska Braun"], strength: "PP" },
+        { period: 2, time: "23:30", team: "them", scorer: "Laurens Staats", assists: ["Daan Dickhoff"], strength: "EQ" },
+        { period: 2, time: "25:14", team: "us", scorer: "Jared Penner", assists: ["Miska Braun", "George Huber"], strength: "EQ" },
+        { period: 2, time: "26:40", team: "us", scorer: "Christopher Price", assists: [], strength: "EQ" },
+        { period: 2, time: "28:10", team: "us", scorer: "Daniel Watts", assists: ["Christopher Price", "Jim Conboy"], strength: "EQ" },
+        { period: 2, time: "28:49", team: "us", scorer: "Miska Braun", assists: ["Jon Garrity", "Brett Boss"], strength: "EQ" },
+        { period: 2, time: "33:09", team: "us", scorer: "Jim Conboy", assists: ["George Huber", "Sergey Baradyntsev"], strength: "EQ" },
+        { period: 2, time: "34:37", team: "them", scorer: "Daan Dickhoff", assists: [], strength: "EQ" },
+        { period: 2, time: "35:53", team: "us", scorer: "Nils Klok", assists: ["Duane Mattos", "Andrey Gushchin"], strength: "EQ" },
+        { period: 3, time: "43:19", team: "us", scorer: "George Huber", assists: ["Jim Conboy"], strength: "EQ" },
+        { period: 3, time: "45:39", team: "them", scorer: "Daan Dickhoff", assists: [], strength: "EQ" },
+        { period: 3, time: "45:53", team: "us", scorer: "Jon Garrity", assists: ["Daniel Watts"], strength: "EQ" },
+        { period: 3, time: "47:27", team: "us", scorer: "Christopher Price", assists: ["Miska Braun", "Daniel Watts"], strength: "EQ" },
+        { period: 3, time: "47:40", team: "us", scorer: "Christopher Price", assists: [], strength: "EQ" },
+        { period: 3, time: "48:48", team: "them", scorer: "Daan Dickhoff", assists: ["Laurens Staats"], strength: "SH" },
+        { period: 3, time: "56:00", team: "us", scorer: "Jim Conboy", assists: ["George Huber", "Nils Klok"], strength: "EQ" },
+      ],
+      penalties: [
+        { period: 2, time: "21:48", team: "them", player: "Alexis Lariviere", code: "TRIP", min: 2 },
+        { period: 3, time: "48:13", team: "them", player: "Onno Henneman", code: "TRIP", min: 2 },
+        { period: 3, time: "53:32", team: "us", player: "Daniel Watts", code: "SLASH", min: 2 },
+        { period: 3, time: "53:32", team: "them", player: "Johnny van der Spiegel", code: "ROUGH", min: 2 },
+        { period: 3, time: "57:13", team: "us", player: "Jim Conboy", code: "HOOK", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 1, goalsThem: 3 },
+        { period: 2, goalsUs: 8, goalsThem: 2 },
+        { period: 3, goalsUs: 5, goalsThem: 2 },
+      ],
+      lineup: {
+        us: {
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "89 Brett Boss", "27 Jim Conboy", "17 Jon Garrity", "29 Nils Klok",
+            "47 Sergey Baradyntsev", "97 Miska Braun", "8 Andrey Gushchin", "91 George Huber",
+            "96 Duane Mattos", "19 Jared Penner", "16 Christopher Price", "46 Daniel Watts",
+          ],
+        },
+        them: {
+          goalie: "29 Anique de Gier",
+          dressed: [
+            "70 Espen Roetter", "50 Martijn Bos", "8 Daan Dickhoff", "13 Felix Feid", "15 Bas Gerritsen",
+            "12 Onno Henneman", "22 Erik Keessen", "18 Alexis Lariviere",
+            "16 Jean-Pierre van Mulbregt", "84 Sabrina Pas", "44 Remco van der Pol",
+            "88 Johnny van der Spiegel", "72 Laurens Staats", "3 Kees Voogd",
+          ],
+        },
+      },
+    },
+    "2026-03-07": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-042",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["Allart Dusseau", "Maxwell Schickler"],
+        scorer: "Anneloes van der Woude",
+        timer: "Nienke Hommes",
+      },
+      scoring: [
+        { period: 1, time: "02:05", team: "them", scorer: "Lambert Baij", assists: ["Jon Attwell", "Xavier Boot"], strength: "PP" },
+        { period: 1, time: "03:53", team: "us", scorer: "Brett Boss", assists: [], strength: "EQ" },
+        { period: 1, time: "08:46", team: "them", scorer: "Jesse Clarke", assists: ["Cory Powell"], strength: "EQ" },
+        { period: 1, time: "10:42", team: "us", scorer: "Miska Braun", assists: ["Brett Boss", "George Huber"], strength: "EQ" },
+        { period: 1, time: "11:37", team: "us", scorer: "Jim Conboy", assists: ["Andrey Gushchin"], strength: "EQ" },
+        { period: 1, time: "16:45", team: "them", scorer: "Jesse Clarke", assists: [], strength: "SH" },
+        { period: 2, time: "21:46", team: "them", scorer: "Denis Gubarev", assists: ["Jesse Clarke"], strength: "EQ" },
+        { period: 2, time: "23:55", team: "us", scorer: "Miska Braun", assists: ["Petteri Hyytiäinen"], strength: "SH" },
+        { period: 2, time: "30:01", team: "us", scorer: "Sergey Baradyntsev", assists: ["Brett Boss", "Christopher Price"], strength: "PP" },
+        { period: 2, time: "34:47", team: "them", scorer: "Jesse Clarke", assists: [], strength: "EQ" },
+        { period: 3, time: "53:14", team: "them", scorer: "Lambert Baij", assists: ["Nicolas Komanski", "Jon Attwell"], strength: "EQ" },
+        { period: 3, time: "55:39", team: "them", scorer: "Jesse Clarke", assists: ["Cory Powell", "Xavier Boot"], strength: "PP" },
+        { period: 3, time: "57:54", team: "us", scorer: "Miska Braun", assists: [], strength: "PP" },
+        { period: 3, time: "58:16", team: "them", scorer: "Denis Gubarev", assists: [], strength: "EN" },
+      ],
+      penalties: [
+        { period: 1, time: "01:42", team: "us", player: "Jon Garrity", code: "TRIP", min: 2 },
+        { period: 1, time: "14:53", team: "them", player: "Jean Louis Flier", code: "INTRF", min: 2 },
+        { period: 1, time: "16:56", team: "them", player: "Jean Louis Flier", code: "INTRF", min: 2 },
+        { period: 1, time: "17:06", team: "us", player: "Jon Garrity", code: "TRIP", min: 2 },
+        { period: 2, time: "23:09", team: "us", player: "Christopher Price", code: "TRIP", min: 2 },
+        { period: 2, time: "28:35", team: "them", player: "Lambert Baij", code: "TRIP", min: 2 },
+        { period: 2, time: "29:18", team: "them", player: "Denis Gubarev", code: "BOARD", min: 2 },
+        { period: 2, time: "32:45", team: "them", player: "Jon Attwell", code: "ROUGH", min: 2 },
+        { period: 2, time: "36:17", team: "them", player: "Denis Gubarev", code: "HOLD", min: 2 },
+        { period: 2, time: "36:17", team: "us", player: "Christopher Price", code: "UN-SP", min: 2 },
+        { period: 2, time: "38:17", team: "them", player: "Jan Maerten Smit", code: "INTRF", min: 2 },
+        { period: 3, time: "50:00", team: "us", player: "Christopher Price", code: "ROUGH", min: 2 },
+        { period: 3, time: "54:18", team: "us", player: "Jim Conboy", code: "TRIP", min: 2 },
+        { period: 3, time: "57:50", team: "them", player: "Ryan Nacht", code: "CHE-B", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 3, goalsThem: 3 },
+        { period: 2, goalsUs: 2, goalsThem: 2 },
+        { period: 3, goalsUs: 1, goalsThem: 3 },
+      ],
+      lineup: {
+        us: {
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "89 Brett Boss", "27 Jim Conboy", "17 Jon Garrity", "29 Nils Klok", "13 Jeroen Valentijn",
+            "47 Sergey Baradyntsev", "97 Miska Braun", "8 Andrey Gushchin", "91 George Huber",
+            "9 Petteri Hyytiäinen", "19 Jared Penner", "16 Christopher Price", "46 Daniel Watts",
+          ],
+        },
+        them: {
+          goalie: "96 Bas Boot",
+          dressed: [
+            "23 Christopher Acker", "55 Jean Louis Flier", "52 Denis Gubarev", "21 Cory Powell",
+            "5 Jon Attwell", "13 Lambert Baij", "42 Xavier Boot", "48 Jesse Clarke", "12 Nicolas Komanski",
+            "45 Willem Jan van Loon", "94 Kenneth McCann", "38 Ryan Nacht", "80 Jan Maerten Smit",
+          ],
+        },
+      },
+    },
+    "2026-03-15": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-044",
+      venue: "Jaap Edenhal, Amsterdam",
+      attendance: 15,
+      officials: {
+        referees: ["Maxwell Schickler", "Leon de Lange"],
+        scorer: "Anouk Maij",
+        timer: "Lakshmi Jonker",
+      },
+      scoring: [
+        { period: 1, time: "06:44", team: "them", scorer: "Bart Voet", assists: ["Onno Dolsma"], strength: "EQ" },
+        { period: 1, time: "09:11", team: "us", scorer: "Petteri Hyytiäinen", assists: ["Miska Braun", "Brett Boss"], strength: "EQ" },
+        { period: 2, time: "24:59", team: "them", scorer: "Onno Dolsma", assists: ["Danny van 't Veer"], strength: "EQ" },
+        { period: 2, time: "29:12", team: "them", scorer: "Fabrisio Koopmeiners", assists: ["Mitchell Beukema"], strength: "EQ" },
+        { period: 2, time: "37:38", team: "them", scorer: "Mitchell Beukema", assists: ["Ronald van de Geer"], strength: "SH" },
+        { period: 2, time: "39:07", team: "them", scorer: "Danny van 't Veer", assists: ["Mikaël van der Dandonne"], strength: "EQ" },
+        { period: 2, time: "39:40", team: "us", scorer: "Jared Penner", assists: ["Jon Garrity"], strength: "EQ" },
+        { period: 3, time: "43:30", team: "them", scorer: "Neon Beck", assists: ["Mikaël van der Dandonne"], strength: "EQ" },
+        { period: 3, time: "47:21", team: "them", scorer: "Onno Dolsma", assists: [], strength: "SH" },
+        { period: 3, time: "56:15", team: "us", scorer: "Miska Braun", assists: ["Petteri Hyytiäinen"], strength: "EQ" },
+        { period: 3, time: "57:05", team: "them", scorer: "Danny van 't Veer", assists: ["Mitchell Beukema"], strength: "EQ" },
+      ],
+      penalties: [
+        { period: 1, time: "13:34", team: "them", player: "Neon Beck", code: "HOLD", min: 2 },
+        { period: 1, time: "15:54", team: "us", player: "Brett Boss", code: "TRIP", min: 2 },
+        { period: 1, time: "17:00", team: "them", player: "Mark van 't Veer", code: "ROUGH", min: 2 },
+        { period: 1, time: "18:28", team: "us", player: "Jeroen Valentijn", code: "TRIP", min: 2 },
+        { period: 2, time: "33:20", team: "them", player: "Fabrisio Koopmeiners", code: "HOOK", min: 2 },
+        { period: 2, time: "36:12", team: "them", player: "Jochem den Boer", code: "TRIP", min: 2 },
+        { period: 3, time: "46:33", team: "them", player: "Rombard Deerenberg", code: "HOOK", min: 2 },
+        { period: 3, time: "48:52", team: "us", player: "Miska Braun", code: "HOLD", min: 2 },
+        { period: 3, time: "50:01", team: "them", player: "Fabrisio Koopmeiners", code: "TRIP", min: 2 },
+        { period: 3, time: "54:02", team: "them", player: "Fabrisio Koopmeiners", code: "ILL-H", min: 2 },
+        { period: 3, time: "58:14", team: "them", player: "Rombard Deerenberg", code: "HI-ST", min: 4 },
+        { period: 3, time: "59:45", team: "them", player: "Mitchell Beukema", code: "ROUGH", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 1, goalsThem: 1, pimUs: 4, pimThem: 4, ppUs: 0, ppThem: 0, shUs: 0, shThem: 0 },
+        { period: 2, goalsUs: 1, goalsThem: 4, pimUs: 0, pimThem: 4, ppUs: 0, ppThem: 0, shUs: 0, shThem: 0 },
+        { period: 3, goalsUs: 1, goalsThem: 3, pimUs: 2, pimThem: 12, ppUs: 0, ppThem: 0, shUs: 0, shThem: 1 },
+      ],
+      lineup: {
+        us: {
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "17 Jon Garrity", "89 Brett Boss", "27 Jim Conboy", "29 Nils Klok", "13 Jeroen Valentijn", "83 Dan Perrier",
+            "47 Sergey Baradyntsev", "97 Miska Braun", "77 Jeremie Gould", "8 Andrey Gushchin", "91 George Huber",
+            "9 Petteri Hyytiäinen", "19 Jared Penner", "44 Krisztian Vizsy", "96 Duane Mattos", "11 Alexander Samoylov",
+          ],
+        },
+        them: {
+          goalie: "3 Thom Zoey Deerenberg",
+          dressed: [
+            "27 Rombard Deerenberg", "11 Onno Dolsma", "4 Mark van 't Veer", "13 Jochem den Boer",
+            "1 Neon Beck", "15 Mitchell Beukema", "21 Zjon de Bruin", "83 Mikaël van der Dandonne",
+            "33 Ronald van de Geer", "95 Fabrisio Koopmeiners", "61 Danny van 't Veer", "69 Bart Voet",
+          ],
+        },
+      },
+    },
+  },
+};
+
 const STANDINGS_DATA = {
   "2017-2018": {
     northLabel: "Conference A",
@@ -797,7 +1407,9 @@ const STATS_DATA = {
       { num: 11, name: "Alexander Samoylov", pos: "RW", gp: 2, g: 0, a: 0, pts: 0, pim: 0 },
     ],
     goalies: [
-      { num: 31, name: "Tori Holmes-Kirk", gp: 14, w: 8, l: 5, t: 1, ga: 81, gaa: "5.79", so: 0 },
+      // Holmes-Kirk's GA/GAA exclude the empty-net goal from the 2026-03-07 game
+      // (Gubarev, 58:16) — standard convention, EN goals don't count against a goalie.
+      { num: 31, name: "Tori Holmes-Kirk", gp: 14, w: 8, l: 5, t: 1, ga: 80, gaa: "5.71", so: 0 },
       { num: 30, name: "Bart Sasim", gp: 1, w: 1, l: 0, t: 0, ga: 6, gaa: "6.00", so: 0 },
     ],
   },
@@ -1054,9 +1666,302 @@ function StatsTable({ title, columns, rows, highlightKey }) {
   );
 }
 
+const INFRACTION_LABELS = {
+  TRIP: "Tripping",
+  HOLD: "Holding",
+  ROUGH: "Roughing",
+  HOOK: "Hooking",
+  "HI-ST": "High-sticking",
+  "ILL-H": "Body checking", // confirmed via BenchApp export (gamesheet used shorthand)
+  INTRF: "Interference",
+  BOARD: "Boarding",
+  "UN-SP": "Unsportsmanlike conduct", // confirmed via BenchApp export
+  "CHE-B": "Checking from behind", // confirmed via BenchApp export
+  SLASH: "Slashing",
+  "TOO-M": "Too many men on the ice",
+  DELAY: "Delay of game",
+};
+
+function PeriodLabel({ period }) {
+  return period <= 3 ? `P${period}` : "OT";
+}
+
+function GameDetailPage({ season, game, detail, onBack }) {
+  const opp = game.opp.replace(" \u2014 Playoffs", "");
+  const usName = "Amsterdam Mustangs";
+  const homeTeam = game.home ? usName : opp;
+  const awayTeam = game.home ? opp : usName;
+  const homeScore = game.home ? game.gf : game.ga;
+  const awayScore = game.home ? game.ga : game.gf;
+  const homeLogo = game.home ? LOGO : opponentLogo(opp);
+  const awayLogo = game.home ? opponentLogo(opp) : LOGO;
+
+  return (
+    <div>
+      <button
+        onClick={onBack}
+        className="mb-6 text-sm font-semibold flex items-center gap-1"
+        style={{ color: C.muted, background: "none", border: "none", cursor: "pointer", fontFamily: FONTS.body }}
+      >
+        &larr; Back to schedule
+      </button>
+
+      {detail?.sample && (
+        <SampleNote>
+          This box score is placeholder sample data for template purposes &mdash; swap in a real gamesheet.
+        </SampleNote>
+      )}
+
+      {/* Header / final score */}
+      <div className="rounded-xl mb-8 px-6 sm:px-10 py-8" style={{ background: C.surface, border: `1px solid ${C.line}` }}>
+        <div
+          className="text-xs font-bold mb-4"
+          style={{ color: C.red, fontFamily: FONTS.mono, letterSpacing: "0.15em" }}
+        >
+          {isCancelled(season) ? "IJNL" : `IJNL \u00b7 ${divisionLabel(season).toUpperCase()}`} &middot; {game.date}
+          {detail?.venue && <> &middot; {detail.venue}</>}
+        </div>
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex flex-col items-center gap-2 flex-1 min-w-0">
+            {awayLogo && <img src={awayLogo} alt="" aria-hidden className="w-28 h-28 sm:w-32 sm:h-32 object-contain" />}
+            <span className="text-center truncate w-full" style={{ color: C.white, fontSize: 18, fontWeight: 600 }}>{awayTeam}</span>
+          </div>
+          <div className="flex items-center gap-4 shrink-0 px-2">
+            <span style={{ fontFamily: FONTS.mono, color: C.white, fontSize: "clamp(28px, 6vw, 44px)", fontWeight: 700 }}>{awayScore}</span>
+            <span style={{ color: C.muted, fontSize: 20 }}>&ndash;</span>
+            <span style={{ fontFamily: FONTS.mono, color: C.white, fontSize: "clamp(28px, 6vw, 44px)", fontWeight: 700 }}>{homeScore}</span>
+          </div>
+          <div className="flex flex-col items-center gap-2 flex-1 min-w-0">
+            {homeLogo && <img src={homeLogo} alt="" aria-hidden className="w-28 h-28 sm:w-32 sm:h-32 object-contain" />}
+            <span className="text-center truncate w-full" style={{ color: C.white, fontSize: 18, fontWeight: 600 }}>{homeTeam}</span>
+          </div>
+        </div>
+        <div className="flex justify-center mt-5">
+          <Badge tone={game.res === "W" ? "win" : game.res === "L" ? "loss" : "ot"}>
+            {game.res === "W" ? "WIN" : game.res === "L" ? "LOSS" : "TIE"}
+          </Badge>
+        </div>
+      </div>
+
+      {!detail ? (
+        <div style={{ color: C.muted }}>No box score added yet for this game.</div>
+      ) : (
+        <div className="flex flex-col gap-8">
+          {/* Period summary (goals by period) */}
+          {detail.periodSummary && (
+            <div>
+              <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
+                PERIOD SUMMARY
+              </h3>
+              <div className="rounded-lg overflow-x-auto" style={{ border: `1px solid ${C.line}` }}>
+                <div style={{ minWidth: 420 }}>
+                  <div
+                    className="grid px-4 sm:px-5 py-2 text-xs"
+                    style={{ gridTemplateColumns: `2fr repeat(${detail.periodSummary.length}, minmax(40px, 0.7fr)) minmax(40px, 0.7fr)`, background: C.surface2, color: C.muted, fontFamily: FONTS.mono, letterSpacing: "0.05em" }}
+                  >
+                    <span></span>
+                    {detail.periodSummary.map((p) => (
+                      <span key={p.period} className="text-right">{PeriodLabel({ period: p.period })}</span>
+                    ))}
+                    <span className="text-right">TOT</span>
+                  </div>
+                  {[
+                    { label: awayTeam, key: game.home ? "goalsThem" : "goalsUs", logo: game.home ? opponentLogo(opp) : LOGO },
+                    { label: homeTeam, key: game.home ? "goalsUs" : "goalsThem", logo: game.home ? LOGO : opponentLogo(opp) },
+                  ].map((row, i) => (
+                    <div
+                      key={row.key}
+                      className="grid px-4 sm:px-5 py-2.5 text-sm items-center"
+                      style={{ gridTemplateColumns: `2fr repeat(${detail.periodSummary.length}, minmax(40px, 0.7fr)) minmax(40px, 0.7fr)`, background: i % 2 ? C.surface : C.surface2, borderTop: `1px solid ${C.line}` }}
+                    >
+                      <span className="flex items-center gap-2 min-w-0">
+                        {row.logo && <img src={row.logo} alt="" aria-hidden className="w-7 h-7 object-contain shrink-0" />}
+                        <span className="truncate" style={{ color: C.white, fontWeight: 600 }}>{row.label}</span>
+                      </span>
+                      {detail.periodSummary.map((p) => (
+                        <span key={p.period} className="text-right" style={{ fontFamily: FONTS.mono, color: C.muted }}>{p[row.key]}</span>
+                      ))}
+                      <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.red, fontWeight: 700 }}>
+                        {detail.periodSummary.reduce((a, p) => a + p[row.key], 0)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Scoring summary */}
+          <div>
+            <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
+              SCORING SUMMARY
+            </h3>
+            <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${C.line}` }}>
+              {[1, 2, 3].map((p) => {
+                const goals = detail.scoring.filter((g) => g.period === p);
+                if (goals.length === 0) return null;
+                return (
+                  <div key={p}>
+                    <div
+                      className="px-4 sm:px-5 py-1.5 text-xs font-bold"
+                      style={{ background: C.surface2, color: C.muted, fontFamily: FONTS.mono, letterSpacing: "0.1em" }}
+                    >
+                      PERIOD {p}
+                    </div>
+                    {goals.map((g, i) => (
+                      <div
+                        key={i}
+                        className="flex items-center justify-between px-4 sm:px-5 py-2.5 gap-3"
+                        style={{ background: C.surface, borderTop: `1px solid ${C.line}` }}
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <span style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, width: 44, flexShrink: 0 }}>{g.time}</span>
+                          {(g.team === "us" ? LOGO : opponentLogo(opp)) && (
+                            <img src={g.team === "us" ? LOGO : opponentLogo(opp)} alt="" aria-hidden className="w-7 h-7 object-contain shrink-0" />
+                          )}
+                          <span className="truncate">
+                            <span style={{ color: C.white, fontSize: 14, fontWeight: 600 }}>{g.scorer}</span>
+                            {g.assists.length > 0 && (
+                              <span style={{ color: C.muted, fontSize: 13 }}> ({g.assists.join(", ")})</span>
+                            )}
+                          </span>
+                        </div>
+                        {g.strength && g.strength !== "EQ" && (
+                          <span className="shrink-0">
+                            <Badge tone="neutral">{g.strength}</Badge>
+                          </span>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Penalty summary */}
+          <div>
+            <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
+              PENALTY SUMMARY
+            </h3>
+            {detail.penalties.length > 0 ? (
+              <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${C.line}` }}>
+                {[1, 2, 3].map((p) => {
+                  const pens = detail.penalties.filter((x) => x.period === p);
+                  if (pens.length === 0) return null;
+                  return (
+                    <div key={p}>
+                      <div
+                        className="px-4 sm:px-5 py-1.5 text-xs font-bold"
+                        style={{ background: C.surface2, color: C.muted, fontFamily: FONTS.mono, letterSpacing: "0.1em" }}
+                      >
+                        PERIOD {p}
+                      </div>
+                      {pens.map((x, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center justify-between px-4 sm:px-5 py-2.5 gap-3"
+                          style={{ background: C.surface, borderTop: `1px solid ${C.line}` }}
+                        >
+                          <div className="flex items-center gap-3 min-w-0">
+                            <span style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, width: 44, flexShrink: 0 }}>{x.time}</span>
+                            {(x.team === "us" ? LOGO : opponentLogo(opp)) && (
+                              <img src={x.team === "us" ? LOGO : opponentLogo(opp)} alt="" aria-hidden className="w-7 h-7 object-contain shrink-0" />
+                            )}
+                            <span className="truncate" style={{ color: C.white, fontSize: 14 }}>{x.player}</span>
+                          </div>
+                          <div className="flex items-center gap-3 shrink-0">
+                            <span style={{ color: C.muted, fontSize: 13 }}>{INFRACTION_LABELS[x.code] || x.code}</span>
+                            <span style={{ fontFamily: FONTS.mono, color: C.red, fontSize: 13, fontWeight: 700 }}>{x.min}'</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div style={{ color: C.muted, fontSize: 14 }}>No penalties recorded.</div>
+            )}
+          </div>
+
+          {/* Lineups */}
+          {detail.lineup && (
+            <div>
+              <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
+                LINEUPS
+              </h3>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {[
+                  { label: awayTeam, logo: game.home ? opponentLogo(opp) : LOGO, l: game.home ? detail.lineup.them : detail.lineup.us },
+                  { label: homeTeam, logo: game.home ? LOGO : opponentLogo(opp), l: game.home ? detail.lineup.us : detail.lineup.them },
+                ].map((side, si) => (
+                  <div key={si} className="rounded-lg p-5" style={{ background: C.surface, border: `1px solid ${C.line}` }}>
+                    <div className="flex items-center gap-2 mb-3">
+                      {side.logo && <img src={side.logo} alt="" aria-hidden className="w-7 h-7 object-contain shrink-0" />}
+                      <span style={{ color: C.white, fontWeight: 700, fontSize: 13 }}>{side.label}</span>
+                    </div>
+                    <div className="mb-3">
+                      <div style={{ color: C.muted, fontSize: 13, fontFamily: FONTS.mono }}>
+                        {side.l.goalie ? <>{side.l.goalie} (GOALIE)</> : <span style={{ fontStyle: "italic" }}>Goalie not listed on gamesheet</span>}
+                      </div>
+                      {side.l.backupGoalie && (
+                        <div style={{ color: C.muted, fontSize: 13, fontFamily: FONTS.mono }}>
+                          {side.l.backupGoalie} (BACKUP GOALIE)
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      {[...side.l.dressed]
+                        .sort((a, b) => parseInt(a, 10) - parseInt(b, 10))
+                        .map((name, i) => (
+                          <span key={i} style={{ color: C.muted, fontSize: 13, fontFamily: FONTS.mono }}>{name}</span>
+                        ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Officials */}
+          {detail.officials && (
+            <div>
+              <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
+                OFFICIALS
+              </h3>
+              <div className="rounded-lg p-5 flex flex-wrap gap-x-10 gap-y-3" style={{ background: C.surface, border: `1px solid ${C.line}` }}>
+                {detail.officials.referees && (
+                  <div>
+                    <div style={{ color: C.muted, fontWeight: 700, fontSize: 13 }}>REFEREES</div>
+                    <div style={{ color: C.muted, fontSize: 13, fontFamily: FONTS.mono }}>{detail.officials.referees.join(", ")}</div>
+                  </div>
+                )}
+                {detail.officials.scorer && (
+                  <div>
+                    <div style={{ color: C.muted, fontWeight: 700, fontSize: 13 }}>SCORER</div>
+                    <div style={{ color: C.muted, fontSize: 13, fontFamily: FONTS.mono }}>{detail.officials.scorer}</div>
+                  </div>
+                )}
+                {detail.officials.timer && (
+                  <div>
+                    <div style={{ color: C.muted, fontWeight: 700, fontSize: 13 }}>TIMER</div>
+                    <div style={{ color: C.muted, fontSize: 13, fontFamily: FONTS.mono }}>{detail.officials.timer}</div>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function MustangsSite() {
   const [season, setSeason] = useState(DEFAULT_SEASON);
   const [tab, setTab] = useState("home");
+  const [selectedGameDate, setSelectedGameDate] = useState(null);
   const roster = ROSTERS[season];
   const standings = STANDINGS_DATA[season];
   const schedule = SCHEDULE_DATA[season] || [];
@@ -1094,7 +1999,7 @@ export default function MustangsSite() {
           <div className="relative shrink-0">
             <select
               value={season}
-              onChange={(e) => setSeason(e.target.value)}
+              onChange={(e) => { setSeason(e.target.value); setSelectedGameDate(null); }}
               className="appearance-none pl-4 pr-9 py-2 rounded text-sm font-bold cursor-pointer"
               style={{
                 background: C.surface2,
@@ -1123,7 +2028,7 @@ export default function MustangsSite() {
               return (
                 <button
                   key={t.id}
-                  onClick={() => setTab(t.id)}
+                  onClick={() => { setTab(t.id); setSelectedGameDate(null); }}
                   className="flex items-center gap-2 px-4 py-3 text-sm font-semibold whitespace-nowrap"
                   style={{
                     color: active ? C.white : C.muted,
@@ -1155,6 +2060,9 @@ export default function MustangsSite() {
                 <h1 style={{ fontFamily: FONTS.display, color: C.white, fontSize: "clamp(2.5rem, 7vw, 4.5rem)", lineHeight: 1 }}>
                   AMSTERDAM<br />MUSTANGS
                 </h1>
+                <p style={{ color: C.muted, marginTop: 12, maxWidth: 460 }}>
+                  The new home of the Amsterdam Mustangs hockey team.
+                </p>
                 <div style={{ fontFamily: FONTS.mono, color: C.red, letterSpacing: "0.2em", fontSize: 12, marginTop: 28 }}>
                   {isCancelled(season) ? "IJNL" : `IJNL \u00b7 ${divisionLabel(season).toUpperCase()}`}
                 </div>
@@ -1193,6 +2101,31 @@ export default function MustangsSite() {
               </div>
             </div>
 
+            <SampleNote>
+              Stats leaders aren't wired in yet — send over game sheets whenever you have them.
+            </SampleNote>
+
+            <div className="grid sm:grid-cols-3 gap-4">
+              {[
+                { icon: Users, label: "Roster", desc: "Full team by position", id: "roster" },
+                { icon: Calendar, label: "Schedule & Results", desc: "Every game, this season", id: "schedule" },
+                { icon: Trophy, label: "Standings", desc: "League table for this season", id: "standings" },
+              ].map((c) => {
+                const Icon = c.icon;
+                return (
+                  <button
+                    key={c.id}
+                    onClick={() => setTab(c.id)}
+                    className="text-left p-5 rounded-lg"
+                    style={{ background: C.surface, border: `1px solid ${C.line}` }}
+                  >
+                    <Icon size={20} color={C.red} />
+                    <div style={{ fontFamily: FONTS.display, color: C.white, fontSize: 18, marginTop: 10 }}>{c.label}</div>
+                    <div style={{ color: C.muted, fontSize: 13, marginTop: 4 }}>{c.desc}</div>
+                  </button>
+                );
+              })}
+            </div>
           </div>
         )}
 
@@ -1247,38 +2180,58 @@ export default function MustangsSite() {
           </div>
         )}
 
-        {tab === "schedule" && (
+        {tab === "schedule" && selectedGameDate && (
+          <GameDetailPage
+            season={season}
+            game={schedule.find((g) => g.date === selectedGameDate)}
+            detail={GAME_DETAILS[season]?.[selectedGameDate]}
+            onBack={() => setSelectedGameDate(null)}
+          />
+        )}
+        {tab === "schedule" && !selectedGameDate && (
           <div>
             <SectionHeading season={season} title="Schedule & results" />
             {schedule.length > 0 ? (
               <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${C.line}` }}>
-                {schedule.map((g, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center justify-between px-4 sm:px-5 py-3 gap-3"
-                    style={{ background: i % 2 ? C.surface : C.surface2, borderBottom: i < schedule.length - 1 ? `1px solid ${C.line}` : "none" }}
-                  >
-                    <div className="flex items-center gap-3 min-w-0">
-                      <span style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, width: 78, flexShrink: 0 }}>{g.date}</span>
-                      {opponentLogo(g.opp.replace(" \u2014 Playoffs", "")) && (
-                        <img src={opponentLogo(g.opp.replace(" \u2014 Playoffs", ""))} alt="" aria-hidden className="w-11 h-11 object-contain shrink-0" />
-                      )}
-                      <span style={{ color: C.white, fontSize: 14, fontWeight: 600 }} className="truncate">
-                        {g.home ? "vs" : "@"} {g.opp}
-                      </span>
-                    </div>
-                    {g.status === "final" ? (
-                      <div className="flex items-center gap-3 shrink-0">
-                        <span style={{ fontFamily: FONTS.mono, color: C.white, fontSize: 14 }}>{g.gf}&ndash;{g.ga}</span>
-                        <Badge tone={g.res === "W" ? "win" : g.res === "L" ? "loss" : "ot"}>{g.res}</Badge>
+                {schedule.map((g, i) => {
+                  const clickable = g.status === "final";
+                  const Wrapper = clickable ? "button" : "div";
+                  return (
+                    <Wrapper
+                      key={i}
+                      type={clickable ? "button" : undefined}
+                      onClick={clickable ? () => setSelectedGameDate(g.date) : undefined}
+                      className="flex items-center justify-between px-4 sm:px-5 py-3 gap-3 w-full text-left"
+                      style={{
+                        background: i % 2 ? C.surface : C.surface2,
+                        borderBottom: i < schedule.length - 1 ? `1px solid ${C.line}` : "none",
+                        border: "none",
+                        cursor: clickable ? "pointer" : "default",
+                        fontFamily: FONTS.body,
+                      }}
+                    >
+                      <div className="flex items-center gap-3 min-w-0">
+                        <span style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, width: 78, flexShrink: 0 }}>{g.date}</span>
+                        {opponentLogo(g.opp.replace(" \u2014 Playoffs", "")) && (
+                          <img src={opponentLogo(g.opp.replace(" \u2014 Playoffs", ""))} alt="" aria-hidden className="w-11 h-11 object-contain shrink-0" />
+                        )}
+                        <span style={{ color: C.white, fontSize: 14, fontWeight: 600 }} className="truncate">
+                          {g.home ? "vs" : "@"} {g.opp}
+                        </span>
                       </div>
-                    ) : g.status === "cancelled" ? (
-                      <Badge tone="neutral">CANCELLED</Badge>
-                    ) : (
-                      <Badge tone="neutral">UPCOMING</Badge>
-                    )}
-                  </div>
-                ))}
+                      {g.status === "final" ? (
+                        <div className="flex items-center gap-3 shrink-0">
+                          <span style={{ fontFamily: FONTS.mono, color: C.white, fontSize: 14 }}>{g.gf}&ndash;{g.ga}</span>
+                          <Badge tone={g.res === "W" ? "win" : g.res === "L" ? "loss" : "ot"}>{g.res}</Badge>
+                        </div>
+                      ) : g.status === "cancelled" ? (
+                        <Badge tone="neutral">CANCELLED</Badge>
+                      ) : (
+                        <Badge tone="neutral">UPCOMING</Badge>
+                      )}
+                    </Wrapper>
+                  );
+                })}
               </div>
             ) : (
               <div style={{ color: C.muted }}>{isCancelled(season) ? `The ${season} season was cancelled due to the COVID-19 pandemic.` : `No games added yet for the ${season} season.`}</div>
