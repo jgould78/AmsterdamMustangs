@@ -216,7 +216,7 @@ const DEFAULT_SEASON = "2026-2027";
 const DIVISIONS = {
   "2017-2018": 4,
   "2018-2019": 4,
-  "2019-2020": 4,
+  "2019-2020": 5,
   "2020-2021": null,
   "2021-2022": 5,
   "2022-2023": 4,
@@ -352,7 +352,7 @@ const ROSTERS = {
     { tag: "", num: 46, name: "Daniel Watts", pos: "C", shoots: "Right", nat: "USA" },
     { tag: "", num: 47, name: "Sergey Baradyntsev", pos: "C", shoots: "Left", nat: "Belarus" },
     { tag: "C", num: 77, name: "Jeremie Gould", pos: "LW", shoots: "Right", nat: "Canada" },
-    { tag: "", num: 83, name: "Daniel Perrier", pos: "D", shoots: "Left", nat: "Netherlands" },
+    { tag: "", num: 83, name: "Daniel Perrier", pos: "LW", shoots: "Left", nat: "Netherlands" },
     { tag: "", num: 89, name: "Brett Boss", pos: "D", shoots: "Right", nat: "USA" },
     { tag: "", num: 91, name: "George Huber", pos: "LW", shoots: "Left", nat: "Canada" },
     { tag: "", num: 97, name: "Miska Braun", pos: "RW", shoots: "Right", nat: "Finland" },
@@ -362,18 +362,18 @@ const ROSTERS = {
     { tag: "", num: 9, name: "Petteri Hyytiäinen", pos: "C", shoots: "Left", nat: "Finland" },
     { tag: "", num: 13, name: "Jeroen Valentijn", pos: "D", shoots: "Right", nat: "Netherlands" },
     { tag: "", num: 15, name: "Alex Paquin", pos: "LW", shoots: "Left", nat: "Canada" },
-    { tag: "", num: 16, name: "Christopher Price", pos: "C", shoots: "Left", nat: "Canada" },
+    { tag: "", num: 16, name: "Christopher Price", pos: "D", shoots: "Left", nat: "Canada" },
     { tag: "", num: 17, name: "Jon Garrity", pos: "D", shoots: "Left", nat: "USA" },
     { tag: "A", num: 19, name: "Jared Penner", pos: "RW", shoots: "Right", nat: "Canada" },
     { tag: "", num: 22, name: "George Harrington", pos: "LW", shoots: "Left", nat: "Canada" },
     { tag: "A", num: 27, name: "Jim Conboy", pos: "D", shoots: "Right", nat: "Canada" },
-    { tag: "", num: 29, name: "Nils Klok", pos: "D", shoots: "Right", nat: "Netherlands" },
+    { tag: "", num: 29, name: "Nils Klok", pos: "C", shoots: "Right", nat: "Netherlands" },
     { tag: "", num: 31, name: "Tori Holmes-Kirk", pos: "G", shoots: "Left", nat: "USA" },
     { tag: "", num: 46, name: "Daniel Watts", pos: "C", shoots: "Right", nat: "USA" },
     { tag: "", num: 47, name: "Sergey Baradyntsev", pos: "C", shoots: "Left", nat: "Belarus" },
     { tag: "", num: 73, name: "Dirk McLaughlin", pos: "D", shoots: "Right", nat: "Canada" },
     { tag: "C", num: 77, name: "Jeremie Gould", pos: "RW", shoots: "Right", nat: "Canada" },
-    { tag: "", num: 83, name: "Daniel Perrier", pos: "D", shoots: "Left", nat: "Netherlands" },
+    { tag: "", num: 83, name: "Daniel Perrier", pos: "LW", shoots: "Left", nat: "Netherlands" },
     { tag: "", num: 89, name: "Brett Boss", pos: "D", shoots: "Right", nat: "USA" },
     { tag: "", num: 91, name: "George Huber", pos: "LW", shoots: "Left", nat: "Canada" },
     { tag: "", num: 97, name: "Miska Braun", pos: "RW", shoots: "Right", nat: "Finland" },
@@ -524,7 +524,7 @@ const RELEGATION_PLAYOFFS = {
 // Gamesheet parsing note: official IJHN sheets for this team may list "Team A" as
 // "Amsterdam Tigers 5" rather than "Amsterdam Mustangs" — this is the same team
 // (confirmed); always display "Amsterdam Mustangs" on the site regardless of what
-// the sheet says. Dan Perrier is #83 (the gamesheet's "#71" for 2026-03-15 was an
+// the sheet says. Daniel Perrier is #83 (the gamesheet's "#71" for 2026-03-15 was an
 // error on the official form, corrected below).
 // Note: Dutch IJHN gamesheets don't track shots on goal, so there is no `shots`
 // field; the box score shows a period-by-period Goals/PIM/PP/SH summary instead.
@@ -620,7 +620,7 @@ const RELEGATION_PLAYOFFS = {
 // "Amsterdam Tigers 4" — same naming quirk as the Mustangs' own "Amsterdam Tigers 5"
 // registration, but here it applies to the OPPONENT: confirmed via roster + final
 // score that Team A is actually Cool Mokum 2, not another Amsterdam Tigers squad.
-// This sheet also has Dan Perrier as #71 again (same recurring gamesheet error as
+// This sheet also has Daniel Perrier as #71 again (same recurring gamesheet error as
 // 2026-03-15) — corrected to #83. Penalties matched the PDF exactly (10/10). Goals:
 // 6 of 7 Mustangs goals needed at least one assist added or corrected via BenchApp
 // (largely PDF only recording one of two assists). One goal's time was NOT taken
@@ -630,6 +630,107 @@ const RELEGATION_PLAYOFFS = {
 // 55:46, which only makes sense if the PP goal against him happened then, not 10
 // minutes earlier. Treated as a BenchApp typo (likely meant "15:46") and kept the
 // PDF's 55:46.
+//
+// 2025-12-14 (vs Amsterdam Snipers, home): IMPORTANT — the official gamesheet is
+// missing a goal. It lists only 8 Mustangs goals (own total row says "8:5") but
+// BenchApp lists 9, including a Jeremie Gould goal at 26:00 absent from the PDF
+// entirely. The existing SCHEDULE_DATA entry for this game already said gf: 9,
+// confirming BenchApp (and the site) were right and the gamesheet's own goal log —
+// and its self-derived period-summary total — undercounted by one. Added the missing
+// goal; period-by-period goal counts below reflect 9 total, not the PDF's 8. PIM
+// totals were unaffected and matched the PDF's table exactly (16:14). Also: 2 of the
+// remaining 8 goals had scorer/assist swapped entirely (Baradyntsev's 06:15 goal and
+// Braun's 13:48 goal both had their scorer and an assist reversed on the PDF), and
+// Penner's PP goal at 56:59 gained a 2nd assist (Braun). This sheet also has Perrier
+// as #71 again (corrected to #83, same recurring error). Snipers dressed 3 goalies
+// with a blank Goaliewissels table; van der Heul confirmed as the one who played.
+//
+// 2025-11-29 (vs Amsterdam Tigers 6, home): penalties matched the PDF exactly (6/6).
+// Of 13 goals, 6 needed corrections — mostly missing assists, but two of Braun's
+// goals (46:25, 54:02) also flipped EQ→PP; both verified against the penalty clock
+// (an Amsterdam Tigers 6 player was in the box each time) even though the PDF's own
+// PP summary column says 0:0 for the game — same recurring pattern where the PDF's
+// own situational tagging undercounts. This gamesheet lists Alex Paquin as #15,
+// matching the BenchApp attendance export and the 2025-2026 ROSTERS entry. RESOLVED:
+// #15 is confirmed as his correct number all season (per Jeremie) — the #6 that
+// appeared on the 2026-01-25 and 2026-01-31 gamesheets was a scorekeeper error on
+// those two sheets, not a mid-season change; every GAME_DETAILS entry uses #15
+// (this game had yet another Perrier error, #70, corrected to #83 as usual).
+//
+// 2025-11-23 (vs Leiden Islanders, away — earliest game entered so far): penalties
+// matched the PDF exactly (13/13). Of 13 goals, 4 needed BenchApp corrections: two
+// strength flips both verified against the penalty clock (Staats' 22:09 goal was PP,
+// not EQ — Gould's own roughing minor was still running; Dickhoff's 30:08 goal was
+// SH, not EQ — he scored while serving his own penalty), and two assist additions
+// (Braun's 28:39 goal, Huber's 36:09 goal, both went from partially/unassisted to
+// having 2 assists). This PDF also has Perrier as #70 (same recurring error,
+// corrected to #83) and confirms Paquin as #15 (matching the 2025-11-29 finding, not
+// #6 — see that game's note on the open question). Bart Sasim (#30) confirmed as
+// goalie directly by Jeremie; also matches the PDF roster and BenchApp Attended tag.
+// Leiden's own goalie (Anique de Gier) wasn't listed on the gamesheet but is
+// confirmed by Jeremie, consistent with her role in the club's other games this season.
+//
+// 2025-11-09 (vs Cool Mokum 2, home — earliest game entered so far): penalties
+// matched the PDF for 2 of 3 (Sweers, Marsat) — the 3rd, Perrier's 55:29 tripping
+// minor, isn't in the BenchApp export at all, kept from the PDF alone since PIM
+// totals only reconcile with it included (same "export just wasn't exhaustive"
+// pattern as 2026-02-13, not a real conflict). All 3 Mustangs goals needed
+// correction: two gained a missing 2nd assist (both Huber goals), and Perrier's
+// 34:04 goal had its assists fully replaced — PDF credited Gushchin, BenchApp says
+// Huber and Watts, an entirely different pair. Cool Mokum 2's SH goal (Zaitsoff)
+// matched exactly, including strength, on both sources. This is another gamesheet
+// where Cool Mokum registers as "Amsterdam Tigers 4" (see 2025-12-21 for the first
+// instance of this). Two Cool Mokum goalies listed (de Groot, Sipkema) — Sipkema
+// confirmed as the one who played.
+//
+// 2025-10-31 (vs Blue Mountain Cougars Hoorn 1, away — earliest game entered so
+// far): penalties matched the PDF for 8/8 Hoorn entries (one was noted "83/48" —
+// per Jeremie, this format means #83 committed the infraction but #48 served the
+// box time since #83 couldn't; BenchApp independently confirms #83, van der Donk,
+// as the offender, which is what's recorded here) and 5/5 Mustangs entries. The
+// PDF's 20-minute "ABUSE" entry for Perrier is really 3 things per
+// BenchApp (a game misconduct + two separate 10-min misconducts, on top of a
+// separate 2-min boarding minor) — kept as the PDF's simpler 2-entry version
+// (2min BOARD + 20min ABUSE) since the totals reconcile identically either way.
+// Goals: 5 of 13 needed correction, two of them strength flips verified against the
+// penalty clock — Beck's 18:37 goal was SH (den Boer's tripping minor was still
+// running) and Dolsma's 34:57 goal was SH for Hoorn's OWN team (Mark van 't Veer's
+// holding minor was still running when a Hoorn player scored) — plus Conboy's PP
+// goal at 38:04 gained a 2nd assist and flipped from EQ. This gamesheet also has
+// Perrier as #70 (recurring error, corrected to #83) and Braun as #66 (also wrong,
+// corrected to #97 per the Attended export). Paquin appears here as #15 — another
+// data point favoring #15 as his real number over the #6 used on some other sheets.
+//
+// 2025-10-18 (vs Cool Mokum 2, home — earliest game entered so far): penalties
+// matched the PDF exactly (15/15). Of 16 goals, 8 needed BenchApp corrections: one
+// major re-attribution (the PDF's "Jeremie Gould, assist Boss" at 41:00 is actually
+// Nils Klok, assisted by Boss AND Hyytiäinen — not a shared jersey mixup, a fully
+// different scorer), 3 strength flips (Leedahl's 18:02 and 54:45 goals, Hyytiäinen's
+// 45:10 goal all EQ→PP; van Baarsen's 46:24 goal EQ→SH — all four verified against
+// the penalty clock), an added assist (Braun's 01:34 goal), and van Baarsen's final
+// goal (59:46) tagged EN — see the STATS_DATA goalies comment for the resulting
+// Holmes-Kirk correction. This PDF also lists Paquin as #6 again (corrected to #15,
+// same recurring error as some other sheets) and confirms "ILL-H" = body checking,
+// and a new code, "HO-ST" (holding the stick), distinct from plain "HOLD".
+//
+// 2025-10-12 (vs Amsterdam Snipers, away — earliest game entered so far, though
+// oddly held at Jaap Edenhal like a home game; transcribed as printed). Penalties
+// matched the PDF for all 11, but 2 had a "Tijd" column that conflicted with their
+// own Start/End columns — Andries' 20:49 entry had Start/End showing "39:09-41:09",
+// and Price's 13:18 entry had Tijd showing "00:00" — BenchApp confirmed which
+// number was the real running-clock time in each case (20:49 and 13:18
+// respectively; the other field in each row was just a PDF data-entry error).
+// Goals were a bigger story: of 5 total, 3 needed correction, two of them full
+// scorer swaps rather than added assists — the PDF's "Braun, assist Boss" at 24:05
+// is actually Huber, assisted by Braun and Hyytiäinen; the PDF's "Hyytiäinen,
+// unassisted" at 26:48 is actually Boss on the power play, assisted by Braun and
+// Garrity (also flips EQ→PP, confirmed via the penalty clock — Snipers' de Pauw was
+// still in the box). Northman's goal also flipped EQ→PP the same way. This
+// gamesheet has several Mustangs jersey-number errors at once: Klok as #73 (not
+// #29), Braun as #66 (not #97), Price as #47 (not #16) — all corrected via the
+// BenchApp Attended export, which used their standard numbers throughout.
+// Baradyntsev is listed with jersey "0" here and wasn't in Attended either —
+// excluded from dressed, consistent with the Tigers 0-means-scratched convention.
 // TIME CONVENTION: `time` fields on `scoring` and `penalties` entries always use a
 // single running 60-minute game clock, regardless of how the source states it.
 // Period 1 = 00:00–20:00, Period 2 = 20:01–40:00, Period 3 = 40:01–60:00 (OT beyond
@@ -639,6 +740,447 @@ const RELEGATION_PLAYOFFS = {
 // use the running clock, so those can be copied as-is.
 const GAME_DETAILS = {
   "2025-2026": {
+    "2025-10-12": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-002",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["Allart Dusseau", "Pascal"], // Pascal's surname still unknown
+        scorer: "Hugo Schaap",
+        timer: "Mischa Kluin",
+      },
+      scoring: [
+        { period: 2, time: "23:18", team: "us", scorer: "Christopher Price", assists: [], strength: "EQ" },
+        { period: 2, time: "24:05", team: "us", scorer: "George Huber", assists: ["Miska Braun", "Petteri Hyytiäinen"], strength: "EQ" },
+        { period: 2, time: "26:48", team: "us", scorer: "Brett Boss", assists: ["Miska Braun", "Jon Garrity"], strength: "PP" },
+        { period: 2, time: "32:45", team: "them", scorer: "Stefan Northman", assists: ["Bryan Gouwerok"], strength: "PP" },
+        { period: 3, time: "43:40", team: "us", scorer: "Christopher Price", assists: [], strength: "PS" },
+      ],
+      penalties: [
+        { period: 1, time: "13:18", team: "us", player: "Christopher Price", code: "ROUGH", min: 4 },
+        { period: 2, time: "20:49", team: "them", player: "Bas Andries", code: "ROUGH", min: 2 },
+        { period: 2, time: "26:30", team: "them", player: "Jair de Paauw", code: "BOARD", min: 2 },
+        { period: 2, time: "32:00", team: "us", player: "Jeremie Gould", code: "TRIP", min: 2 },
+        { period: 2, time: "34:30", team: "them", player: "Bryan Gouwerok", code: "ROUGH", min: 2 },
+        { period: 2, time: "34:30", team: "us", player: "Jim Conboy", code: "ROUGH", min: 2 },
+        { period: 2, time: "35:35", team: "them", player: "Bas Andries", code: "HOLD", min: 2 },
+        { period: 3, time: "51:13", team: "them", player: "Jair de Paauw", code: "ROUGH", min: 2 },
+        { period: 3, time: "54:53", team: "us", player: "Christopher Price", code: "TRIP", min: 2 },
+        { period: 3, time: "55:34", team: "them", player: "Jair de Paauw", code: "CROSS", min: 2 },
+        { period: 3, time: "57:13", team: "them", player: "Stefan Northman", code: "TRIP", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 0, goalsThem: 0 },
+        { period: 2, goalsUs: 3, goalsThem: 1 },
+        { period: 3, goalsUs: 1, goalsThem: 0 },
+      ],
+      lineup: {
+        us: {
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "7 Wyatt Southard", "8 Andrey Gushchin", "9 Petteri Hyytiäinen", "13 Jeroen Valentijn",
+            "16 Christopher Price", "17 Jon Garrity", "19 Jared Penner", "27 Jim Conboy",
+            "29 Nils Klok", "44 Krisztian Vizsy", "46 Daniel Watts", "77 Jeremie Gould",
+            "89 Brett Boss", "91 George Huber", "97 Miska Braun",
+          ],
+        },
+        them: {
+          goalie: "24 Frank Groen",
+          dressed: [
+            "3 Bryan Gouwerok", "15 Joost Bos", "16 Wenzel Tuma", "19 John David Trapman",
+            "30 Adam Shepherd", "40 Egor Svertkov", "44 Jair de Paauw", "47 Stefan Northman",
+            "78 Stijn van Amelsvoort", "81 Bas Andries", "88 Eric Kuiper", "96 Mervijn Denie",
+          ],
+        },
+      },
+    },
+    "2025-10-18": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-005",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["Doug Schickler", "Jason Robertson"],
+        scorer: "Nienke Hommes",
+        timer: "Silas de Jong",
+      },
+      scoring: [
+        { period: 1, time: "01:34", team: "us", scorer: "Miska Braun", assists: ["Alex Paquin", "Petteri Hyytiäinen"], strength: "EQ" },
+        { period: 1, time: "12:52", team: "them", scorer: "Brett Leedahl", assists: ["Daan Veltman"], strength: "EQ" },
+        { period: 1, time: "13:12", team: "us", scorer: "Miska Braun", assists: ["Alex Paquin"], strength: "EQ" },
+        { period: 1, time: "15:07", team: "them", scorer: "Ole Hupkes", assists: [], strength: "EQ" },
+        { period: 1, time: "18:02", team: "them", scorer: "Brett Leedahl", assists: ["Jean-Paul Terpstra"], strength: "PP" },
+        { period: 2, time: "22:38", team: "us", scorer: "Alex Paquin", assists: ["Miska Braun"], strength: "EQ" },
+        { period: 2, time: "30:34", team: "them", scorer: "Brett Leedahl", assists: ["Dax Roelofsen"], strength: "EQ" },
+        { period: 2, time: "33:15", team: "us", scorer: "Miska Braun", assists: [], strength: "EQ" },
+        { period: 3, time: "41:00", team: "us", scorer: "Nils Klok", assists: ["Brett Boss", "Petteri Hyytiäinen"], strength: "EQ" },
+        { period: 3, time: "44:02", team: "them", scorer: "Michael van den Ende", assists: ["Jean-Paul Terpstra"], strength: "EQ" },
+        { period: 3, time: "45:10", team: "us", scorer: "Petteri Hyytiäinen", assists: ["Alex Paquin"], strength: "PP" },
+        { period: 3, time: "46:24", team: "them", scorer: "Joel van Baarsen", assists: [], strength: "SH" },
+        { period: 3, time: "50:56", team: "us", scorer: "Petteri Hyytiäinen", assists: ["Miska Braun"], strength: "EQ" },
+        { period: 3, time: "54:45", team: "them", scorer: "Brett Leedahl", assists: [], strength: "PP" },
+        { period: 3, time: "56:09", team: "them", scorer: "Brett Leedahl", assists: [], strength: "EQ" },
+        { period: 3, time: "59:46", team: "them", scorer: "Joel van Baarsen", assists: ["Ole Hupkes"], strength: "EN" },
+      ],
+      penalties: [
+        { period: 1, time: "16:32", team: "us", player: "Miska Braun", code: "HOOK", min: 2 },
+        { period: 2, time: "24:13", team: "them", player: "Dax Roelofsen", code: "ILL-H", min: 2 },
+        { period: 2, time: "24:35", team: "them", player: "Michael van den Ende", code: "INTRF", min: 2 },
+        { period: 2, time: "33:49", team: "them", player: "Dax Roelofsen", code: "SLASH", min: 2 },
+        { period: 2, time: "36:55", team: "us", player: "Nils Klok", code: "HOOK", min: 2 },
+        { period: 3, time: "40:45", team: "us", player: "George Huber", code: "HOOK", min: 2 },
+        { period: 3, time: "40:54", team: "them", player: "Dax Roelofsen", code: "HOOK", min: 2 },
+        { period: 3, time: "44:34", team: "them", player: "Zaran Zaitsoff", code: "HOLD", min: 2 },
+        { period: 3, time: "45:54", team: "them", player: "Michael van den Ende", code: "ROUGH", min: 2 },
+        { period: 3, time: "46:07", team: "them", player: "Brett Leedahl", code: "HO-ST", min: 2 },
+        { period: 3, time: "48:01", team: "them", player: "Alexis Marsat", code: "TRIP", min: 2 },
+        { period: 3, time: "51:46", team: "us", player: "George Huber", code: "HOLD", min: 2 },
+        { period: 3, time: "53:16", team: "us", player: "Brett Boss", code: "ROUGH", min: 2 },
+        { period: 3, time: "53:16", team: "them", player: "Luca van den Heuvel", code: "ROUGH", min: 2 },
+        { period: 3, time: "54:19", team: "us", player: "Nils Klok", code: "HOLD", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 2, goalsThem: 3 },
+        { period: 2, goalsUs: 2, goalsThem: 1 },
+        { period: 3, goalsUs: 3, goalsThem: 5 },
+      ],
+      lineup: {
+        us: {
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "8 Andrey Gushchin", "9 Petteri Hyytiäinen", "13 Jeroen Valentijn", "15 Alex Paquin",
+            "17 Jon Garrity", "19 Jared Penner", "27 Jim Conboy", "29 Nils Klok",
+            "44 Krisztian Vizsy", "46 Daniel Watts", "77 Jeremie Gould", "89 Brett Boss", "91 George Huber", "97 Miska Braun",
+          ],
+        },
+        them: {
+          // Goalie confirmed by Jeremie (not on this gamesheet, which lists no goalie
+          // for Cool Mokum at all). Note: Bas Boot is also Amsterdam Tigers 6's
+          // regular goalie in other games this season (#21/#96 there) — apparently
+          // played for both squads.
+          goalie: "1 Bas Boot",
+          dressed: [
+            "6 Michael van den Ende", "11 Michael Veltman", "15 Zaran Zaitsoff", "18 Jean-Paul Terpstra",
+            "21 Joel van Baarsen", "41 Ole Hupkes", "42 Brett Leedahl", "55 Daan Veltman",
+            "76 Bob Altelaar", "82 Luca van den Heuvel", "83 Dax Roelofsen", "97 Luca Mathis", "98 Alexis Marsat",
+          ],
+        },
+      },
+    },
+    "2025-10-31": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-007",
+      venue: "Optisport de Westfries, Hoorn",
+      officials: {
+        referees: ["Allart Dusseau", "Ella Dusseau"],
+        scorer: "Simon Hertogs",
+        timer: "Luc Schaft",
+      },
+      scoring: [
+        { period: 1, time: "02:57", team: "us", scorer: "Jim Conboy", assists: [], strength: "EQ" },
+        { period: 1, time: "09:18", team: "them", scorer: "Bart Voet", assists: ["Onno Dolsma"], strength: "EQ" },
+        { period: 1, time: "15:08", team: "them", scorer: "Mike van der Donk", assists: ["Mitchell Beukema"], strength: "EQ" },
+        { period: 1, time: "15:17", team: "them", scorer: "Danny van 't Veer", assists: ["Ronald van de Geer"], strength: "EQ" },
+        { period: 1, time: "18:21", team: "them", scorer: "Neon Beck", assists: [], strength: "PS" },
+        { period: 1, time: "18:37", team: "them", scorer: "Neon Beck", assists: [], strength: "SH" },
+        { period: 2, time: "25:08", team: "them", scorer: "Aleksei Katsman", assists: ["Jochem den Boer"], strength: "EQ" },
+        { period: 2, time: "31:09", team: "us", scorer: "Alex Paquin", assists: ["Jon Garrity"], strength: "EQ" },
+        { period: 2, time: "34:57", team: "them", scorer: "Onno Dolsma", assists: ["Bart Voet"], strength: "SH" },
+        { period: 2, time: "38:04", team: "us", scorer: "Jim Conboy", assists: ["Petteri Hyytiäinen", "Daniel Perrier"], strength: "PP" },
+        { period: 2, time: "39:37", team: "them", scorer: "Mitchell Beukema", assists: ["Onno Dolsma"], strength: "EQ" },
+        { period: 3, time: "49:22", team: "us", scorer: "Petteri Hyytiäinen", assists: ["Daniel Perrier", "Miska Braun"], strength: "EQ" },
+        { period: 3, time: "49:55", team: "them", scorer: "Ronald van de Geer", assists: ["Neon Beck", "Danny van 't Veer"], strength: "EQ" },
+      ],
+      penalties: [
+        { period: 1, time: "18:12", team: "them", player: "Jochem den Boer", code: "TRIP", min: 2 },
+        { period: 2, time: "26:07", team: "them", player: "Fabrisio Koopmeiners", code: "TRIP", min: 2 },
+        { period: 2, time: "31:53", team: "us", player: "Alex Paquin", code: "TRIP", min: 2 },
+        { period: 2, time: "33:00", team: "them", player: "Mark van 't Veer", code: "HOLD", min: 2 },
+        { period: 2, time: "36:39", team: "them", player: "Mike van der Donk", code: "ROUGH", min: 2 },
+        { period: 3, time: "41:06", team: "us", player: "Jim Conboy", code: "TRIP", min: 2 },
+        { period: 3, time: "43:49", team: "them", player: "Mike van der Donk", code: "SLASH", min: 2 },
+        { period: 3, time: "44:55", team: "them", player: "Jochem den Boer", code: "TRIP", min: 2 },
+        { period: 3, time: "52:16", team: "us", player: "Petteri Hyytiäinen", code: "CROSS", min: 2 },
+        { period: 3, time: "55:27", team: "them", player: "Jasper Poldervaart", code: "TRIP", min: 2 },
+        { period: 3, time: "56:47", team: "them", player: "Fabrisio Koopmeiners", code: "ROUGH", min: 2 },
+        { period: 3, time: "56:47", team: "us", player: "Daniel Perrier", code: "BOARD", min: 2 },
+        { period: 3, time: "56:47", team: "us", player: "Daniel Perrier", code: "ABUSE", min: 20 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 1, goalsThem: 5 },
+        { period: 2, goalsUs: 2, goalsThem: 3 },
+        { period: 3, goalsUs: 1, goalsThem: 1 },
+      ],
+      lineup: {
+        us: {
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "8 Andrey Gushchin", "9 Petteri Hyytiäinen", "11 Alexander Samoylov", "13 Jeroen Valentijn",
+            "15 Alex Paquin", "17 Jon Garrity", "27 Jim Conboy", "29 Nils Klok",
+            "46 Daniel Watts", "47 Sergey Baradyntsev", "77 Jeremie Gould", "83 Daniel Perrier",
+            "96 Duane Mattos", "97 Miska Braun",
+          ],
+        },
+        them: {
+          goalie: "30 Larissa de Jong",
+          dressed: [
+            "1 Neon Beck", "4 Mark van 't Veer", "10 Aleksei Katsman", "11 Onno Dolsma",
+            "13 Jochem den Boer", "15 Mitchell Beukema", "21 Zjon de Bruin", "25 Hessel van der Neut",
+            "33 Ronald van de Geer", "48 Jeroen Klappe", "61 Danny van 't Veer", "69 Bart Voet",
+            "75 Jasper Poldervaart", "83 Mike van der Donk", "95 Fabrisio Koopmeiners",
+          ],
+        },
+      },
+    },
+    "2025-11-09": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-012",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["Mark Phillips", "Jason Robertson"],
+        scorer: "Nienke Hommes",
+        timer: "Anouk Maij",
+      },
+      scoring: [
+        { period: 1, time: "05:00", team: "us", scorer: "George Huber", assists: ["Jeremie Gould", "Daniel Watts"], strength: "EQ" },
+        { period: 2, time: "29:34", team: "us", scorer: "George Huber", assists: ["Andrey Gushchin", "Daniel Watts"], strength: "EQ" },
+        { period: 2, time: "34:04", team: "us", scorer: "Daniel Perrier", assists: ["George Huber", "Daniel Watts"], strength: "EQ" },
+        { period: 3, time: "50:52", team: "them", scorer: "Zaran Zaitsoff", assists: [], strength: "SH" },
+      ],
+      penalties: [
+        { period: 1, time: "14:01", team: "us", player: "Petteri Hyytiäinen", code: "TRIP", min: 2 },
+        { period: 2, time: "21:44", team: "them", player: "Mark Sweers", code: "TOO-M", min: 2 },
+        { period: 3, time: "46:12", team: "us", player: "Daniel Perrier", code: "SLASH", min: 2 },
+        { period: 3, time: "49:44", team: "them", player: "Alexis Marsat", code: "HOOK", min: 2 },
+        { period: 3, time: "55:29", team: "us", player: "Daniel Perrier", code: "TRIP", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 1, goalsThem: 0 },
+        { period: 2, goalsUs: 2, goalsThem: 0 },
+        { period: 3, goalsUs: 0, goalsThem: 1 },
+      ],
+      lineup: {
+        us: {
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "8 Andrey Gushchin", "9 Petteri Hyytiäinen", "13 Jeroen Valentijn", "15 Alex Paquin",
+            "17 Jon Garrity", "19 Jared Penner", "27 Jim Conboy", "29 Nils Klok",
+            "44 Krisztian Vizsy", "46 Daniel Watts", "47 Sergey Baradyntsev", "77 Jeremie Gould",
+            "83 Daniel Perrier", "91 George Huber",
+          ],
+        },
+        them: {
+          // Cool Mokum 2's gamesheet also registers them as "Amsterdam Tigers 4" —
+          // same naming quirk seen on 2025-12-21. Sheet listed 2 goalies (de Groot,
+          // Sipkema); Jeremie confirmed Sipkema played.
+          goalie: "31 Timo Sipkema",
+          dressed: [
+            "28 Daniel van den Ende", "44 Mike Klop", "98 Alexis Marsat", "66 Mark Sweers",
+            "11 Michael Veltman", "76 Bob Altelaar", "9 George Harrington", "82 Luca van den Heuvel",
+            "41 Ole Hupkes", "13 Daniel Lam", "55 Daan Veltman", "15 Zaran Zaitsoff",
+            "18 Jean-Paul Terpstra", "5 Britt Wortel", "21 Joel van Baarsen", "42 Brett Leedahl",
+          ],
+        },
+      },
+    },
+    "2025-11-23": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-014",
+      venue: "IJshal De Vliet, Leiden",
+      officials: {
+        referees: ["Casper van Wordragen", "Oleg Rakickis"],
+        scorer: "Farah Rau",
+        timer: "Jazzlynn Dolman",
+      },
+      scoring: [
+        { period: 1, time: "02:56", team: "us", scorer: "Daniel Watts", assists: ["Christopher Price"], strength: "EQ" },
+        { period: 1, time: "03:17", team: "us", scorer: "Alex Paquin", assists: ["Petteri Hyytiäinen"], strength: "EQ" },
+        { period: 1, time: "08:33", team: "us", scorer: "Miska Braun", assists: ["Daniel Perrier"], strength: "EQ" },
+        { period: 1, time: "14:24", team: "us", scorer: "Jim Conboy", assists: ["Jeremie Gould", "Christopher Price"], strength: "EQ" },
+        { period: 2, time: "22:09", team: "them", scorer: "Laurens Staats", assists: ["Mattia Finadri"], strength: "PP" },
+        { period: 2, time: "28:39", team: "us", scorer: "Miska Braun", assists: ["Petteri Hyytiäinen", "Jon Garrity"], strength: "PP" },
+        { period: 2, time: "30:08", team: "them", scorer: "Daan Dickhoff", assists: [], strength: "SH" },
+        { period: 2, time: "36:09", team: "us", scorer: "George Huber", assists: ["Andrey Gushchin", "Jared Penner"], strength: "EQ" },
+        { period: 3, time: "48:12", team: "them", scorer: "Felix Feid", assists: ["Pascal van Roosmalen"], strength: "EQ" },
+        { period: 3, time: "53:08", team: "them", scorer: "Daan Dickhoff", assists: ["Felix Feid"], strength: "EQ" },
+        { period: 3, time: "54:25", team: "us", scorer: "Jared Penner", assists: ["Miska Braun", "Petteri Hyytiäinen"], strength: "EQ" },
+        { period: 3, time: "56:41", team: "them", scorer: "Daan Dickhoff", assists: [], strength: "EQ" },
+        { period: 3, time: "57:29", team: "them", scorer: "Pascal van Roosmalen", assists: ["Daan Dickhoff"], strength: "EQ" },
+      ],
+      penalties: [
+        { period: 1, time: "06:10", team: "us", player: "Jim Conboy", code: "HOOK", min: 2 },
+        { period: 1, time: "11:03", team: "them", player: "Erik Keessen", code: "HOOK", min: 2 },
+        { period: 2, time: "21:28", team: "us", player: "Jeremie Gould", code: "ROUGH", min: 2 },
+        { period: 2, time: "22:44", team: "them", player: "Felix Feid", code: "TRIP", min: 2 },
+        { period: 2, time: "23:28", team: "them", player: "Onno Henneman", code: "ROUGH", min: 2 },
+        { period: 2, time: "24:32", team: "us", player: "Alex Paquin", code: "TRIP", min: 2 },
+        { period: 2, time: "26:15", team: "us", player: "Nils Klok", code: "ROUGH", min: 2 },
+        { period: 2, time: "28:16", team: "them", player: "Daan Dickhoff", code: "ROUGH", min: 2 },
+        { period: 2, time: "28:49", team: "them", player: "Pascal van Roosmalen", code: "INTRF", min: 2 },
+        { period: 2, time: "36:47", team: "them", player: "Johnny van der Spiegel", code: "TRIP", min: 2 },
+        { period: 2, time: "37:13", team: "them", player: "Pascal van Roosmalen", code: "ROUGH", min: 2 },
+        { period: 3, time: "45:50", team: "them", player: "Alexis Lariviere", code: "HOOK", min: 2 },
+        { period: 3, time: "58:55", team: "us", player: "Daniel Perrier", code: "HOLD", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 4, goalsThem: 0 },
+        { period: 2, goalsUs: 2, goalsThem: 2 },
+        { period: 3, goalsUs: 1, goalsThem: 4 },
+      ],
+      lineup: {
+        us: {
+          goalie: "30 Bart Sasim",
+          dressed: [
+            "8 Andrey Gushchin", "9 Petteri Hyytiäinen", "13 Jeroen Valentijn", "15 Alex Paquin",
+            "16 Christopher Price", "17 Jon Garrity", "19 Jared Penner", "27 Jim Conboy",
+            "29 Nils Klok", "46 Daniel Watts", "47 Sergey Baradyntsev", "77 Jeremie Gould",
+            "83 Daniel Perrier", "89 Brett Boss", "91 George Huber", "97 Miska Braun",
+          ],
+        },
+        them: {
+          // Leiden's gamesheet doesn't list a goalie for this game, but Jeremie
+          // confirmed Anique de Gier played (she's also confirmed for the club's
+          // other games this season, e.g. 2026-01-10, 2026-02-22).
+          goalie: "29 Anique de Gier",
+          dressed: [
+            "50 Martijn Bos", "8 Daan Dickhoff", "13 Felix Feid", "19 Mattia Finadri",
+            "12 Onno Henneman", "33 Thomas Joosse", "22 Erik Keessen", "18 Alexis Lariviere",
+            "16 Jean-Pierre van Mulbregt", "84 Sabrina Pas", "14 Pascal van Roosmalen",
+            "72 Laurens Staats", "70 Johnny van der Spiegel",
+          ],
+        },
+      },
+    },
+    "2025-11-29": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-016",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["Maurice Jennekens", "Andre Lourenco"],
+        scorer: "Silas de Jong",
+        timer: "Nienke Hommes",
+      },
+      scoring: [
+        { period: 1, time: "09:48", team: "them", scorer: "Jesse Clarke", assists: ["Lambert Baij", "Ryan Nacht"], strength: "EQ" },
+        { period: 1, time: "10:08", team: "them", scorer: "Lambert Baij", assists: [], strength: "EQ" },
+        { period: 2, time: "27:37", team: "us", scorer: "Petteri Hyytiäinen", assists: ["Daniel Perrier", "Miska Braun"], strength: "EQ" },
+        { period: 2, time: "30:32", team: "them", scorer: "Xavier Boot", assists: ["Lambert Baij", "Ryan Nacht"], strength: "EQ" },
+        { period: 2, time: "34:20", team: "them", scorer: "Robin Rensen", assists: [], strength: "EQ" },
+        { period: 2, time: "37:06", team: "us", scorer: "Petteri Hyytiäinen", assists: ["Miska Braun"], strength: "EQ" },
+        { period: 3, time: "41:42", team: "them", scorer: "Jesse Clarke", assists: [], strength: "EQ" },
+        { period: 3, time: "46:25", team: "us", scorer: "Miska Braun", assists: ["Petteri Hyytiäinen", "Daniel Perrier"], strength: "PP" },
+        { period: 3, time: "48:02", team: "us", scorer: "George Huber", assists: ["Alex Paquin", "Daniel Perrier"], strength: "EQ" },
+        { period: 3, time: "48:10", team: "them", scorer: "Robin Rensen", assists: [], strength: "EQ" },
+        { period: 3, time: "50:56", team: "us", scorer: "Jim Conboy", assists: [], strength: "EQ" },
+        { period: 3, time: "54:02", team: "us", scorer: "Miska Braun", assists: ["Petteri Hyytiäinen", "Jon Garrity"], strength: "PP" },
+        { period: 3, time: "58:14", team: "us", scorer: "Miska Braun", assists: ["Jeremie Gould", "Jim Conboy"], strength: "EQ" },
+      ],
+      penalties: [
+        { period: 2, time: "21:17", team: "us", player: "Daniel Perrier", code: "CHE-B", min: 2 },
+        { period: 3, time: "43:14", team: "them", player: "Travis Wetzlaugk", code: "CHE-B", min: 2 },
+        { period: 3, time: "44:27", team: "them", player: "Lambert Baij", code: "CHE-B", min: 2 },
+        { period: 3, time: "48:35", team: "us", player: "Petteri Hyytiäinen", code: "ROUGH", min: 2 },
+        { period: 3, time: "52:15", team: "them", player: "Jan Maerten Smit", code: "INTRF", min: 2 },
+        { period: 3, time: "53:31", team: "them", player: "Robin Rensen", code: "SLASH", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 0, goalsThem: 2 },
+        { period: 2, goalsUs: 2, goalsThem: 2 },
+        { period: 3, goalsUs: 5, goalsThem: 2 },
+      ],
+      lineup: {
+        us: {
+          // Dressed list matches the BenchApp "Attended" export exactly, not the full
+          // official-gamesheet roster — Valentijn, Price, and Watts are on the PDF
+          // roster but weren't in the Attended list, so excluded as not dressed.
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "7 Wyatt Southard", "8 Andrey Gushchin", "9 Petteri Hyytiäinen", "15 Alex Paquin",
+            "17 Jon Garrity", "19 Jared Penner", "27 Jim Conboy", "29 Nils Klok", "44 Krisztian Vizsy",
+            "47 Sergey Baradyntsev", "77 Jeremie Gould", "83 Daniel Perrier", "89 Brett Boss",
+            "91 George Huber", "97 Miska Braun",
+          ],
+        },
+        them: {
+          // Jersey "0" on Amsterdam Tigers 6 sheets means the player didn't dress for
+          // this specific game (they may play in others) — same convention as Snipers'
+          // 0/00, so Laine and Acker are excluded here.
+          goalie: "21 Bas Boot",
+          dressed: [
+            "55 Jean Louis Flier", "16 Kristine Kotsbakk", "18 Eric de Leng", "76 Dan Wilson",
+            "5 Jon Attwell", "13 Lambert Baij", "91 Stephen Birarda", "42 Xavier Boot", "48 Jesse Clarke",
+            "61 James Hawkins", "12 Nicolas Komanski", "45 Willem Jan van Loon", "94 Kenneth McCann",
+            "38 Ryan Nacht", "72 Robin Rensen", "80 Jan Maerten Smit", "20 Travis Wetzlaugk",
+          ],
+        },
+      },
+    },
+    "2025-12-14": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-019",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["Mark Phillips", "Arthur Revil"],
+        scorer: "Anouk Maij",
+        timer: "Nienke Hommes",
+      },
+      scoring: [
+        { period: 1, time: "04:46", team: "them", scorer: "Eric Kuiper", assists: ["Martin Simonak"], strength: "EQ" },
+        { period: 1, time: "06:15", team: "us", scorer: "Sergey Baradyntsev", assists: ["Krisztian Vizsy", "Wyatt Southard"], strength: "EQ" },
+        { period: 1, time: "13:48", team: "us", scorer: "Miska Braun", assists: ["Jared Penner", "Petteri Hyytiäinen"], strength: "EQ" },
+        { period: 1, time: "17:00", team: "them", scorer: "Fedor Tieleman", assists: ["Martin Simonak"], strength: "EQ" },
+        { period: 2, time: "23:50", team: "us", scorer: "Miska Braun", assists: ["Jared Penner"], strength: "EQ" },
+        { period: 2, time: "26:00", team: "us", scorer: "Jeremie Gould", assists: [], strength: "EQ" },
+        { period: 2, time: "33:43", team: "us", scorer: "Petteri Hyytiäinen", assists: ["Jim Conboy", "Wyatt Southard"], strength: "EQ" },
+        { period: 2, time: "36:31", team: "us", scorer: "Jared Penner", assists: ["Miska Braun", "Petteri Hyytiäinen"], strength: "EQ" },
+        { period: 2, time: "39:42", team: "us", scorer: "Jared Penner", assists: ["Miska Braun", "Petteri Hyytiäinen"], strength: "EQ" },
+        { period: 3, time: "43:33", team: "them", scorer: "Eric Kuiper", assists: ["Bryan Gouwerok"], strength: "EQ" },
+        { period: 3, time: "55:08", team: "them", scorer: "Fedor Tieleman", assists: ["Hugo Schaap"], strength: "EQ" },
+        { period: 3, time: "56:59", team: "us", scorer: "Jared Penner", assists: ["Miska Braun", "Jon Garrity"], strength: "PP" },
+        { period: 3, time: "59:32", team: "us", scorer: "Christopher Price", assists: ["Jeremie Gould"], strength: "EQ" },
+        { period: 3, time: "59:53", team: "them", scorer: "Stijn van Amelsvoort", assists: ["Mervijn Denie"], strength: "EQ" },
+      ],
+      penalties: [
+        { period: 1, time: "11:42", team: "them", player: "Eric Kuiper", code: "INTRF", min: 2 },
+        { period: 2, time: "31:34", team: "us", player: "Jon Garrity", code: "BOARD", min: 2 },
+        { period: 3, time: "48:55", team: "us", player: "Christopher Price", code: "TRIP", min: 2 },
+        { period: 3, time: "51:52", team: "us", player: "Christopher Price", code: "INTRF", min: 2 },
+        { period: 3, time: "56:10", team: "us", player: "Wyatt Southard", code: "MISC", min: 10 },
+        { period: 3, time: "56:10", team: "them", player: "Ryan Jenkins", code: "MISC", min: 10 },
+        { period: 3, time: "56:18", team: "them", player: "Hugo Schaap", code: "SLASH", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 2, goalsThem: 2 },
+        { period: 2, goalsUs: 5, goalsThem: 0 },
+        { period: 3, goalsUs: 2, goalsThem: 3 },
+      ],
+      lineup: {
+        us: {
+          // Dressed list matches the BenchApp "Attended" export, not the full
+          // official-gamesheet roster.
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "17 Jon Garrity", "89 Brett Boss", "27 Jim Conboy", "29 Nils Klok", "7 Wyatt Southard",
+            "13 Jeroen Valentijn", "16 Christopher Price", "47 Sergey Baradyntsev",
+            "97 Miska Braun", "77 Jeremie Gould", "8 Andrey Gushchin",
+            "9 Petteri Hyytiäinen", "19 Jared Penner", "44 Krisztian Vizsy",
+            "46 Daniel Watts",
+          ],
+        },
+        them: {
+          // Snipers' sheet listed 3 goalies (Fritschy, Groen, van der Heul); Goaliewissels
+          // table was blank but Jeremie confirmed van der Heul actually played. Merk,
+          // Hubert, Theman, and Gallée also removed from the roster per Jeremie.
+          goalie: "1 Rick van der Heul",
+          dressed: [
+            "11 Hugo Schaap", "14 Egor Svertkov", "23 Stijn van Amelsvoort",
+            "22 Joost Bos", "13 Bryan Gouwerok", "44 Mischa Kluin", "15 Ryan Jenkins",
+            "21 Jair de Paauw", "17 Martin Simonak",
+            "47 Wenzel Tuma", "20 Eric Kuiper", "12 Mervijn Denie",
+            "36 Adam Shepherd", "77 Ronald Boekhout van Solinge", "18 Fedor Tieleman",
+          ],
+        },
+      },
+    },
     "2025-12-21": {
       verified: true,
       source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-023",
@@ -682,11 +1224,16 @@ const GAME_DETAILS = {
       ],
       lineup: {
         us: {
+          // Dressed list follows the BenchApp "Attended" export, with 3 exceptions:
+          // Gould, Vizsy, and Hyytiäinen are credited with goals/assists in this game
+          // but are missing from Attended — kept them in, since scoring the goal is
+          // stronger evidence than an incomplete attendance export.
           goalie: "31 Tori Holmes-Kirk",
           dressed: [
-            "29 Nils Klok", "27 Jim Conboy", "17 Jon Garrity", "13 Jeroen Valentijn", "83 Dan Perrier",
+            "29 Nils Klok", "27 Jim Conboy", "17 Jon Garrity", "89 Brett Boss",
             "97 Miska Braun", "16 Christopher Price", "77 Jeremie Gould", "9 Petteri Hyytiäinen",
             "47 Sergey Baradyntsev", "19 Jared Penner", "44 Krisztian Vizsy", "8 Andrey Gushchin",
+            "46 Daniel Watts", "91 George Huber", "96 Duane Mattos",
           ],
         },
         them: {
@@ -765,20 +1312,20 @@ const GAME_DETAILS = {
         { period: 2, time: "30:11", team: "us", scorer: "Christopher Price", assists: [], strength: "EQ" },
         { period: 2, time: "34:53", team: "us", scorer: "George Huber", assists: ["Christopher Price"], strength: "EQ" },
         { period: 2, time: "37:08", team: "them", scorer: "Kenneth McCann", assists: ["Jesse Clarke"], strength: "EQ" },
-        { period: 3, time: "41:01", team: "us", scorer: "Dan Perrier", assists: ["Christopher Price"], strength: "PP" },
+        { period: 3, time: "41:01", team: "us", scorer: "Daniel Perrier", assists: ["Christopher Price"], strength: "PP" },
         { period: 3, time: "43:36", team: "them", scorer: "Willem Jan van Loon", assists: ["Travis Wetzlaugk"], strength: "PP" },
-        { period: 3, time: "54:13", team: "us", scorer: "Dan Perrier", assists: [], strength: "EQ" },
+        { period: 3, time: "54:13", team: "us", scorer: "Daniel Perrier", assists: [], strength: "EQ" },
       ],
       penalties: [
         { period: 1, time: "07:42", team: "us", player: "Jim Conboy", code: "INTRF", min: 2 },
         { period: 1, time: "13:38", team: "them", player: "Robin Rensen", code: "TRIP", min: 2 },
         { period: 2, time: "35:31", team: "them", player: "Willem Jan van Loon", code: "INTRF", min: 2 },
-        { period: 2, time: "37:01", team: "us", player: "Dan Perrier", code: "HI-ST", min: 2 },
+        { period: 2, time: "37:01", team: "us", player: "Daniel Perrier", code: "HI-ST", min: 2 },
         { period: 2, time: "39:55", team: "them", player: "Jan Maerten Smit", code: "INTRF", min: 2 },
         { period: 3, time: "40:35", team: "them", player: "Stephen Birarda", code: "HOOK", min: 2 },
         { period: 3, time: "43:26", team: "us", player: "Andrey Gushchin", code: "HI-ST", min: 2 },
         { period: 3, time: "48:24", team: "them", player: "Kenneth McCann", code: "ILL-H", min: 2 },
-        { period: 3, time: "50:22", team: "us", player: "Dan Perrier", code: "HOOK", min: 2 },
+        { period: 3, time: "50:22", team: "us", player: "Daniel Perrier", code: "HOOK", min: 2 },
         { period: 3, time: "58:54", team: "them", player: "Dan Wilson", code: "INTRF", min: 2 },
       ],
       periodSummary: [
@@ -788,13 +1335,15 @@ const GAME_DETAILS = {
       ],
       lineup: {
         us: {
+          // Dressed list matches the BenchApp "Attended" export, not the full
+          // official-gamesheet roster.
           goalie: "31 Tori Holmes-Kirk",
           dressed: [
-            "17 Jon Garrity", "89 Brett Boss", "27 Jim Conboy", "29 Nils Klok", "7 Wyatt Southard",
-            "13 Jeroen Valentijn", "83 Dan Perrier", "16 Christopher Price", "47 Sergey Baradyntsev",
+            "17 Jon Garrity", "89 Brett Boss", "27 Jim Conboy", "29 Nils Klok",
+            "83 Daniel Perrier", "16 Christopher Price", "47 Sergey Baradyntsev",
             "97 Miska Braun", "77 Jeremie Gould", "8 Andrey Gushchin", "91 George Huber",
-            "9 Petteri Hyytiäinen", "6 Alex Paquin", "19 Jared Penner", "44 Krisztian Vizsy",
-            "46 Daniel Watts", "18 Chris Lesny", "96 Duane Mattos", "11 Alexander Samoylov",
+            "9 Petteri Hyytiäinen", "19 Jared Penner",
+            "46 Daniel Watts", "13 Jeroen Valentijn",
           ],
         },
         them: {
@@ -841,13 +1390,15 @@ const GAME_DETAILS = {
       ],
       lineup: {
         us: {
+          // Dressed list matches the BenchApp "Attended" export, not the full
+          // official-gamesheet roster.
           goalie: "31 Tori Holmes-Kirk",
           dressed: [
-            "17 Jon Garrity", "89 Brett Boss", "27 Jim Conboy", "29 Nils Klok", "7 Wyatt Southard",
-            "13 Jeroen Valentijn", "83 Dan Perrier", "16 Christopher Price", "47 Sergey Baradyntsev",
-            "97 Miska Braun", "77 Jeremie Gould", "8 Andrey Gushchin", "91 George Huber",
-            "9 Petteri Hyytiäinen", "6 Alex Paquin", "19 Jared Penner", "44 Krisztian Vizsy",
-            "46 Daniel Watts", "18 Chris Lesny", "96 Duane Mattos", "11 Alexander Samoylov",
+            "17 Jon Garrity", "27 Jim Conboy", "29 Nils Klok",
+            "13 Jeroen Valentijn", "83 Daniel Perrier", "47 Sergey Baradyntsev",
+            "97 Miska Braun", "77 Jeremie Gould", "8 Andrey Gushchin",
+            "9 Petteri Hyytiäinen", "19 Jared Penner", "44 Krisztian Vizsy",
+            "46 Daniel Watts",
           ],
         },
         them: {
@@ -856,12 +1407,13 @@ const GAME_DETAILS = {
           // given game by leaving their jersey as 0/00 rather than removing the row,
           // so those entries (and the 3 non-playing goalies) are excluded below.
           // Actual goalie (Bob Gase) isn't on the gamesheet at all — confirmed
-          // separately by Jeremie.
+          // separately by Jeremie. Koeman, Merk, Hubert, and Theman also removed
+          // (per Jeremie, not the 0/00 rule — they had real numbers on this sheet).
           goalie: "1 Bob Gase",
           dressed: [
-            "22 Lorenzo Koeman", "69 Quincy Merk", "28 Egor Svertkov", "78 Stijn van Amelsvoort",
+            "28 Egor Svertkov", "78 Stijn van Amelsvoort",
             "15 Joost Bos", "18 Stefan Northman", "8 Bryan Gouwerok", "72 Ryan Jenkins",
-            "42 Boris Hubert", "21 Jair de Paauw", "17 Martin Simonak", "16 Guilliame Theman",
+            "21 Jair de Paauw", "17 Martin Simonak",
             "88 Eric Kuiper", "93 Mervijn Denie", "36 Adam Shepherd", "44 Randy van Pel",
           ],
         },
@@ -880,7 +1432,7 @@ const GAME_DETAILS = {
         { period: 1, time: "00:23", team: "us", scorer: "Jeremie Gould", assists: ["Daniel Watts", "Jim Conboy"], strength: "EQ" },
         { period: 1, time: "04:06", team: "them", scorer: "Rombard Deerenberg", assists: [], strength: "EQ" },
         { period: 1, time: "04:25", team: "them", scorer: "Neon Beck", assists: [], strength: "EQ" },
-        { period: 1, time: "05:35", team: "us", scorer: "Dan Perrier", assists: ["Daniel Watts"], strength: "EQ" },
+        { period: 1, time: "05:35", team: "us", scorer: "Daniel Perrier", assists: ["Daniel Watts"], strength: "EQ" },
         { period: 1, time: "07:52", team: "them", scorer: "Danny van 't Veer", assists: ["Neon Beck", "Rombard Deerenberg"], strength: "EQ" },
         { period: 1, time: "14:34", team: "them", scorer: "Mitchell Beukema", assists: ["Hessel van der Neut"], strength: "EQ" },
         { period: 1, time: "18:09", team: "them", scorer: "Onno Dolsma", assists: [], strength: "EQ" },
@@ -890,13 +1442,13 @@ const GAME_DETAILS = {
         { period: 2, time: "27:51", team: "them", scorer: "Neon Beck", assists: ["Jeroen Klappe"], strength: "EQ" },
         { period: 2, time: "30:29", team: "us", scorer: "Petteri Hyytiäinen", assists: ["Nils Klok"], strength: "EQ" },
         { period: 2, time: "31:30", team: "us", scorer: "Andrey Gushchin", assists: ["Sergey Baradyntsev", "Krisztian Vizsy"], strength: "EQ" },
-        { period: 2, time: "35:41", team: "us", scorer: "Daniel Watts", assists: ["Jeremie Gould", "Dan Perrier"], strength: "EQ" },
+        { period: 2, time: "35:41", team: "us", scorer: "Daniel Watts", assists: ["Jeremie Gould", "Daniel Perrier"], strength: "EQ" },
         { period: 2, time: "37:50", team: "them", scorer: "Neon Beck", assists: ["Mikaël van der Dandonne"], strength: "EQ" },
       ],
       penalties: [
         { period: 1, time: "01:39", team: "us", player: "Nils Klok", code: "ROUGH", min: 2 },
         { period: 1, time: "01:39", team: "them", player: "Mikaël van der Dandonne", code: "HOLD", min: 2 },
-        { period: 1, time: "10:51", team: "us", player: "Dan Perrier", code: "HOLD", min: 2 },
+        { period: 1, time: "10:51", team: "us", player: "Daniel Perrier", code: "HOLD", min: 2 },
         { period: 1, time: "15:30", team: "them", player: "Fabrisio Koopmeiners", code: "TRIP", min: 2 },
         { period: 2, time: "38:51", team: "us", player: "Jeremie Gould", code: "ROUGH", min: 5 },
         { period: 2, time: "38:51", team: "them", player: "Onno Dolsma", code: "ROUGH", min: 5 },
@@ -916,7 +1468,7 @@ const GAME_DETAILS = {
         us: {
           goalie: "31 Tori Holmes-Kirk",
           dressed: [
-            "89 Brett Boss", "27 Jim Conboy", "17 Jon Garrity", "29 Nils Klok", "83 Dan Perrier", "13 Jeroen Valentijn",
+            "89 Brett Boss", "27 Jim Conboy", "17 Jon Garrity", "29 Nils Klok", "83 Daniel Perrier", "13 Jeroen Valentijn",
             "47 Sergey Baradyntsev", "97 Miska Braun", "77 Jeremie Gould", "8 Andrey Gushchin", "91 George Huber",
             "9 Petteri Hyytiäinen", "44 Krisztian Vizsy", "46 Daniel Watts",
           ],
@@ -1108,7 +1660,7 @@ const GAME_DETAILS = {
         us: {
           goalie: "31 Tori Holmes-Kirk",
           dressed: [
-            "17 Jon Garrity", "89 Brett Boss", "27 Jim Conboy", "29 Nils Klok", "13 Jeroen Valentijn", "83 Dan Perrier",
+            "17 Jon Garrity", "89 Brett Boss", "27 Jim Conboy", "29 Nils Klok", "13 Jeroen Valentijn", "83 Daniel Perrier",
             "47 Sergey Baradyntsev", "97 Miska Braun", "77 Jeremie Gould", "8 Andrey Gushchin", "91 George Huber",
             "9 Petteri Hyytiäinen", "19 Jared Penner", "44 Krisztian Vizsy", "96 Duane Mattos", "11 Alexander Samoylov",
           ],
@@ -1393,9 +1945,9 @@ const STATS_DATA = {
       { num: 19, name: "Jared Penner", pos: "RW", gp: 13, g: 10, a: 4, pts: 14, pim: 0 },
       { num: 91, name: "George Huber", pos: "LW", gp: 11, g: 7, a: 6, pts: 13, pim: 4 },
       { num: 46, name: "Daniel Watts", pos: "C", gp: 12, g: 4, a: 9, pts: 13, pim: 2 },
-      { num: 83, name: "Daniel Perrier", pos: "D", gp: 8, g: 4, a: 7, pts: 11, pim: 34 },
+      { num: 83, name: "Daniel Perrier", pos: "LW", gp: 8, g: 4, a: 7, pts: 11, pim: 34 },
       { num: 77, name: "Jeremie Gould", pos: "LW", gp: 13, g: 4, a: 7, pts: 11, pim: 13 },
-      { num: 47, name: "Sergey Baradyntsev", pos: "C", gp: 13, g: 2, a: 7, pts: 10, pim: 2 },
+      { num: 47, name: "Sergey Baradyntsev", pos: "C", gp: 13, g: 2, a: 7, pts: 9, pim: 2 },
       { num: 8, name: "Andrey Gushchin", pos: "RW", gp: 15, g: 2, a: 6, pts: 8, pim: 2 },
       { num: 15, name: "Alex Paquin", pos: "LW", gp: 5, g: 3, a: 4, pts: 7, pim: 4 },
       { num: 89, name: "Brett Boss", pos: "D", gp: 11, g: 2, a: 5, pts: 7, pim: 4 },
@@ -1407,8 +1959,15 @@ const STATS_DATA = {
       { num: 11, name: "Alexander Samoylov", pos: "RW", gp: 2, g: 0, a: 0, pts: 0, pim: 0 },
     ],
     goalies: [
-      // Holmes-Kirk's GA/GAA exclude the empty-net goal from the 2026-03-07 game
-      // (Gubarev, 58:16) — standard convention, EN goals don't count against a goalie.
+      // Holmes-Kirk's GA/GAA exclude 2 empty-net goals identified while entering
+      // GAME_DETAILS: 2026-03-07 (Gubarev, 58:16) and 2025-10-18 (van Baarsen, 59:46)
+      // — standard convention, EN goals don't count against a goalie. GA/GAA were
+      // cross-checked against every game's GAME_DETAILS entry (all 15 now entered)
+      // and SCHEDULE_DATA's own ga column, which agree exactly at GA=80 (82 raw
+      // across her 14 starts, net of the 2 EN goals); the pre-existing STATS_DATA
+      // baseline (81, before either EN correction) had been 1 goal short of that
+      // for reasons that predate this project and couldn't be traced to a specific
+      // game. GP/W/L/T are unaffected — already correct against SCHEDULE_DATA.
       { num: 31, name: "Tori Holmes-Kirk", gp: 14, w: 8, l: 5, t: 1, ga: 80, gaa: "5.71", so: 0 },
       { num: 30, name: "Bart Sasim", gp: 1, w: 1, l: 0, t: 0, ga: 6, gaa: "6.00", so: 0 },
     ],
@@ -1680,6 +2239,10 @@ const INFRACTION_LABELS = {
   SLASH: "Slashing",
   "TOO-M": "Too many men on the ice",
   DELAY: "Delay of game",
+  MISC: "Misconduct",
+  CROSS: "Cross-checking",
+  ABUSE: "Abuse of officials",
+  "HO-ST": "Holding the stick",
 };
 
 function PeriodLabel({ period }) {
@@ -2060,9 +2623,6 @@ export default function MustangsSite() {
                 <h1 style={{ fontFamily: FONTS.display, color: C.white, fontSize: "clamp(2.5rem, 7vw, 4.5rem)", lineHeight: 1 }}>
                   AMSTERDAM<br />MUSTANGS
                 </h1>
-                <p style={{ color: C.muted, marginTop: 12, maxWidth: 460 }}>
-                  The new home of the Amsterdam Mustangs hockey team.
-                </p>
                 <div style={{ fontFamily: FONTS.mono, color: C.red, letterSpacing: "0.2em", fontSize: 12, marginTop: 28 }}>
                   {isCancelled(season) ? "IJNL" : `IJNL \u00b7 ${divisionLabel(season).toUpperCase()}`}
                 </div>
@@ -2099,32 +2659,6 @@ export default function MustangsSite() {
                   </div>
                 )}
               </div>
-            </div>
-
-            <SampleNote>
-              Stats leaders aren't wired in yet — send over game sheets whenever you have them.
-            </SampleNote>
-
-            <div className="grid sm:grid-cols-3 gap-4">
-              {[
-                { icon: Users, label: "Roster", desc: "Full team by position", id: "roster" },
-                { icon: Calendar, label: "Schedule & Results", desc: "Every game, this season", id: "schedule" },
-                { icon: Trophy, label: "Standings", desc: "League table for this season", id: "standings" },
-              ].map((c) => {
-                const Icon = c.icon;
-                return (
-                  <button
-                    key={c.id}
-                    onClick={() => setTab(c.id)}
-                    className="text-left p-5 rounded-lg"
-                    style={{ background: C.surface, border: `1px solid ${C.line}` }}
-                  >
-                    <Icon size={20} color={C.red} />
-                    <div style={{ fontFamily: FONTS.display, color: C.white, fontSize: 18, marginTop: 10 }}>{c.label}</div>
-                    <div style={{ color: C.muted, fontSize: 13, marginTop: 4 }}>{c.desc}</div>
-                  </button>
-                );
-              })}
             </div>
           </div>
         )}
