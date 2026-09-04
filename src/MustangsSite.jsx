@@ -2207,7 +2207,18 @@ function ConferenceTable({ title, teams }) {
 }
 
 function StatsTable({ title, columns, rows, highlightKey, onNameClick, totalsRow }) {
-  const cols = `2fr repeat(${columns.length - 1}, minmax(30px, 0.6fr))`;
+  const LEFT_ALIGN_KEYS = ["name", "season", "division", "team", "date", "opp"];
+  const colWidth = (key) => {
+    if (key === "name") return "1.6fr";
+    if (key === "team") return "1.6fr";
+    if (key === "opp") return "1.6fr";
+    if (key === "season") return "0.9fr";
+    if (key === "date") return "0.9fr";
+    if (key === "division") return "0.9fr";
+    if (key === "homeAway") return "0.8fr";
+    return "minmax(30px, 0.6fr)";
+  };
+  const cols = columns.map((c) => colWidth(c.key)).join(" ");
   const [sortKey, setSortKey] = useState(null);
   const [sortDir, setSortDir] = useState("desc");
 
@@ -2246,14 +2257,14 @@ function StatsTable({ title, columns, rows, highlightKey, onNameClick, totalsRow
       <div className="rounded-lg overflow-x-auto" style={{ border: `1px solid ${C.line}` }}>
         <div style={{ minWidth: 480 }}>
           <div
-            className="grid px-4 sm:px-5 py-2 text-xs"
+            className="grid gap-3 px-4 sm:px-5 py-2 text-xs"
             style={{ gridTemplateColumns: cols, background: C.surface2, color: C.muted, fontFamily: FONTS.mono, letterSpacing: "0.05em" }}
           >
             {columns.map((c) => (
               <SortHeader
                 key={c.key}
                 label={c.label.toUpperCase()}
-                align={c.key === "name" ? "left" : "right"}
+                align={LEFT_ALIGN_KEYS.includes(c.key) ? "left" : "right"}
                 active={sortKey === c.key}
                 dir={sortDir}
                 onClick={() => handleSort(c.key)}
@@ -2263,7 +2274,7 @@ function StatsTable({ title, columns, rows, highlightKey, onNameClick, totalsRow
           {sortedRows.map((row, ri) => (
             <div
               key={ri}
-              className="grid px-4 sm:px-5 py-3 text-sm items-center"
+              className="grid gap-3 px-4 sm:px-5 py-3 text-sm items-center"
               style={{ gridTemplateColumns: cols, background: C.surface, borderTop: `1px solid ${C.line}` }}
             >
               {columns.map((c) =>
@@ -2290,11 +2301,11 @@ function StatsTable({ title, columns, rows, highlightKey, onNameClick, totalsRow
                 ) : (
                   <span
                     key={c.key}
-                    className={c.key === "name" ? "" : "text-right truncate"}
+                    className={LEFT_ALIGN_KEYS.includes(c.key) ? "truncate" : "text-right truncate"}
                     style={{
-                      color: c.key === highlightKey ? C.red : c.key === "name" ? C.white : C.muted,
+                      color: c.key === highlightKey ? C.red : LEFT_ALIGN_KEYS.includes(c.key) ? C.white : C.muted,
                       fontFamily: c.key === "name" ? FONTS.body : FONTS.mono,
-                      fontWeight: c.key === highlightKey ? 700 : c.key === "name" ? 600 : 400,
+                      fontWeight: c.key === highlightKey ? 700 : LEFT_ALIGN_KEYS.includes(c.key) ? 600 : 400,
                     }}
                   >
                     {row[c.key]}
@@ -2305,13 +2316,13 @@ function StatsTable({ title, columns, rows, highlightKey, onNameClick, totalsRow
           ))}
           {totalsRow && (
             <div
-              className="grid px-4 sm:px-5 py-3 text-sm items-center"
+              className="grid gap-3 px-4 sm:px-5 py-3 text-sm items-center"
               style={{ gridTemplateColumns: cols, borderTop: `1px solid ${C.line}` }}
             >
               {columns.map((c) => (
                 <span
                   key={c.key}
-                  className={c.key === "name" ? "" : "text-right truncate"}
+                  className={LEFT_ALIGN_KEYS.includes(c.key) ? "truncate" : "text-right truncate"}
                   style={{ color: C.red, fontFamily: c.key === "name" ? FONTS.body : FONTS.mono, fontWeight: 700 }}
                 >
                   {totalsRow[c.key]}
@@ -2727,9 +2738,9 @@ function PlayerProfilePage({ season, playerName, onBack }) {
       .sort()
       .forEach((s) => {
         const skater = STATS_DATA[s].skaters.find((p) => p.name === playerName);
-        if (skater) skaterSeasons.push({ season: s, ...skater });
+        if (skater) skaterSeasons.push({ season: s, division: divisionLabel(s) ? ordinal(DIVISIONS[s]) : "\u2014", team: "Amsterdam Mustangs", ...skater });
         const goalie = STATS_DATA[s].goalies.find((p) => p.name === playerName);
-        if (goalie) goalieSeasons.push({ season: s, ...goalie });
+        if (goalie) goalieSeasons.push({ season: s, division: divisionLabel(s) ? ordinal(DIVISIONS[s]) : "\u2014", team: "Amsterdam Mustangs", ...goalie });
       });
     return { skaterSeasons, goalieSeasons };
   }, [playerName]);
@@ -2737,7 +2748,7 @@ function PlayerProfilePage({ season, playerName, onBack }) {
   const skaterTotals = useMemo(() => {
     if (skaterSeasons.length === 0) return null;
     const sum = (key) => skaterSeasons.reduce((t, s) => t + s[key], 0);
-    return { season: "TOTAL", gp: sum("gp"), g: sum("g"), a: sum("a"), pts: sum("pts"), pim: sum("pim") };
+    return { season: "TOTAL", division: "", team: "", gp: sum("gp"), g: sum("g"), a: sum("a"), pts: sum("pts"), pim: sum("pim") };
   }, [skaterSeasons]);
 
   const goalieTotals = useMemo(() => {
@@ -2747,6 +2758,8 @@ function PlayerProfilePage({ season, playerName, onBack }) {
     const ga = sum("ga");
     return {
       season: "TOTAL",
+      division: "",
+      team: "",
       gp,
       w: sum("w"),
       l: sum("l"),
@@ -2811,89 +2824,50 @@ function PlayerProfilePage({ season, playerName, onBack }) {
           <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
             {season} GAME LOG
           </h3>
-          <div className="rounded-lg overflow-x-auto" style={{ border: `1px solid ${C.line}` }}>
-            <div style={{ minWidth: 480 }}>
-              {isCurrentGoalie ? (
-                <>
-                  <div
-                    className="grid px-4 sm:px-5 py-2 text-xs"
-                    style={{ gridTemplateColumns: "1.4fr 2fr 0.8fr 0.6fr", background: C.surface2, color: C.muted, fontFamily: FONTS.mono, letterSpacing: "0.05em" }}
-                  >
-                    <span></span><span></span><span></span>
-                    <span className="text-right">GA</span>
-                  </div>
-                  {goalieGames.map((g, i) => (
-                    <div
-                      key={g.date}
-                      className="grid px-4 sm:px-5 py-2.5 text-sm items-center"
-                      style={{ gridTemplateColumns: "1.4fr 2fr 0.8fr 0.6fr", background: i % 2 ? C.surface : C.surface2, borderTop: `1px solid ${C.line}` }}
-                    >
-                      <span style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12 }}>{g.date}</span>
-                      <span className="truncate" style={{ color: C.white }}>{g.home ? "vs" : "@"} {g.opp}</span>
-                      <Badge tone={g.res === "W" ? "win" : g.res === "L" ? "loss" : "ot"}>{g.res}</Badge>
-                      <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.muted }}>{g.ga}</span>
-                    </div>
-                  ))}
-                  <div
-                    className="grid px-4 sm:px-5 py-2.5 text-sm items-center"
-                    style={{ gridTemplateColumns: "1.4fr 2fr 0.8fr 0.6fr", borderTop: `1px solid ${C.line}` }}
-                  >
-                    <span style={{ color: C.red, fontWeight: 700 }}>TOTAL ({goalieGames.length} Games Played)</span>
-                    <span></span><span></span>
-                    <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.red, fontWeight: 700 }}>
-                      {goalieGames.reduce((sum, g) => sum + g.ga, 0)}
-                    </span>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div
-                    className="grid px-4 sm:px-5 py-2 text-xs"
-                    style={{ gridTemplateColumns: "1.4fr 2fr repeat(4, minmax(30px, 0.5fr))", background: C.surface2, color: C.muted, fontFamily: FONTS.mono, letterSpacing: "0.05em" }}
-                  >
-                    <span></span><span></span>
-                    <span className="text-right">G</span>
-                    <span className="text-right">A</span>
-                    <span className="text-right">PTS</span>
-                    <span className="text-right">PIM</span>
-                  </div>
-                  {skaterGames.map((g, i) => (
-                    <div
-                      key={g.date}
-                      className="grid px-4 sm:px-5 py-2.5 text-sm items-center"
-                      style={{ gridTemplateColumns: "1.4fr 2fr repeat(4, minmax(30px, 0.5fr))", background: i % 2 ? C.surface : C.surface2, borderTop: `1px solid ${C.line}` }}
-                    >
-                      <span style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12 }}>{g.date}</span>
-                      <span className="truncate" style={{ color: C.white }}>{g.home ? "vs" : "@"} {g.opp}</span>
-                      <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.muted }}>{g.g}</span>
-                      <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.muted }}>{g.a}</span>
-                      <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.red, fontWeight: 700 }}>{g.pts}</span>
-                      <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.muted }}>{g.pim}</span>
-                    </div>
-                  ))}
-                  <div
-                    className="grid px-4 sm:px-5 py-2.5 text-sm items-center"
-                    style={{ gridTemplateColumns: "1.4fr 2fr repeat(4, minmax(30px, 0.5fr))", borderTop: `1px solid ${C.line}` }}
-                  >
-                    <span style={{ color: C.red, fontWeight: 700 }}>TOTAL ({skaterGames.length} Games Played)</span>
-                    <span></span>
-                    <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.red, fontWeight: 700 }}>
-                      {skaterGames.reduce((sum, g) => sum + g.g, 0)}
-                    </span>
-                    <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.red, fontWeight: 700 }}>
-                      {skaterGames.reduce((sum, g) => sum + g.a, 0)}
-                    </span>
-                    <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.red, fontWeight: 700 }}>
-                      {skaterGames.reduce((sum, g) => sum + g.pts, 0)}
-                    </span>
-                    <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.red, fontWeight: 700 }}>
-                      {skaterGames.reduce((sum, g) => sum + g.pim, 0)}
-                    </span>
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
+          {isCurrentGoalie ? (
+            <StatsTable
+              title=""
+              columns={[
+                { key: "date", label: "Date" },
+                { key: "homeAway", label: "Home/Away" },
+                { key: "opp", label: "Opponent" },
+                { key: "res", label: "Result" },
+                { key: "ga", label: "GA" },
+              ]}
+              rows={goalieGames.map((g) => ({ ...g, homeAway: g.home ? "Home" : "Away" }))}
+              totalsRow={{
+                date: "TOTAL",
+                homeAway: "",
+                opp: `${goalieGames.length} Games Played`,
+                res: "",
+                ga: goalieGames.reduce((sum, g) => sum + g.ga, 0),
+              }}
+            />
+          ) : (
+            <StatsTable
+              title=""
+              columns={[
+                { key: "date", label: "Date" },
+                { key: "homeAway", label: "Home/Away" },
+                { key: "opp", label: "Opponent" },
+                { key: "g", label: "G" },
+                { key: "a", label: "A" },
+                { key: "pts", label: "Pts" },
+                { key: "pim", label: "PIM" },
+              ]}
+              rows={skaterGames.map((g) => ({ ...g, homeAway: g.home ? "Home" : "Away" }))}
+              highlightKey="pts"
+              totalsRow={{
+                date: "TOTAL",
+                homeAway: "",
+                opp: `${skaterGames.length} Games Played`,
+                g: skaterGames.reduce((sum, g) => sum + g.g, 0),
+                a: skaterGames.reduce((sum, g) => sum + g.a, 0),
+                pts: skaterGames.reduce((sum, g) => sum + g.pts, 0),
+                pim: skaterGames.reduce((sum, g) => sum + g.pim, 0),
+              }}
+            />
+          )}
         </div>
       )}
 
@@ -2908,6 +2882,8 @@ function PlayerProfilePage({ season, playerName, onBack }) {
               title=""
               columns={[
                 { key: "season", label: "Season" },
+                { key: "division", label: "Division" },
+                { key: "team", label: "Team" },
                 { key: "gp", label: "GP" },
                 { key: "g", label: "G" },
                 { key: "a", label: "A" },
@@ -2925,6 +2901,8 @@ function PlayerProfilePage({ season, playerName, onBack }) {
                 title="Goalie seasons"
                 columns={[
                   { key: "season", label: "Season" },
+                  { key: "division", label: "Division" },
+                  { key: "team", label: "Team" },
                   { key: "gp", label: "GP" },
                   { key: "w", label: "W" },
                   { key: "l", label: "L" },
