@@ -78,10 +78,8 @@ function FlagIcon({ country }) {
   if (country === "Belarus") {
     return (
       <svg {...common} viewBox="0 0 20 14">
-        <rect width="20" height="9.5" fill="#C8313E" />
-        <rect y="9.5" width="20" height="4.5" fill="#4AA657" />
-        <rect width="3" height="14" fill="#FFFFFF" />
-        <rect width="3" height="14" fill="#C8313E" opacity="0.5" />
+        <rect width="20" height="14" fill="#FFFFFF" />
+        <rect y="4.67" width="20" height="4.67" fill="#D22730" />
       </svg>
     );
   }
