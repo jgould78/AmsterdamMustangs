@@ -2206,7 +2206,7 @@ function ConferenceTable({ title, teams }) {
   );
 }
 
-function StatsTable({ title, columns, rows, highlightKey }) {
+function StatsTable({ title, columns, rows, highlightKey, onNameClick, totalsRow }) {
   const cols = `2fr repeat(${columns.length - 1}, minmax(30px, 0.6fr))`;
   const [sortKey, setSortKey] = useState(null);
   const [sortDir, setSortDir] = useState("desc");
@@ -2238,9 +2238,11 @@ function StatsTable({ title, columns, rows, highlightKey }) {
 
   return (
     <div>
-      <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
-        {title.toUpperCase()}
-      </h3>
+      {title && (
+        <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
+          {title.toUpperCase()}
+        </h3>
+      )}
       <div className="rounded-lg overflow-x-auto" style={{ border: `1px solid ${C.line}` }}>
         <div style={{ minWidth: 480 }}>
           <div
@@ -2264,21 +2266,59 @@ function StatsTable({ title, columns, rows, highlightKey }) {
               className="grid px-4 sm:px-5 py-3 text-sm items-center"
               style={{ gridTemplateColumns: cols, background: C.surface, borderTop: `1px solid ${C.line}` }}
             >
+              {columns.map((c) =>
+                c.key === "name" && onNameClick ? (
+                  <button
+                    key={c.key}
+                    onClick={() => onNameClick(row.name)}
+                    className="text-left"
+                    style={{
+                      color: C.white,
+                      fontFamily: FONTS.body,
+                      fontWeight: 600,
+                      background: "none",
+                      border: "none",
+                      padding: 0,
+                      cursor: "pointer",
+                      textDecoration: "underline",
+                      textDecorationColor: C.line,
+                      textUnderlineOffset: "3px",
+                    }}
+                  >
+                    {row.name}
+                  </button>
+                ) : (
+                  <span
+                    key={c.key}
+                    className={c.key === "name" ? "" : "text-right truncate"}
+                    style={{
+                      color: c.key === highlightKey ? C.red : c.key === "name" ? C.white : C.muted,
+                      fontFamily: c.key === "name" ? FONTS.body : FONTS.mono,
+                      fontWeight: c.key === highlightKey ? 700 : c.key === "name" ? 600 : 400,
+                    }}
+                  >
+                    {row[c.key]}
+                  </span>
+                )
+              )}
+            </div>
+          ))}
+          {totalsRow && (
+            <div
+              className="grid px-4 sm:px-5 py-3 text-sm items-center"
+              style={{ gridTemplateColumns: cols, borderTop: `1px solid ${C.line}` }}
+            >
               {columns.map((c) => (
                 <span
                   key={c.key}
                   className={c.key === "name" ? "" : "text-right truncate"}
-                  style={{
-                    color: c.key === highlightKey ? C.red : c.key === "name" ? C.white : C.muted,
-                    fontFamily: c.key === "name" ? FONTS.body : FONTS.mono,
-                    fontWeight: c.key === highlightKey ? 700 : c.key === "name" ? 600 : 400,
-                  }}
+                  style={{ color: C.red, fontFamily: c.key === "name" ? FONTS.body : FONTS.mono, fontWeight: 700 }}
                 >
-                  {row[c.key]}
+                  {totalsRow[c.key]}
                 </span>
               ))}
             </div>
-          ))}
+          )}
         </div>
       </div>
     </div>
@@ -2581,10 +2621,363 @@ function GameDetailPage({ season, game, detail, onBack }) {
   );
 }
 
+function AwardDetailPage({ awardKey, onBack }) {
+  const history = Object.keys(AWARDS_DATA)
+    .sort()
+    .reverse()
+    .map((season) => {
+      const entry = AWARDS_DATA[season].find((a) => a.category.startsWith(awardKey));
+      return entry ? { season, ...entry } : null;
+    })
+    .filter(Boolean);
+
+  const fullCategory = history[0]?.category || awardKey;
+  const trophy = TROPHY_ICONS[awardKey] || TROPHY_ICONS["Hart"];
+
+  return (
+    <div>
+      <button
+        onClick={onBack}
+        className="mb-6 text-sm font-semibold flex items-center gap-1"
+        style={{ color: C.muted, background: "none", border: "none", cursor: "pointer", fontFamily: FONTS.body }}
+      >
+        &larr; Back to awards
+      </button>
+
+      <div className="flex flex-col items-center text-center mb-8">
+        <img src={trophy} alt="" aria-hidden className="w-20 h-28 object-contain mb-4" />
+        <h2 style={{ fontFamily: FONTS.display, color: C.white, fontSize: 28 }}>{fullCategory}</h2>
+      </div>
+
+      {history.length > 0 ? (
+        <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${C.line}` }}>
+          {history.map((h, i) => (
+            <div
+              key={h.season}
+              className="flex items-center justify-between px-4 sm:px-5 py-3"
+              style={{ background: i % 2 ? C.surface : C.surface2, borderTop: i > 0 ? `1px solid ${C.line}` : "none" }}
+            >
+              <span style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 13 }}>{h.season}</span>
+              <span style={{ color: C.white, fontSize: 14, fontWeight: 600 }}>{h.winner}</span>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div style={{ color: C.muted, textAlign: "center" }}>No winners recorded yet.</div>
+      )}
+    </div>
+  );
+}
+
+function stripNum(s) {
+  return s.replace(/^\d+\s+/, "");
+}
+
+function PlayerProfilePage({ season, playerName, onBack }) {
+  // Header info: prefer current season's roster entry, fall back to most recent
+  // season that has this player.
+  const rosterEntry = useMemo(() => {
+    if (ROSTERS[season]) {
+      const here = ROSTERS[season].find((p) => p.name === playerName);
+      if (here) return here;
+    }
+    const seasons = Object.keys(ROSTERS).sort().reverse();
+    for (const s of seasons) {
+      const found = ROSTERS[s]?.find((p) => p.name === playerName);
+      if (found) return found;
+    }
+    return null;
+  }, [season, playerName]);
+
+  // Current-season game log, derived from GAME_DETAILS.
+  const { skaterGames, goalieGames } = useMemo(() => {
+    const skaterGames = [];
+    const goalieGames = [];
+    const gamesForSeason = GAME_DETAILS[season] || {};
+    const scheduleForSeason = SCHEDULE_DATA[season] || [];
+    Object.keys(gamesForSeason)
+      .sort()
+      .forEach((date) => {
+        const detail = gamesForSeason[date];
+        const game = scheduleForSeason.find((g) => g.date === date);
+        if (!game || !detail?.lineup?.us) return;
+        const goalieName = detail.lineup.us.goalie ? stripNum(detail.lineup.us.goalie) : null;
+        const dressedNames = (detail.lineup.us.dressed || []).map(stripNum);
+
+        if (goalieName === playerName) {
+          const ga = detail.scoring.filter((x) => x.team === "them" && x.strength !== "EN").length;
+          goalieGames.push({ date, opp: game.opp, home: game.home, res: game.res, ga });
+        } else if (dressedNames.includes(playerName)) {
+          const g = detail.scoring.filter((x) => x.team === "us" && x.scorer === playerName).length;
+          const a = detail.scoring.filter((x) => x.team === "us" && x.assists.includes(playerName)).length;
+          const pim = detail.penalties
+            .filter((x) => x.team === "us" && x.player === playerName)
+            .reduce((sum, x) => sum + x.min, 0);
+          skaterGames.push({ date, opp: game.opp, home: game.home, res: game.res, g, a, pts: g + a, pim });
+        }
+      });
+    return { skaterGames, goalieGames };
+  }, [season, playerName]);
+
+  // Season-by-season career stats, across every season in STATS_DATA.
+  const { skaterSeasons, goalieSeasons } = useMemo(() => {
+    const skaterSeasons = [];
+    const goalieSeasons = [];
+    Object.keys(STATS_DATA)
+      .sort()
+      .forEach((s) => {
+        const skater = STATS_DATA[s].skaters.find((p) => p.name === playerName);
+        if (skater) skaterSeasons.push({ season: s, ...skater });
+        const goalie = STATS_DATA[s].goalies.find((p) => p.name === playerName);
+        if (goalie) goalieSeasons.push({ season: s, ...goalie });
+      });
+    return { skaterSeasons, goalieSeasons };
+  }, [playerName]);
+
+  const skaterTotals = useMemo(() => {
+    if (skaterSeasons.length === 0) return null;
+    const sum = (key) => skaterSeasons.reduce((t, s) => t + s[key], 0);
+    return { season: "TOTAL", gp: sum("gp"), g: sum("g"), a: sum("a"), pts: sum("pts"), pim: sum("pim") };
+  }, [skaterSeasons]);
+
+  const goalieTotals = useMemo(() => {
+    if (goalieSeasons.length === 0) return null;
+    const sum = (key) => goalieSeasons.reduce((t, s) => t + s[key], 0);
+    const gp = sum("gp");
+    const ga = sum("ga");
+    return {
+      season: "TOTAL",
+      gp,
+      w: sum("w"),
+      l: sum("l"),
+      t: sum("t"),
+      ga,
+      gaa: gp > 0 ? (ga / gp).toFixed(2) : "0.00",
+      so: sum("so"),
+    };
+  }, [goalieSeasons]);
+
+  // Awards won, across every season in AWARDS_DATA (handles shared awards like Jennings).
+  const awardsWon = useMemo(() => {
+    const list = [];
+    Object.keys(AWARDS_DATA)
+      .sort()
+      .forEach((s) => {
+        AWARDS_DATA[s].forEach((a) => {
+          if (a.winner.split(" & ").includes(playerName)) {
+            list.push({ season: s, ...a });
+          }
+        });
+      });
+    return list;
+  }, [playerName]);
+
+  const isCurrentGoalie = rosterEntry?.pos === "G";
+
+  return (
+    <div>
+      <button
+        onClick={onBack}
+        className="mb-6 text-sm font-semibold flex items-center gap-1"
+        style={{ color: C.muted, background: "none", border: "none", cursor: "pointer", fontFamily: FONTS.body }}
+      >
+        &larr; Back
+      </button>
+
+      <div className="rounded-xl mb-8 px-6 sm:px-10 py-8" style={{ background: C.surface, border: `1px solid ${C.line}` }}>
+        <div className="flex items-center gap-6">
+          {rosterEntry && (
+            <span style={{ fontFamily: FONTS.display, fontSize: 56, color: C.red, lineHeight: 1 }}>{rosterEntry.num}</span>
+          )}
+          <div>
+            <h2 style={{ fontFamily: FONTS.display, color: C.white, fontSize: 28 }}>{playerName}</h2>
+            {rosterEntry && (
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-1 mt-2" style={{ fontFamily: FONTS.mono, fontSize: 12, color: C.muted }}>
+                <span>{rosterEntry.pos}</span>
+                <span>SHOOTS {rosterEntry.shoots?.toUpperCase()}</span>
+                <span className="flex items-center gap-1.5">
+                  {rosterEntry.nat}
+                  <FlagIcon country={rosterEntry.nat} />
+                </span>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Current season game log */}
+      {(skaterGames.length > 0 || goalieGames.length > 0) && (
+        <div className="mb-8">
+          <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
+            {season} GAME LOG
+          </h3>
+          <div className="rounded-lg overflow-x-auto" style={{ border: `1px solid ${C.line}` }}>
+            <div style={{ minWidth: 480 }}>
+              {isCurrentGoalie ? (
+                <>
+                  <div
+                    className="grid px-4 sm:px-5 py-2 text-xs"
+                    style={{ gridTemplateColumns: "1.4fr 2fr 0.8fr 0.6fr", background: C.surface2, color: C.muted, fontFamily: FONTS.mono, letterSpacing: "0.05em" }}
+                  >
+                    <span></span><span></span><span></span>
+                    <span className="text-right">GA</span>
+                  </div>
+                  {goalieGames.map((g, i) => (
+                    <div
+                      key={g.date}
+                      className="grid px-4 sm:px-5 py-2.5 text-sm items-center"
+                      style={{ gridTemplateColumns: "1.4fr 2fr 0.8fr 0.6fr", background: i % 2 ? C.surface : C.surface2, borderTop: `1px solid ${C.line}` }}
+                    >
+                      <span style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12 }}>{g.date}</span>
+                      <span className="truncate" style={{ color: C.white }}>{g.home ? "vs" : "@"} {g.opp}</span>
+                      <Badge tone={g.res === "W" ? "win" : g.res === "L" ? "loss" : "ot"}>{g.res}</Badge>
+                      <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.muted }}>{g.ga}</span>
+                    </div>
+                  ))}
+                  <div
+                    className="grid px-4 sm:px-5 py-2.5 text-sm items-center"
+                    style={{ gridTemplateColumns: "1.4fr 2fr 0.8fr 0.6fr", borderTop: `1px solid ${C.line}` }}
+                  >
+                    <span style={{ color: C.red, fontWeight: 700 }}>TOTAL ({goalieGames.length} Games Played)</span>
+                    <span></span><span></span>
+                    <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.red, fontWeight: 700 }}>
+                      {goalieGames.reduce((sum, g) => sum + g.ga, 0)}
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div
+                    className="grid px-4 sm:px-5 py-2 text-xs"
+                    style={{ gridTemplateColumns: "1.4fr 2fr repeat(4, minmax(30px, 0.5fr))", background: C.surface2, color: C.muted, fontFamily: FONTS.mono, letterSpacing: "0.05em" }}
+                  >
+                    <span></span><span></span>
+                    <span className="text-right">G</span>
+                    <span className="text-right">A</span>
+                    <span className="text-right">PTS</span>
+                    <span className="text-right">PIM</span>
+                  </div>
+                  {skaterGames.map((g, i) => (
+                    <div
+                      key={g.date}
+                      className="grid px-4 sm:px-5 py-2.5 text-sm items-center"
+                      style={{ gridTemplateColumns: "1.4fr 2fr repeat(4, minmax(30px, 0.5fr))", background: i % 2 ? C.surface : C.surface2, borderTop: `1px solid ${C.line}` }}
+                    >
+                      <span style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12 }}>{g.date}</span>
+                      <span className="truncate" style={{ color: C.white }}>{g.home ? "vs" : "@"} {g.opp}</span>
+                      <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.muted }}>{g.g}</span>
+                      <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.muted }}>{g.a}</span>
+                      <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.red, fontWeight: 700 }}>{g.pts}</span>
+                      <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.muted }}>{g.pim}</span>
+                    </div>
+                  ))}
+                  <div
+                    className="grid px-4 sm:px-5 py-2.5 text-sm items-center"
+                    style={{ gridTemplateColumns: "1.4fr 2fr repeat(4, minmax(30px, 0.5fr))", borderTop: `1px solid ${C.line}` }}
+                  >
+                    <span style={{ color: C.red, fontWeight: 700 }}>TOTAL ({skaterGames.length} Games Played)</span>
+                    <span></span>
+                    <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.red, fontWeight: 700 }}>
+                      {skaterGames.reduce((sum, g) => sum + g.g, 0)}
+                    </span>
+                    <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.red, fontWeight: 700 }}>
+                      {skaterGames.reduce((sum, g) => sum + g.a, 0)}
+                    </span>
+                    <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.red, fontWeight: 700 }}>
+                      {skaterGames.reduce((sum, g) => sum + g.pts, 0)}
+                    </span>
+                    <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.red, fontWeight: 700 }}>
+                      {skaterGames.reduce((sum, g) => sum + g.pim, 0)}
+                    </span>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Season-by-season career stats */}
+      {(skaterSeasons.length > 0 || goalieSeasons.length > 0) && (
+        <div className="mb-8">
+          <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
+            CAREER STATS
+          </h3>
+          {skaterSeasons.length > 0 && (
+            <StatsTable
+              title=""
+              columns={[
+                { key: "season", label: "Season" },
+                { key: "gp", label: "GP" },
+                { key: "g", label: "G" },
+                { key: "a", label: "A" },
+                { key: "pts", label: "Pts" },
+                { key: "pim", label: "PIM" },
+              ]}
+              rows={skaterSeasons}
+              highlightKey="pts"
+              totalsRow={skaterTotals}
+            />
+          )}
+          {goalieSeasons.length > 0 && (
+            <div className={skaterSeasons.length > 0 ? "mt-6" : ""}>
+              <StatsTable
+                title="Goalie seasons"
+                columns={[
+                  { key: "season", label: "Season" },
+                  { key: "gp", label: "GP" },
+                  { key: "w", label: "W" },
+                  { key: "l", label: "L" },
+                  { key: "t", label: "T" },
+                  { key: "ga", label: "GA" },
+                  { key: "gaa", label: "GAA" },
+                  { key: "so", label: "SO" },
+                ]}
+                rows={goalieSeasons}
+                highlightKey="w"
+                totalsRow={goalieTotals}
+              />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Awards won */}
+      {awardsWon.length > 0 && (
+        <div>
+          <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
+            AWARDS
+          </h3>
+          <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${C.line}` }}>
+            {awardsWon.map((a, i) => {
+              const key = Object.keys(TROPHY_ICONS).find((k) => a.category.startsWith(k)) || "Hart";
+              return (
+                <div
+                  key={i}
+                  className="flex items-center gap-4 px-4 sm:px-5 py-3"
+                  style={{ background: i % 2 ? C.surface : C.surface2, borderTop: i > 0 ? `1px solid ${C.line}` : "none" }}
+                >
+                  <img src={TROPHY_ICONS[key]} alt="" aria-hidden className="w-7 h-9 object-contain shrink-0" />
+                  <div>
+                    <div style={{ color: C.white, fontSize: 14, fontWeight: 600 }}>{a.category}</div>
+                    <div style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, marginTop: 2 }}>{a.season}</div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function MustangsSite() {
   const [season, setSeason] = useState(DEFAULT_SEASON);
   const [tab, setTab] = useState("home");
   const [selectedGameDate, setSelectedGameDate] = useState(null);
+  const [selectedAwardKey, setSelectedAwardKey] = useState(null);
+  const [selectedPlayerName, setSelectedPlayerName] = useState(null);
   const roster = ROSTERS[season];
   const standings = STANDINGS_DATA[season];
   const schedule = SCHEDULE_DATA[season] || [];
@@ -2623,7 +3016,7 @@ export default function MustangsSite() {
           <div className="relative shrink-0">
             <select
               value={season}
-              onChange={(e) => { setSeason(e.target.value); setSelectedGameDate(null); }}
+              onChange={(e) => { setSeason(e.target.value); setSelectedGameDate(null); setSelectedAwardKey(null); setSelectedPlayerName(null); }}
               className="appearance-none pl-4 pr-9 py-2 rounded text-sm font-bold cursor-pointer"
               style={{
                 background: C.surface2,
@@ -2652,7 +3045,7 @@ export default function MustangsSite() {
               return (
                 <button
                   key={t.id}
-                  onClick={() => { setTab(t.id); setSelectedGameDate(null); }}
+                  onClick={() => { setTab(t.id); setSelectedGameDate(null); setSelectedAwardKey(null); setSelectedPlayerName(null); }}
                   className="flex items-center gap-2 px-4 py-3 text-sm font-semibold whitespace-nowrap"
                   style={{
                     color: active ? C.white : C.muted,
@@ -2724,7 +3117,10 @@ export default function MustangsSite() {
           </div>
         )}
 
-        {tab === "roster" && (
+        {tab === "roster" && selectedPlayerName && (
+          <PlayerProfilePage season={season} playerName={selectedPlayerName} onBack={() => setSelectedPlayerName(null)} />
+        )}
+        {tab === "roster" && !selectedPlayerName && (
           <div>
             <SectionHeading season={season} title="Roster" />
             {roster && roster.length > 0 ? (
@@ -2733,7 +3129,12 @@ export default function MustangsSite() {
                   .slice()
                   .sort((a, b) => a.num - b.num)
                   .map((p, i) => (
-                    <div key={i} className="relative rounded-lg p-4" style={{ background: C.surface, border: `1px solid ${C.line}` }}>
+                    <button
+                      key={i}
+                      onClick={() => setSelectedPlayerName(p.name)}
+                      className="relative rounded-lg p-4 text-left w-full"
+                      style={{ background: C.surface, border: `1px solid ${C.line}`, cursor: "pointer" }}
+                    >
                       {p.tag && (
                         <span
                           className="absolute top-3 right-3 text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center"
@@ -2766,7 +3167,7 @@ export default function MustangsSite() {
                           </span>
                         </div>
                       </div>
-                    </div>
+                    </button>
                   ))}
               </div>
             ) : (
@@ -2901,7 +3302,10 @@ export default function MustangsSite() {
           </div>
         )}
 
-        {tab === "stats" && (
+        {tab === "stats" && selectedPlayerName && (
+          <PlayerProfilePage season={season} playerName={selectedPlayerName} onBack={() => setSelectedPlayerName(null)} />
+        )}
+        {tab === "stats" && !selectedPlayerName && (
           <div>
             <SectionHeading season={season} title="Stats" />
             {stats ? (
@@ -2920,6 +3324,7 @@ export default function MustangsSite() {
                   ]}
                   rows={stats.skaters}
                   highlightKey="pts"
+                  onNameClick={setSelectedPlayerName}
                 />
                 {stats.goalies.length > 0 && (
                   <div className="mt-8">
@@ -2938,6 +3343,7 @@ export default function MustangsSite() {
                       ]}
                       rows={stats.goalies}
                       highlightKey="w"
+                      onNameClick={setSelectedPlayerName}
                     />
                   </div>
                 )}
@@ -2948,29 +3354,31 @@ export default function MustangsSite() {
           </div>
         )}
 
-        {tab === "awards" && (
+        {tab === "awards" && selectedAwardKey && (
+          <AwardDetailPage awardKey={selectedAwardKey} onBack={() => setSelectedAwardKey(null)} />
+        )}
+        {tab === "awards" && !selectedAwardKey && (
           <div>
             <SectionHeading season={season} title="Awards" />
             {awards.length > 0 ? (
               <div className="grid sm:grid-cols-2 gap-4">
-                {awards.map((a, i) => (
-                  <div
-                    key={i}
-                    className="rounded-lg p-5 flex items-center gap-4"
-                    style={{ background: C.surface, border: `1px solid ${C.line}` }}
-                  >
-                    <img
-                      src={TROPHY_ICONS[Object.keys(TROPHY_ICONS).find((k) => a.category.startsWith(k))] || TROPHY_ICONS["Hart"]}
-                      alt=""
-                      aria-hidden
-                      className="w-9 h-12 object-contain shrink-0"
-                    />
-                    <div>
-                      <div style={{ fontFamily: FONTS.display, color: C.white, fontSize: 16 }}>{a.category}</div>
-                      <div style={{ color: C.muted, fontSize: 13, marginTop: 2 }}>{a.winner}</div>
-                    </div>
-                  </div>
-                ))}
+                {awards.map((a, i) => {
+                  const key = Object.keys(TROPHY_ICONS).find((k) => a.category.startsWith(k)) || "Hart";
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => setSelectedAwardKey(key)}
+                      className="text-left rounded-lg p-5 flex items-center gap-4 w-full"
+                      style={{ background: C.surface, border: `1px solid ${C.line}`, cursor: "pointer" }}
+                    >
+                      <img src={TROPHY_ICONS[key]} alt="" aria-hidden className="w-9 h-12 object-contain shrink-0" />
+                      <div>
+                        <div style={{ fontFamily: FONTS.display, color: C.white, fontSize: 16 }}>{a.category}</div>
+                        <div style={{ color: C.muted, fontSize: 13, marginTop: 2 }}>{a.winner}</div>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
             ) : (
               <div style={{ color: C.muted }}>
