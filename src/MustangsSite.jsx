@@ -290,6 +290,7 @@ const ROSTERS = {
     { tag: "", num: 24, name: "Krisztian Vizsy", pos: "RW", shoots: "Left", nat: "Hungary" },
     { tag: "A", num: 27, name: "Jim Conboy", pos: "D", shoots: "Right", nat: "Canada" },
     { tag: "", num: 31, name: "Tori Holmes-Kirk", pos: "G", shoots: "Left", nat: "USA" },
+    { tag: "", num: 41, name: "Connor Harrington-Brandt", pos: "G", shoots: "Right", nat: "USA" }, // Joined mid-season, practices only — no game appearances this season.
     { tag: "", num: 46, name: "Daniel Watts", pos: "C", shoots: "Right", nat: "USA" },
     { tag: "", num: 47, name: "Sergey Baradyntsev", pos: "C", shoots: "Left", nat: "Belarus" },
     { tag: "", num: 55, name: "Greg Alsing", pos: "D", shoots: "Right", nat: "USA" },
@@ -313,7 +314,7 @@ const ROSTERS = {
     { tag: "", num: 24, name: "Krisztian Vizsy", pos: "RW", shoots: "Left", nat: "Hungary" },
     { tag: "A", num: 27, name: "Jim Conboy", pos: "D", shoots: "Right", nat: "Canada" },
     { tag: "", num: 31, name: "Tori Holmes-Kirk", pos: "G", shoots: "Left", nat: "USA" },
-    { tag: "", num: 41, name: "Connor Harrington-Brandt", pos: "G", shoots: "Left", nat: "USA" },
+    { tag: "", num: 41, name: "Connor Harrington-Brandt", pos: "G", shoots: "Right", nat: "USA" },
     { tag: "", num: 46, name: "Daniel Watts", pos: "C", shoots: "Right", nat: "USA" },
     { tag: "", num: 47, name: "Sergey Baradyntsev", pos: "C", shoots: "Left", nat: "Belarus" },
     { tag: "", num: 73, name: "Dirk McLaughlin", pos: "D", shoots: "Right", nat: "Canada" },
@@ -335,16 +336,16 @@ const ROSTERS = {
     { tag: "A", num: 19, name: "Jared Penner", pos: "RW", shoots: "Right", nat: "Canada" },
     { tag: "A", num: 27, name: "Jim Conboy", pos: "D", shoots: "Right", nat: "Canada" },
     { tag: "", num: 31, name: "Tori Holmes-Kirk", pos: "G", shoots: "Left", nat: "USA" },
-    { tag: "", num: 41, name: "Connor Harrington-Brandt", pos: "G", shoots: "Left", nat: "USA" },
+    { tag: "", num: 41, name: "Connor Harrington-Brandt", pos: "G", shoots: "Right", nat: "USA" },
     { tag: "", num: 44, name: "Krisztian Vizsy", pos: "LW", shoots: "Left", nat: "Hungary" },
     { tag: "", num: 46, name: "Daniel Watts", pos: "C", shoots: "Right", nat: "USA" },
     { tag: "", num: 47, name: "Sergey Baradyntsev", pos: "C", shoots: "Left", nat: "Belarus" },
-    { tag: "", num: 66, name: "Miska Braun", pos: "RW", shoots: "Right", nat: "Finland" },
     { tag: "", num: 73, name: "Dirk McLaughlin", pos: "D", shoots: "Right", nat: "Canada" },
     { tag: "C", num: 77, name: "Jeremie Gould", pos: "LW", shoots: "Right", nat: "Canada" },
     { tag: "", num: 89, name: "Brett Boss", pos: "D", shoots: "Right", nat: "USA" },
     { tag: "", num: 91, name: "George Huber", pos: "LW", shoots: "Left", nat: "Canada" },
     { tag: "", num: 96, name: "Duane Mattos", pos: "LW", shoots: "Left", nat: "Canada" },
+    { tag: "", num: 97, name: "Miska Braun", pos: "RW", shoots: "Right", nat: "Finland" },
   ],
   "2025-2026": [
     { tag: "", num: 7, name: "Wyatt Southard", pos: "D", shoots: "Right", nat: "USA" },
@@ -897,9 +898,10 @@ const RELEGATION_PLAYOFFS = {
 // had its assists fully replaced: the PDF's 2nd assist column showed jersey "13"
 // (Valentijn), but BenchApp says the assists were McLaughlin and Braun — neither of
 // whom is Valentijn, so this wasn't a missing addition but a real re-attribution.
-// Miska Braun's number (#41) is correct and uncontested here, unlike the 2025-01-12
-// game where his roster/Attended numbers conflicted — no goalie shares #41 on this
-// particular gamesheet, so no ambiguity to resolve.
+// Miska Braun wore #41 on this particular gamesheet, uncontested (unlike the
+// 2025-01-12 game where his roster/Attended numbers conflicted with a goalie's
+// own #41) — but listed here as his standard #97 per Jeremie's standing
+// preference, applied retroactively across every game and season.
 //
 // 2025-03-09 (vs Leiden Lions, home — the 2024-2025 season finale, 23 total goals):
 // the most extensive correction set of the whole project. Penalties matched the PDF
@@ -3326,8 +3328,8 @@ const GAME_DETAILS = {
           dressed: [
             "6 Alex Paquin", "8 Andrey Gushchin", "9 Petteri Hyytiäinen", "10 Mark van den Tempel",
             "11 Alexander Samoylov", "13 Jeroen Valentijn", "15 Nikita Koutsman", "17 Jon Garrity", "19 Jared Penner",
-            "27 Jim Conboy", "41 Miska Braun", "44 Krisztian Vizsy", "46 Daniel Watts",
-            "73 Dirk McLaughlin", "77 Jeremie Gould", "89 Brett Boss", "96 Duane Mattos",
+            "27 Jim Conboy", "44 Krisztian Vizsy", "46 Daniel Watts",
+            "73 Dirk McLaughlin", "77 Jeremie Gould", "89 Brett Boss", "96 Duane Mattos", "97 Miska Braun",
           ],
         },
         them: {
@@ -3399,8 +3401,8 @@ const GAME_DETAILS = {
           dressed: [
             "8 Andrey Gushchin", "9 Petteri Hyytiäinen", "10 Mark van den Tempel", "11 Alexander Samoylov",
             "13 Jeroen Valentijn", "17 Jon Garrity", "19 Jared Penner", "27 Jim Conboy",
-            "41 Miska Braun", "44 Krisztian Vizsy", "46 Daniel Watts", "73 Dirk McLaughlin",
-            "77 Jeremie Gould", "89 Brett Boss", "96 Duane Mattos",
+            "44 Krisztian Vizsy", "46 Daniel Watts", "73 Dirk McLaughlin",
+            "77 Jeremie Gould", "89 Brett Boss", "96 Duane Mattos", "97 Miska Braun",
           ],
         },
         them: {
@@ -4648,7 +4650,7 @@ const STATS_DATA = {
       { num: 17, name: "Jon Garrity", pos: "D", gp: 10, g: 5, a: 5, pts: 10, pim: 2 },
       { num: 8, name: "Andrey Gushchin", pos: "RW", gp: 12, g: 4, a: 6, pts: 10, pim: 6 },
       { num: 89, name: "Brett Boss", pos: "D", gp: 11, g: 3, a: 5, pts: 8, pim: 2 },
-      { num: 41, name: "Miska Braun", pos: "RW", gp: 3, g: 3, a: 4, pts: 7, pim: 2 },
+      { num: 97, name: "Miska Braun", pos: "RW", gp: 3, g: 3, a: 4, pts: 7, pim: 2 },
       { num: 91, name: "George Huber", pos: "LW", gp: 7, g: 3, a: 4, pts: 7, pim: 0 },
       { num: 10, name: "Mark van den Tempel", pos: "D", gp: 9, g: 1, a: 6, pts: 7, pim: 12 },
       { num: 6, name: "Alex Paquin", pos: "LW", gp: 8, g: 2, a: 4, pts: 6, pim: 6 },
@@ -4878,7 +4880,7 @@ function ConferenceTable({ title, teams }) {
   );
 }
 
-function StatsTable({ title, columns, rows, highlightKey, onNameClick, totalsRow }) {
+function StatsTable({ title, columns, rows, highlightKey, onNameClick, totalsRow, defaultSort }) {
   const LEFT_ALIGN_KEYS = ["name", "season", "division", "team", "date", "opp"];
   const colWidth = (key) => {
     if (key === "name") return "1.6fr";
@@ -4904,7 +4906,14 @@ function StatsTable({ title, columns, rows, highlightKey, onNameClick, totalsRow
   }
 
   const sortedRows = useMemo(() => {
-    if (!sortKey) return rows;
+    if (!sortKey) {
+      if (defaultSort) {
+        const arr = rows.slice();
+        arr.sort(defaultSort);
+        return arr;
+      }
+      return rows;
+    }
     const arr = rows.slice();
     arr.sort((a, b) => {
       const av = a[sortKey];
@@ -4917,7 +4926,7 @@ function StatsTable({ title, columns, rows, highlightKey, onNameClick, totalsRow
       return sortDir === "asc" ? String(av).localeCompare(String(bv)) : String(bv).localeCompare(String(av));
     });
     return arr;
-  }, [rows, sortKey, sortDir]);
+  }, [rows, sortKey, sortDir, defaultSort]);
 
   return (
     <div>
@@ -5986,6 +5995,7 @@ export default function MustangsSite() {
                   rows={stats.skaters}
                   highlightKey="pts"
                   onNameClick={setSelectedPlayerName}
+                  defaultSort={(a, b) => (b.pts - a.pts) || (b.g - a.g)}
                 />
                 {stats.goalies.length > 0 && (
                   <div className="mt-8">
@@ -6005,6 +6015,7 @@ export default function MustangsSite() {
                       rows={stats.goalies}
                       highlightKey="w"
                       onNameClick={setSelectedPlayerName}
+                      defaultSort={(a, b) => (b.w - a.w) || (a.ga - b.ga)}
                     />
                   </div>
                 )}
