@@ -213,7 +213,6 @@ const OPPONENT_LOGO_MAP = {
   "Leiden Polar Bears": "leidenlions",
   "Utrecht OG's 2": "ogs",
   "Red Eagles Den Bosch 2": "redeagles",
-  "Red Eagles Den Bosch": "redeagles",
 };
 function opponentLogo(name) {
   const key = OPPONENT_LOGO_MAP[name];
@@ -468,7 +467,6 @@ const SCHEDULE_DATA = {
     { date: "2022-02-27", opp: "Alcmaria Flames Alkmaar 2", home: false, status: "final", res: "W", gf: 6, ga: 2 },
     { date: "2022-03-12", opp: "Amsterdam Tigers 6", home: true, status: "final", res: "W", gf: 9, ga: 4 },
     { date: "2022-03-18", opp: "Blue Mountain Cougars Hoorn 2", home: false, status: "final", res: "W", gf: 9, ga: 5 },
-    { date: "2022-03-27", opp: "Red Eagles Den Bosch — Playoffs", home: false, status: "final", res: "L", gf: 4, ga: 13 },
   ],
   "2022-2023": [
     { date: "2022-10-08", opp: "Leiden Gladiators", home: true, status: "final", res: "L", gf: 2, ga: 4, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
@@ -518,11 +516,20 @@ const SCHEDULE_DATA = {
 
 const RELEGATION_PLAYOFFS = {
   "2018-2019": {
+    label: "Relegation Playoff",
     opponent: "Zoetermeer Panters Storks",
     result: "L",
     games: [
       { date: "2019-03-08", home: false, res: "T", gf: 4, ga: 4 },
       { date: "2019-03-10", home: true, res: "L", gf: 3, ga: 5 },
+    ],
+  },
+  "2021-2022": {
+    label: "Division Final",
+    opponent: "Red Eagles Den Bosch 2",
+    result: "L",
+    games: [
+      { date: "2022-03-27", home: false, res: "L", gf: 4, ga: 13 },
     ],
   },
 };
@@ -5905,7 +5912,7 @@ export default function MustangsSite() {
             {RELEGATION_PLAYOFFS[season] && (
               <div className="mt-8">
                 <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
-                  RELEGATION PLAYOFF
+                  {(RELEGATION_PLAYOFFS[season].label || "Relegation Playoff").toUpperCase()}
                 </h3>
                 <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${C.line}` }}>
                   {RELEGATION_PLAYOFFS[season].games.map((g, i, arr) => (
