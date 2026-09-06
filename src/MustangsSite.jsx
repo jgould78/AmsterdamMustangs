@@ -292,7 +292,7 @@ const ROSTERS = {
     { tag: "", num: 31, name: "Tori Holmes-Kirk", pos: "G", shoots: "Left", nat: "USA" },
     { tag: "", num: 46, name: "Daniel Watts", pos: "C", shoots: "Right", nat: "USA" },
     { tag: "", num: 47, name: "Sergey Baradyntsev", pos: "C", shoots: "Left", nat: "Belarus" },
-    { tag: "", num: 55, name: "Gregory Alsing", pos: "D", shoots: "Right", nat: "USA" },
+    { tag: "", num: 55, name: "Greg Alsing", pos: "D", shoots: "Right", nat: "USA" },
     { tag: "", num: 73, name: "Dirk McLaughlin", pos: "D", shoots: "Right", nat: "Canada" },
     { tag: "C", num: 77, name: "Jeremie Gould", pos: "LW", shoots: "Right", nat: "Canada" },
     { tag: "", num: 78, name: "Matthieu Coquet", pos: "D", shoots: "Left", nat: "France" },
@@ -479,9 +479,9 @@ const SCHEDULE_DATA = {
     { date: "2022-12-04", opp: "Leiden Gladiators", home: false, status: "final", res: "L", gf: 6, ga: 11, time: "21:00", venue: "Schaatshal Leiden" },
     { date: "2022-12-10", opp: "GIJS Groningen 3", home: true, status: "final", res: "W", gf: 8, ga: 5, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
     { date: "2023-01-06", opp: "Blue Mountain Cougars Hoorn 1", home: false, status: "final", res: "L", gf: 1, ga: 6, time: "21:00", venue: "Optisport de Westfries, Hoorn" },
-    { date: "2023-01-21", opp: "Leiden Lions", home: true, status: "final", res: "L", gf: 4, ga: 13 },
-    { date: "2023-02-04", opp: "Leiden Key Town Tigers", home: true, status: "final", res: "W", gf: 11, ga: 0 },
-    { date: "2023-02-25", opp: "Blue Mountain Cougars Hoorn 1", home: true, status: "final", res: "T", gf: 6, ga: 6 },
+    { date: "2023-01-21", opp: "Leiden Lions", home: true, status: "final", res: "L", gf: 4, ga: 13, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
+    { date: "2023-02-04", opp: "Leiden Key Town Tigers", home: true, status: "final", res: "W", gf: 11, ga: 0, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
+    { date: "2023-02-25", opp: "Blue Mountain Cougars Hoorn 1", home: true, status: "final", res: "T", gf: 6, ga: 6, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
   ],
   "2023-2024": [
     { date: "2023-10-08", opp: "Enschede Slapping Studs 1", home: true, status: "final", res: "W", gf: 4, ga: 3, time: "19:00", venue: "Jaap Edenhal, Amsterdam" },
@@ -1137,7 +1137,7 @@ const GAME_DETAILS = {
         { period: 2, time: "36:02", team: "us", scorer: "Matthieu Coquet", assists: ["Dirk McLaughlin", "Jim Conboy"], strength: "PP" },
         { period: 2, time: "36:21", team: "us", scorer: "Dzmitry Basenka", assists: [], strength: "EQ" },
         { period: 2, time: "39:05", team: "them", scorer: "Stephan Adcock", assists: ["Willem Jan van Loon", "Travis Wetzlaugk"], strength: "EQ" },
-        { period: 3, time: "45:00", team: "us", scorer: "Jim Conboy", assists: [], strength: "PP" },
+        { period: 3, time: "45:00", team: "us", scorer: "Jim Conboy", assists: ["Jeremie Gould"], strength: "PP" },
         { period: 3, time: "48:35", team: "us", scorer: "Dzmitry Basenka", assists: [], strength: "EQ" },
       ],
       penalties: [
@@ -1217,13 +1217,13 @@ const GAME_DETAILS = {
         { period: 1, time: "03:06", team: "us", scorer: "Jeremie Gould", assists: ["Dirk McLaughlin"], strength: "EQ" },
         { period: 1, time: "07:41", team: "us", scorer: "Jeremie Gould", assists: ["Nikita Koutsman"], strength: "EQ" },
         { period: 1, time: "14:45", team: "us", scorer: "Chris Lesny", assists: ["Jeroen Valentijn"], strength: "EQ" },
-        { period: 1, time: "15:51", team: "us", scorer: "Dzmitry Basenka", assists: ["Jeroen Valentijn"], strength: "EQ" },
-        { period: 2, time: "22:48", team: "us", scorer: "George Huber", assists: ["Lorand Abai"], strength: "EQ" },
+        { period: 1, time: "15:51", team: "us", scorer: "Jeremie Gould", assists: ["Jeroen Valentijn"], strength: "EQ" },
+        { period: 2, time: "22:48", team: "us", scorer: "George Huber", assists: ["Lorand Abai", "Jeremie Gould"], strength: "EQ" },
         { period: 2, time: "24:09", team: "them", scorer: "Henk Keijzer", assists: ["Marcel Altepost"], strength: "EQ" },
         { period: 2, time: "25:24", team: "them", scorer: "Edwin Pijl", assists: [], strength: "EQ" },
         { period: 2, time: "26:39", team: "us", scorer: "Jeremie Gould", assists: ["Chris Lesny"], strength: "EQ" },
         { period: 2, time: "31:57", team: "us", scorer: "Dzmitry Basenka", assists: [], strength: "PP" },
-        { period: 2, time: "33:59", team: "us", scorer: "Lorand Abai", assists: [], strength: "PP" },
+        { period: 2, time: "33:59", team: "us", scorer: "Lorand Abai", assists: ["Jeremie Gould"], strength: "PP" },
         { period: 2, time: "37:11", team: "them", scorer: "Edwin Pijl", assists: ["Joel Altepost"], strength: "EQ" },
         { period: 2, time: "38:10", team: "us", scorer: "Andrey Gushchin", assists: ["Jeremie Gould"], strength: "EQ" },
         { period: 3, time: "40:26", team: "them", scorer: "Edwin Pijl", assists: ["Klaas van Dijk"], strength: "PP" },
@@ -1545,6 +1545,210 @@ const GAME_DETAILS = {
         },
       },
     },
+    "2023-01-21": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 4N-029",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["Mark Phillips", "Hans Gering"],
+        scorer: "Connor Brandt",
+        // Timer left blank on this gamesheet.
+      },
+      scoring: [
+        { period: 1, time: "03:25", team: "them", scorer: "Jeroen Maas", assists: ["Tommy van Beek"], strength: "EQ" },
+        { period: 1, time: "07:02", team: "them", scorer: "Bastiaan Prinsen", assists: ["Tommy van Beek"], strength: "EQ" },
+        { period: 1, time: "09:13", team: "us", scorer: "Daniel Watts", assists: ["Chris Lesny"], strength: "EQ" },
+        { period: 1, time: "11:39", team: "them", scorer: "Mike van der Horst", assists: ["Thomas Hoos"], strength: "EQ" },
+        { period: 1, time: "16:43", team: "us", scorer: "Jared Penner", assists: ["Sergey Baradyntsev"], strength: "EQ" },
+        { period: 1, time: "19:59", team: "them", scorer: "Bastiaan Prinsen", assists: [], strength: "EQ" },
+        { period: 2, time: "23:33", team: "them", scorer: "Jeroen Maas", assists: ["Bastiaan Prinsen"], strength: "EQ" },
+        { period: 2, time: "24:17", team: "them", scorer: "Bastiaan Prinsen", assists: [], strength: "EQ" },
+        { period: 2, time: "24:52", team: "them", scorer: "Bastiaan Prinsen", assists: ["Jeroen Maas"], strength: "EQ" },
+        { period: 2, time: "30:20", team: "them", scorer: "Thomas Hoos", assists: ["Mike van der Horst"], strength: "EQ" },
+        { period: 2, time: "31:26", team: "them", scorer: "Tommy van Beek", assists: [], strength: "EQ" },
+        { period: 2, time: "32:30", team: "them", scorer: "Marcus Hoos", assists: [], strength: "EQ" },
+        { period: 2, time: "37:48", team: "us", scorer: "Daniel Watts", assists: [], strength: "EQ" },
+        { period: 2, time: "39:43", team: "us", scorer: "Sergey Baradyntsev", assists: [], strength: "EQ" },
+        { period: 3, time: "42:03", team: "them", scorer: "Bastiaan Prinsen", assists: ["Tommy van Beek"], strength: "EQ" },
+        { period: 3, time: "43:17", team: "them", scorer: "Jeroen Maas", assists: ["Bastiaan Prinsen"], strength: "EQ" },
+        { period: 3, time: "50:07", team: "them", scorer: "Bastiaan Prinsen", assists: ["Mike van der Horst"], strength: "EQ" },
+      ],
+      penalties: [
+        { period: 3, time: "44:19", team: "them", player: "Chris Wielenga", code: "INTRF", min: 2 },
+        { period: 3, time: "51:37", team: "them", player: "Dennis Stoppelenburg", code: "BOARD", min: 2 },
+        { period: 3, time: "54:17", team: "them", player: "Bastiaan Prinsen", code: "HOLD", min: 2 },
+        { period: 3, time: "56:01", team: "them", player: "Marcus Hoos", code: "HOLD", min: 2 },
+        { period: 3, time: "58:15", team: "us", player: "Jeremie Gould", code: "INTRF", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 2, goalsThem: 4 },
+        { period: 2, goalsUs: 2, goalsThem: 6 },
+        { period: 3, goalsUs: 0, goalsThem: 3 },
+      ],
+      lineup: {
+        us: {
+          // Mark van den Tempel printed on this gamesheet as #88, but BenchApp's
+          // Attended export shows #44 for this game — used the Attended number,
+          // per the standing rule that BenchApp exports take precedence over
+          // gamesheet conflicts. Nikita Koutsman is on the printed roster (#15)
+          // but wasn't in the Attended export; confirmed by Jeremie as having
+          // played, so included here despite the missing Attended record.
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "8 Andrey Gushchin", "10 Mark van den Tempel", "15 Nikita Koutsman", "18 Chris Lesny",
+            "19 Jared Penner", "24 Krisztian Vizsy", "27 Jim Conboy", "46 Daniel Watts",
+            "47 Sergey Baradyntsev", "73 Dirk McLaughlin", "77 Jeremie Gould", "96 Duane Mattos",
+          ],
+        },
+        them: {
+          goalie: "1 Bob Gase",
+          dressed: [
+            "3 Fedde van Gent", "6 Olivier Prinsen", "9 Mike van der Horst", "11 Chris Wielenga",
+            "13 Mike Oppelaar", "14 Bruno Zonderop", "24 Jeroen Maas", "31 Thomas Hoos",
+            "66 Bastiaan Prinsen", "85 Marcus Hoos", "88 Tommy van Beek", "89 Dennis Stoppelenburg",
+          ],
+        },
+      },
+    },
+    "2023-02-04": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 4N-032",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["Doug Schickler", "Mark Phillips"],
+        scorer: "James Crowe",
+        timer: "Connor Brandt",
+      },
+      scoring: [
+        { period: 1, time: "04:38", team: "us", scorer: "Sergey Baradyntsev", assists: ["Alex Paquin"], strength: "EQ" },
+        { period: 1, time: "08:23", team: "us", scorer: "Daniel Watts", assists: ["Jeremie Gould"], strength: "EQ" },
+        { period: 1, time: "12:30", team: "us", scorer: "Jeremie Gould", assists: ["Daniel Watts", "Jim Conboy"], strength: "EQ" },
+        { period: 2, time: "21:53", team: "us", scorer: "Jeroen Valentijn", assists: ["Dzmitry Basenka", "Sergey Baradyntsev"], strength: "EQ" },
+        { period: 2, time: "30:51", team: "us", scorer: "Andrey Gushchin", assists: [], strength: "EQ" },
+        { period: 2, time: "32:51", team: "us", scorer: "Alex Paquin", assists: ["Jeremie Gould", "Daniel Watts"], strength: "EQ" },
+        { period: 2, time: "34:13", team: "us", scorer: "Jeroen Valentijn", assists: ["Alex Paquin", "Sergey Baradyntsev"], strength: "EQ" },
+        { period: 3, time: "49:27", team: "us", scorer: "Jeremie Gould", assists: ["Dirk McLaughlin"], strength: "PP" },
+        { period: 3, time: "53:35", team: "us", scorer: "Jeremie Gould", assists: ["Daniel Watts"], strength: "EQ" },
+        { period: 3, time: "57:08", team: "us", scorer: "Jeremie Gould", assists: [], strength: "SH" },
+        { period: 3, time: "57:28", team: "us", scorer: "Dirk McLaughlin", assists: ["Jeremie Gould"], strength: "SH" },
+      ],
+      penalties: [
+        { period: 1, time: "18:13", team: "them", player: "Kees den Haan", code: "SLASH", min: 2 },
+        { period: 2, time: "36:48", team: "them", player: "Kees den Haan", code: "HOOK", min: 2 },
+        { period: 3, time: "49:10", team: "them", player: "Mario Teske", code: "SLASH", min: 2 },
+        { period: 3, time: "56:05", team: "us", player: "Chris Lesny", code: "TRIP", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 3, goalsThem: 0 },
+        { period: 2, goalsUs: 4, goalsThem: 0 },
+        { period: 3, goalsUs: 4, goalsThem: 0 },
+      ],
+      lineup: {
+        us: {
+          // Goal #3 (12:30) is credited on the PDF's scorer column to #47
+          // (Baradyntsev), but BenchApp's text export clearly attributes it to
+          // Jeremie Gould (assisted by Watts and Conboy) -- per the standing
+          // rule that BenchApp text takes precedence over the PDF for
+          // scorer/assist attribution, Gould is used here. The PDF's own
+          // penalty for Chris Lesny (56:05 TRIP) doesn't appear in the BenchApp
+          // penalty list at all, so it's included from the PDF as supplementary
+          // (not a conflict, just an omission on BenchApp's side). Koutsman
+          // confirmed by Jeremie as not having played this game, consistent
+          // with his absence from both the PDF roster and Attended.
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "6 Alex Paquin", "7 Dzmitry Basenka", "8 Andrey Gushchin", "13 Jeroen Valentijn",
+            "18 Chris Lesny", "24 Krisztian Vizsy", "27 Jim Conboy", "46 Daniel Watts",
+            "47 Sergey Baradyntsev", "73 Dirk McLaughlin", "77 Jeremie Gould", "78 Matthieu Coquet",
+            "96 Duane Mattos",
+          ],
+        },
+        them: {
+          goalie: "20 Erik Maassen",
+          dressed: [
+            "6 Robert den Boer", "11 Daniel Persson", "14 Kees den Haan", "16 Ulf Salomonsson",
+            "17 Axel van Elewout", "19 Nico de Jong", "22 Mario Teske", "23 Gert-Jan Vreeburg",
+            "35 Pieter ten Hagen", "41 Len van Vliet", "68 Aleš Bobic", "69 Benjamin Kielman",
+            "75 Sander Blanken", "76 Yaël Monkou", "79 Rastislav Vargus", "85 Alex van den Brink",
+          ],
+        },
+      },
+    },
+    "2023-02-25": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 4N-038",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["Jason"], // surname not given; 2nd referee left blank
+        scorer: "Maurice Jennekens",
+        timer: "Adam", // surname not given
+      },
+      scoring: [
+        { period: 1, time: "14:26", team: "us", scorer: "Sergey Baradyntsev", assists: [], strength: "EQ" },
+        { period: 1, time: "19:59", team: "them", scorer: "Neon Beck", assists: ["Danny van 't Veer"], strength: "PP" },
+        { period: 2, time: "22:32", team: "us", scorer: "Andrey Gushchin", assists: ["Krisztian Vizsy", "Jeremie Gould"], strength: "EQ" },
+        { period: 2, time: "22:45", team: "them", scorer: "Mike van der Donk", assists: ["Daniel Krompiec"], strength: "PP" },
+        { period: 2, time: "23:08", team: "us", scorer: "Sergey Baradyntsev", assists: ["Duane Mattos"], strength: "EQ" },
+        { period: 2, time: "26:58", team: "them", scorer: "Fabrisio Koopmeiners", assists: [], strength: "EQ" },
+        { period: 2, time: "37:21", team: "us", scorer: "Dzmitry Basenka", assists: [], strength: "EQ" },
+        { period: 2, time: "37:58", team: "them", scorer: "Fabrisio Koopmeiners", assists: ["Onno Dolsma", "Mitchell Beukema"], strength: "EQ" },
+        { period: 2, time: "39:11", team: "them", scorer: "Neon Beck", assists: ["Ronald van de Geer"], strength: "SH" },
+        { period: 2, time: "39:41", team: "us", scorer: "Krisztian Vizsy", assists: ["Lorand Abai", "Nikita Koutsman"], strength: "PP" },
+        { period: 3, time: "41:55", team: "them", scorer: "Mike van der Donk", assists: ["Zjon de Bruin", "Daniel Krompiec"], strength: "EQ" },
+        { period: 3, time: "57:43", team: "us", scorer: "Daniel Watts", assists: ["Andrey Gushchin", "Mark van den Tempel"], strength: "EQ" },
+      ],
+      penalties: [
+        { period: 1, time: "07:22", team: "them", player: "Onno Dolsma", code: "TRIP", min: 2 },
+        { period: 1, time: "18:35", team: "us", player: "Mark van den Tempel", code: "INTRF", min: 2 },
+        { period: 2, time: "22:32", team: "us", player: "Andrey Gushchin", code: "INTRF", min: 2 },
+        { period: 2, time: "27:58", team: "us", player: "Mark van den Tempel", code: "INTRF", min: 2 },
+        { period: 2, time: "38:54", team: "them", player: "Mitchell Beukema", code: "HOOK", min: 2 },
+        { period: 3, time: "45:17", team: "them", player: "Zjon de Bruin", code: "TRIP", min: 2 },
+        { period: 3, time: "53:23", team: "them", player: "Bart Voet", code: "TRIP", min: 2 },
+        { period: 3, time: "55:32", team: "them", player: "Cera Dusseau", code: "TOO-M", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 1, goalsThem: 1 },
+        { period: 2, goalsUs: 4, goalsThem: 4 },
+        { period: 3, goalsUs: 1, goalsThem: 1 },
+      ],
+      lineup: {
+        us: {
+          // Goalie discrepancy: the PDF's printed roster lists Connor Brandt
+          // (#1) as goalie, but Brandt does not appear in BenchApp's Attended
+          // export at all -- instead Attended lists Frank Groen (#1, tagged
+          // "Spare") as the goalie who attended. Per the standing rule that
+          // Attended is the source of truth for who dressed, Frank Groen is
+          // used here instead of Brandt (who has otherwise served as this
+          // team's official scorer in other games, not a player). Daniel Watts
+          // is printed on this gamesheet as #0, but listed here as #46 per
+          // Jeremie's standing preference. Several of the PDF's "Sit"
+          // (strength) labels for this game read EQ where the penalty clock
+          // and BenchApp both indicate PP/SH (Beck's 19:59 and 39:11 goals,
+          // van der Donk's 22:45 goal, and Vizsy's 39:41 goal) -- BenchApp's
+          // strength tags are used throughout, cross-checked against the
+          // penalty clock, which confirms every one of them. Koutsman
+          // confirmed by Jeremie as having played, consistent with his assist
+          // on Vizsy's 39:41 goal.
+          goalie: "1 Frank Groen",
+          dressed: [
+            "2 Lorand Abai", "7 Dzmitry Basenka", "8 Andrey Gushchin", "10 Mark van den Tempel",
+            "15 Nikita Koutsman", "19 Jared Penner", "24 Krisztian Vizsy", "46 Daniel Watts",
+            "47 Sergey Baradyntsev", "77 Jeremie Gould", "91 George Huber", "96 Duane Mattos",
+          ],
+        },
+        them: {
+          goalie: "13 Jochem den Boer",
+          backupGoalie: "30 Larissa de Jong",
+          dressed: [
+            "1 Neon Beck", "10 Daniel Krompiec", "11 Onno Dolsma", "15 Mitchell Beukema",
+            "21 Zjon de Bruin", "28 Allart Dusseau", "33 Ronald van de Geer", "61 Danny van 't Veer",
+            "69 Bart Voet", "78 Cera Dusseau", "80 Bryan Gouwerok", "83 Mike van der Donk",
+            "95 Fabrisio Koopmeiners",
+          ],
+        },
+      },
+    },
   },
   "2023-2024": {
     "2023-10-08": {
@@ -1577,19 +1781,20 @@ const GAME_DETAILS = {
       ],
       lineup: {
         us: {
-          // First game of the 2023-2024 season. Boss (#37) and van den Tempel (#44)
-          // wore different numbers this early — later seasons show them as #89 and
-          // #10 respectively. Used the numbers as printed on this game's actual
-          // gamesheet for them; Jon Garrity's gamesheet number was #41, but listed
-          // here as his usual #17 per Jeremie. Nikita Koutsman is on
-          // the printed roster but wasn't in Attended — confirmed by Jeremie as
-          // having played anyway, added using his usual #15. Dzmitry Basenka is also
-          // on the roster but not in Attended, with no scoring/penalty involvement to
-          // override that — excluded per the standard rule.
+          // First game of the 2023-2024 season. Boss wore #37 on this game's
+          // actual gamesheet — later seasons show him as #89. Jon Garrity's
+          // gamesheet number was #41, but listed here as his usual #17, and
+          // Mark van den Tempel's gamesheet number was #44, but listed here
+          // as his usual #10, both per Jeremie's standing preference. Nikita
+          // Koutsman is on the printed roster but wasn't in Attended —
+          // confirmed by Jeremie as having played anyway, added using his
+          // usual #15. Dzmitry Basenka is also on the roster but not in
+          // Attended, with no scoring/penalty involvement to override that —
+          // excluded per the standard rule.
           goalie: "31 Tori Holmes-Kirk",
           dressed: [
-            "8 Andrey Gushchin", "11 Alexander Samoylov", "13 Jeroen Valentijn",
-            "15 Nikita Koutsman", "17 Jon Garrity", "18 Chris Lesny", "19 Jared Penner", "37 Brett Boss", "44 Mark van den Tempel",
+            "8 Andrey Gushchin", "10 Mark van den Tempel", "11 Alexander Samoylov", "13 Jeroen Valentijn",
+            "15 Nikita Koutsman", "17 Jon Garrity", "18 Chris Lesny", "19 Jared Penner", "37 Brett Boss",
             "46 Daniel Watts", "47 Sergey Baradyntsev", "73 Dirk McLaughlin", "77 Jeremie Gould",
             "91 George Huber", "96 Duane Mattos",
           ],
@@ -4365,26 +4570,29 @@ const AWARDS_DATA = {
 const STATS_DATA = {
   "2022-2023": {
     skaters: [
+      { num: 77, name: "Jeremie Gould", pos: "LW", gp: 11, g: 8, a: 11, pts: 19, pim: 4 },
       { num: 47, name: "Sergey Baradyntsev", pos: "C", gp: 11, g: 8, a: 5, pts: 13, pim: 2 },
-      { num: 77, name: "Jeremie Gould", pos: "LW", gp: 11, g: 7, a: 6, pts: 13, pim: 4 },
-      { num: 7, name: "Dzmitry Basenka", pos: "LW", gp: 8, g: 8, a: 3, pts: 11, pim: 0 },
+      { num: 7, name: "Dzmitry Basenka", pos: "LW", gp: 8, g: 7, a: 3, pts: 10, pim: 0 },
       { num: 46, name: "Daniel Watts", pos: "C", gp: 5, g: 6, a: 4, pts: 10, pim: 2 },
       { num: 8, name: "Andrey Gushchin", pos: "RW", gp: 10, g: 8, a: 2, pts: 10, pim: 8 },
       { num: 27, name: "Jim Conboy", pos: "D", gp: 10, g: 5, a: 4, pts: 9, pim: 2 },
       { num: 6, name: "Alex Paquin", pos: "C", gp: 6, g: 3, a: 4, pts: 7, pim: 2 },
-      { num: 18, name: "Chris Lesny", pos: "LW", gp: 10, g: 2, a: 5, pts: 7, pim: 2 },
+      { num: 18, name: "Chris Lesny", pos: "LW", gp: 10, g: 2, a: 5, pts: 7, pim: 4 },
       { num: 73, name: "Dirk McLaughlin", pos: "D", gp: 10, g: 1, a: 6, pts: 7, pim: 4 },
       { num: 21, name: "Ben Grunfeld", pos: "C", gp: 3, g: 4, a: 1, pts: 5, pim: 4 },
       { num: 2, name: "Lorand Abai", pos: "D", gp: 6, g: 2, a: 3, pts: 5, pim: 2 },
       { num: 13, name: "Jeroen Valentijn", pos: "D", gp: 10, g: 3, a: 2, pts: 5, pim: 8 },
       { num: 91, name: "George Huber", pos: "LW", gp: 6, g: 3, a: 0, pts: 3, pim: 4 },
-      { num: 15, name: "Nikita Koutsman", pos: "LW", gp: 6, g: 0, a: 3, pts: 3, pim: 2 },
+      { num: 15, name: "Nikita Koutsman", pos: "LW", gp: 9, g: 0, a: 3, pts: 3, pim: 2 },
       { num: 24, name: "Krisztian Vizsy", pos: "RW", gp: 7, g: 1, a: 2, pts: 3, pim: 0 },
+      { num: 19, name: "Willem Jan van Loon", pos: "F", gp: 1, g: 1, a: 1, pts: 2, pim: 0 },
+      { num: 41, name: "Xavier Boot", pos: "F", gp: 1, g: 1, a: 1, pts: 2, pim: 0 },
       { num: 78, name: "Matthieu Coquet", pos: "D", gp: 5, g: 1, a: 1, pts: 2, pim: 31 },
       { num: 96, name: "Duane Mattos", pos: "LW", gp: 12, g: 1, a: 1, pts: 2, pim: 2 },
       { num: 10, name: "Mark van den Tempel", pos: "D", gp: 2, g: 0, a: 1, pts: 1, pim: 4 },
       { num: 19, name: "Jared Penner", pos: "RW", gp: 3, g: 1, a: 0, pts: 1, pim: 0 },
-      { num: 55, name: "Gregory Alsing", pos: "D", gp: 4, g: 0, a: 0, pts: 0, pim: 2 },
+      { num: 55, name: "Greg Alsing", pos: "D", gp: 4, g: 0, a: 0, pts: 0, pim: 2 },
+      { num: 37, name: "Jon Attwell", pos: "F", gp: 1, g: 0, a: 0, pts: 0, pim: 0 },
       { num: 11, name: "Alexander Samoylov", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
     ],
     goalies: [
@@ -4394,7 +4602,7 @@ const STATS_DATA = {
       { num: 1, name: "Vincent Régis", gp: 1, w: 1, l: 0, t: 0, ga: 4, gaa: "4.00", so: 0 },
       { num: 1, name: "Hugo Pieters", gp: 1, w: 1, l: 0, t: 0, ga: 6, gaa: "6.00", so: 0 },
       { num: 98, name: "Jimmy Berndsen", gp: 1, w: 0, l: 1, t: 0, ga: 4, gaa: "4.00", so: 0 },
-      { num: 1, name: "Mike van Leeuwen", gp: 1, w: 0, l: 0, t: 1, ga: 11, gaa: "11.00", so: 0 },
+      { num: 1, name: "Mike van Leeuwen", gp: 1, w: 0, l: 1, t: 0, ga: 11, gaa: "11.00", so: 0 },
       { num: 41, name: "Connor Harrington-Brandt", gp: 0, w: 0, l: 0, t: 0, ga: 0, gaa: "0.00", so: 0 },
     ],
   },
