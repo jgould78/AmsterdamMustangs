@@ -186,6 +186,7 @@ const OPPONENT_LOGO_MAP = {
   "Alcmaria Flames Alkmaar 2": "alcmaria",
   "Alcmaria Flames Alkmaar": "alcmaria",
   "GIJS Groningen 4": "gijs",
+  "GIJS Groningen 5": "gijs",
   "Blue Mountain Cougars Hoorn": "hoorncougars",
   "Smoke Eaters Geleen": "geleen",
   "Zoetermeer Panters Storks": "zoetermeerpanters",
@@ -225,7 +226,7 @@ const DEFAULT_SEASON = "2026-2027";
 const DIVISIONS = {
   "2017-2018": 4,
   "2018-2019": 4,
-  "2019-2020": 5,
+  "2019-2020": 4,
   "2020-2021": null,
   "2021-2022": 5,
   "2022-2023": 4,
@@ -429,13 +430,13 @@ const SCHEDULE_DATA = {
     { date: "2019-11-16", opp: "Alcmaria Flames Alkmaar", home: false, status: "final", res: "T", gf: 4, ga: 4 },
     { date: "2019-11-24", opp: "Amsterdam Snipers", home: true, status: "final", res: "L", gf: 4, ga: 6 },
     { date: "2019-12-01", opp: "Leiden Gladiators", home: true, status: "final", res: "L", gf: 3, ga: 7 },
-    { date: "2019-12-22", opp: "GIJS Groningen 3", home: true, status: "final", res: "L", gf: 5, ga: 7 },
+    { date: "2019-12-22", opp: "GIJS Groningen 5", home: true, status: "final", res: "L", gf: 5, ga: 7 },
     { date: "2020-01-11", opp: "Twente Blue Caps Enschede", home: false, status: "final", res: "L", gf: 1, ga: 5 },
     { date: "2020-01-18", opp: "Amsterdam Snipers", home: false, status: "final", res: "L", gf: 4, ga: 12 },
     { date: "2020-01-26", opp: "Blue Mountain Cougars Hoorn", home: true, status: "final", res: "T", gf: 5, ga: 5 },
     { date: "2020-02-16", opp: "Alcmaria Flames Alkmaar", home: true, status: "final", res: "L", gf: 2, ga: 5 },
-    { date: "2020-03-08", opp: "GIJS Groningen 3", home: false, status: "final", res: "L", gf: 6, ga: 13 },
-    { date: "2020-03-15", opp: "Leiden Gladiators", home: false, status: "cancelled" },
+    { date: "2020-03-08", opp: "GIJS Groningen 5", home: false, status: "final", res: "L", gf: 6, ga: 13 },
+    { date: "2020-03-15", opp: "Leiden Gladiators", home: false, status: "cancelled", note: "Cancelled due to the COVID-19 pandemic." },
   ],
   "2025-2026": [
     { date: "2025-10-12", opp: "Amsterdam Snipers", home: false, status: "final", res: "W", gf: 4, ga: 1, time: "21:00", venue: "Jaap Edenhal, Amsterdam" },
@@ -455,28 +456,28 @@ const SCHEDULE_DATA = {
     { date: "2026-03-15", opp: "Blue Mountain Cougars Hoorn 1", home: true, status: "final", res: "L", gf: 3, ga: 8, time: "16:45", venue: "Jaap Edenhal, Amsterdam" },
   ],
   "2021-2022": [
-    { date: "2021-10-17", opp: "Striking Stallions Enschede", home: false, status: "final", res: "W", gf: 21, ga: 1 },
-    { date: "2021-10-31", opp: "Slapsticks Flyers Heerenveen", home: true, status: "final", res: "W", gf: 14, ga: 2 },
-    { date: "2021-11-07", opp: "Leiden Blues", home: true, status: "final", res: "W", gf: 18, ga: 2 },
-    { date: "2021-11-28", opp: "Alcmaria Flames Alkmaar 2", home: true, status: "final", res: "W", gf: 6, ga: 2 },
-    { date: "2021-12-11", opp: "Amsterdam Tigers 6", home: false, status: "final", res: "W", gf: 9, ga: 4 },
-    { date: "2022-01-02", opp: "Blue Mountain Cougars Hoorn 2", home: true, status: "final", res: "W", gf: 9, ga: 5 },
-    { date: "2022-01-16", opp: "Striking Stallions Enschede", home: true, status: "final", res: "W", gf: 21, ga: 1 },
-    { date: "2022-01-23", opp: "Slapsticks Flyers Heerenveen", home: false, status: "final", res: "W", gf: 14, ga: 2 },
-    { date: "2022-02-06", opp: "Leiden Blues", home: false, status: "final", res: "W", gf: 12, ga: 2 },
-    { date: "2022-02-27", opp: "Alcmaria Flames Alkmaar 2", home: false, status: "final", res: "W", gf: 6, ga: 2 },
-    { date: "2022-03-12", opp: "Amsterdam Tigers 6", home: true, status: "final", res: "W", gf: 9, ga: 4 },
-    { date: "2022-03-18", opp: "Blue Mountain Cougars Hoorn 2", home: false, status: "final", res: "W", gf: 9, ga: 5 },
+    { date: "2021-10-17", opp: "Striking Stallions Enschede", home: false, status: "final", res: "W", gf: 21, ga: 1, time: "20:30", venue: "IJsbaan Twente, Enschede" },
+    { date: "2021-10-31", opp: "Slapsticks Flyers Heerenveen", home: true, status: "final", res: "W", gf: 14, ga: 2, time: "21:00", venue: "Jaap Edenhal, Amsterdam" },
+    { date: "2021-11-07", opp: "Leiden Blues", home: true, status: "final", res: "W", gf: 18, ga: 2, time: "18:45", venue: "Jaap Edenhal, Amsterdam" },
+    { date: "2021-11-28", opp: "Alcmaria Flames Alkmaar 2", home: true, status: "final", res: "W", gf: 6, ga: 2, cancelled: true },
+    { date: "2021-12-11", opp: "Amsterdam Tigers 6", home: false, status: "final", res: "W", gf: 9, ga: 4, cancelled: true },
+    { date: "2022-01-02", opp: "Blue Mountain Cougars Hoorn 2", home: true, status: "final", res: "W", gf: 9, ga: 5, cancelled: true },
+    { date: "2022-01-16", opp: "Striking Stallions Enschede", home: true, status: "final", res: "W", gf: 21, ga: 1, cancelled: true },
+    { date: "2022-01-23", opp: "Slapsticks Flyers Heerenveen", home: false, status: "final", res: "W", gf: 14, ga: 2, cancelled: true },
+    { date: "2022-02-06", opp: "Leiden Blues", home: false, status: "final", res: "W", gf: 12, ga: 2, time: "18:45", venue: "Schaatshal Leiden" },
+    { date: "2022-02-27", opp: "Alcmaria Flames Alkmaar 2", home: false, status: "final", res: "W", gf: 6, ga: 2, time: "18:45", venue: "De Meent, Alkmaar" },
+    { date: "2022-03-12", opp: "Amsterdam Tigers 6", home: true, status: "final", res: "W", gf: 9, ga: 4, time: "21:00", venue: "Jaap Edenhal, Amsterdam" },
+    { date: "2022-03-18", opp: "Blue Mountain Cougars Hoorn 2", home: false, status: "final", res: "W", gf: 9, ga: 5, time: "21:00", venue: "Optisport de Westfries, Hoorn" },
   ],
   "2022-2023": [
     { date: "2022-10-08", opp: "Leiden Gladiators", home: true, status: "final", res: "L", gf: 2, ga: 4, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
     { date: "2022-10-16", opp: "Leiden Key Town Tigers", home: false, status: "final", res: "W", gf: 7, ga: 4, time: "18:45", venue: "Schaatshal Leiden" },
     { date: "2022-10-22", opp: "Amsterdam Tigers 6", home: true, status: "final", res: "L", gf: 3, ga: 4, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
     { date: "2022-10-29", opp: "Amsterdam Tigers 6", home: false, status: "final", res: "W", gf: 7, ga: 2, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
-    { date: "2022-11-06", opp: "GIJS Groningen 3", home: false, status: "final", res: "W", gf: 9, ga: 6, time: "17:45", venue: "Sportcentrum Kardinge, Groningen" },
+    { date: "2022-11-06", opp: "GIJS Groningen 4", home: false, status: "final", res: "W", gf: 9, ga: 6, time: "17:45", venue: "Sportcentrum Kardinge, Groningen" },
     { date: "2022-11-20", opp: "Leiden Lions", home: false, status: "final", res: "L", gf: 2, ga: 9, time: "21:00", venue: "Schaatshal Leiden" },
     { date: "2022-12-04", opp: "Leiden Gladiators", home: false, status: "final", res: "L", gf: 6, ga: 11, time: "21:00", venue: "Schaatshal Leiden" },
-    { date: "2022-12-10", opp: "GIJS Groningen 3", home: true, status: "final", res: "W", gf: 8, ga: 5, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
+    { date: "2022-12-10", opp: "GIJS Groningen 4", home: true, status: "final", res: "W", gf: 8, ga: 5, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
     { date: "2023-01-06", opp: "Blue Mountain Cougars Hoorn 1", home: false, status: "final", res: "L", gf: 1, ga: 6, time: "21:00", venue: "Optisport de Westfries, Hoorn" },
     { date: "2023-01-21", opp: "Leiden Lions", home: true, status: "final", res: "L", gf: 4, ga: 13, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
     { date: "2023-02-04", opp: "Leiden Key Town Tigers", home: true, status: "final", res: "W", gf: 11, ga: 0, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
@@ -529,7 +530,7 @@ const RELEGATION_PLAYOFFS = {
     opponent: "Red Eagles Den Bosch 2",
     result: "L",
     games: [
-      { date: "2022-03-27", home: false, res: "L", gf: 4, ga: 13 },
+      { date: "2022-03-27", home: false, res: "L", gf: 4, ga: 13, time: "10:00", venue: "De Uithof, Den Haag" },
     ],
   },
 };
@@ -931,6 +932,287 @@ const RELEGATION_PLAYOFFS = {
 // list a goalie this time, but Jeremie confirmed it was Bob Gase again — same
 // goalie as their 2024-10-13 game, where he was explicitly tagged on the sheet.
 const GAME_DETAILS = {
+  "2021-2022": {
+    // First game of the 2021-2022 season, sourced entirely from the printed
+    // gamesheet PDF -- no BenchApp export exists for this season, so the PDF
+    // is the primary source here. All 21 Mustangs goals, the single opponent
+    // goal, and both period-by-period summary boxes reconcile exactly with
+    // the PDF's own totals. The opponent's goalie (#44 per the "Goaliewissels"
+    // log) isn't named anywhere on the gamesheet itself, but confirmed by
+    // Jeremie as Sean Lokerse. Duane Mattos, Alexander Samoylov, and Sergey
+    // Baradyntsev are printed on this gamesheet as #37, #88, and #41
+    // respectively, but listed here as their usual #96, #11, and #47 per
+    // Jeremie.
+    "2021-10-17": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 5N-004",
+      venue: "IJsbaan Twente, Enschede",
+      officials: {
+        referees: ["Paul Harms", "David den Boer"],
+        // Official scorer and timer both left blank ("-") on this gamesheet.
+      },
+      scoring: [
+        { period: 1, time: "04:15", team: "us", scorer: "Andrey Gushchin", assists: ["Jeremie Gould"], strength: "EQ" },
+        { period: 1, time: "07:21", team: "us", scorer: "Chris Lesny", assists: [], strength: "EQ" },
+        { period: 1, time: "10:56", team: "us", scorer: "Jeremie Gould", assists: ["Nikita Koutsman"], strength: "PP" },
+        { period: 1, time: "11:19", team: "us", scorer: "Nikita Koutsman", assists: ["Andrey Gushchin"], strength: "EQ" },
+        { period: 1, time: "13:41", team: "us", scorer: "Jim Conboy", assists: ["Jeremie Gould"], strength: "EQ" },
+        { period: 1, time: "16:53", team: "us", scorer: "Alexander Samoylov", assists: [], strength: "EQ" },
+        { period: 1, time: "19:31", team: "us", scorer: "Martin Simonak", assists: ["Chris Lesny"], strength: "EQ" },
+        { period: 2, time: "21:14", team: "us", scorer: "Andrey Gushchin", assists: ["Jeremie Gould"], strength: "EQ" },
+        { period: 2, time: "21:39", team: "us", scorer: "Martin Simonak", assists: ["Alexander Samoylov"], strength: "EQ" },
+        { period: 2, time: "24:38", team: "us", scorer: "Jeremie Gould", assists: [], strength: "EQ" },
+        { period: 2, time: "25:50", team: "us", scorer: "Jeremie Gould", assists: [], strength: "EQ" },
+        { period: 2, time: "28:27", team: "us", scorer: "Martin Simonak", assists: ["Alexander Samoylov"], strength: "EQ" },
+        { period: 2, time: "29:20", team: "us", scorer: "Martin Simonak", assists: ["Chris Lesny"], strength: "EQ" },
+        { period: 2, time: "29:47", team: "us", scorer: "Sergey Baradyntsev", assists: [], strength: "EQ" },
+        { period: 2, time: "31:39", team: "us", scorer: "Martin Simonak", assists: [], strength: "EQ" },
+        { period: 2, time: "38:17", team: "us", scorer: "Alex Paquin", assists: ["Alexander Samoylov"], strength: "EQ" },
+        { period: 3, time: "41:05", team: "us", scorer: "Jeroen Valentijn", assists: ["Sergey Baradyntsev"], strength: "EQ" },
+        { period: 3, time: "51:29", team: "us", scorer: "Martin Simonak", assists: ["Andrey Gushchin"], strength: "EQ" },
+        { period: 3, time: "51:41", team: "us", scorer: "Jeremie Gould", assists: [], strength: "EQ" },
+        { period: 3, time: "53:32", team: "us", scorer: "Duane Mattos", assists: [], strength: "EQ" },
+        { period: 3, time: "54:10", team: "us", scorer: "Martin Simonak", assists: [], strength: "EQ" },
+        { period: 3, time: "58:51", team: "them", scorer: "Ties Poutsma", assists: ["Coen Ariens", "Ruben Bralts"], strength: "EQ" },
+      ],
+      penalties: [
+        { period: 1, time: "10:19", team: "them", player: "Daan Westerhof", code: "DELAY", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 7, goalsThem: 0 },
+        { period: 2, goalsUs: 9, goalsThem: 0 },
+        { period: 3, goalsUs: 5, goalsThem: 1 },
+      ],
+      lineup: {
+        us: {
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "6 Alex Paquin", "8 Andrey Gushchin", "11 Alexander Samoylov", "13 Jeroen Valentijn",
+            "15 Nikita Koutsman", "17 Martin Simonak", "18 Chris Lesny", "19 Jared Penner",
+            "27 Jim Conboy", "47 Sergey Baradyntsev", "77 Jeremie Gould", "96 Duane Mattos",
+          ],
+        },
+        them: {
+          goalie: "44 Sean Lokerse",
+          dressed: [
+            "4 Bas Pellen", "15 Sanne Hofker", "18 Marijn Til", "23 Nienke Nijenhuis",
+            "28 Joey Niemeijer", "30 Tom Smeets", "33 Ruben Bralts", "77 Coen Ariens",
+            "80 Ties Poutsma", "94 Daan Westerhof",
+          ],
+        },
+      },
+    },
+    "2021-10-31": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 5N-008",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["Roy Ronda", "J. van Berg"],
+        // Official scorer and timer both left blank ("-") on this gamesheet.
+      },
+      scoring: [
+        { period: 1, time: "01:51", team: "us", scorer: "Janne-Britt de Korte", assists: ["Chris Lesny"], strength: "EQ" },
+        { period: 1, time: "05:34", team: "them", scorer: "Remco Jonge", assists: [], strength: "EQ" },
+        { period: 1, time: "12:00", team: "us", scorer: "Alex Paquin", assists: ["Matthieu Coquet"], strength: "EQ" },
+        { period: 1, time: "15:04", team: "us", scorer: "Matthew Drazenovich", assists: ["Sergey Baradyntsev"], strength: "EQ" },
+        { period: 1, time: "16:30", team: "them", scorer: "Gerrit Wagenaar", assists: ["Carel ten Brink"], strength: "EQ" },
+        { period: 2, time: "21:32", team: "us", scorer: "Dzmitry Basenka", assists: ["George Huber"], strength: "EQ" },
+        { period: 2, time: "26:19", team: "us", scorer: "Sergey Baradyntsev", assists: ["Dzmitry Basenka"], strength: "EQ" },
+        { period: 2, time: "28:49", team: "us", scorer: "Andrey Gushchin", assists: ["Alex Paquin"], strength: "EQ" },
+        { period: 2, time: "30:43", team: "us", scorer: "Jared Penner", assists: ["Janne-Britt de Korte"], strength: "PP" },
+        { period: 2, time: "32:41", team: "us", scorer: "Jeremie Gould", assists: [], strength: "EQ" },
+        { period: 2, time: "34:22", team: "us", scorer: "Matthew Drazenovich", assists: ["Jared Penner"], strength: "EQ" },
+        { period: 3, time: "43:04", team: "us", scorer: "Alexander Samoylov", assists: [], strength: "EQ" },
+        { period: 3, time: "43:49", team: "us", scorer: "Janne-Britt de Korte", assists: ["Jeremie Gould"], strength: "EQ" },
+        { period: 3, time: "44:32", team: "us", scorer: "Nikita Koutsman", assists: ["Matthew Drazenovich"], strength: "EQ" },
+        { period: 3, time: "50:17", team: "us", scorer: "Janne-Britt de Korte", assists: ["Jim Conboy", "Chris Lesny"], strength: "EQ" },
+        { period: 3, time: "51:43", team: "us", scorer: "Matthew Drazenovich", assists: [], strength: "EQ" },
+      ],
+      penalties: [
+        { period: 2, time: "29:09", team: "them", player: "Elzo Reiber", code: "TRIP", min: 2 },
+        { period: 3, time: "56:20", team: "us", player: "Nikita Koutsman", code: "ROUGH", min: 2 },
+        { period: 3, time: "58:53", team: "us", player: "Duane Mattos", code: "TRIP", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 3, goalsThem: 2 },
+        { period: 2, goalsUs: 6, goalsThem: 0 },
+        { period: 3, goalsUs: 5, goalsThem: 0 },
+      ],
+      lineup: {
+        us: {
+          // Alexander Samoylov, Sergey Baradyntsev, George Huber, and Dzmitry
+          // Basenka are printed on this gamesheet as #88, #41, #37, and #9
+          // respectively, but listed here as their usual #11, #47, #91, and
+          // #7 per Jeremie.
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "6 Alex Paquin", "7 Dzmitry Basenka", "8 Andrey Gushchin", "11 Alexander Samoylov",
+            "14 Janne-Britt de Korte", "15 Nikita Koutsman", "17 Martin Simonak", "18 Chris Lesny",
+            "19 Jared Penner", "25 Matthew Drazenovich", "27 Jim Conboy", "47 Sergey Baradyntsev",
+            "77 Jeremie Gould", "78 Matthieu Coquet", "91 George Huber", "96 Duane Mattos",
+          ],
+        },
+        them: {
+          // "Carel ten Brink" is a judgment call reading of this gamesheet's
+          // "BRINK TEN Carel" -- the order looks OCR-scrambled, and "ten
+          // Brink" is a real Dutch surname, but this hasn't been
+          // independently confirmed.
+          goalie: "29 Willem Hamstra",
+          dressed: [
+            "3 Juriaan Vlieger", "4 Carel ten Brink", "11 Bote Oosterhoff", "15 Remco Jonge",
+            "23 Sytze Geertsma", "25 Sean Gilliam", "26 Mariska Jong", "40 Elzo Reiber",
+            "52 Bas Wolthuis", "57 Andre Drogen", "66 Benny Timmermans", "72 Gerrit Wagenaar",
+            "77 Bonne Oosten", "81 Ivanna Postma", "88 Henk Olphen",
+          ],
+        },
+      },
+    },
+    "2021-11-07": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 5N-011",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["R. Ronda", "J. van der Berg"],
+        // Official scorer and timer both left blank ("-") on this gamesheet.
+      },
+      scoring: [
+        { period: 1, time: "04:28", team: "us", scorer: "Chris Lesny", assists: [], strength: "EQ" },
+        { period: 1, time: "07:49", team: "us", scorer: "Jared Penner", assists: ["Janne-Britt de Korte"], strength: "EQ" },
+        { period: 1, time: "12:51", team: "us", scorer: "Nikita Koutsman", assists: ["Lorand Abai"], strength: "EQ" },
+        { period: 1, time: "17:41", team: "us", scorer: "Jared Penner", assists: ["Nikita Koutsman"], strength: "EQ" },
+        { period: 1, time: "19:50", team: "them", scorer: "Vincent Chang", assists: [], strength: "EQ" },
+        { period: 1, time: "19:59", team: "us", scorer: "Jim Conboy", assists: [], strength: "EQ" },
+        { period: 2, time: "20:17", team: "us", scorer: "Sergey Baradyntsev", assists: ["Andrey Gushchin"], strength: "EQ" },
+        { period: 2, time: "22:16", team: "them", scorer: "Vincent Chang", assists: ["Brian Tongeren"], strength: "EQ" },
+        { period: 2, time: "23:14", team: "us", scorer: "Martin Simonak", assists: ["Dzmitry Basenka", "Lorand Abai"], strength: "EQ" },
+        { period: 2, time: "24:56", team: "us", scorer: "Sergey Baradyntsev", assists: ["Andrey Gushchin"], strength: "EQ" },
+        { period: 2, time: "27:20", team: "us", scorer: "Dzmitry Basenka", assists: [], strength: "EQ" },
+        { period: 2, time: "31:44", team: "us", scorer: "Chris Lesny", assists: ["Martin Simonak"], strength: "EQ" },
+        { period: 2, time: "32:40", team: "us", scorer: "Alexander Samoylov", assists: ["Chris Lesny"], strength: "EQ" },
+        { period: 2, time: "32:48", team: "us", scorer: "George Huber", assists: ["Andrey Gushchin"], strength: "EQ" },
+        { period: 2, time: "33:34", team: "us", scorer: "Nikita Koutsman", assists: ["Andrey Gushchin"], strength: "EQ" },
+        { period: 2, time: "37:24", team: "us", scorer: "Dzmitry Basenka", assists: ["Martin Simonak"], strength: "EQ" },
+        { period: 2, time: "38:50", team: "us", scorer: "Janne-Britt de Korte", assists: ["George Huber", "Matthew Drazenovich"], strength: "EQ" },
+        { period: 3, time: "44:21", team: "us", scorer: "Dzmitry Basenka", assists: ["Martin Simonak"], strength: "EQ" },
+        { period: 3, time: "47:08", team: "us", scorer: "Dzmitry Basenka", assists: ["Martin Simonak"], strength: "EQ" },
+        { period: 3, time: "47:19", team: "us", scorer: "Martin Simonak", assists: ["Alexander Samoylov"], strength: "EQ" },
+      ],
+      penalties: [
+        { period: 2, time: "35:05", team: "us", player: "Jeroen Valentijn", code: "TRIP", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 5, goalsThem: 1 },
+        { period: 2, goalsUs: 10, goalsThem: 1 },
+        { period: 3, goalsUs: 3, goalsThem: 0 },
+      ],
+      lineup: {
+        us: {
+          // No goalie is named anywhere on this gamesheet -- no position
+          // column at all, and the goalie-change log is blank. Tori
+          // Holmes-Kirk is used here as the team's established goalie for
+          // this season, consistent with every other game, though this
+          // specific game doesn't confirm it independently.
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "2 Lorand Abai", "6 Alex Paquin", "7 Dzmitry Basenka", "8 Andrey Gushchin",
+            "11 Alexander Samoylov", "13 Jeroen Valentijn", "14 Janne-Britt de Korte", "15 Nikita Koutsman",
+            "17 Martin Simonak", "18 Chris Lesny", "19 Jared Penner", "25 Matthew Drazenovich",
+            "27 Jim Conboy", "47 Sergey Baradyntsev", "77 Jeremie Gould", "91 George Huber",
+          ],
+        },
+        them: {
+          goalie: "15 Bob Gase",
+          dressed: [
+            "4 Michael Early", "9 Hans Rijssel", "10 Brian Tongeren", "19 Vincent Chang",
+            "20 Wessel Sipma", "21 Anze Singer", "25 Kevin Ardoin", "42 Jason Mensingh",
+            "45 Adnan Abdelkrim", "48 Eda Emirdag", "69 Kelly Whelan", "77 Willem Hesseling",
+            "86 Dmitry Kim",
+          ],
+        },
+      },
+    },
+    // Division Final (post-season) vs Red Eagles Den Bosch 2, sourced entirely
+    // from the printed gamesheet PDF -- no BenchApp export exists for this
+    // season, so unlike 2022-2023 onward, the PDF is the primary source here,
+    // cross-checked against Jeremie's own high-level per-game log and his
+    // review of photos/video from the game itself. Nikita Koutsman is printed
+    // on this gamesheet as #55, but listed here as his usual #15 per Jeremie.
+    // Seven players on the printed roster (Lorand Abai, Alexander Samoylov,
+    // Martin Simonak, Ben Grunfeld, Matthew Drazenovich, Dirk McLaughlin, and
+    // Matthieu Coquet) were confirmed by Jeremie as not having actually
+    // played, based on the game's photos/video, so they're excluded from the
+    // lineup below despite being on the gamesheet. Team B's roster on this
+    // gamesheet has no position column filled in at all, so positions for
+    // Mustangs players aren't sourced from this game. Tori Holmes-Kirk isn't
+    // marked "G" on the printed roster either, but she's the team's
+    // established goalie and no other candidate appears on the roster, so
+    // she's used as the goalie here.
+    "2022-03-27": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland (no wedstrijdnr printed)",
+      venue: "De Uithof, Den Haag",
+      officials: {
+        referees: ["Mike Klop"], // 2nd referee left blank
+        scorer: "Calame", // first name not given on this gamesheet
+        timer: "Baaij", // first name not given on this gamesheet
+      },
+      scoring: [
+        { period: 1, time: "03:13", team: "us", scorer: "Duane Mattos", assists: ["Chris Lesny"], strength: "EQ" },
+        { period: 1, time: "05:55", team: "them", scorer: "Michiel de Nijs", assists: [], strength: "PP" },
+        { period: 1, time: "07:35", team: "them", scorer: "Steef Dorna", assists: ["Wesll Kuipers"], strength: "EQ" },
+        { period: 1, time: "10:46", team: "them", scorer: "Bart Klinckenberg", assists: [], strength: "EQ" },
+        { period: 1, time: "12:07", team: "them", scorer: "Niek Nabbe", assists: [], strength: "EQ" },
+        { period: 1, time: "16:38", team: "us", scorer: "George Huber", assists: [], strength: "EQ" },
+        { period: 2, time: "25:22", team: "them", scorer: "Niek Nabbe", assists: ["Patrick Koning"], strength: "EQ" },
+        { period: 2, time: "27:32", team: "them", scorer: "Michiel de Nijs", assists: [], strength: "EQ" },
+        { period: 2, time: "35:42", team: "them", scorer: "Kevin Houdijk", assists: ["John Sleutjes"], strength: "EQ" },
+        { period: 2, time: "35:49", team: "them", scorer: "Bart Klinckenberg", assists: ["Jip Koning"], strength: "EQ" },
+        { period: 2, time: "36:14", team: "us", scorer: "Dzmitry Basenka", assists: ["Jared Penner"], strength: "EQ" },
+        { period: 3, time: "45:03", team: "them", scorer: "Kevin Houdijk", assists: [], strength: "EQ" },
+        { period: 3, time: "49:11", team: "them", scorer: "Michiel de Nijs", assists: [], strength: "EQ" },
+        { period: 3, time: "51:43", team: "them", scorer: "Onkie de Senerpont Domis", assists: [], strength: "EQ" },
+        { period: 3, time: "54:05", team: "them", scorer: "Steef Dorna", assists: ["Niek Nabbe"], strength: "EQ" },
+        { period: 3, time: "57:57", team: "us", scorer: "Alex Paquin", assists: ["Andrey Gushchin"], strength: "EQ" },
+        { period: 3, time: "58:54", team: "them", scorer: "Steef Dorna", assists: ["Onkie de Senerpont Domis", "Niek Nabbe"], strength: "EQ" },
+      ],
+      penalties: [
+        { period: 1, time: "05:31", team: "us", player: "Alex Paquin", code: "INTRF", min: 2 },
+        { period: 2, time: "39:30", team: "them", player: "Onkie de Senerpont Domis", code: "INTRF", min: 2 },
+        { period: 3, time: "55:28", team: "them", player: "Onkie de Senerpont Domis", code: "INTRF", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 2, goalsThem: 4 },
+        { period: 2, goalsUs: 1, goalsThem: 4 },
+        { period: 3, goalsUs: 1, goalsThem: 5 },
+      ],
+      lineup: {
+        us: {
+          // Confirmed by Jeremie via photos/video of the game (no BenchApp
+          // Attended export exists for this season): Lorand Abai, Alexander
+          // Samoylov, Martin Simonak, Ben Grunfeld, Matthew Drazenovich, Dirk
+          // McLaughlin, and Matthieu Coquet were all on the printed roster but
+          // did not actually play, so they're excluded here. Nikita Koutsman
+          // is printed as #55 on the gamesheet, but listed here as his usual
+          // #15 per Jeremie.
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "6 Alex Paquin", "7 Dzmitry Basenka", "8 Andrey Gushchin", "13 Jeroen Valentijn",
+            "14 Janne-Britt de Korte", "15 Nikita Koutsman", "18 Chris Lesny", "19 Jared Penner",
+            "27 Jim Conboy", "47 Sergey Baradyntsev", "77 Jeremie Gould", "91 George Huber", "96 Duane Mattos",
+          ],
+        },
+        them: {
+          goalie: "30 Pascal Pennings",
+          dressed: [
+            "10 John Sleutjes", "11 Paul Kok", "12 Steef Dorna", "13 Kevin Houdijk",
+            "19 Bart Klinckenberg", "20 Onkie de Senerpont Domis", "22 Niek Nabbe", "24 Michiel de Nijs",
+            "25 Bart Kok", "29 Noes de Senerpont Domis", "40 Wesll Kuipers", "55 Jip Koning",
+            "66 Coen de Weerd", "73 Jinn Herrings", "75 Michel Wolters", "89 Patrick Koning",
+          ],
+        },
+      },
+    },
+  },
   "2022-2023": {
     // First game of the 2022-2023 season, and the cleanest reconciliation of the
     // whole project so far: all 6 goals and all 3 penalties matched perfectly
@@ -1257,11 +1539,11 @@ const GAME_DETAILS = {
       ],
       lineup: {
         us: {
-          // This gamesheet's own header says "GIJS Groningen 4," but Jeremie
-          // confirmed the opponent is actually GIJS Groningen 3 (matching
-          // SCHEDULE_DATA) — the header itself is the error, same pattern as the
-          // 2023-11-26 Leiden Gladiators game. Pijl's 44:10 goal flipped from EQ to
-          // SH, confirmed via the penalty clock (GIJS's own Dijkhuizen was still in
+          // This gamesheet's own header says "GIJS Groningen 4," which is correct
+          // for this season (matching SCHEDULE_DATA) — despite this club being
+          // referred to as "GIJS Groningen 3" in other seasons, Jeremie confirmed
+          // they were actually squad 4 specifically in 2022-2023. Pijl's 44:10 goal
+          // flipped from EQ to SH, confirmed via the penalty clock (GIJS's own Dijkhuizen was still in
           // the box). Dirk McLaughlin listed with his usual #73 per Jeremie, though
           // this gamesheet printed #44. Nikita Koutsman confirmed by Jeremie as having
           // played; independently corroborated by his own assist in this game.
@@ -1458,10 +1740,11 @@ const GAME_DETAILS = {
           // Keijzer's 18:42 goal flipped from EQ to PP, confirmed via the penalty
           // clock — Holmes-Kirk's own delay-of-game minor (as goalie) was still
           // running, putting the Mustangs shorthanded. This gamesheet's own header
-          // says "GIJS Groningen 4," same recurring naming error confirmed in the
-          // 2022-11-06 meeting — the real opponent is GIJS Groningen 3, matching
-          // SCHEDULE_DATA. Three players (Xavier Boot, Willem Jan van Loon, Jon
-          // Attwell) filled in as guests this game, all tagged "Spare" in Attended
+          // says "GIJS Groningen 4," which is correct for this season (matching
+          // SCHEDULE_DATA and the 2022-11-06 game) — this club is "GIJS Groningen 3"
+          // in other seasons, but was squad 4 specifically in 2022-2023. Three
+          // players (Xavier Boot, Willem Jan van Loon, Jon Attwell) filled in as
+          // guests this game, all tagged "Spare" in Attended
           // — all three appear elsewhere in this project as opponents (Boot and
           // van Loon for GIJS, Attwell for Amsterdam Tigers 6), suggesting a
           // cross-club emergency fill-in arrangement, not a data error. This
@@ -4445,7 +4728,7 @@ const STANDINGS_DATA = {
       { team: "Amsterdam Tigers 6", gp: 12, w: 7, l: 5, t: 0, gf: 66, ga: 77, gd: "-11", pts: 14 },
       { team: "Amsterdam Mustangs", gp: 12, w: 5, l: 6, t: 1, gf: 66, ga: 70, gd: "-4", pts: 11 },
       { team: "Leiden Gladiators", gp: 12, w: 5, l: 7, t: 0, gf: 60, ga: 67, gd: "-7", pts: 10 },
-      { team: "GIJS Groningen 3", gp: 12, w: 5, l: 7, t: 0, gf: 69, ga: 94, gd: "-25", pts: 10 },
+      { team: "GIJS Groningen 4", gp: 12, w: 5, l: 7, t: 0, gf: 69, ga: 94, gd: "-25", pts: 10 },
       { team: "Leiden Key Town Tigers", gp: 12, w: 1, l: 11, t: 0, gf: 42, ga: 116, gd: "-74", pts: 2 },
     ],
     south: [
@@ -4541,6 +4824,110 @@ const STANDINGS_DATA = {
 // STATS_DATA's actual leaders and match exactly. This deck introduces a new
 // category not seen in later years: Jennings (Goalie Tandem), shared by two
 // goalies — the two winners are joined in one `winner` string. No Masterton slide.
+// Personal per-game stats Jeremie has tracked himself for games where the
+// official gamesheet PDF hasn't been located yet. These are intentionally
+// kept separate from GAME_DETAILS/STATS_DATA (not verified against a
+// gamesheet or BenchApp), and shown only as a supplementary log on the
+// player's profile page. Note: the 2022-03-27 entry here (2 assists) doesn't
+// match GAME_DETAILS' reconstruction of that game from the actual gamesheet
+// PDF (which credits Gould with 0 points) -- both are kept as-is per
+// Jeremie's instruction not to reconcile this into GAME_DETAILS/STATS_DATA.
+const UNVERIFIED_GAME_LOGS = {
+  "2017-2018": {
+    "Jeremie Gould": [
+      { date: "2017-10-07", location: "Tilburg", opp: "Tilburg Capitals", home: false, g: 0, a: 0, pts: 0, pim: 0 },
+      // 2017-11-04 (@ Smoke Eaters Geleen) omitted -- Jeremie's log marks
+      // this a DNP (Malta).
+      { date: "2017-11-11", location: "Hoorn", opp: "Midnight Mooners Eindhoven", home: true, g: 0, a: 0, pts: 0, pim: 0 },
+      { date: "2017-11-17", location: "Hoorn", opp: "Utrecht OG's 2", home: true, g: 0, a: 0, pts: 0, pim: 0 },
+      { date: "2017-11-19", location: "Leiden", opp: "Leiden Key Town Tigers", home: false, g: 0, a: 0, pts: 0, pim: 0 },
+      { date: "2017-11-26", location: "Den Haag", opp: "Hijs Hokij Den Haag Bullets", home: false, g: 0, a: 0, pts: 0, pim: 0 },
+      { date: "2017-12-10", location: "Utrecht", opp: "Utrecht OG's 2", home: false, g: 0, a: 1, pts: 1, pim: 2 },
+      { date: "2017-12-17", location: "Dordrecht", opp: "Dordrecht Lions 2", home: false, g: 0, a: 3, pts: 3, pim: 0 },
+      // 2018-01-06 (vs Dordrecht Lions 2) omitted -- Jeremie's log marks this
+      // a DNP (Hazel).
+      { date: "2018-01-13", location: "Eindhoven", opp: "Midnight Mooners Eindhoven", home: false, g: 0, a: 1, pts: 1, pim: 0 },
+      { date: "2018-01-20", location: "Hoorn", opp: "Hijs Hokij Den Haag Bullets", home: true, g: 0, a: 0, pts: 0, pim: 0 },
+      { date: "2018-01-27", location: "Hoorn", opp: "Smoke Eaters Geleen", home: true, g: 0, a: 0, pts: 0, pim: 0 },
+      { date: "2018-02-02", location: "Hoorn", opp: "Leiden Key Town Tigers", home: true, g: 0, a: 0, pts: 0, pim: 5 },
+      // 2018-03-03 (vs Tilburg Capitals) omitted -- Jeremie's log marks this
+      // a DNP (Korea).
+    ],
+  },
+  "2018-2019": {
+    "Jeremie Gould": [
+      { date: "2018-10-21", location: "Amsterdam", opp: "Leiden Key Town Tigers", home: true, g: 0, a: 0, pts: 0, pim: 0 },
+      { date: "2018-11-03", location: "Den Haag", opp: "Hijs Hokij Den Haag Flames", home: false, g: 1, a: 1, pts: 2, pim: 0 },
+      { date: "2018-11-11", location: "Amsterdam", opp: "Hijs Hokij Den Haag Bullets", home: true, g: 0, a: 0, pts: 0, pim: 0 },
+      { date: "2018-11-24", location: "Geleen", opp: "Smoke Eaters Geleen", home: false, g: 0, a: 0, pts: 0, pim: 0 },
+      { date: "2018-12-02", location: "Amsterdam", opp: "Tilburg Capitals", home: true, g: 0, a: 1, pts: 1, pim: 0 },
+      { date: "2019-01-05", location: "Den Haag", opp: "Hijs Hokij Den Haag Bullets", home: false, g: 0, a: 0, pts: 0, pim: 0 },
+      // 2019-01-20 (@ Leiden Key Town Tigers) omitted -- Jeremie's log marks
+      // this a DNP (Tampa).
+      { date: "2019-01-27", location: "Amsterdam", opp: "Hijs Hokij Den Haag Flames", home: true, g: 2, a: 0, pts: 2, pim: 0 },
+      { date: "2019-02-02", location: "Amsterdam", opp: "Smoke Eaters Geleen", home: true, g: 0, a: 0, pts: 0, pim: 0 },
+      { date: "2019-02-10", location: "Amsterdam", opp: "Utrecht OG's 2", home: true, g: 1, a: 0, pts: 1, pim: 0 },
+      { date: "2019-02-16", location: "Utrecht", opp: "Utrecht OG's 2", home: false, g: 0, a: 2, pts: 2, pim: 4 },
+      { date: "2019-02-23", location: "Tilburg", opp: "Tilburg Capitals", home: false, g: 0, a: 0, pts: 0, pim: 0 },
+      // 2019-03-08 and 2019-03-10 (Relegation Playoff vs Zoetermeer Panters
+      // Storks) omitted -- Jeremie's log marks both a DNP (Injured), and
+      // they're post-season besides, tracked separately under
+      // RELEGATION_PLAYOFFS.
+    ],
+  },
+  "2019-2020": {
+    "Jeremie Gould": [
+      { date: "2019-10-13", location: "Amsterdam", opp: "GIJS Groningen 4", home: true, g: 1, a: 3, pts: 4, pim: 0 },
+      { date: "2019-10-20", location: "Groningen", opp: "GIJS Groningen 4", home: false, g: 0, a: 0, pts: 0, pim: 0 },
+      { date: "2019-10-26", location: "Amsterdam", opp: "Twente Blue Caps Enschede", home: true, g: 1, a: 1, pts: 2, pim: 0 },
+      { date: "2019-11-09", location: "Hoorn", opp: "Blue Mountain Cougars Hoorn", home: false, g: 0, a: 1, pts: 1, pim: 2 },
+      { date: "2019-11-16", location: "Alkmaar", opp: "Alcmaria Flames Alkmaar", home: false, g: 0, a: 0, pts: 0, pim: 0 },
+      { date: "2019-11-24", location: "Amsterdam", opp: "Amsterdam Snipers", home: true, g: 0, a: 1, pts: 1, pim: 0 },
+      { date: "2019-12-01", location: "Amsterdam", opp: "Leiden Gladiators", home: true, g: 0, a: 0, pts: 0, pim: 0 },
+      { date: "2019-12-22", location: "Amsterdam", opp: "GIJS Groningen 5", home: true, g: 0, a: 1, pts: 1, pim: 0 },
+      { date: "2020-01-11", location: "Enschede", opp: "Twente Blue Caps Enschede", home: false, g: 0, a: 0, pts: 0, pim: 2 },
+      { date: "2020-01-18", location: "Amsterdam", opp: "Amsterdam Snipers", home: false, g: 1, a: 0, pts: 1, pim: 2 },
+      { date: "2020-01-26", location: "Amsterdam", opp: "Blue Mountain Cougars Hoorn", home: true, g: 0, a: 2, pts: 2, pim: 0 },
+      { date: "2020-02-16", location: "Amsterdam", opp: "Alcmaria Flames Alkmaar", home: true, g: 0, a: 0, pts: 0, pim: 0 },
+      { date: "2020-03-08", location: "Groningen", opp: "GIJS Groningen 5", home: false, g: 2, a: 0, pts: 2, pim: 0 },
+      // 2020-03-15 (@ Leiden Gladiators) omitted -- cancelled due to COVID-19,
+      // same as SCHEDULE_DATA, so not counted as a game played.
+    ],
+  },
+  "2021-2022": {
+    "Jeremie Gould": [
+      { date: "2022-02-06", location: "Leiden", opp: "Leiden Blues", home: false, g: 2, a: 4, pts: 6, pim: 0 },
+      { date: "2022-02-27", location: "Alkmaar", opp: "Alcmaria Flames Alkmaar 2", home: false, g: 0, a: 3, pts: 3, pim: 0 },
+      { date: "2022-03-12", location: "Amsterdam", opp: "Amsterdam Tigers 6", home: true, g: 1, a: 2, pts: 3, pim: 0 },
+    ],
+  },
+};
+
+// Season totals for the player profile's career-stats table, for seasons not
+// covered by STATS_DATA (kept separate so the main team Stats tab for that
+// season, which only has this one player's data, doesn't show an incomplete
+// team roster). For 2017-2018, this is Jeremie's full personal log -- 11
+// games played (2017-11-04, 2018-01-06, and 2018-03-03 excluded as DNPs).
+// For 2018-2019, this is Jeremie's full personal log -- 11 games played
+// (2019-01-20 excluded as a DNP, and the two Relegation Playoff games vs
+// Zoetermeer are excluded both as DNPs and as post-season). For 2019-2020,
+// this is Jeremie's full personal log for the season -- 13 games played
+// (the 2020-03-15 game against Leiden Gladiators is excluded, cancelled due
+// to COVID-19 same as SCHEDULE_DATA). For 2021-2022, this combines
+// Jeremie's 3 verified GAME_DETAILS regular-season games (10-17, 10-31,
+// 11-07) with the 3 games from his personal log (02-06, 02-27, 03-12) -- 6
+// games total. The 03-27 Division Final is excluded here (and from his game
+// log) since it's post-season, tracked separately under RELEGATION_PLAYOFFS.
+const UNVERIFIED_SEASON_STATS = {
+  "Jeremie Gould": [
+    { season: "2017-2018", pos: "RW", gp: 11, g: 0, a: 5, pts: 5, pim: 7 },
+    { season: "2018-2019", pos: "RW", gp: 11, g: 4, a: 4, pts: 8, pim: 4 },
+    { season: "2019-2020", pos: "LW", gp: 13, g: 5, a: 9, pts: 14, pim: 6 },
+    { season: "2020-2021", division: "N/A", team: "Cancelled due to COVID-19", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0, unverified: false },
+    { season: "2021-2022", pos: "LW", gp: 6, g: 8, a: 13, pts: 21, pim: 0 },
+  ],
+};
+
 const AWARDS_DATA = {
   "2023-2024": [
     { category: "Hart (Team MVP)", winner: "Jim Conboy" },
@@ -5419,6 +5806,28 @@ function PlayerProfilePage({ season, playerName, onBack }) {
           skaterGames.push({ date, opp: game.opp, home: game.home, res: game.res, g, a, pts: g + a, pim });
         }
       });
+
+    // Fold in Jeremie's personal per-game log for games without a gamesheet
+    // yet -- only for dates not already covered above by a verified
+    // GAME_DETAILS entry, so a verified game is never overridden by an
+    // unverified one for the same date.
+    const coveredDates = new Set(skaterGames.map((g) => g.date));
+    (UNVERIFIED_GAME_LOGS[season]?.[playerName] || []).forEach((g) => {
+      if (coveredDates.has(g.date)) return;
+      skaterGames.push({
+        date: g.date,
+        opp: g.opp,
+        home: g.home,
+        res: null,
+        g: g.didNotPlay ? "\u2014" : g.g,
+        a: g.didNotPlay ? "\u2014" : g.a,
+        pts: g.didNotPlay ? "DNP" : g.pts,
+        pim: g.didNotPlay ? "\u2014" : g.pim,
+        unverified: true,
+      });
+    });
+    skaterGames.sort((a, b) => a.date.localeCompare(b.date));
+
     return { skaterGames, goalieGames };
   }, [season, playerName]);
 
@@ -5434,6 +5843,23 @@ function PlayerProfilePage({ season, playerName, onBack }) {
         const goalie = STATS_DATA[s].goalies.find((p) => p.name === playerName);
         if (goalie) goalieSeasons.push({ season: s, division: divisionLabel(s) ? ordinal(DIVISIONS[s]) : "\u2014", team: "Amsterdam Mustangs", ...goalie });
       });
+
+    // Fold in season totals not covered by STATS_DATA (e.g. seasons still
+    // being reconstructed from gamesheets), only for seasons not already
+    // present above.
+    const coveredSeasons = new Set(skaterSeasons.map((s) => s.season));
+    (UNVERIFIED_SEASON_STATS[playerName] || []).forEach((s) => {
+      if (coveredSeasons.has(s.season)) return;
+      skaterSeasons.push({
+        season: s.season,
+        division: divisionLabel(s.season) ? ordinal(DIVISIONS[s.season]) : "\u2014",
+        team: "Amsterdam Mustangs",
+        unverified: true,
+        ...s,
+      });
+    });
+    skaterSeasons.sort((a, b) => a.season.localeCompare(b.season));
+
     return { skaterSeasons, goalieSeasons };
   }, [playerName]);
 
@@ -5547,18 +5973,27 @@ function PlayerProfilePage({ season, playerName, onBack }) {
                 { key: "pts", label: "Pts" },
                 { key: "pim", label: "PIM" },
               ]}
-              rows={skaterGames.map((g) => ({ ...g, homeAway: g.home ? "Home" : "Away" }))}
+              rows={skaterGames.map((g) => ({
+                ...g,
+                date: g.unverified ? `${g.date} *` : g.date,
+                homeAway: g.home === null ? "\u2014" : g.home ? "Home" : "Away",
+              }))}
               highlightKey="pts"
               totalsRow={{
                 date: "TOTAL",
                 homeAway: "",
                 opp: `${skaterGames.length} Games Played`,
-                g: skaterGames.reduce((sum, g) => sum + g.g, 0),
-                a: skaterGames.reduce((sum, g) => sum + g.a, 0),
-                pts: skaterGames.reduce((sum, g) => sum + g.pts, 0),
-                pim: skaterGames.reduce((sum, g) => sum + g.pim, 0),
+                g: skaterGames.reduce((sum, g) => sum + (typeof g.g === "number" ? g.g : 0), 0),
+                a: skaterGames.reduce((sum, g) => sum + (typeof g.a === "number" ? g.a : 0), 0),
+                pts: skaterGames.reduce((sum, g) => sum + (typeof g.pts === "number" ? g.pts : 0), 0),
+                pim: skaterGames.reduce((sum, g) => sum + (typeof g.pim === "number" ? g.pim : 0), 0),
               }}
             />
+          )}
+          {skaterGames.some((g) => g.unverified) && (
+            <div style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 11, marginTop: 8 }}>
+              * From Jeremie&rsquo;s personal log.
+            </div>
           )}
         </div>
       )}
@@ -5582,10 +6017,15 @@ function PlayerProfilePage({ season, playerName, onBack }) {
                 { key: "pts", label: "Pts" },
                 { key: "pim", label: "PIM" },
               ]}
-              rows={skaterSeasons}
+              rows={skaterSeasons.map((s) => (s.unverified ? { ...s, season: `${s.season} *` } : s))}
               highlightKey="pts"
               totalsRow={skaterTotals}
             />
+          )}
+          {skaterSeasons.some((s) => s.unverified) && (
+            <div style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 11, marginTop: 8 }}>
+              * From Jeremie&rsquo;s personal log.
+            </div>
           )}
           {goalieSeasons.length > 0 && (
             <div className={skaterSeasons.length > 0 ? "mt-6" : ""}>
@@ -5673,13 +6113,20 @@ export default function MustangsSite() {
       {/* Top bar */}
       <div style={{ borderBottom: `1px solid ${C.line}` }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-5 sm:py-6 flex items-center justify-between gap-4 flex-wrap">
-          <div className="flex items-center gap-4 min-w-0">
-            <img src={LOGO} alt="Amsterdam Mustangs logo" className="w-16 h-16 sm:w-20 sm:h-20 object-contain shrink-0" />
-            <div
-              style={{ fontFamily: FONTS.display, color: C.white, fontSize: "clamp(24px, 4vw, 34px)", letterSpacing: "0.01em", lineHeight: 1 }}
+          <div className="flex items-center min-w-0">
+            <button
+              type="button"
+              onClick={() => { setTab("home"); setSelectedGameDate(null); setSelectedAwardKey(null); setSelectedPlayerName(null); }}
+              className="flex items-center gap-4 min-w-0"
+              style={{ background: "none", border: "none", padding: 0, cursor: "pointer", textAlign: "left" }}
             >
-              AMSTERDAM MUSTANGS
-            </div>
+              <img src={LOGO} alt="Amsterdam Mustangs logo" className="w-24 h-24 sm:w-32 sm:h-32 object-contain shrink-0" />
+              <div
+                style={{ fontFamily: FONTS.display, color: C.white, fontSize: "clamp(36px, 6vw, 51px)", letterSpacing: "0.01em", lineHeight: 1 }}
+              >
+                AMSTERDAM MUSTANGS
+              </div>
+            </button>
           </div>
 
           {/* Season switcher */}
@@ -5764,7 +6211,7 @@ export default function MustangsSite() {
                       <div style={{ fontFamily: FONTS.mono, color: C.white, fontSize: 32, fontWeight: 700 }}>
                         {record.w}-{record.l}-{record.t}
                       </div>
-                      <div style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 11, letterSpacing: "0.1em" }}>RECORD (W-L-T)</div>
+                      <div style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 11, letterSpacing: "0.1em" }}>SEASON RECORD (W-L-T)</div>
                     </div>
                     {nextGame && (
                       <div>
@@ -5849,7 +6296,14 @@ export default function MustangsSite() {
         {tab === "schedule" && selectedGameDate && (
           <GameDetailPage
             season={season}
-            game={schedule.find((g) => g.date === selectedGameDate)}
+            game={
+              schedule.find((g) => g.date === selectedGameDate) ||
+              (RELEGATION_PLAYOFFS[season]?.games.find((g) => g.date === selectedGameDate) && {
+                ...RELEGATION_PLAYOFFS[season].games.find((g) => g.date === selectedGameDate),
+                opp: RELEGATION_PLAYOFFS[season].opponent,
+                status: "final",
+              })
+            }
             detail={GAME_DETAILS[season]?.[selectedGameDate]}
             onBack={() => setSelectedGameDate(null)}
           />
@@ -5860,7 +6314,7 @@ export default function MustangsSite() {
             {schedule.length > 0 ? (
               <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${C.line}` }}>
                 {schedule.map((g, i) => {
-                  const clickable = g.status === "final";
+                  const clickable = g.status === "final" && !g.cancelled;
                   const Wrapper = clickable ? "button" : "div";
                   return (
                     <Wrapper
@@ -5894,11 +6348,18 @@ export default function MustangsSite() {
                       </div>
                       {g.status === "final" ? (
                         <div className="flex items-center gap-3 shrink-0">
+                          {g.cancelled && (
+                            <span title="Cancelled due to the COVID-19 pandemic. Score counted twice from other game against the same team.">
+                              <Badge tone="neutral">CANCELLED</Badge>
+                            </span>
+                          )}
                           <span style={{ fontFamily: FONTS.mono, color: C.white, fontSize: 14 }}>{g.gf}&ndash;{g.ga}</span>
                           <Badge tone={g.res === "W" ? "win" : g.res === "L" ? "loss" : "ot"}>{g.res}</Badge>
                         </div>
                       ) : g.status === "cancelled" ? (
-                        <Badge tone="neutral">CANCELLED</Badge>
+                        <span title={g.note || undefined}>
+                          <Badge tone="neutral">CANCELLED</Badge>
+                        </span>
                       ) : (
                         <Badge tone="neutral">UPCOMING</Badge>
                       )}
@@ -5915,27 +6376,46 @@ export default function MustangsSite() {
                   {(RELEGATION_PLAYOFFS[season].label || "Relegation Playoff").toUpperCase()}
                 </h3>
                 <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${C.line}` }}>
-                  {RELEGATION_PLAYOFFS[season].games.map((g, i, arr) => (
-                    <div
-                      key={i}
-                      className="flex items-center justify-between px-4 sm:px-5 py-3 gap-3"
-                      style={{ background: i % 2 ? C.surface : C.surface2, borderBottom: i < arr.length - 1 ? `1px solid ${C.line}` : "none" }}
-                    >
-                      <div className="flex items-center gap-3 min-w-0">
-                        <span style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, width: 78, flexShrink: 0 }}>{g.date}</span>
-                        {opponentLogo(RELEGATION_PLAYOFFS[season].opponent) && (
-                          <img src={opponentLogo(RELEGATION_PLAYOFFS[season].opponent)} alt="" aria-hidden className="w-9 h-9 object-contain shrink-0" />
-                        )}
-                        <span style={{ color: C.white, fontSize: 14, fontWeight: 600 }} className="truncate">
-                          {g.home ? "vs" : "@"} {RELEGATION_PLAYOFFS[season].opponent}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-3 shrink-0">
-                        <span style={{ fontFamily: FONTS.mono, color: C.white, fontSize: 14 }}>{g.gf}&ndash;{g.ga}</span>
-                        <Badge tone={g.res === "W" ? "win" : g.res === "L" ? "loss" : "ot"}>{g.res}</Badge>
-                      </div>
-                    </div>
-                  ))}
+                  {RELEGATION_PLAYOFFS[season].games.map((g, i, arr) => {
+                    const clickable = !!GAME_DETAILS[season]?.[g.date];
+                    const Wrapper = clickable ? "button" : "div";
+                    return (
+                      <Wrapper
+                        key={i}
+                        type={clickable ? "button" : undefined}
+                        onClick={clickable ? () => setSelectedGameDate(g.date) : undefined}
+                        className="flex items-center justify-between px-4 sm:px-5 py-3 gap-3 w-full text-left"
+                        style={{
+                          background: i % 2 ? C.surface : C.surface2,
+                          borderBottom: i < arr.length - 1 ? `1px solid ${C.line}` : "none",
+                          border: "none",
+                          cursor: clickable ? "pointer" : "default",
+                          fontFamily: FONTS.body,
+                        }}
+                      >
+                        <div className="flex items-center gap-3 min-w-0">
+                          <span style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, width: 78, flexShrink: 0 }}>{g.date}</span>
+                          {opponentLogo(RELEGATION_PLAYOFFS[season].opponent) && (
+                            <img src={opponentLogo(RELEGATION_PLAYOFFS[season].opponent)} alt="" aria-hidden className="w-11 h-11 object-contain shrink-0" />
+                          )}
+                          <div className="min-w-0">
+                            <div style={{ color: C.white, fontSize: 14, fontWeight: 600 }} className="truncate">
+                              {g.home ? "vs" : "@"} {RELEGATION_PLAYOFFS[season].opponent}
+                            </div>
+                            {(g.time || g.venue) && (
+                              <div style={{ color: C.muted, fontSize: 11, fontFamily: FONTS.mono, marginTop: 2 }} className="truncate">
+                                {[g.time, g.venue].filter(Boolean).join(" \u00b7 ")}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3 shrink-0">
+                          <span style={{ fontFamily: FONTS.mono, color: C.white, fontSize: 14 }}>{g.gf}&ndash;{g.ga}</span>
+                          <Badge tone={g.res === "W" ? "win" : g.res === "L" ? "loss" : "ot"}>{g.res}</Badge>
+                        </div>
+                      </Wrapper>
+                    );
+                  })}
                 </div>
               </div>
             )}
