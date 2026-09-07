@@ -1739,10 +1739,13 @@ const GAME_DETAILS = {
         us: {
           // Keijzer's 18:42 goal flipped from EQ to PP, confirmed via the penalty
           // clock — Holmes-Kirk's own delay-of-game minor (as goalie) was still
-          // running, putting the Mustangs shorthanded. This gamesheet's own header
-          // says "GIJS Groningen 4," which is correct for this season (matching
-          // SCHEDULE_DATA and the 2022-11-06 game) — this club is "GIJS Groningen 3"
-          // in other seasons, but was squad 4 specifically in 2022-2023. Three
+          // running, putting the Mustangs shorthanded. Per Jeremie, that penalty
+          // was for unintentionally knocking the net off its moorings — not
+          // something that should draw a delay-of-game call, but the referee
+          // called it anyway, and it stands as recorded on the gamesheet. This
+          // gamesheet's own header says "GIJS Groningen 4," which is correct for
+          // this season (matching SCHEDULE_DATA and the 2022-11-06 game) — this
+          // club is "GIJS Groningen 3" in other seasons, but was squad 4 specifically in 2022-2023. Three
           // players (Xavier Boot, Willem Jan van Loon, Jon Attwell) filled in as
           // guests this game, all tagged "Spare" in Attended
           // — all three appear elsewhere in this project as opponents (Boot and
@@ -4990,6 +4993,12 @@ const STATS_DATA = {
       { num: 55, name: "Greg Alsing", pos: "D", gp: 4, g: 0, a: 0, pts: 0, pim: 2 },
       { num: 37, name: "Jon Attwell", pos: "F", gp: 1, g: 0, a: 0, pts: 0, pim: 0 },
       { num: 11, name: "Alexander Samoylov", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      // Tori Holmes-Kirk also appears here (in addition to the goalies table
+      // below) since she picked up a skater-type stat this season -- a
+      // delay-of-game minor for unintentionally knocking the net off its
+      // moorings, in the 2022-12-10 game. GP here matches her goalie GP for
+      // the season, not just the one game the penalty happened in.
+      { num: 31, name: "Tori Holmes-Kirk", pos: "G", gp: 3, g: 0, a: 0, pts: 0, pim: 2 },
     ],
     goalies: [
       { num: 31, name: "Tori Holmes-Kirk", gp: 3, w: 2, l: 1, t: 0, ga: 18, gaa: "6.00", so: 1 },
@@ -5023,6 +5032,12 @@ const STATS_DATA = {
       { num: 15, name: "Nikita Koutsman", pos: "LW", gp: 12, g: 3, a: 0, pts: 3, pim: 4 },
       { num: 6, name: "Alex Paquin", pos: "C", gp: 5, g: 1, a: 0, pts: 1, pim: 4 },
       { num: 13, name: "Jeroen Valentijn", pos: "D", gp: 10, g: 1, a: 0, pts: 1, pim: 2 },
+      // Tori Holmes-Kirk also appears here (in addition to the goalies table
+      // below) since she picked up a skater-type stat this season -- an
+      // assist on Jim Conboy's 07:32 goal in the 2024-03-03 game, likely on a
+      // long outlet pass. GP here matches her goalie GP for the season, not
+      // just the one game the assist happened in.
+      { num: 31, name: "Tori Holmes-Kirk", pos: "G", gp: 9, g: 0, a: 1, pts: 1, pim: 0 },
     ],
     goalies: [
       { num: 31, name: "Tori Holmes-Kirk", gp: 9, w: 3, l: 6, t: 0, ga: 56, gaa: "6.22", so: 0 },
