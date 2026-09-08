@@ -219,6 +219,9 @@ function opponentLogo(name) {
   const key = OPPONENT_LOGO_MAP[name];
   return key ? OPPONENT_LOGOS[key] : null;
 }
+function teamLogo(name) {
+  return name === "Amsterdam Mustangs" ? LOGO : opponentLogo(name);
+}
 
 const SEASONS = buildSeasons();
 const DEFAULT_SEASON = "2026-2027";
@@ -4702,7 +4705,7 @@ const STANDINGS_DATA = {
     ],
   },
   "2021-2022": {
-    date: "Super Sunday | 27-March-2022 | De Uithof | The Hague, Netherlands",
+    date: "Super Sunday | 2022-03-27 | De Uithof | The Hague, Netherlands",
     playoff: { awayTeam: "Amsterdam Mustangs", awayScore: 4, homeTeam: "Red Eagles Den Bosch 2", homeScore: 13 },
     north: [
       { team: "Amsterdam Mustangs", gp: 12, w: 12, l: 0, t: 0, gf: 148, ga: 32, gd: "+116", pts: 24 },
@@ -4723,7 +4726,7 @@ const STANDINGS_DATA = {
     ],
   },
   "2022-2023": {
-    date: "Super Sunday | 26-March-2023 | Silverdome | Zoetermeer, Netherlands",
+    date: "Super Sunday | 2023-03-26 | Silverdome | Zoetermeer, Netherlands",
     playoff: { awayTeam: "Blue Mountain Cougars Hoorn 1", awayScore: 2, homeTeam: "Tilburg Capitals", homeScore: 7 },
     north: [
       { team: "Blue Mountain Cougars Hoorn 1", gp: 12, w: 9, l: 2, t: 1, gf: 100, ga: 46, gd: "+54", pts: 19 },
@@ -4745,7 +4748,7 @@ const STANDINGS_DATA = {
     ],
   },
   "2023-2024": {
-    date: "Super Sunday | 07-Apr-2024 | Ijshaal de Vliet | Leiden, Netherlands",
+    date: "Super Sunday | 2024-04-07 | Ijshaal de Vliet | Leiden, Netherlands",
     playoff: { awayTeam: "Enschede Slapping Studs 1", awayScore: 7, homeTeam: "Eindhoven Kemphanen 2", homeScore: 12 },
     north: [
       { team: "Enschede Slapping Studs 1", gp: 14, w: 13, l: 1, t: 0, gf: 137, ga: 36, gd: "+101", pts: 26 },
@@ -4769,7 +4772,7 @@ const STANDINGS_DATA = {
     ],
   },
   "2024-2025": {
-    date: "Super Sunday | 06-Apr-2025 | Ijshaal de Vliet | Leiden, Netherlands",
+    date: "Super Sunday | 2025-04-06 | Ijshaal de Vliet | Leiden, Netherlands",
     playoff: { awayTeam: "GIJS Groningen 3", awayScore: 2, homeTeam: "Red Eagles Den Bosch 2", homeScore: 5 },
     north: [
       { team: "GIJS Groningen 3", gp: 12, w: 11, l: 1, t: 0, gf: 153, ga: 49, gd: "+104", pts: 22 },
@@ -4791,7 +4794,7 @@ const STANDINGS_DATA = {
     ],
   },
   "2025-2026": {
-    date: "Super Sunday | 12-Apr-2026 | Ijshaal de Vliet | Leiden, Netherlands",
+    date: "Super Sunday | 2026-04-12 | Ijshaal de Vliet | Leiden, Netherlands",
     playoff: { awayTeam: "Cool Mokum 2", awayScore: 4, homeTeam: "Nijmegen Gladiators", homeScore: 12 },
     north: [
       { team: "Cool Mokum 2", gp: 15, w: 11, l: 3, t: 1, gf: 144, ga: 76, gd: "+68", pts: 23 },
@@ -6449,20 +6452,52 @@ export default function MustangsSite() {
                   </div>
                 )}
                 {standings.playoff && (
-                  <div className="mt-8 rounded-lg p-5" style={{ background: C.surface, border: `1px solid ${C.line}` }}>
-                    <div style={{ fontFamily: FONTS.mono, color: C.red, fontSize: 11, letterSpacing: "0.1em", marginBottom: 10 }}>
-                      PLAYOFFS {standings.date && `\u00b7 ${standings.date.toUpperCase()}`}
-                    </div>
-                    <div className="flex items-center justify-between gap-4 flex-wrap">
-                      <div className="flex items-center gap-3">
-                        <span style={{ color: C.white, fontSize: 14 }}>{standings.playoff.awayTeam}</span>
-                        <span style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 18, fontWeight: 700 }}>{standings.playoff.awayScore}</span>
-                      </div>
-                      <span style={{ color: C.muted, fontSize: 12 }}>at</span>
-                      <div className="flex items-center gap-3">
-                        <span style={{ fontFamily: FONTS.mono, color: C.red, fontSize: 18, fontWeight: 700 }}>{standings.playoff.homeScore}</span>
-                        <span style={{ color: C.white, fontSize: 14, fontWeight: 700 }}>{standings.playoff.homeTeam}</span>
-                        <Badge>CHAMPIONS</Badge>
+                  <div className="mt-8">
+                    <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
+                      PLAYOFFS
+                    </h3>
+                    <div className="rounded-lg p-5" style={{ background: C.surface, border: `1px solid ${C.line}` }}>
+                      {standings.date && (
+                        <div style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 11, marginBottom: 14 }}>
+                          {standings.date.split("|").map((s) => s.trim()).join(" \u00b7 ").toUpperCase()}
+                        </div>
+                      )}
+                      <div className="flex items-center justify-between gap-4 flex-wrap">
+                        <div className="flex items-center gap-3">
+                          {teamLogo(standings.playoff.awayTeam) && (
+                            <img src={teamLogo(standings.playoff.awayTeam)} alt="" aria-hidden className="w-9 h-9 object-contain shrink-0" />
+                          )}
+                          <span style={{ color: C.white, fontSize: 14 }}>{standings.playoff.awayTeam}</span>
+                          <span
+                            className="flex items-center justify-center"
+                            style={{
+                              fontFamily: FONTS.mono, color: C.muted, fontSize: 18, fontWeight: 700,
+                              minWidth: 40, padding: "4px 8px", borderRadius: 6,
+                              background: C.ink, border: `1px solid ${C.line}`,
+                            }}
+                          >
+                            {standings.playoff.awayScore}
+                          </span>
+                          {standings.playoff.awayScore > standings.playoff.homeScore && <Badge>CHAMPIONS</Badge>}
+                        </div>
+                        <span style={{ color: C.muted, fontSize: 12 }}>at</span>
+                        <div className="flex items-center gap-3">
+                          {standings.playoff.homeScore > standings.playoff.awayScore && <Badge>CHAMPIONS</Badge>}
+                          <span
+                            className="flex items-center justify-center"
+                            style={{
+                              fontFamily: FONTS.mono, color: C.red, fontSize: 18, fontWeight: 700,
+                              minWidth: 40, padding: "4px 8px", borderRadius: 6,
+                              background: C.ink, border: `1px solid ${C.line}`,
+                            }}
+                          >
+                            {standings.playoff.homeScore}
+                          </span>
+                          <span style={{ color: C.white, fontSize: 14, fontWeight: 700 }}>{standings.playoff.homeTeam}</span>
+                          {teamLogo(standings.playoff.homeTeam) && (
+                            <img src={teamLogo(standings.playoff.homeTeam)} alt="" aria-hidden className="w-9 h-9 object-contain shrink-0" />
+                          )}
+                        </div>
                       </div>
                     </div>
                   </div>
