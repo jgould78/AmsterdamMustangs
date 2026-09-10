@@ -164,6 +164,7 @@ const OPPONENT_LOGO_MAP = {
   "Twente Blue Caps Enschede": "bluecaps",
   "Frisian Bombers Heerenveen": "frisianbombers",
   "UNIS Flyers 4 Heerenveen": "unisflyers",
+  "UNIS Flyers Heerenveen 3": "unisflyers",
   "Leiden Islanders": "leidenislanders",
   "Black Sheep Dordrecht": "blacksheep",
   "Dordrecht Lions 3": "dordrechtlions",
@@ -181,6 +182,7 @@ const OPPONENT_LOGO_MAP = {
   "Tilburg Capitals": "tilburgcapitals",
   "Vikings Eindhoven": "vikings",
   "Yeti's Breda": "yetis",
+  "Yeti's Breda 2": "yetis",
   "Zoetermeer Panters 2": "zoetermeerpanters",
   "Wild Panters Zoetermeer": "zoetermeerpanters",
   "Alcmaria Flames Alkmaar 2": "alcmaria",
@@ -189,6 +191,7 @@ const OPPONENT_LOGO_MAP = {
   "GIJS Groningen 5": "gijs",
   "Blue Mountain Cougars Hoorn": "hoorncougars",
   "Smoke Eaters Geleen": "geleen",
+  "Smoke Eaters Geleen 4": "geleen",
   "Zoetermeer Panters Storks": "zoetermeerpanters",
   "Zoetermeer Panters Bigfields": "zoetermeerpanters",
   "Amsterdam Snipers": "snipers",
@@ -197,7 +200,7 @@ const OPPONENT_LOGO_MAP = {
   "Odin Amsterdam": "thor",
   "Cool Mokum 2": "coolmokum",
   "Enschede Slapping Studs 1": "enschede",
-  "Striking Stallions Enschede": "enschede",
+  "Enschede Slapping Studs 2": "enschede",
   "GIJS Groningen 3": "gijs",
   "Slapsticks Flyers Heerenveen": "heerenveen",
   "Hijs Hokij Den Haag Ongetemd": "hijshokij",
@@ -213,6 +216,7 @@ const OPPONENT_LOGO_MAP = {
   "Leiden Lions": "leidenlions",
   "Leiden Polar Bears": "leidenlions",
   "Utrecht OG's 2": "ogs",
+  "Utrecht OG's": "ogs",
   "Red Eagles Den Bosch 2": "redeagles",
 };
 function opponentLogo(name) {
@@ -397,7 +401,7 @@ const ROSTERS = {
 const SCHEDULE_DATA = {
   "2017-2018": [
     { date: "2017-10-07", opp: "Tilburg Capitals", home: false, status: "final", res: "L", gf: 1, ga: 4 },
-    { date: "2017-11-04", opp: "Smoke Eaters Geleen", home: false, status: "final", res: "L", gf: 2, ga: 6 },
+    { date: "2017-11-04", opp: "Smoke Eaters Geleen 4", home: false, status: "final", res: "L", gf: 2, ga: 6 },
     { date: "2017-11-11", opp: "Midnight Mooners Eindhoven", home: true, status: "final", res: "W", gf: 11, ga: 5 },
     { date: "2017-11-17", opp: "Utrecht OG's 2", home: true, status: "final", res: "L", gf: 4, ga: 5 },
     { date: "2017-11-19", opp: "Leiden Key Town Tigers", home: false, status: "final", res: "L", gf: 2, ga: 7 },
@@ -407,7 +411,7 @@ const SCHEDULE_DATA = {
     { date: "2018-01-06", opp: "Dordrecht Lions 2", home: true, status: "final", res: "L", gf: 4, ga: 10 },
     { date: "2018-01-13", opp: "Midnight Mooners Eindhoven", home: false, status: "final", res: "W", gf: 2, ga: 1 },
     { date: "2018-01-20", opp: "Hijs Hokij Den Haag Bullets", home: true, status: "final", res: "L", gf: 2, ga: 6 },
-    { date: "2018-01-27", opp: "Smoke Eaters Geleen", home: true, status: "final", res: "L", gf: 1, ga: 9 },
+    { date: "2018-01-27", opp: "Smoke Eaters Geleen 4", home: true, status: "final", res: "L", gf: 1, ga: 9 },
     { date: "2018-02-02", opp: "Leiden Key Town Tigers", home: true, status: "final", res: "L", gf: 2, ga: 4 },
     { date: "2018-03-03", opp: "Tilburg Capitals", home: true, status: "final", res: "W", gf: 10, ga: 4 },
   ],
@@ -415,30 +419,30 @@ const SCHEDULE_DATA = {
     { date: "2018-10-21", opp: "Leiden Key Town Tigers", home: true, status: "final", res: "L", gf: 3, ga: 15 },
     { date: "2018-11-03", opp: "Hijs Hokij Den Haag Flames", home: false, status: "final", res: "W", gf: 4, ga: 0 },
     { date: "2018-11-11", opp: "Hijs Hokij Den Haag Bullets", home: true, status: "final", res: "L", gf: 4, ga: 7 },
-    { date: "2018-11-24", opp: "Smoke Eaters Geleen", home: false, status: "final", res: "L", gf: 2, ga: 10 },
+    { date: "2018-11-24", opp: "Smoke Eaters Geleen 4", home: false, status: "final", res: "L", gf: 2, ga: 10 },
     { date: "2018-12-02", opp: "Tilburg Capitals", home: true, status: "final", res: "L", gf: 5, ga: 6 },
     { date: "2019-01-05", opp: "Hijs Hokij Den Haag Bullets", home: false, status: "final", res: "L", gf: 1, ga: 15 },
     { date: "2019-01-20", opp: "Leiden Key Town Tigers", home: false, status: "final", res: "L", gf: 3, ga: 12 },
     { date: "2019-01-27", opp: "Hijs Hokij Den Haag Flames", home: true, status: "final", res: "L", gf: 5, ga: 8 },
-    { date: "2019-02-02", opp: "Smoke Eaters Geleen", home: true, status: "final", res: "L", gf: 2, ga: 6 },
+    { date: "2019-02-02", opp: "Smoke Eaters Geleen 4", home: true, status: "final", res: "L", gf: 2, ga: 6 },
     { date: "2019-02-10", opp: "Utrecht OG's 2", home: true, status: "final", res: "W", gf: 2, ga: 1 },
     { date: "2019-02-16", opp: "Utrecht OG's 2", home: false, status: "final", res: "L", gf: 6, ga: 8 },
     { date: "2019-02-23", opp: "Tilburg Capitals", home: false, status: "final", res: "L", gf: 0, ga: 20 },
   ],
   "2019-2020": [
-    { date: "2019-10-13", opp: "GIJS Groningen 4", home: true, status: "final", res: "W", gf: 6, ga: 3 },
-    { date: "2019-10-20", opp: "GIJS Groningen 4", home: false, status: "final", res: "L", gf: 1, ga: 7 },
+    { date: "2019-10-13", opp: "GIJS Groningen 3", home: true, status: "final", res: "W", gf: 6, ga: 3 },
+    { date: "2019-10-20", opp: "GIJS Groningen 3", home: false, status: "final", res: "L", gf: 1, ga: 7 },
     { date: "2019-10-26", opp: "Twente Blue Caps Enschede", home: true, status: "final", res: "W", gf: 9, ga: 4 },
-    { date: "2019-11-09", opp: "Blue Mountain Cougars Hoorn", home: false, status: "final", res: "L", gf: 2, ga: 4 },
+    { date: "2019-11-09", opp: "Blue Mountain Cougars Hoorn 1", home: false, status: "final", res: "L", gf: 2, ga: 4 },
     { date: "2019-11-16", opp: "Alcmaria Flames Alkmaar", home: false, status: "final", res: "T", gf: 4, ga: 4 },
     { date: "2019-11-24", opp: "Amsterdam Snipers", home: true, status: "final", res: "L", gf: 4, ga: 6 },
     { date: "2019-12-01", opp: "Leiden Gladiators", home: true, status: "final", res: "L", gf: 3, ga: 7 },
-    { date: "2019-12-22", opp: "GIJS Groningen 5", home: true, status: "final", res: "L", gf: 5, ga: 7 },
+    { date: "2019-12-22", opp: "GIJS Groningen 4", home: true, status: "final", res: "L", gf: 5, ga: 7 },
     { date: "2020-01-11", opp: "Twente Blue Caps Enschede", home: false, status: "final", res: "L", gf: 1, ga: 5 },
     { date: "2020-01-18", opp: "Amsterdam Snipers", home: false, status: "final", res: "L", gf: 4, ga: 12 },
-    { date: "2020-01-26", opp: "Blue Mountain Cougars Hoorn", home: true, status: "final", res: "T", gf: 5, ga: 5 },
+    { date: "2020-01-26", opp: "Blue Mountain Cougars Hoorn 1", home: true, status: "final", res: "T", gf: 5, ga: 5 },
     { date: "2020-02-16", opp: "Alcmaria Flames Alkmaar", home: true, status: "final", res: "L", gf: 2, ga: 5 },
-    { date: "2020-03-08", opp: "GIJS Groningen 5", home: false, status: "final", res: "L", gf: 6, ga: 13 },
+    { date: "2020-03-08", opp: "GIJS Groningen 4", home: false, status: "final", res: "L", gf: 6, ga: 13 },
     { date: "2020-03-15", opp: "Leiden Gladiators", home: false, status: "cancelled", note: "Cancelled due to the COVID-19 pandemic." },
   ],
   "2025-2026": [
@@ -459,13 +463,13 @@ const SCHEDULE_DATA = {
     { date: "2026-03-15", opp: "Blue Mountain Cougars Hoorn 1", home: true, status: "final", res: "L", gf: 3, ga: 8, time: "16:45", venue: "Jaap Edenhal, Amsterdam" },
   ],
   "2021-2022": [
-    { date: "2021-10-17", opp: "Striking Stallions Enschede", home: false, status: "final", res: "W", gf: 21, ga: 1, time: "20:30", venue: "IJsbaan Twente, Enschede" },
+    { date: "2021-10-17", opp: "Enschede Slapping Studs 2", home: false, status: "final", res: "W", gf: 21, ga: 1, time: "20:30", venue: "IJsbaan Twente, Enschede" },
     { date: "2021-10-31", opp: "Slapsticks Flyers Heerenveen", home: true, status: "final", res: "W", gf: 14, ga: 2, time: "21:00", venue: "Jaap Edenhal, Amsterdam" },
     { date: "2021-11-07", opp: "Leiden Blues", home: true, status: "final", res: "W", gf: 18, ga: 2, time: "18:45", venue: "Jaap Edenhal, Amsterdam" },
     { date: "2021-11-28", opp: "Alcmaria Flames Alkmaar 2", home: true, status: "final", res: "W", gf: 6, ga: 2, cancelled: true },
     { date: "2021-12-11", opp: "Amsterdam Tigers 6", home: false, status: "final", res: "W", gf: 9, ga: 4, cancelled: true },
     { date: "2022-01-02", opp: "Blue Mountain Cougars Hoorn 2", home: true, status: "final", res: "W", gf: 9, ga: 5, cancelled: true },
-    { date: "2022-01-16", opp: "Striking Stallions Enschede", home: true, status: "final", res: "W", gf: 21, ga: 1, cancelled: true },
+    { date: "2022-01-16", opp: "Enschede Slapping Studs 2", home: true, status: "final", res: "W", gf: 21, ga: 1, cancelled: true },
     { date: "2022-01-23", opp: "Slapsticks Flyers Heerenveen", home: false, status: "final", res: "W", gf: 14, ga: 2, cancelled: true },
     { date: "2022-02-06", opp: "Leiden Blues", home: false, status: "final", res: "W", gf: 12, ga: 2, time: "18:45", venue: "Schaatshal Leiden" },
     { date: "2022-02-27", opp: "Alcmaria Flames Alkmaar 2", home: false, status: "final", res: "W", gf: 6, ga: 2, time: "18:45", venue: "De Meent, Alkmaar" },
@@ -477,10 +481,10 @@ const SCHEDULE_DATA = {
     { date: "2022-10-16", opp: "Leiden Key Town Tigers", home: false, status: "final", res: "W", gf: 7, ga: 4, time: "18:45", venue: "Schaatshal Leiden" },
     { date: "2022-10-22", opp: "Amsterdam Tigers 6", home: true, status: "final", res: "L", gf: 3, ga: 4, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
     { date: "2022-10-29", opp: "Amsterdam Tigers 6", home: false, status: "final", res: "W", gf: 7, ga: 2, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
-    { date: "2022-11-06", opp: "GIJS Groningen 4", home: false, status: "final", res: "W", gf: 9, ga: 6, time: "17:45", venue: "Sportcentrum Kardinge, Groningen" },
+    { date: "2022-11-06", opp: "GIJS Groningen 3", home: false, status: "final", res: "W", gf: 9, ga: 6, time: "17:45", venue: "Sportcentrum Kardinge, Groningen" },
     { date: "2022-11-20", opp: "Leiden Lions", home: false, status: "final", res: "L", gf: 2, ga: 9, time: "21:00", venue: "Schaatshal Leiden" },
     { date: "2022-12-04", opp: "Leiden Gladiators", home: false, status: "final", res: "L", gf: 6, ga: 11, time: "21:00", venue: "Schaatshal Leiden" },
-    { date: "2022-12-10", opp: "GIJS Groningen 4", home: true, status: "final", res: "W", gf: 8, ga: 5, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
+    { date: "2022-12-10", opp: "GIJS Groningen 3", home: true, status: "final", res: "W", gf: 8, ga: 5, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
     { date: "2023-01-06", opp: "Blue Mountain Cougars Hoorn 1", home: false, status: "final", res: "L", gf: 1, ga: 6, time: "21:00", venue: "Optisport de Westfries, Hoorn" },
     { date: "2023-01-21", opp: "Leiden Lions", home: true, status: "final", res: "L", gf: 4, ga: 13, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
     { date: "2023-02-04", opp: "Leiden Key Town Tigers", home: true, status: "final", res: "W", gf: 11, ga: 0, time: "20:00", venue: "Jaap Edenhal, Amsterdam" },
@@ -4657,161 +4661,224 @@ const GAME_DETAILS = {
 
 const STANDINGS_DATA = {
   "2017-2018": {
+    playoff: { awayTeam: "Dordrecht Lions 2", awayScore: 1, homeTeam: "UNIS Flyers 4 Heerenveen", homeScore: 0 },
+    semiFinals: [
+      { winner: "UNIS Flyers 4 Heerenveen", winnerScore: 12, loser: "Leiden Key Town Tigers", loserScore: 1 },
+      { winner: "Dordrecht Lions 2", winnerScore: 12, loser: "Blue Mountain Cougars Hoorn 1", loserScore: 8 },
+    ],
+    relegationPlayoffs: [
+      { fixedSides: true, teamA: "Midnight Mooners Eindhoven", teamAScore: 6, teamB: "Leiden Polar Bears", teamBScore: 4 },
+      { fixedSides: true, teamA: "Midnight Mooners Eindhoven", teamAScore: 1, teamB: "Leiden Polar Bears", teamBScore: 4 },
+    ],
     northLabel: "Conference A",
     southLabel: "Conference B",
     north: [
-      { team: "Dordrecht Lions 2", gp: 14, w: 9, l: 3, t: 2, gf: 100, ga: 66, gd: "+34", pts: 20 },
+      { team: "Dordrecht Lions 2", gp: 14, w: 9, l: 3, t: 2, gf: 100, ga: 66, gd: "+34", pts: 20, champion: true, promoted: true },
       { team: "Leiden Key Town Tigers", gp: 14, w: 8, l: 6, t: 0, gf: 72, ga: 73, gd: "-1", pts: 16 },
       { team: "Tilburg Capitals", gp: 14, w: 8, l: 6, t: 0, gf: 82, ga: 69, gd: "+13", pts: 16 },
       { team: "Utrecht OG's 2", gp: 14, w: 8, l: 6, t: 0, gf: 68, ga: 65, gd: "+3", pts: 16 },
-      { team: "Smoke Eaters Geleen", gp: 14, w: 6, l: 7, t: 1, gf: 60, ga: 84, gd: "-24", pts: 13 },
+      { team: "Smoke Eaters Geleen 4", gp: 14, w: 6, l: 7, t: 1, gf: 60, ga: 84, gd: "-24", pts: 13 },
       { team: "Hijs Hokij Den Haag Bullets", gp: 14, w: 5, l: 6, t: 3, gf: 74, ga: 66, gd: "+8", pts: 11 },
       { team: "Amsterdam Mustangs", gp: 14, w: 4, l: 8, t: 2, gf: 58, ga: 77, gd: "-19", pts: 10 },
-      { team: "Midnight Mooners Eindhoven", gp: 14, w: 3, l: 9, t: 2, gf: 52, ga: 66, gd: "-14", pts: 8 },
+      { team: "Midnight Mooners Eindhoven", gp: 14, w: 3, l: 9, t: 2, gf: 52, ga: 66, gd: "-14", pts: 8, relegated: true },
     ],
     south: [
-      { team: "UNIS Flyers 4 Heerenveen", gp: 12, w: 12, l: 0, t: 0, gf: 84, ga: 26, gd: "+58", pts: 24 },
-      { team: "Blue Mountain Cougars Hoorn", gp: 12, w: 8, l: 3, t: 1, gf: 86, ga: 43, gd: "+43", pts: 17 },
+      { team: "UNIS Flyers 4 Heerenveen", gp: 12, w: 12, l: 0, t: 0, gf: 84, ga: 26, gd: "+58", pts: 24, promotedButStayed: true },
+      { team: "Blue Mountain Cougars Hoorn 1", gp: 12, w: 8, l: 3, t: 1, gf: 86, ga: 43, gd: "+43", pts: 17 },
       { team: "Frisian Bombers Heerenveen", gp: 12, w: 7, l: 4, t: 1, gf: 68, ga: 42, gd: "+26", pts: 15 },
       { team: "GIJS Groningen 4", gp: 12, w: 4, l: 7, t: 1, gf: 44, ga: 57, gd: "-13", pts: 9 },
       { team: "Zoetermeer Panters Bigfields", gp: 12, w: 4, l: 8, t: 0, gf: 52, ga: 88, gd: "-36", pts: 8 },
       { team: "Amsterdam Snipers", gp: 12, w: 2, l: 8, t: 2, gf: 40, ga: 83, gd: "-43", pts: 6 },
-      { team: "Leiden Polar Bears", gp: 12, w: 2, l: 9, t: 1, gf: 41, ga: 76, gd: "-35", pts: 5 },
+      { team: "Leiden Polar Bears", gp: 12, w: 2, l: 9, t: 1, gf: 41, ga: 76, gd: "-35", pts: 5, savedRelegation: true },
     ],
   },
   "2018-2019": {
-    date: "17 March 2019 | Leiden, Netherlands",
+    date: "2019-03-17 | Leiden, Netherlands",
     playoff: { awayTeam: "Frisian Bombers Heerenveen", awayScore: 4, homeTeam: "Leiden Key Town Tigers", homeScore: 9 },
+    semiFinals: [
+      { winner: "Frisian Bombers Heerenveen", winnerScore: 6, loser: "Hijs Hokij Den Haag Bullets", loserScore: 1 },
+      { winner: "Leiden Key Town Tigers", winnerScore: 7, loser: "UNIS Flyers Heerenveen 3", loserScore: 4 },
+    ],
+    relegationPlayoffs: [
+      { tie: true, teamA: "Amsterdam Mustangs", teamAScore: 4, teamB: "Zoetermeer Panters Storks", teamBScore: 4 },
+      { winner: "Zoetermeer Panters Storks", winnerScore: 5, loser: "Amsterdam Mustangs", loserScore: 3 },
+    ],
     northLabel: "Conference A",
     southLabel: "Conference B",
     north: [
-      { team: "Leiden Key Town Tigers", gp: 12, w: 12, l: 0, t: 0, gf: 112, ga: 29, gd: "+83", pts: 24 },
+      { team: "Leiden Key Town Tigers", gp: 12, w: 12, l: 0, t: 0, gf: 112, ga: 29, gd: "+83", pts: 24, champion: true, promoted: true },
       { team: "Hijs Hokij Den Haag Bullets", gp: 12, w: 9, l: 3, t: 0, gf: 99, ga: 39, gd: "+60", pts: 18 },
       { team: "Tilburg Capitals", gp: 12, w: 8, l: 4, t: 0, gf: 99, ga: 56, gd: "+43", pts: 16 },
       { team: "Utrecht OG's 2", gp: 12, w: 5, l: 6, t: 1, gf: 50, ga: 53, gd: "-3", pts: 11 },
       { team: "Hijs Hokij Den Haag Flames", gp: 12, w: 3, l: 8, t: 1, gf: 34, ga: 106, gd: "-72", pts: 7 },
-      { team: "Smoke Eaters Geleen", gp: 12, w: 2, l: 10, t: 0, gf: 32, ga: 72, gd: "-40", pts: 4 },
-      { team: "Amsterdam Mustangs", gp: 12, w: 2, l: 10, t: 0, gf: 37, ga: 108, gd: "-71", pts: 4 },
+      { team: "Smoke Eaters Geleen 4", gp: 12, w: 2, l: 10, t: 0, gf: 32, ga: 72, gd: "-40", pts: 4, droppedDespiteSafe: true },
+      { team: "Amsterdam Mustangs", gp: 12, w: 2, l: 10, t: 0, gf: 37, ga: 108, gd: "-71", pts: 4, stayedDespiteRelegationBar: true },
     ],
     south: [
-      { team: "Frisian Bombers Heerenveen", gp: 14, w: 12, l: 2, t: 0, gf: 139, ga: 53, gd: "+86", pts: 24 },
-      { team: "UNIS Flyers 4 Heerenveen", gp: 14, w: 12, l: 2, t: 0, gf: 90, ga: 41, gd: "+49", pts: 24 },
-      { team: "Leiden Lions", gp: 14, w: 8, l: 6, t: 0, gf: 111, ga: 81, gd: "+30", pts: 16 },
+      { team: "Frisian Bombers Heerenveen", gp: 14, w: 12, l: 2, t: 0, gf: 139, ga: 53, gd: "+86", pts: 24, promoted: true },
+      { team: "UNIS Flyers Heerenveen 3", gp: 14, w: 12, l: 2, t: 0, gf: 90, ga: 41, gd: "+49", pts: 24, promoted: true },
+      { team: "Leiden Lions", gp: 14, w: 8, l: 6, t: 0, gf: 111, ga: 81, gd: "+30", pts: 16, unexpectedPromotion: true },
       { team: "Hijs Hokij Den Haag Herons", gp: 14, w: 7, l: 5, t: 2, gf: 70, ga: 72, gd: "-2", pts: 16 },
       { team: "Amsterdam Snipers", gp: 14, w: 7, l: 5, t: 2, gf: 75, ga: 100, gd: "-25", pts: 16 },
       { team: "Leiden Polar Bears", gp: 14, w: 4, l: 9, t: 1, gf: 59, ga: 90, gd: "-31", pts: 9 },
-      { team: "Blue Mountain Cougars Hoorn", gp: 14, w: 3, l: 11, t: 0, gf: 58, ga: 96, gd: "-38", pts: 6 },
-      { team: "Zoetermeer Panters Storks", gp: 14, w: 0, l: 13, t: 1, gf: 54, ga: 123, gd: "-69", pts: 1 },
+      { team: "Blue Mountain Cougars Hoorn 1", gp: 14, w: 3, l: 11, t: 0, gf: 58, ga: 96, gd: "-38", pts: 6 },
+      { team: "Zoetermeer Panters Storks", gp: 14, w: 0, l: 13, t: 1, gf: 54, ga: 123, gd: "-69", pts: 1, wonPlayoffButRelegated: true },
+    ],
+  },
+  "2019-2020": {
+    playoffCancelled: true,
+    northLabel: "Northern Group",
+    southLabel: "Southern Group",
+    north: [
+      { team: "Alcmaria Flames Alkmaar", gp: 14, w: 10, l: 1, t: 3, gf: 80, ga: 48, gd: "+32", pts: 23, promoted: true },
+      { team: "Amsterdam Snipers", gp: 14, w: 9, l: 3, t: 2, gf: 102, ga: 66, gd: "+36", pts: 20 },
+      { team: "Blue Mountain Cougars Hoorn 1", gp: 13, w: 9, l: 3, t: 1, gf: 94, ga: 48, gd: "+46", pts: 19 },
+      { team: "Leiden Gladiators", gp: 13, w: 5, l: 6, t: 2, gf: 78, ga: 84, gd: "-6", pts: 12 },
+      { team: "GIJS Groningen 3", gp: 13, w: 5, l: 7, t: 1, gf: 74, ga: 86, gd: "-12", pts: 11 },
+      { team: "GIJS Groningen 4", gp: 14, w: 5, l: 9, t: 0, gf: 58, ga: 73, gd: "-15", pts: 10 },
+      { team: "Twente Blue Caps Enschede", gp: 14, w: 3, l: 10, t: 1, gf: 50, ga: 101, gd: "-51", pts: 7 },
+      { team: "Amsterdam Mustangs", gp: 13, w: 2, l: 9, t: 2, gf: 52, ga: 82, gd: "-30", pts: 6, relegated: true },
+    ],
+    south: [
+      { team: "Hijs Hokij Den Haag Bullets", gp: 15, w: 10, l: 4, t: 1, gf: 93, ga: 56, gd: "+37", pts: 21, promoted: true },
+      { team: "Hijs Hokij Den Haag Flames", gp: 15, w: 8, l: 5, t: 2, gf: 83, ga: 102, gd: "-19", pts: 18 },
+      { team: "Tilburg Capitals", gp: 15, w: 7, l: 6, t: 2, gf: 108, ga: 68, gd: "+40", pts: 16 },
+      { team: "Utrecht OG's 2", gp: 15, w: 7, l: 8, t: 0, gf: 63, ga: 80, gd: "-17", pts: 14 },
+      { team: "Eindhoven Kemphanen 2", gp: 15, w: 4, l: 8, t: 3, gf: 72, ga: 85, gd: "-13", pts: 11 },
+      { team: "Hijs Hokij Den Haag Herons", gp: 15, w: 4, l: 9, t: 2, gf: 77, ga: 105, gd: "-28", pts: 10, relegated: true },
     ],
   },
   "2021-2022": {
     date: "Super Sunday | 2022-03-27 | De Uithof | The Hague, Netherlands",
     playoff: { awayTeam: "Amsterdam Mustangs", awayScore: 4, homeTeam: "Red Eagles Den Bosch 2", homeScore: 13 },
+    relegationPlayoffs: [
+      { winner: "Wild Panters Zoetermeer", winnerScore: 7, loser: "Dutch Dukes 2", loserScore: 6 },
+    ],
+    promotionPlayoffs: [
+      { winner: "Midnight Mooners Eindhoven", winnerScore: 4, loser: "Hijs Hokij Den Haag Ongetemd", loserScore: 3 },
+      { winner: "Leiden Key Town Tigers", winnerScore: 10, loser: "Blue Mountain Cougars Hoorn 2", loserScore: 3 },
+    ],
     north: [
-      { team: "Amsterdam Mustangs", gp: 12, w: 12, l: 0, t: 0, gf: 148, ga: 32, gd: "+116", pts: 24 },
-      { team: "Amsterdam Tigers 6", gp: 12, w: 9, l: 3, t: 0, gf: 106, ga: 37, gd: "+69", pts: 18 },
-      { team: "Blue Mountain Cougars Hoorn 2", gp: 12, w: 7, l: 3, t: 2, gf: 68, ga: 62, gd: "+6", pts: 16 },
+      { team: "Amsterdam Mustangs", gp: 12, w: 12, l: 0, t: 0, gf: 148, ga: 32, gd: "+116", pts: 24, promoted: true },
+      { team: "Amsterdam Tigers 6", gp: 12, w: 9, l: 3, t: 0, gf: 106, ga: 37, gd: "+69", pts: 18, promoted: true },
+      { team: "Blue Mountain Cougars Hoorn 2", gp: 12, w: 7, l: 3, t: 2, gf: 68, ga: 62, gd: "+6", pts: 16, missedPromotion: true },
       { team: "Slapsticks Flyers Heerenveen", gp: 12, w: 6, l: 4, t: 2, gf: 61, ga: 63, gd: "-2", pts: 14 },
       { team: "Alcmaria Flames Alkmaar 2", gp: 12, w: 4, l: 8, t: 0, gf: 79, ga: 65, gd: "+14", pts: 8 },
       { team: "Leiden Blues", gp: 12, w: 2, l: 10, t: 0, gf: 55, ga: 105, gd: "-50", pts: 4 },
-      { team: "Striking Stallions Enschede", gp: 12, w: 0, l: 12, t: 0, gf: 22, ga: 175, gd: "-153", pts: 0 },
+      { team: "Enschede Slapping Studs 2", gp: 12, w: 0, l: 12, t: 0, gf: 22, ga: 175, gd: "-153", pts: 0, stayedDespiteRelegation: true },
     ],
     south: [
-      { team: "Red Eagles Den Bosch 2", gp: 10, w: 9, l: 1, t: 0, gf: 98, ga: 34, gd: "+64", pts: 18 },
-      { team: "Hijs Hokij Den Haag Ongetemd", gp: 10, w: 7, l: 2, t: 1, gf: 58, ga: 42, gd: "+16", pts: 15 },
+      { team: "Red Eagles Den Bosch 2", gp: 10, w: 9, l: 1, t: 0, gf: 98, ga: 34, gd: "+64", pts: 18, champion: true, promoted: true },
+      { team: "Hijs Hokij Den Haag Ongetemd", gp: 10, w: 7, l: 2, t: 1, gf: 58, ga: 42, gd: "+16", pts: 15, missedPromotion: true },
       { team: "Dordrecht Lions 3", gp: 10, w: 4, l: 5, t: 1, gf: 58, ga: 46, gd: "+12", pts: 9 },
       { team: "Hijs Hokij Den Haag Herons", gp: 10, w: 3, l: 6, t: 1, gf: 55, ga: 71, gd: "-16", pts: 7 },
-      { team: "Wild Panters Zoetermeer", gp: 10, w: 3, l: 7, t: 0, gf: 45, ga: 96, gd: "-51", pts: 6 },
-      { team: "Zoetermeer Panters 2", gp: 10, w: 2, l: 7, t: 1, gf: 52, ga: 77, gd: "-25", pts: 5 },
+      { team: "Wild Panters Zoetermeer", gp: 10, w: 3, l: 7, t: 0, gf: 45, ga: 96, gd: "-51", pts: 6, savedRelegation: true },
+      { team: "Zoetermeer Panters 2", gp: 10, w: 2, l: 7, t: 1, gf: 52, ga: 77, gd: "-25", pts: 5, relegated: true },
     ],
   },
   "2022-2023": {
     date: "Super Sunday | 2023-03-26 | Silverdome | Zoetermeer, Netherlands",
     playoff: { awayTeam: "Blue Mountain Cougars Hoorn 1", awayScore: 2, homeTeam: "Tilburg Capitals", homeScore: 7 },
+    relegationPlayoffs: [
+      { cancelled: true, teamA: "Blue Mountain Cougars Hoorn 3", teamAScore: 0, teamB: "GIJS Groningen 3", teamBScore: 0 },
+      { winner: "Vikings Eindhoven", winnerScore: 4, loser: "Yeti's Breda 2", loserScore: 2 },
+    ],
+    promotionPlayoffs: [
+      { winner: "Utrecht OG's", winnerScore: 6, loser: "Hijs Hokij Den Haag Flames", loserScore: 1 },
+      { winner: "Amsterdam Tigers 6", winnerScore: 11, loser: "Amsterdam Snipers", loserScore: 8 },
+    ],
     north: [
-      { team: "Blue Mountain Cougars Hoorn 1", gp: 12, w: 9, l: 2, t: 1, gf: 100, ga: 46, gd: "+54", pts: 19 },
-      { team: "Leiden Lions", gp: 12, w: 9, l: 3, t: 0, gf: 125, ga: 61, gd: "+67", pts: 18 },
-      { team: "Amsterdam Tigers 6", gp: 12, w: 7, l: 5, t: 0, gf: 66, ga: 77, gd: "-11", pts: 14 },
+      { team: "Blue Mountain Cougars Hoorn 1", gp: 12, w: 9, l: 2, t: 1, gf: 100, ga: 46, gd: "+54", pts: 19, promoted: true },
+      { team: "Leiden Lions", gp: 12, w: 9, l: 3, t: 0, gf: 125, ga: 61, gd: "+67", pts: 18, promoted: true },
+      { team: "Amsterdam Tigers 6", gp: 12, w: 7, l: 5, t: 0, gf: 66, ga: 77, gd: "-11", pts: 14, promoted: true },
       { team: "Amsterdam Mustangs", gp: 12, w: 5, l: 6, t: 1, gf: 66, ga: 70, gd: "-4", pts: 11 },
       { team: "Leiden Gladiators", gp: 12, w: 5, l: 7, t: 0, gf: 60, ga: 67, gd: "-7", pts: 10 },
-      { team: "GIJS Groningen 4", gp: 12, w: 5, l: 7, t: 0, gf: 69, ga: 94, gd: "-25", pts: 10 },
-      { team: "Leiden Key Town Tigers", gp: 12, w: 1, l: 11, t: 0, gf: 42, ga: 116, gd: "-74", pts: 2 },
+      { team: "GIJS Groningen 3", gp: 12, w: 5, l: 7, t: 0, gf: 69, ga: 94, gd: "-25", pts: 10, savedRelegation: true },
+      { team: "Leiden Key Town Tigers", gp: 12, w: 1, l: 11, t: 0, gf: 42, ga: 116, gd: "-74", pts: 2, relegated: true },
     ],
     south: [
-      { team: "Tilburg Capitals", gp: 12, w: 11, l: 1, t: 0, gf: 117, ga: 35, gd: "+82", pts: 22 },
-      { team: "Hijs Hokij Den Haag Flames", gp: 12, w: 7, l: 5, t: 0, gf: 64, ga: 75, gd: "-11", pts: 14 },
+      { team: "Tilburg Capitals", gp: 12, w: 11, l: 1, t: 0, gf: 117, ga: 35, gd: "+82", pts: 22, champion: true, promoted: true },
+      { team: "Hijs Hokij Den Haag Flames", gp: 12, w: 7, l: 5, t: 0, gf: 64, ga: 75, gd: "-11", pts: 14, missedPromotion: true },
       { team: "Eindhoven Kemphanen Recreanten", gp: 12, w: 6, l: 6, t: 0, gf: 72, ga: 50, gd: "+22", pts: 12 },
       { team: "Red Eagles Den Bosch 2", gp: 12, w: 5, l: 6, t: 1, gf: 50, ga: 57, gd: "-7", pts: 11 },
-      { team: "Vikings Eindhoven", gp: 12, w: 5, l: 6, t: 1, gf: 55, ga: 67, gd: "-12", pts: 11 },
-      { team: "Sweetlake Legends Zoetermeer", gp: 12, w: 3, l: 7, t: 2, gf: 58, ga: 77, gd: "-19", pts: 8 },
-      { team: "Midnight Mooners Eindhoven", gp: 12, w: 3, l: 9, t: 0, gf: 34, ga: 89, gd: "-55", pts: 6 },
+      { team: "Vikings Eindhoven", gp: 12, w: 5, l: 6, t: 1, gf: 55, ga: 67, gd: "-12", pts: 11, savedRelegation: true },
+      { team: "Sweetlake Legends Zoetermeer", gp: 12, w: 3, l: 7, t: 2, gf: 58, ga: 77, gd: "-19", pts: 8, relegated: true },
+      { team: "Midnight Mooners Eindhoven", gp: 12, w: 3, l: 9, t: 0, gf: 34, ga: 89, gd: "-55", pts: 6, relegated: true },
     ],
   },
   "2023-2024": {
     date: "Super Sunday | 2024-04-07 | Ijshaal de Vliet | Leiden, Netherlands",
     playoff: { awayTeam: "Enschede Slapping Studs 1", awayScore: 7, homeTeam: "Eindhoven Kemphanen 2", homeScore: 12 },
+    relegationPlayoffs: [
+      { winner: "Blue Mountain Cougars Hoorn 3", winnerScore: 5, loser: "Leiden Key Town Tigers", loserScore: 0, forfeit: true },
+      { winner: "Yeti's Breda 2", winnerScore: 6, loser: "Hijs Hokij Den Haag Flames", loserScore: 5 },
+    ],
+    promotionPlayoffs: [
+      { winner: "Odin Amsterdam", winnerScore: 10, loser: "Blue Mountain Cougars Hoorn 1", loserScore: 2 },
+      { winner: "Smoke Eaters Geleen 2", winnerScore: 5, loser: "Black Sheep Dordrecht", loserScore: 1 },
+    ],
     north: [
-      { team: "Enschede Slapping Studs 1", gp: 14, w: 13, l: 1, t: 0, gf: 137, ga: 36, gd: "+101", pts: 26 },
-      { team: "Odin Amsterdam", gp: 14, w: 12, l: 2, t: 0, gf: 135, ga: 40, gd: "+95", pts: 24 },
+      { team: "Enschede Slapping Studs 1", gp: 14, w: 13, l: 1, t: 0, gf: 137, ga: 36, gd: "+101", pts: 26, promoted: true },
+      { team: "Odin Amsterdam", gp: 14, w: 12, l: 2, t: 0, gf: 135, ga: 40, gd: "+95", pts: 24, promoted: true },
       { team: "Leiden Gladiators", gp: 14, w: 8, l: 6, t: 0, gf: 117, ga: 56, gd: "+61", pts: 16 },
       { team: "GIJS Groningen 3", gp: 14, w: 7, l: 6, t: 1, gf: 122, ga: 75, gd: "+47", pts: 15 },
       { team: "Amsterdam Mustangs", gp: 14, w: 7, l: 6, t: 1, gf: 84, ga: 70, gd: "+14", pts: 15 },
       { team: "Slapsticks Flyers Heerenveen", gp: 14, w: 6, l: 8, t: 0, gf: 97, ga: 122, gd: "-25", pts: 12 },
-      { team: "Blue Mountain Cougars Hoorn 3", gp: 14, w: 2, l: 12, t: 0, gf: 57, ga: 143, gd: "-86", pts: 4 },
-      { team: "OG Capitals Leeuwarden 2", gp: 14, w: 0, l: 14, t: 0, gf: 26, ga: 233, gd: "-207", pts: 0 },
+      { team: "Blue Mountain Cougars Hoorn 3", gp: 14, w: 2, l: 12, t: 0, gf: 57, ga: 143, gd: "-86", pts: 4, savedRelegation: true },
+      { team: "OG Capitals Leeuwarden 2", gp: 14, w: 0, l: 14, t: 0, gf: 26, ga: 233, gd: "-207", pts: 0, relegated: true },
     ],
     south: [
-      { team: "Eindhoven Kemphanen 2", gp: 14, w: 10, l: 1, t: 3, gf: 95, ga: 39, gd: "+56", pts: 23 },
-      { team: "Black Sheep Dordrecht", gp: 14, w: 10, l: 3, t: 1, gf: 93, ga: 51, gd: "+42", pts: 21 },
+      { team: "Eindhoven Kemphanen 2", gp: 14, w: 10, l: 1, t: 3, gf: 95, ga: 39, gd: "+56", pts: 23, promoted: true, champion: true },
+      { team: "Black Sheep Dordrecht", gp: 14, w: 10, l: 3, t: 1, gf: 93, ga: 51, gd: "+42", pts: 21, missedPromotion: true },
       { team: "Red Eagles Den Bosch 2", gp: 14, w: 9, l: 3, t: 2, gf: 73, ga: 44, gd: "+29", pts: 20 },
       { team: "Dordrecht Lions 3", gp: 14, w: 8, l: 4, t: 2, gf: 72, ga: 51, gd: "+21", pts: 18 },
       { team: "Utrecht OG's 2", gp: 14, w: 2, l: 6, t: 6, gf: 55, ga: 59, gd: "-4", pts: 10 },
       { team: "Radboud Saints Nijmegen", gp: 14, w: 3, l: 8, t: 3, gf: 62, ga: 99, gd: "-37", pts: 9 },
-      { team: "Hijs Hokij Den Haag Flames", gp: 14, w: 3, l: 8, t: 3, gf: 68, ga: 81, gd: "-13", pts: 9 },
-      { team: "Vikings Eindhoven", gp: 14, w: 0, l: 12, t: 2, gf: 36, ga: 130, gd: "-94", pts: 2 },
+      { team: "Hijs Hokij Den Haag Flames", gp: 14, w: 3, l: 8, t: 3, gf: 68, ga: 81, gd: "-13", pts: 9, relegated: true },
+      { team: "Vikings Eindhoven", gp: 14, w: 0, l: 12, t: 2, gf: 36, ga: 130, gd: "-94", pts: 2, relegated: true },
     ],
   },
   "2024-2025": {
     date: "Super Sunday | 2025-04-06 | Ijshaal de Vliet | Leiden, Netherlands",
     playoff: { awayTeam: "GIJS Groningen 3", awayScore: 2, homeTeam: "Red Eagles Den Bosch 2", homeScore: 5 },
     north: [
-      { team: "GIJS Groningen 3", gp: 12, w: 11, l: 1, t: 0, gf: 153, ga: 49, gd: "+104", pts: 22 },
-      { team: "Amsterdam Mustangs", gp: 12, w: 8, l: 4, t: 0, gf: 78, ga: 60, gd: "+18", pts: 16 },
+      { team: "GIJS Groningen 3", gp: 12, w: 11, l: 1, t: 0, gf: 153, ga: 49, gd: "+104", pts: 22, refusedPromotion: true },
+      { team: "Amsterdam Mustangs", gp: 12, w: 8, l: 4, t: 0, gf: 78, ga: 60, gd: "+18", pts: 16, promoted: true },
       { team: "Leiden Lions", gp: 12, w: 7, l: 4, t: 1, gf: 85, ga: 57, gd: "+28", pts: 15 },
       { team: "Leiden Gladiators", gp: 12, w: 6, l: 5, t: 1, gf: 54, ga: 44, gd: "+10", pts: 13 },
       { team: "Thor Amsterdam", gp: 12, w: 4, l: 6, t: 2, gf: 67, ga: 62, gd: "+5", pts: 10 },
-      { team: "Slapsticks Flyers Heerenveen", gp: 12, w: 2, l: 9, t: 1, gf: 54, ga: 131, gd: "-77", pts: 5 },
-      { team: "Blue Mountain Cougars Hoorn 3", gp: 12, w: 1, l: 10, t: 1, gf: 25, ga: 113, gd: "-88", pts: 3 },
+      { team: "Slapsticks Flyers Heerenveen", gp: 12, w: 2, l: 9, t: 1, gf: 54, ga: 131, gd: "-77", pts: 5, relegated: true },
+      { team: "Blue Mountain Cougars Hoorn 3", gp: 12, w: 1, l: 10, t: 1, gf: 25, ga: 113, gd: "-88", pts: 3, relegated: true },
     ],
     south: [
-      { team: "Red Eagles Den Bosch 2", gp: 12, w: 11, l: 1, t: 0, gf: 73, ga: 31, gd: "+42", pts: 22 },
-      { team: "Nijmegen Gladiators", gp: 12, w: 10, l: 2, t: 0, gf: 85, ga: 40, gd: "+45", pts: 20 },
+      { team: "Red Eagles Den Bosch 2", gp: 12, w: 11, l: 1, t: 0, gf: 73, ga: 31, gd: "+42", pts: 22, promoted: true, champion: true },
+      { team: "Nijmegen Gladiators", gp: 12, w: 10, l: 2, t: 0, gf: 85, ga: 40, gd: "+45", pts: 20, promoted: true },
       { team: "Yeti's Breda", gp: 12, w: 9, l: 3, t: 0, gf: 51, ga: 27, gd: "+24", pts: 18 },
       { team: "Sweetlake Legends Zoetermeer", gp: 12, w: 5, l: 6, t: 1, gf: 61, ga: 56, gd: "+5", pts: 11 },
       { team: "Dordrecht Lions 3", gp: 12, w: 3, l: 8, t: 1, gf: 44, ga: 56, gd: "-12", pts: 7 },
-      { team: "Radboud Saints Nijmegen", gp: 12, w: 2, l: 9, t: 1, gf: 29, ga: 79, gd: "-50", pts: 5 },
-      { team: "Utrecht OG's 2", gp: 12, w: 0, l: 11, t: 1, gf: 16, ga: 70, gd: "-54", pts: 1 },
+      { team: "Radboud Saints Nijmegen", gp: 12, w: 2, l: 9, t: 1, gf: 29, ga: 79, gd: "-50", pts: 5, relegated: true },
+      { team: "Utrecht OG's 2", gp: 12, w: 0, l: 11, t: 1, gf: 16, ga: 70, gd: "-54", pts: 1, relegated: true },
     ],
   },
   "2025-2026": {
     date: "Super Sunday | 2026-04-12 | Ijshaal de Vliet | Leiden, Netherlands",
     playoff: { awayTeam: "Cool Mokum 2", awayScore: 4, homeTeam: "Nijmegen Gladiators", homeScore: 12 },
     north: [
-      { team: "Cool Mokum 2", gp: 15, w: 11, l: 3, t: 1, gf: 144, ga: 76, gd: "+68", pts: 23 },
+      { team: "Cool Mokum 2", gp: 15, w: 11, l: 3, t: 1, gf: 144, ga: 76, gd: "+68", pts: 23, promoted: true },
       { team: "Amsterdam Tigers 6", gp: 15, w: 10, l: 3, t: 2, gf: 120, ga: 75, gd: "+45", pts: 22 },
       { team: "Amsterdam Mustangs", gp: 15, w: 9, l: 5, t: 1, gf: 93, ga: 88, gd: "+5", pts: 19 },
       { team: "Blue Mountain Cougars Hoorn 1", gp: 15, w: 18, l: 5, t: 2, gf: 109, ga: 106, gd: "+3", pts: 18 },
       { team: "Leiden Islanders", gp: 15, w: 4, l: 11, t: 0, gf: 85, ga: 124, gd: "-39", pts: 8 },
-      { team: "Amsterdam Snipers", gp: 15, w: 0, l: 15, t: 0, gf: 64, ga: 146, gd: "-82", pts: 0 },
+      { team: "Amsterdam Snipers", gp: 15, w: 0, l: 15, t: 0, gf: 64, ga: 146, gd: "-82", pts: 0, relegated: true },
     ],
     south: [
-      { team: "Nijmegen Gladiators", gp: 12, w: 11, l: 0, t: 1, gf: 99, ga: 40, gd: "+59", pts: 23 },
+      { team: "Nijmegen Gladiators", gp: 12, w: 11, l: 0, t: 1, gf: 99, ga: 40, gd: "+59", pts: 23, promoted: true, champion: true },
       { team: "Black Sheep Dordrecht", gp: 12, w: 9, l: 1, t: 2, gf: 68, ga: 41, gd: "+27", pts: 20 },
       { team: "Smoke Eaters Geleen 2", gp: 12, w: 5, l: 4, t: 3, gf: 58, ga: 54, gd: "+3", pts: 13 },
       { team: "Hijs Hokij Den Haag Bullets", gp: 12, w: 4, l: 6, t: 2, gf: 69, ga: 75, gd: "-6", pts: 10 },
       { team: "Red Eagles Den Bosch 2", gp: 12, w: 3, l: 8, t: 1, gf: 58, ga: 72, gd: "-14", pts: 7 },
       { team: "Nijmegen Saints", gp: 12, w: 3, l: 8, t: 1, gf: 58, ga: 82, gd: "-24", pts: 7 },
-      { team: "Icehawks Eindhoven", gp: 12, w: 2, l: 10, t: 0, gf: 38, ga: 84, gd: "-46", pts: 4 },
+      { team: "Icehawks Eindhoven", gp: 12, w: 2, l: 10, t: 0, gf: 38, ga: 84, gd: "-46", pts: 4, relegated: true },
     ],
   },
 };
@@ -5274,6 +5341,136 @@ function ConferenceTable({ title, teams }) {
                     <img src={us ? LOGO : opponentLogo(r.team)} alt="" aria-hidden className="w-10 h-10 object-contain shrink-0" />
                   )}
                   <span className="truncate">{r.team}</span>
+                  {r.promoted && (
+                    <span
+                      title="Promoted"
+                      style={{ color: "#5FD68A", fontWeight: 700, fontSize: 12, flexShrink: 0 }}
+                    >
+                      {"\u25B2"}
+                    </span>
+                  )}
+                  {r.champion && (
+                    <span title="Champions" style={{ flexShrink: 0, display: "inline-flex" }}>
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden>
+                        {/* small, centered fluted bowl */}
+                        <path
+                          d="M8 2.5 h8 c0 1.8 -0.4 2.7 -1 3.3 c-0.75 0.75 -1.7 1 -2.4 1 s-1.65 -0.25 -2.4 -1 c-0.6 -0.6 -1 -1.5 -1 -3.3 z"
+                          fill="#DDE2E7" stroke="#7C838B" strokeWidth="0.5"
+                        />
+                        <line x1="9.3" y1="2.7" x2="9.75" y2="5.9" stroke="#9AA1A8" strokeWidth="0.3" />
+                        <line x1="10.7" y1="2.7" x2="10.95" y2="6.4" stroke="#9AA1A8" strokeWidth="0.3" />
+                        <line x1="13.3" y1="2.7" x2="13.05" y2="6.4" stroke="#9AA1A8" strokeWidth="0.3" />
+                        <line x1="14.7" y1="2.7" x2="14.25" y2="5.9" stroke="#9AA1A8" strokeWidth="0.3" />
+                        {/* neck (cone-shaped, widening toward the body) */}
+                        <polygon
+                          points="11.4,6.8 12.6,6.8 13.7,11.6 10.3,11.6"
+                          fill="#C4CBD2" stroke="#7C838B" strokeWidth="0.4"
+                        />
+                        {/* stacked collar rings */}
+                        <rect x="9.3" y="11.6" width="5.4" height="1" rx="0.2" fill="#CDD3D9" stroke="#7C838B" strokeWidth="0.35" />
+                        <rect x="9.2" y="12.6" width="5.6" height="1" rx="0.2" fill="#C4CBD2" stroke="#7C838B" strokeWidth="0.35" />
+                        {/* banded barrel (shorter) */}
+                        <rect x="9.4" y="13.6" width="5.2" height="6.2" fill="#B8C0C7" stroke="#7C838B" strokeWidth="0.5" />
+                        <line x1="9.4" y1="14.6" x2="14.6" y2="14.6" stroke="#7C838B" strokeWidth="0.3" />
+                        <line x1="9.4" y1="15.6" x2="14.6" y2="15.6" stroke="#7C838B" strokeWidth="0.3" />
+                        <line x1="9.4" y1="16.7" x2="14.6" y2="16.7" stroke="#7C838B" strokeWidth="0.3" />
+                        <line x1="9.4" y1="17.7" x2="14.6" y2="17.7" stroke="#7C838B" strokeWidth="0.3" />
+                        <line x1="9.4" y1="18.8" x2="14.6" y2="18.8" stroke="#7C838B" strokeWidth="0.3" />
+                        {/* silver foot */}
+                        <rect x="8.6" y="19.8" width="6.8" height="1.1" rx="0.2" fill="#CDD3D9" stroke="#7C838B" strokeWidth="0.35" />
+                        {/* black base */}
+                        <ellipse cx="12" cy="21.6" rx="4.6" ry="1" fill="#1A1A1A" />
+                      </svg>
+                    </span>
+                  )}
+                  {r.savedRelegation && (
+                    <span
+                      title="Avoided relegation"
+                      style={{ color: "#5FD68A", fontWeight: 700, fontSize: 12, flexShrink: 0 }}
+                    >
+                      {"\u2713"}
+                    </span>
+                  )}
+                  {r.missedPromotion && (
+                    <span
+                      title="Missed promotion"
+                      style={{ color: C.red, fontWeight: 700, fontSize: 12, flexShrink: 0 }}
+                    >
+                      {"\u2015"}
+                    </span>
+                  )}
+                  {r.refusedPromotion && (
+                    <span
+                      title="Qualified but refused promotion"
+                      style={{ color: "#5FD68A", fontWeight: 700, fontSize: 12, flexShrink: 0 }}
+                    >
+                      {"!"}
+                    </span>
+                  )}
+                  {r.voluntaryRelegation && (
+                    <span
+                      title="Won relegation playoff, but requested to move down a division"
+                      style={{ color: "#5FD68A", fontWeight: 700, fontSize: 12, flexShrink: 0 }}
+                    >
+                      {"!"}
+                    </span>
+                  )}
+                  {r.stayedDespiteRelegation && (
+                    <span
+                      title="Relegation but remained in division"
+                      style={{ color: C.red, fontWeight: 700, fontSize: 12, flexShrink: 0 }}
+                    >
+                      {"!"}
+                    </span>
+                  )}
+                  {r.unexpectedPromotion && (
+                    <span
+                      title="Didn't qualify for promotion, but moved up a division the following season"
+                      style={{ color: "#5FD68A", fontWeight: 700, fontSize: 12, flexShrink: 0 }}
+                    >
+                      {"!"}
+                    </span>
+                  )}
+                  {r.wonPlayoffButRelegated && (
+                    <span
+                      title="Won relegation playoff, but ended up in a lower division the following season"
+                      style={{ color: "#5FD68A", fontWeight: 700, fontSize: 12, flexShrink: 0 }}
+                    >
+                      {"!"}
+                    </span>
+                  )}
+                  {r.droppedDespiteSafe && (
+                    <span
+                      title="Avoided relegation, but played in a lower division the following season anyway"
+                      style={{ color: C.red, fontWeight: 700, fontSize: 12, flexShrink: 0 }}
+                    >
+                      {"!"}
+                    </span>
+                  )}
+                  {r.stayedDespiteRelegationBar && (
+                    <span
+                      title="Relegation but remained in division"
+                      style={{ color: C.red, fontWeight: 700, fontSize: 12, flexShrink: 0 }}
+                    >
+                      {"\u2015"}
+                    </span>
+                  )}
+                  {r.promotedButStayed && (
+                    <span
+                      title="Promoted, but stayed in the same division the following season"
+                      style={{ color: "#5FD68A", fontWeight: 700, fontSize: 12, flexShrink: 0 }}
+                    >
+                      {"\u2015"}
+                    </span>
+                  )}
+                  {r.relegated && (
+                    <span
+                      title="Relegated"
+                      style={{ color: C.red, fontWeight: 700, fontSize: 12, flexShrink: 0 }}
+                    >
+                      {"\u25BC"}
+                    </span>
+                  )}
                 </span>
                 <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.muted }}>{r.gp}</span>
                 <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.muted }}>{r.w}</span>
@@ -6451,12 +6648,74 @@ export default function MustangsSite() {
                     <ConferenceTable title={standings.southLabel || "South conference"} teams={standings.south} />
                   </div>
                 )}
+                {standings.playoffCancelled && (
+                  <div className="mt-8">
+                    <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
+                      CHAMPIONSHIP PLAYOFFS
+                    </h3>
+                    <div className="rounded-lg p-5" style={{ background: C.surface, border: `1px solid ${C.line}` }}>
+                      <div style={{ color: C.muted, fontSize: 14 }}>
+                        Post-season cancelled due to the COVID-19 pandemic.
+                      </div>
+                    </div>
+                  </div>
+                )}
                 {standings.playoff && (
                   <div className="mt-8">
                     <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
-                      PLAYOFFS
+                      CHAMPIONSHIP PLAYOFFS
                     </h3>
                     <div className="rounded-lg p-5" style={{ background: C.surface, border: `1px solid ${C.line}` }}>
+                      {standings.semiFinals && standings.semiFinals.length > 0 && (
+                        <div className="pb-4 mb-4" style={{ borderBottom: `1px solid ${C.line}` }}>
+                          <div style={{ fontFamily: FONTS.mono, color: C.white, fontSize: 13, fontWeight: 700, letterSpacing: "0.08em", marginBottom: 10 }}>
+                            SEMI-FINALS
+                          </div>
+                          <div className="flex flex-col gap-3">
+                            {standings.semiFinals.map((g, i) => (
+                              <div key={i} className="grid items-center gap-4" style={{ gridTemplateColumns: "1fr auto 1fr" }}>
+                                <div className="flex items-center gap-3 flex-wrap">
+                                  {teamLogo(g.loser) && (
+                                    <img src={teamLogo(g.loser)} alt="" aria-hidden className="w-9 h-9 object-contain shrink-0" />
+                                  )}
+                                  <span style={{ color: C.white, fontSize: 14 }}>{g.loser}</span>
+                                  <span
+                                    className="flex items-center justify-center"
+                                    style={{
+                                      fontFamily: FONTS.mono, color: C.muted, fontSize: 18, fontWeight: 700,
+                                      minWidth: 40, padding: "4px 8px", borderRadius: 6,
+                                      background: C.ink, border: `1px solid ${C.line}`,
+                                    }}
+                                  >
+                                    {g.loserScore}
+                                  </span>
+                                </div>
+                                <span style={{ color: C.muted, fontSize: 12 }}>vs</span>
+                                <div className="flex items-center gap-3 flex-wrap justify-end">
+                                  <Badge>WINNER</Badge>
+                                  <span
+                                    className="flex items-center justify-center"
+                                    style={{
+                                      fontFamily: FONTS.mono, color: C.red, fontSize: 18, fontWeight: 700,
+                                      minWidth: 40, padding: "4px 8px", borderRadius: 6,
+                                      background: C.ink, border: `1px solid ${C.line}`,
+                                    }}
+                                  >
+                                    {g.winnerScore}
+                                  </span>
+                                  <span style={{ color: C.white, fontSize: 14, fontWeight: 700 }}>{g.winner}</span>
+                                  {teamLogo(g.winner) && (
+                                    <img src={teamLogo(g.winner)} alt="" aria-hidden className="w-9 h-9 object-contain shrink-0" />
+                                  )}
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      <div style={{ fontFamily: FONTS.mono, color: C.white, fontSize: 13, fontWeight: 700, letterSpacing: "0.08em", marginBottom: 6 }}>
+                        FINALS
+                      </div>
                       {standings.date && (
                         <div style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 11, marginBottom: 14 }}>
                           {standings.date.split("|").map((s) => s.trim()).join(" \u00b7 ").toUpperCase()}
@@ -6471,22 +6730,22 @@ export default function MustangsSite() {
                           <span
                             className="flex items-center justify-center"
                             style={{
-                              fontFamily: FONTS.mono, color: C.muted, fontSize: 18, fontWeight: 700,
+                              fontFamily: FONTS.mono, color: standings.playoff.awayScore > standings.playoff.homeScore ? C.red : C.muted, fontSize: 18, fontWeight: 700,
                               minWidth: 40, padding: "4px 8px", borderRadius: 6,
                               background: C.ink, border: `1px solid ${C.line}`,
                             }}
                           >
                             {standings.playoff.awayScore}
                           </span>
-                          {standings.playoff.awayScore > standings.playoff.homeScore && <Badge>CHAMPIONS</Badge>}
+                          {standings.playoff.awayScore > standings.playoff.homeScore && <Badge tone="win">CHAMPIONS</Badge>}
                         </div>
                         <span style={{ color: C.muted, fontSize: 12 }}>at</span>
                         <div className="flex items-center gap-3">
-                          {standings.playoff.homeScore > standings.playoff.awayScore && <Badge>CHAMPIONS</Badge>}
+                          {standings.playoff.homeScore > standings.playoff.awayScore && <Badge tone="win">CHAMPIONS</Badge>}
                           <span
                             className="flex items-center justify-center"
                             style={{
-                              fontFamily: FONTS.mono, color: C.red, fontSize: 18, fontWeight: 700,
+                              fontFamily: FONTS.mono, color: standings.playoff.homeScore > standings.playoff.awayScore ? C.red : C.muted, fontSize: 18, fontWeight: 700,
                               minWidth: 40, padding: "4px 8px", borderRadius: 6,
                               background: C.ink, border: `1px solid ${C.line}`,
                             }}
@@ -6499,6 +6758,184 @@ export default function MustangsSite() {
                           )}
                         </div>
                       </div>
+                    </div>
+                  </div>
+                )}
+                {standings.promotionPlayoffs && standings.promotionPlayoffs.length > 0 && (
+                  <div className="mt-8">
+                    <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
+                      PROMOTION PLAYOFFS
+                    </h3>
+                    <div className="flex flex-col gap-3">
+                      {standings.promotionPlayoffs.map((g, i) => (
+                        <div key={i} className="rounded-lg p-5" style={{ background: C.surface, border: `1px solid ${C.line}` }}>
+                          <div className="grid items-center gap-4" style={{ gridTemplateColumns: "1fr auto 1fr" }}>
+                            <div className="flex items-center gap-3 flex-wrap">
+                              {teamLogo(g.loser) && (
+                                <img src={teamLogo(g.loser)} alt="" aria-hidden className="w-9 h-9 object-contain shrink-0" />
+                              )}
+                              <span style={{ color: C.white, fontSize: 14 }}>{g.loser}</span>
+                              <span
+                                className="flex items-center justify-center"
+                                style={{
+                                  fontFamily: FONTS.mono, color: C.muted, fontSize: 18, fontWeight: 700,
+                                  minWidth: 40, padding: "4px 8px", borderRadius: 6,
+                                  background: C.ink, border: `1px solid ${C.line}`,
+                                }}
+                              >
+                                {g.loserScore}
+                              </span>
+                              {g.forfeit && <Badge tone="loss">FORFEIT</Badge>}
+                            </div>
+                            <span style={{ color: C.muted, fontSize: 12 }}>vs</span>
+                            <div className="flex items-center gap-3 flex-wrap justify-end">
+                              <Badge>WINNER</Badge>
+                              <span
+                                className="flex items-center justify-center"
+                                style={{
+                                  fontFamily: FONTS.mono, color: C.red, fontSize: 18, fontWeight: 700,
+                                  minWidth: 40, padding: "4px 8px", borderRadius: 6,
+                                  background: C.ink, border: `1px solid ${C.line}`,
+                                }}
+                              >
+                                {g.winnerScore}
+                              </span>
+                              <span style={{ color: C.white, fontSize: 14, fontWeight: 700 }}>{g.winner}</span>
+                              {teamLogo(g.winner) && (
+                                <img src={teamLogo(g.winner)} alt="" aria-hidden className="w-9 h-9 object-contain shrink-0" />
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {standings.relegationPlayoffs && standings.relegationPlayoffs.length > 0 && (
+                  <div className="mt-8">
+                    <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
+                      RELEGATION PLAYOFFS
+                    </h3>
+                    <div className="flex flex-col gap-3">
+                      {standings.relegationPlayoffs.map((g, i) => (
+                        <div key={i} className="rounded-lg p-5" style={{ background: C.surface, border: `1px solid ${C.line}` }}>
+                          {(g.cancelled || g.tie) ? (
+                            <div className="grid items-center gap-4" style={{ gridTemplateColumns: "1fr auto 1fr" }}>
+                              <div className="flex items-center gap-3 flex-wrap">
+                                {teamLogo(g.teamA) && (
+                                  <img src={teamLogo(g.teamA)} alt="" aria-hidden className="w-9 h-9 object-contain shrink-0" />
+                                )}
+                                <span style={{ color: C.white, fontSize: 14 }}>{g.teamA}</span>
+                                <span
+                                  className="flex items-center justify-center"
+                                  style={{
+                                    fontFamily: FONTS.mono, color: C.muted, fontSize: 18, fontWeight: 700,
+                                    minWidth: 40, padding: "4px 8px", borderRadius: 6,
+                                    background: C.ink, border: `1px solid ${C.line}`,
+                                  }}
+                                >
+                                  {g.teamAScore}
+                                </span>
+                              </div>
+                              <span title={g.note || undefined}>
+                                <Badge tone="neutral">{g.cancelled ? "CANCELLED" : "TIE"}</Badge>
+                              </span>
+                              <div className="flex items-center gap-3 flex-wrap justify-end">
+                                <span
+                                  className="flex items-center justify-center"
+                                  style={{
+                                    fontFamily: FONTS.mono, color: C.muted, fontSize: 18, fontWeight: 700,
+                                    minWidth: 40, padding: "4px 8px", borderRadius: 6,
+                                    background: C.ink, border: `1px solid ${C.line}`,
+                                  }}
+                                >
+                                  {g.teamBScore}
+                                </span>
+                                <span style={{ color: C.white, fontSize: 14, fontWeight: 700 }}>{g.teamB}</span>
+                                {teamLogo(g.teamB) && (
+                                  <img src={teamLogo(g.teamB)} alt="" aria-hidden className="w-9 h-9 object-contain shrink-0" />
+                                )}
+                              </div>
+                            </div>
+                          ) : g.fixedSides ? (
+                            <div className="grid items-center gap-4" style={{ gridTemplateColumns: "1fr auto 1fr" }}>
+                              <div className="flex items-center gap-3 flex-wrap">
+                                {teamLogo(g.teamA) && (
+                                  <img src={teamLogo(g.teamA)} alt="" aria-hidden className="w-9 h-9 object-contain shrink-0" />
+                                )}
+                                <span style={{ color: C.white, fontSize: 14, fontWeight: g.teamAScore > g.teamBScore ? 700 : 400 }}>{g.teamA}</span>
+                                <span
+                                  className="flex items-center justify-center"
+                                  style={{
+                                    fontFamily: FONTS.mono, color: g.teamAScore > g.teamBScore ? C.red : C.muted, fontSize: 18, fontWeight: 700,
+                                    minWidth: 40, padding: "4px 8px", borderRadius: 6,
+                                    background: C.ink, border: `1px solid ${C.line}`,
+                                  }}
+                                >
+                                  {g.teamAScore}
+                                </span>
+                                {g.teamAScore > g.teamBScore && <Badge>WINNER</Badge>}
+                              </div>
+                              <span style={{ color: C.muted, fontSize: 12 }}>vs</span>
+                              <div className="flex items-center gap-3 flex-wrap justify-end">
+                                {g.teamBScore > g.teamAScore && <Badge>WINNER</Badge>}
+                                <span
+                                  className="flex items-center justify-center"
+                                  style={{
+                                    fontFamily: FONTS.mono, color: g.teamBScore > g.teamAScore ? C.red : C.muted, fontSize: 18, fontWeight: 700,
+                                    minWidth: 40, padding: "4px 8px", borderRadius: 6,
+                                    background: C.ink, border: `1px solid ${C.line}`,
+                                  }}
+                                >
+                                  {g.teamBScore}
+                                </span>
+                                <span style={{ color: C.white, fontSize: 14, fontWeight: g.teamBScore > g.teamAScore ? 700 : 400 }}>{g.teamB}</span>
+                                {teamLogo(g.teamB) && (
+                                  <img src={teamLogo(g.teamB)} alt="" aria-hidden className="w-9 h-9 object-contain shrink-0" />
+                                )}
+                              </div>
+                            </div>
+                          ) : (
+                          <div className="grid items-center gap-4" style={{ gridTemplateColumns: "1fr auto 1fr" }}>
+                            <div className="flex items-center gap-3 flex-wrap">
+                              {teamLogo(g.loser) && (
+                                <img src={teamLogo(g.loser)} alt="" aria-hidden className="w-9 h-9 object-contain shrink-0" />
+                              )}
+                              <span style={{ color: C.white, fontSize: 14 }}>{g.loser}</span>
+                              <span
+                                className="flex items-center justify-center"
+                                style={{
+                                  fontFamily: FONTS.mono, color: C.muted, fontSize: 18, fontWeight: 700,
+                                  minWidth: 40, padding: "4px 8px", borderRadius: 6,
+                                  background: C.ink, border: `1px solid ${C.line}`,
+                                }}
+                              >
+                                {g.loserScore}
+                              </span>
+                              {g.forfeit && <Badge tone="loss">FORFEIT</Badge>}
+                            </div>
+                            <span style={{ color: C.muted, fontSize: 12 }}>vs</span>
+                            <div className="flex items-center gap-3 flex-wrap justify-end">
+                              <Badge>WINNER</Badge>
+                              <span
+                                className="flex items-center justify-center"
+                                style={{
+                                  fontFamily: FONTS.mono, color: C.red, fontSize: 18, fontWeight: 700,
+                                  minWidth: 40, padding: "4px 8px", borderRadius: 6,
+                                  background: C.ink, border: `1px solid ${C.line}`,
+                                }}
+                              >
+                                {g.winnerScore}
+                              </span>
+                              <span style={{ color: C.white, fontSize: 14, fontWeight: 700 }}>{g.winner}</span>
+                              {teamLogo(g.winner) && (
+                                <img src={teamLogo(g.winner)} alt="" aria-hidden className="w-9 h-9 object-contain shrink-0" />
+                              )}
+                            </div>
+                          </div>
+                          )}
+                        </div>
+                      ))}
                     </div>
                   </div>
                 )}
