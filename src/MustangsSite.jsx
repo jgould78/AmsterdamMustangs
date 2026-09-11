@@ -6623,7 +6623,7 @@ function PlayerProfilePage({ season, playerName, onBack }) {
           )}
           {skaterGames.some((g) => g.unverified) && (
             <div style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 11, marginTop: 8 }}>
-              * From Jeremie&rsquo;s personal log.
+              * From personal log.
             </div>
           )}
         </div>
@@ -6655,7 +6655,7 @@ function PlayerProfilePage({ season, playerName, onBack }) {
           )}
           {skaterSeasons.some((s) => s.unverified) && (
             <div style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 11, marginTop: 8 }}>
-              * From Jeremie&rsquo;s personal log.
+              * From personal log.
             </div>
           )}
           {goalieSeasons.length > 0 && (
