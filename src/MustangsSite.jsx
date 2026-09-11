@@ -7457,7 +7457,7 @@ export default function MustangsSite() {
         )}
         {tab === "awards" && !selectedAwardKey && (
           <div>
-            <SectionHeading season={season} title="Awards" />
+            <SectionHeading season={season} title="Team Awards" />
             {awards.length > 0 ? (
               <div className="grid sm:grid-cols-2 gap-4">
                 {awards.map((a, i) => {
