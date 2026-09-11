@@ -118,6 +118,9 @@ function FlagIcon({ country }) {
 }
 
 const OPPONENT_LOGOS = {
+  nijmegendevils: "data:image/png;base64,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",
+  frisianbears: "data:image/png;base64,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",
+  warriors: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFQAAABUCAMAAAArteDzAAAAflBMVEUbYavU4uuxyt5sm8iKrtBPh7wOW6kDTp8RWaIAAP8Af39QeadCfbcAHn8Af/+goqgA//9rjqYAPZoze8Dbuazw5LX//84/gsLUqn/U1H/9/f4AAAAEVaYAS6GVttRqmcUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADFrVdkAAAAIHRSTlP7/v7+/v4Nn1wBAhf/AgIIAQ///wcFBf4GBv4A//z+/qtyfj0AAAirSURBVHjanVmJdto6EB1pJJYAaZu2bzFa/v8v370jGcvEEPp0coyD8dXsm+T6cB0vb7j+tTsc9nuRjCWy3x8Ou7/w9fvl+PhNefTgbYfL6bCXnERUq4aAi4qkLPvDCQ93b38ISkgiJtHgpnE5Vyq+3h9+PIbdBD0CcgdELWvABbloynv+6vgqqEFmqQ8QO26VBvsS6NvxegJk4Zs+1HtqHQTr220B7Ol6efsaFDsfOiRoEaxURsws+aPO/wH2sEHsPeg7OE9K4jysKCVDHWiN+C555/pXThOI3T0FhYZApnHnU4fEqguhictNN1TufbjX1wr0SNZj+zHt8ywpdZS+FN9kGTCxT6QIjo9A367f9il0Akhmh0wLqaQfAjfx3GBD2n+7vm2DvhNz/qmHjvIMOlNvFioyEXS0CX+HuoB+v/7Yy7L9QicoDaP+TU3O8++GKkD9/hn0uAPmsL1fQCXeG74tP1DrgLpoSxb7XHi/6cR4/4RJ3ju1owQWy5Ib5mGNOU1ni3ZJypaXeuKOgvXpcL2sQWmf4dOLWmvYDgCmKVj+sGGAZb2PoJfrLsfn4UOxLMQ4732TAMxjfCnm0/EygEKgsonlNQpNwvfIb7LO5lLmcnEQGZTVxSoPBDqbOvyfGL7ZLOWr2Zjy9oXqtBbrbga9HHdZ7/HI6gylU2l3+YzYlXOZ+rMcVorQLgDpzK/04WBONPgZSqCFbrNkX6h6M7jsV6CzAIQuv8trswkf+L1OA5QuoUU/KuJ2EPMKX1YOG/Lu+Gagd1oCFZXBOZIdUkOoOnstQKWcLYiBA0cO5bzANlKFYXkg1INtcA8QbFQ/EKoioaBs5CwhqEgRi6sIvAJQh211hi15B85lTai3wBalKOO9D4CazIQC1aW8kwgmTNoePhfMDPLNeIxUQXC6hcvoCh87qMJAp8JQarewU+13MVYTTIjCoGjSzXMcr/Lj+l0usFE3R7sbKG4oE8TUirfAiZmD8i6CgwKgGD0SltBuu7G1fIMQIO/Xvc5hCRZi3iLZIUgrPc/oa6AFd9FZfgaNdDRPUIQIC+edMt1f3+R6ampy3DIYg46asXDfQWsHlRyjGjkwj9I+3YRMFiIZc9Uza5+gqMa9K4ZQqU8QYL830DIlE0QSD5EY5hTUntKwaAg5gwbq8UMa/9J0H+Al+EWMZBVpiBEI8NwnWs6GEPlXCAqLd2kAbYYWmtynn/ur/KLsaHxQD6RHCvDRpUTolKs3r2QROQHVVyYUmr2xw7zLTTy3KNT/L9lZcK6iIM7bewgZ5kb2swyBIH6SHAXtLpRSA4M+gyrkUXmRZsFnOIGj/UsTKTkGaZKbJJPRpQQtsPVioB5xnviQP6nEDiDfEw9ex1BRTdAQqhyklzMkpMVKMq2etwStibIxB4KQm6V48tbiF/mCJqKz8Ou520Gaj4JG6shMaDJHMXmJZb7qWaUlp1B77fm+5tk7+c5ZCuHUSAVkN31WjXUCG9U2sG0gDggUT87F48MVBrrqneuFWqa0zdhqMuevRqqi7dC5RKQBUDbOsgaiCsSBu4Lw5LTEBPb4Zqsz8T5u1EAz3Jbvaatl9FYnUtx+SjR0wAWrPCcfK/iCOxbnamLB29NzCVP8UG+/o+371A2WWoe99OxUpAVgKx2MQUipUrqekCUEarBTYDkavAVLPREKyAzUxRIvQeYaopecfkxWtUJJgWIqIDgwcgbbby4oljzSrm5ag24tYkIx4N/5YmYlLlZfnrYtBqqPH3tEOurcuwCdn2mrvk5fLV0V9BsFSqE0HdOnWjyp8UtMKkqeUDqViBIXwsRFzDycn16hdP8MdIpAhZl6Rw9CIJleAd3LdmW2lPgBmMHSfmFZVr4GBeRBnreg4B2OmM3VVj3JwzcAeUjPQWnBzMKx2eULoAh9u2eG2kHhPdJ84wVFFdnJb3lqeYaF6Ns97Xm73i3ql1yfa8oyB2J2o7N+bfqW+K5fCTXo2VsMcSiwwisiBehJynNCG8saaj2Le0GkKCaWsucR86X7SYwvEDr9vb++jwXapvJhUNY0Ii9GiS9xf0EpeXqif/aKWrWGwvJC6gu6Zyl5V52z9RpXrAUVgvfKqgdpibHFrda9j7LovSvPrQlbL+nxGrklf36c4hizYflWno+kumVwMCzrcIILZ9QM4xigd9njBGtuJMaWJ1rsuF+sJ1J0ISGTFDTBa+Q82NnS8gzNGUgKskErss4ZNqX9H63Dsxq2mjO0kacxU32mtZzZWFW50WZrBnVDzF/ayLuGNyZTwJpQ9lN5kCMUFJsaZR4QrRveta5QojArSQPuV7vrePw3tjRQJaLKcJutOQUwe0tpowJsixeRTpn7bQeOY/kR6QQ3losPtWwPEYZxByplXtzo/4D2NogprMgWe8f3oUQtt3HHbnsw4wMrPrhRKxmXQL2RNSsCVyihzYI3BjO3ERK9EnZVq8ZaUURsJzuPZ0jdsTIyBDb9myOk63H3bW89Lmj0BA3sGWrkDBYFoHk5t8Dz4CKeBcVjFH0hqLPB3Mawy8ZyoNWToRKDDZBAj2g4g0tQju4LKTV6FELAU6jIx+Kr+sdjObrrb6K6GotGPwWvqKSgCqQTDaWiVgsgmaVuQIcaAtCxK3tA0Pnv9gBxGXUWsFQBCeQCZweEkqJAVvFNtM08QbmXjTr/eTTqnIeyHI0pyK3Ro9YHRVOpAA1UDy5YCmgAqmr4cig7jI99iJycU8AAhdUoTLxAPXQjsA+xFJSYbJ5Eno+PzbJObdANsgAYqo12YLYF7b6hggs+Mz94adB9G8m3FqFA1yQH0mQ9rTbvKx69dI1m8fraSB7quiyHB6CX0zz1CklCFJWnMjE2b3evHx5sHXOgKw3ioPZAH3L/45jjdiCT7w9khmlx+TuRyj84kFkdHXX/Xx0d/UztSOqPjo42D7lU+yGXtMOoPz/kasdx78NxXFt2HPf7q+O4/wATLCqRaN9kcAAAAABJRU5ErkJggg==",
   vandattum: "data:image/png;base64,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",
   frieslandflyers: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABUCAMAAAA1fNBAAAAAwFBMVEXe3eGbmqxWbZPeoJ/qYlils8koWIz7+/twiaoqR3UWK1vqKSgMDAzv7u1aXmUXFxi2xNbsSjcICAj29vX2h3NmZWWyZm6heYusq6hgYWGfnpylpqXOusP1xblzoMXdO0HVfIWAgH/AvrxGQT5/v7+EgX+2ttq/w8O+wsLCv7jEwbzGw7wAAAD7+/sSJ1cWNWYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACEi/OtAAAAMHRSTlP4/v7+//7+C/7+/v8qmv7//v9GYP9m//2JD2oX////////iv8EcAc4Q1BokQD7/v6vS/fbAAALbElEQVR42pVZiXbjOA4ESFEiKUuWjzjO1d0zuzN7WdL//91WgXJOJ3HzPce2LJbAIlAAGDldGs3pitF8c7tcntTsuq/Hboeblo/NZexL0E3TiIRvhkg3Bi0fL2PLBdzm1IlTjNtbtXFbXrevrt1qHCK+4JsLHWZdZXVz2okbtGorPfxsf0lVqWhbiVYaqlb1pw+4VHnnKgD7R+9kd7rW6jGk6NtWXazaQdoqJkBHBdiv1kethtvWh9bLT187PVQ+yiW+5b3F3bjDy5nROVYHgaFp0qoSr7PzgBbYikUcWv+zitnZU8fuc+iFLNIsTSdmNBHDIx4xzXiSeJcJHbwP+PoY2grGO2J7p+9wLlutbhwB0f5yLvjDUGHiNEVbxFT7tnoky3iEVIehbX0N7EqdrE5fWN0U6JCDGh3Og4PHTaXzlLEKPGFOnnvr06x8DxFvwI63YOm+zG9ezJYlRMbuboEeJlKKPVQ4RTBI1+NZPk05+Q0ues38DicZDsQGb6pGdtmq5g30TmRXftvJPJnRXCY43mh2onxPc06KRUQvWFG7l8Nmwc4Ks//Dle9G6U4Pb60WZzFl0Gb0sAe5DlZq9j7yfc5zwiOwZx6vqnoMmyoosVPCGjuD0fDn6u4dIcmw+ckcT/agZCJSAgEGPeU824XZ7xEuG0TOxmswbMQk2Qabcv8eWlxWKVYDZ3MgJVPyFezyeFWbQ9C55wcPdrjHm2oAPSLGiZNRbu46mZLcrF4TYj4HD8MWwEMwnWBKCjcH7w+IcxsToIuAHARhX/kAtvGkA91J7m9kmCcn21XzFnonE6/vGjOa7qFg4kAtitE5l1KaZ+wjBr5FDVQokWrveS83dxzDlKfYrd76NaETsJOMZjTWywhTgKZ5muDQqbaRUp55AVf4AIGTcxOrzR4m4OoUjqsztjTNso+ICEwCKJ3AwXddysDItNK5+vXgCvgTfoP06eTMcbDLU5a/DJqocnqOQjwzT4u/PTL2MBtzo8HCxmjklK+FHzxghivGHLGhPk2F6tWS0Wh1s/izLdQMSMFxXq8hAhULFxlt8J2JxdULNtBAyaS3oASWaVeQzeqRkVn8GT/hRngWVkbiFQg1bF1gMfDjfpSYXBhCXRfopAAtsQQ+7lcrC8qxOSEJMkc0xgiG7jc+TmbNEM90hAVZKu83HlPSlCJNJ3ZmwskWnsYHAmY3Bnk4SSdJOq6AZk+ZRidCa6gRY3HZwKEYDTeuWijpCEGB6aEujOzDPMFnvQv/Ax93u9HBB1eCEM8DDWcsYRMrLA8TQsAGOe5cwY5i0FW1AfRPLAA/TBHcLGaTEjg3vBqJxE0CHxQjwtHwBwngA7clNwFZQWro130o/kZwacv4KaOue+1zkh81Da4QFU5BpfwXJUTO5ihiwTKlAPB/j7aJTrBWIJNcQi8+nUC5L9B+HLXvZUg5y4/ErYdzw3jEzTjQawMdRaBMka6R6GG8SXzoAb7snMIBz2GS68G/QsbAhksEI14tcTK1mW9BowBtHs3dyFlRD8BqiEdMpFbAjvS9amE7ImBACl0bV/0e+jSKc1JPTA4+F1chlHbblYVMiXGCz4/Qf8q0M6Mxt2BHF2QIAaEYw2A8wdAK4N7Dd2uYbVkt7s0F4N00moSgPsCFnDNJ05iR+SKhZbOHnlSea8eVJdAdg6hXPncPb6lkhAdCZ0AJ5N3n6Ww0oYvZmWEKhbS4WaAr+hr2FROfAx0B41KPJS2O6AmNOcCG/yHmz0YXeeok0+i0IAO6JtSm5VwZ3DkaDZngdYSzbBZvKdAgXMOeNctitEE3D0LZmHVBnmKsNUhxNSC/aIicB7Cr4oj4XKAzxAbQOS1GWyqgnCQq04I8OdSPLpobV/IK+TX2IMQG1WdouK+5yLAYfU672Mkp6PQaGmMQeICOH6EHiXh2kdrhDE1snaMsyGfoh5GecYautUBj9ngRWgidE/ZAxiGdoSFBKcn9G2ijpD8DYz81xSVtwZtfcEcZX1mN7emxI4HCep6a5bhdvU276F5ceoGOtSujRlvxjIzAeLE69JPlL/nxGlq67fZjRh9GlxfomdC1yVIcXDHYgvCFEReW5Bgi4+9sM5A/FguoA+GC2W6aXX3O4c48RHRhhNAmTE5LaszmIJm4lOabF+QXQgxbtJ/yGjc5cFIGoWW91me+qbNwdi2609NBMAUaPQBgvD8170p3pt1Aa0bKRUoxDcOSutCo9OsXbPss0EBLc1MMRUFCCVOkq4cPXQGzTQwlPALIBhSFGunVjWuOXky+1wYNKYRQT4Vqt/ilJicfCFnqp8ySBgYEks27Yz3XUosa9pppa12g2dSA8MmojogrrBWEs1b42CYxIp99f66dJQOkozk4pfRDtrmdYBoeGOMeQY5FKALm7LRQ01I7fYRuRitAcikW00KuxlB/iMf60fQDT49zKuI0n/PWheauiNRZDgojxSecvgt0Mxpyyocs0MCenoXpA3RjlUh+ywjqEsyXN9CBzY4hjwjFhY85Q5i2nzTSrESs3CuMmNlPFbKruHp8FTIC70FStAT8YvTkxps3Rr/pdknJWf5QqtNsZFbk0h69yFi6DiLnw1AeQmmqF+T+lTBdaKQNe7mVLm0ZcE9fRlYxZNAeE5zEOSlM10WaUC+9R37Xozene3grFYENRmIOQ0Zfr72AHjGjoeF0QDZsZLpm65AR+se3RF9q/+864xPJoyZc6yNCBMWMq02YakUtgdDUhG2D0bHcDV3afnfUwi67RC2g51CCpEJ0jBE1XwAyi/X1+g9F/Y21OdMG6barb09xGtSwaFRYlbAU09ivk/iiLJRYa9Sc2Y1OHZ0URpr1wpnFBehGQqZkq/7RL9KxdBsSPJwZLcEU7Zd/oBxEbpoz/G61uuLs6fSvkb1J0ThqUSzYqNOeqs2m9ZQ8/soboCwOHn2/XV1zYgYvGUPsOZd/sG2zgS91GooaiJYT+5k3wW2Ol5AvH8Y9IJfQw/iCXsMVtdRpm/asHT+i9qlAv4/CL08n4SXFalR3cx1Y57vnlqAV044cB7WbRC4jf3Lw2S05CyXSGRtJtWD7goxKgv3IOotcRv7UasFCBa6FkgHY0SpyFW+yBJEGMovmctvqN6xGg1ZqmujYSgMb+RuaWCoxyj96Rhbdtr03v2E1Ryelb4G6RTfDF7MdPIByqr+zBN51FuPb37B6ycGwEdOO4wDsOQ52qDEH1B2sj9G93XRoeiF53Ut9cMU2/o3KISgKurG7u0cAoqmtB+WZBFzG6TAeCYy9UHQfLyd713C9G3P0PIwgOJYdlIQHZZOIYkWOBEYYPj15tpgP1x2NL3Swm/JPwcBZNPCABLkdyhxsD/A9BTTQuG0OsrruaLxp/gmB8nYKJk/K84mh1EYzKWfqGiIbLZWn1g9VFfPrSu9rDdmNM4/afE3LfaJy9tg6dLZhgNY5njmhWavRc7f+sfVJuqugz3QAIiKZ80hdeOKELbOW0cwVsad6YUOssxxPd1dC69yz24ZNPOPYA/0JhACRuRGN6xNBLeh5CDJTru+uJYS5JKsZXauhA9g/PSHSedDq/YYxX7VV9G6O49WiygOdkaf5mN2ScI08NQJiiL5yGd9w3fvIvpwedPwdUV3ds3yu4dvOVRWPrNjct9794snzr4r/UPEIoZkReyGZfxHod6fVn6iuc4o85Ki1Rd3hBt8qlgDvaB+9HW70UJSb7fb35Am+tGVrk5Bg1MKH9ACPTOAj0u3shhH952fi9LnyUXJAC4QVxVTvbuGLAK1BA1Dh2aw/SMWnwF9AF/AbNFVQJzROJNZePKNlsB+REr8A/hIa4KsTtPPYFeXmWepQurSu4K6+/H+kfPPvSoTCarXd3hyPyz8aj0Ddfo/7PbShrwj/fnz/X9TvoQv83W/iYvwfoLbGpGEYcS0AAAAASUVORK5CYII=",
   leeuwardenvikings: "data:image/png;base64,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",
@@ -257,6 +260,9 @@ const OPPONENT_LOGO_MAP = {
   "Leeuwarden Vikings": "leeuwardenvikings",
   "Friesland Flyers": "frieslandflyers",
   "Vandattum": "vandattum",
+  "Warriors Leeuwarden": "warriors",
+  "Frisian Bears 1 Heerenveen": "frisianbears",
+  "Nijmegen Devils 2": "nijmegendevils",
   "Utrecht Zwarte Draken": "utrechtdragons",
   "Utrecht OG's 2": "ogs",
   "Utrecht OG's": "ogs",
@@ -411,10 +417,12 @@ const ROSTERS = {
     { tag: "", num: 7, name: "Wyatt Southard", pos: "D", shoots: "Right", nat: "USA" },
     { tag: "", num: 8, name: "Andrey Gushchin", pos: "RW", shoots: "Left", nat: "Russia" },
     { tag: "", num: 9, name: "Petteri Hyytiäinen", pos: "C", shoots: "Left", nat: "Finland" },
+    { tag: "", num: 11, name: "Alexander Samoylov", pos: "RW", shoots: "Right", nat: "Russia" },
     { tag: "", num: 13, name: "Jeroen Valentijn", pos: "D", shoots: "Right", nat: "Netherlands" },
     { tag: "", num: 15, name: "Alex Paquin", pos: "LW", shoots: "Left", nat: "Canada" },
     { tag: "", num: 16, name: "Christopher Price", pos: "C", shoots: "Left", nat: "Canada" },
     { tag: "", num: 17, name: "Jon Garrity", pos: "D", shoots: "Left", nat: "USA" },
+    { tag: "", num: 18, name: "Chris Lesny", pos: "LW", shoots: "Left", nat: "Poland" },
     { tag: "A", num: 19, name: "Jared Penner", pos: "RW", shoots: "Right", nat: "Canada" },
     { tag: "A", num: 27, name: "Jim Conboy", pos: "D", shoots: "Right", nat: "Canada" },
     { tag: "", num: 29, name: "Nils Klok", pos: "D", shoots: "Right", nat: "Netherlands" },
@@ -426,15 +434,18 @@ const ROSTERS = {
     { tag: "", num: 83, name: "Daniel Perrier", pos: "LW", shoots: "Left", nat: "Netherlands" },
     { tag: "", num: 89, name: "Brett Boss", pos: "D", shoots: "Right", nat: "USA" },
     { tag: "", num: 91, name: "George Huber", pos: "LW", shoots: "Left", nat: "Canada" },
+    { tag: "", num: 96, name: "Duane Mattos", pos: "LW", shoots: "Left", nat: "Canada" },
     { tag: "", num: 97, name: "Miska Braun", pos: "RW", shoots: "Right", nat: "Finland" },
   ],
   "2026-2027": [
     { tag: "", num: 8, name: "Andrey Gushchin", pos: "RW", shoots: "Left", nat: "Russia" },
     { tag: "", num: 9, name: "Petteri Hyytiäinen", pos: "C", shoots: "Left", nat: "Finland" },
+    { tag: "", num: 11, name: "Alexander Samoylov", pos: "RW", shoots: "Right", nat: "Russia" },
     { tag: "", num: 13, name: "Jeroen Valentijn", pos: "D", shoots: "Right", nat: "Netherlands" },
     { tag: "", num: 15, name: "Alex Paquin", pos: "LW", shoots: "Left", nat: "Canada" },
     { tag: "", num: 16, name: "Christopher Price", pos: "D", shoots: "Left", nat: "Canada" },
     { tag: "", num: 17, name: "Jon Garrity", pos: "D", shoots: "Left", nat: "USA" },
+    { tag: "", num: 18, name: "Chris Lesny", pos: "LW", shoots: "Left", nat: "Poland" },
     { tag: "A", num: 19, name: "Jared Penner", pos: "RW", shoots: "Right", nat: "Canada" },
     { tag: "", num: 22, name: "George Harrington", pos: "LW", shoots: "Left", nat: "Canada" },
     { tag: "A", num: 27, name: "Jim Conboy", pos: "D", shoots: "Right", nat: "Canada" },
@@ -447,6 +458,7 @@ const ROSTERS = {
     { tag: "", num: 83, name: "Daniel Perrier", pos: "LW", shoots: "Left", nat: "Netherlands" },
     { tag: "", num: 89, name: "Brett Boss", pos: "D", shoots: "Right", nat: "USA" },
     { tag: "", num: 91, name: "George Huber", pos: "LW", shoots: "Left", nat: "Canada" },
+    { tag: "", num: 96, name: "Duane Mattos", pos: "LW", shoots: "Left", nat: "Canada" },
     { tag: "", num: 97, name: "Miska Braun", pos: "RW", shoots: "Right", nat: "Finland" },
   ],
 };
@@ -572,6 +584,18 @@ const SCHEDULE_DATA = {
     { date: "2025-02-16", opp: "Thor Amsterdam", home: true, status: "final", res: "W", gf: 6, ga: 5, time: "21:00", venue: "Jaap Edenhal, Amsterdam" },
     { date: "2025-03-02", opp: "Slapsticks Flyers Heerenveen", home: false, status: "final", res: "W", gf: 5, ga: 3, time: "20:00", venue: "Thialf, Heerenveen" },
     { date: "2025-03-09", opp: "Leiden Lions", home: true, status: "final", res: "W", gf: 14, ga: 9, time: "18:45", venue: "Jaap Edenhal, Amsterdam" },
+  ],
+  "2026-2027": [
+    { date: "2026-10-10", opp: "Warriors Leeuwarden", home: true, status: "upcoming", time: "18:00", venue: "Jaap Edenhal, Amsterdam" },
+    { date: "2026-11-01", opp: "Frisian Bears 1 Heerenveen", home: false, status: "upcoming", time: "17:30", venue: "Thialf, Heerenveen" },
+    { date: "2026-11-07", opp: "Blue Mountain Cougars Hoorn 1", home: true, status: "upcoming", time: "20:15", venue: "Jaap Edenhal, Amsterdam" },
+    { date: "2026-11-21", opp: "Amsterdam Tigers 6", home: false, status: "upcoming", time: "20:15", venue: "Jaap Edenhal, Amsterdam" },
+    { date: "2026-12-11", opp: "Blue Mountain Cougars Hoorn 1", home: false, status: "upcoming", time: "21:00", venue: "Optisport de Westfries, Hoorn" },
+    { date: "2026-12-20", opp: "Amsterdam Tigers 6", home: true, status: "upcoming", time: "18:45", venue: "Jaap Edenhal, Amsterdam" },
+    { date: "2027-01-09", opp: "Warriors Leeuwarden", home: false, status: "upcoming", time: "20:00", venue: "Elfstedenhal, Leeuwarden" },
+    { date: "2027-01-30", opp: "Frisian Bears 1 Heerenveen", home: true, status: "upcoming", time: "20:15", venue: "Jaap Edenhal, Amsterdam" },
+    { date: "2027-02-07", opp: "Leiden Islanders", home: false, status: "upcoming", time: "17:30", venue: "IJshal De Vliet, Leiden" },
+    { date: "2027-03-07", opp: "Leiden Islanders", home: true, status: "upcoming", time: "18:45", venue: "Jaap Edenhal, Amsterdam" },
   ],
 };
 
@@ -5206,6 +5230,28 @@ const STANDINGS_DATA = {
       { team: "Icehawks Eindhoven", gp: 12, w: 2, l: 10, t: 0, gf: 38, ga: 84, gd: "-46", pts: 4, relegated: true },
     ],
   },
+  "2026-2027": {
+    // No games played yet this season -- every stat is 0. North is Amsterdam
+    // Mustangs plus every opponent on the 2026-2027 schedule; South teams
+    // supplied directly by Jeremie.
+    north: [
+      { team: "Amsterdam Mustangs", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+      { team: "Warriors Leeuwarden", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+      { team: "Frisian Bears 1 Heerenveen", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+      { team: "Blue Mountain Cougars Hoorn 1", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+      { team: "Amsterdam Tigers 6", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+      { team: "Leiden Islanders", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+    ],
+    south: [
+      { team: "Black Sheep Dordrecht", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+      { team: "Hijs Hokij Den Haag Bullets", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+      { team: "Nijmegen Saints", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+      { team: "Smoke Eaters Geleen 2", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+      { team: "Red Eagles Den Bosch 2", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+      { team: "Eindhoven Kemphanen Recreanten", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+      { team: "Nijmegen Devils 2", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+    ],
+  },
 };
 
 // End-of-season awards, keyed by season. Each entry is { category, winner }.
@@ -5487,6 +5533,7 @@ const STATS_DATA = {
       { num: 47, name: "Sergey Baradyntsev", pos: "C", gp: 13, g: 2, a: 7, pts: 9, pim: 2 },
       { num: 8, name: "Andrey Gushchin", pos: "RW", gp: 15, g: 2, a: 6, pts: 8, pim: 2 },
       { num: 15, name: "Alex Paquin", pos: "LW", gp: 5, g: 3, a: 4, pts: 7, pim: 4 },
+      { num: 18, name: "Chris Lesny", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
       { num: 89, name: "Brett Boss", pos: "D", gp: 11, g: 2, a: 5, pts: 7, pim: 4 },
       { num: 29, name: "Nils Klok", pos: "D", gp: 15, g: 2, a: 4, pts: 6, pim: 8 },
       { num: 44, name: "Krisztian Vizsy", pos: "LW", gp: 9, g: 2, a: 3, pts: 5, pim: 0 },
@@ -5507,6 +5554,43 @@ const STATS_DATA = {
       // game. GP/W/L/T are unaffected — already correct against SCHEDULE_DATA.
       { num: 31, name: "Tori Holmes-Kirk", gp: 14, w: 8, l: 5, t: 1, ga: 80, gaa: "5.71", so: 0 },
       { num: 30, name: "Bart Sasim", gp: 1, w: 1, l: 0, t: 0, ga: 6, gaa: "6.00", so: 0 },
+    ],
+  },
+  "2026-2027": {
+    // No games played yet -- every stat is 0. Same skater group as
+    // 2025-2026, minus Krisztian Vizsy and Wyatt Southard (not playing this
+    // season) and goalie Bart Sasim (was a spare), plus George Harrington
+    // and Dirk McLaughlin added as skaters and Connor Harrington-Brandt
+    // added as a second goalie. Numbers/positions taken from the
+    // 2026-2027 ROSTERS entry where available; Duane Mattos, Alexander
+    // Samoylov, and Connor Harrington-Brandt aren't on that roster list, so
+    // their last-known numbers/positions were used instead.
+    skaters: [
+      { num: 97, name: "Miska Braun", pos: "RW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 9, name: "Petteri Hyytiäinen", pos: "C", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 27, name: "Jim Conboy", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 16, name: "Christopher Price", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 17, name: "Jon Garrity", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 19, name: "Jared Penner", pos: "RW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 91, name: "George Huber", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 46, name: "Daniel Watts", pos: "C", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 83, name: "Daniel Perrier", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 77, name: "Jeremie Gould", pos: "RW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 47, name: "Sergey Baradyntsev", pos: "C", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 8, name: "Andrey Gushchin", pos: "RW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 15, name: "Alex Paquin", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 18, name: "Chris Lesny", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 89, name: "Brett Boss", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 29, name: "Nils Klok", pos: "C", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 13, name: "Jeroen Valentijn", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 96, name: "Duane Mattos", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 11, name: "Alexander Samoylov", pos: "RW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 22, name: "George Harrington", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 73, name: "Dirk McLaughlin", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+    ],
+    goalies: [
+      { num: 31, name: "Tori Holmes-Kirk", gp: 0, w: 0, l: 0, t: 0, ga: 0, gaa: "0.00", so: 0 },
+      { num: 41, name: "Connor Harrington-Brandt", gp: 0, w: 0, l: 0, t: 0, ga: 0, gaa: "0.00", so: 0 },
     ],
   },
 };
@@ -5592,7 +5676,7 @@ function SortHeader({ label, active, dir, align = "right", onClick }) {
   );
 }
 
-function ConferenceTable({ title, teams }) {
+function ConferenceTable({ title, teams, defaultSort }) {
   const cols = "2.4fr repeat(8, minmax(34px, 0.7fr))";
   const [sortKey, setSortKey] = useState(null);
   const [sortDir, setSortDir] = useState("desc");
@@ -5607,7 +5691,14 @@ function ConferenceTable({ title, teams }) {
   }
 
   const sortedTeams = useMemo(() => {
-    if (!sortKey) return teams;
+    if (!sortKey) {
+      if (defaultSort) {
+        const arr = teams.slice();
+        arr.sort(defaultSort);
+        return arr;
+      }
+      return teams;
+    }
     const arr = teams.slice();
     arr.sort((a, b) => {
       if (sortKey === "team") {
@@ -5618,7 +5709,7 @@ function ConferenceTable({ title, teams }) {
       return sortDir === "asc" ? av - bv : bv - av;
     });
     return arr;
-  }, [teams, sortKey, sortDir]);
+  }, [teams, sortKey, sortDir, defaultSort]);
 
   const cols_ = [
     { key: "gp", label: "GP" },
@@ -6915,7 +7006,10 @@ export default function MustangsSite() {
                           <Badge tone="neutral">CANCELLED</Badge>
                         </span>
                       ) : (
-                        <Badge tone="neutral">UPCOMING</Badge>
+                        <div className="flex items-center gap-3 shrink-0">
+                          <span style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 14 }}>TBD</span>
+                          <Badge tone="neutral">UPCOMING</Badge>
+                        </div>
                       )}
                     </Wrapper>
                   );
@@ -6981,15 +7075,29 @@ export default function MustangsSite() {
             <SectionHeading season={season} title="Standings" />
             {standings ? (
               <>
-                {standings.north.length > 0 && <ConferenceTable title={standings.northLabel || "North"} teams={standings.north} />}
+                {standings.north.length > 0 && (
+                  <ConferenceTable
+                    title={standings.northLabel || "North"}
+                    teams={standings.north}
+                    defaultSort={(a, b) => (b.pts - a.pts) || (parseInt(b.gd, 10) - parseInt(a.gd, 10)) || a.team.localeCompare(b.team)}
+                  />
+                )}
                 {standings.south.length > 0 && (
                   <div className={standings.north.length > 0 ? "mt-8" : ""}>
-                    <ConferenceTable title={standings.southLabel || "South"} teams={standings.south} />
+                    <ConferenceTable
+                      title={standings.southLabel || "South"}
+                      teams={standings.south}
+                      defaultSort={(a, b) => (b.pts - a.pts) || (parseInt(b.gd, 10) - parseInt(a.gd, 10)) || a.team.localeCompare(b.team)}
+                    />
                   </div>
                 )}
                 {standings.east && standings.east.length > 0 && (
                   <div className={(standings.north.length > 0 || standings.south.length > 0) ? "mt-8" : ""}>
-                    <ConferenceTable title={standings.eastLabel || "East"} teams={standings.east} />
+                    <ConferenceTable
+                      title={standings.eastLabel || "East"}
+                      teams={standings.east}
+                      defaultSort={(a, b) => (b.pts - a.pts) || (parseInt(b.gd, 10) - parseInt(a.gd, 10)) || a.team.localeCompare(b.team)}
+                    />
                   </div>
                 )}
                 {standings.playoffCancelled && (
@@ -7385,35 +7493,41 @@ export default function MustangsSite() {
         {tab === "media" && (
           <div>
             <SectionHeading season={season} title="Photos & video" />
-            <SampleNote>
-              Upload photos directly once the site is live, and paste YouTube links to embed videos. These tiles are placeholders.
-            </SampleNote>
+            {parseInt(season.slice(0, 4), 10) < 2017 ? (
+              <div style={{ color: C.muted, fontSize: 14 }}>No media available.</div>
+            ) : (
+              <>
+                <SampleNote>
+                  Upload photos directly once the site is live, and paste YouTube links to embed videos. These tiles are placeholders.
+                </SampleNote>
 
-            <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 12 }}>PHOTOS</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="aspect-square rounded-lg flex items-center justify-center"
-                  style={{ background: C.surface, border: `1px dashed ${C.line}` }}
-                >
-                  <Camera size={20} color={C.muted} />
+                <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 12 }}>PHOTOS</h3>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
+                  {Array.from({ length: 8 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="aspect-square rounded-lg flex items-center justify-center"
+                      style={{ background: C.surface, border: `1px dashed ${C.line}` }}
+                    >
+                      <Camera size={20} color={C.muted} />
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
 
-            <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 12 }}>VIDEOS</h3>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              {Array.from({ length: 3 }).map((_, i) => (
-                <div
-                  key={i}
-                  className="aspect-video rounded-lg flex items-center justify-center"
-                  style={{ background: C.surface, border: `1px dashed ${C.line}` }}
-                >
-                  <Play size={22} color={C.muted} />
+                <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 12 }}>VIDEOS</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {Array.from({ length: 3 }).map((_, i) => (
+                    <div
+                      key={i}
+                      className="aspect-video rounded-lg flex items-center justify-center"
+                      style={{ background: C.surface, border: `1px dashed ${C.line}` }}
+                    >
+                      <Play size={22} color={C.muted} />
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </>
+            )}
           </div>
         )}
       </div>
