@@ -2925,7 +2925,7 @@ const GAME_DETAILS = {
         timer: "Lorenzo Muus",
       },
       scoring: [
-        { period: 1, time: "00:52", team: "us", scorer: "Jeremie Gould", assists: ["George Huber"], strength: "EQ" },
+        { period: 1, time: "00:52", team: "us", scorer: "Jeremie Gould", assists: ["George Huber"], strength: "EQ", video: "https://www.youtube.com/shorts/yKdHPQlWs-0" },
         { period: 1, time: "03:15", team: "them", scorer: "Arjen Nolles", assists: ["Ronald Hoving"], strength: "EQ" },
         { period: 1, time: "03:26", team: "them", scorer: "Arjen Nolles", assists: ["Klaas van Dijk"], strength: "EQ" },
         { period: 1, time: "07:22", team: "us", scorer: "George Huber", assists: ["Jon Garrity"], strength: "EQ" },
@@ -6298,13 +6298,24 @@ function GameDetailPage({ season, game, detail, onBack }) {
                             {g.assists.length > 0 && (
                               <span style={{ color: C.muted, fontSize: 13 }}> ({g.assists.join(", ")})</span>
                             )}
+                            {g.video && (
+                              <a
+                                href={g.video}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`Watch video of ${g.scorer}'s goal`}
+                                title="Watch goal video"
+                                className="inline-flex items-center justify-center rounded-full align-middle"
+                                style={{ width: 22, height: 22, marginLeft: 6, background: C.surface2, border: `1px solid ${C.line}`, color: C.red }}
+                              >
+                                <Video size={11} />
+                              </a>
+                            )}
                           </span>
                         </div>
-                        {g.strength && g.strength !== "EQ" && (
-                          <span className="shrink-0">
-                            <Badge tone="neutral">{g.strength}</Badge>
-                          </span>
-                        )}
+                        <span className="shrink-0">
+                          {g.strength && g.strength !== "EQ" && <Badge tone="neutral">{g.strength}</Badge>}
+                        </span>
                       </div>
                     ))}
                   </div>
@@ -7596,7 +7607,7 @@ export default function MustangsSite() {
         {tab === "media" && (
           <div>
             <SectionHeading season={season} title="Photos & video" />
-            {parseInt(season.slice(0, 4), 10) < 2017 || season === CANCELLED_SEASON ? (
+            {parseInt(season.slice(0, 4), 10) < 2017 || season === CANCELLED_SEASON || season === "2019-2020" ? (
               <div style={{ color: C.muted, fontSize: 14 }}>No media available.</div>
             ) : (
               <>
@@ -7750,6 +7761,7 @@ export default function MustangsSite() {
             </div>
           </div>
         )}
+
       </div>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 flex items-center gap-2" style={{ borderTop: `1px solid ${C.line}` }}>
