@@ -438,6 +438,7 @@ const ROSTERS = {
     { tag: "", num: 97, name: "Miska Braun", pos: "RW", shoots: "Right", nat: "Finland" },
   ],
   "2026-2027": [
+    { tag: "", num: 2, name: "Miles Bishop", pos: "G", shoots: "Left", nat: "USA" },
     { tag: "", num: 8, name: "Andrey Gushchin", pos: "RW", shoots: "Left", nat: "Russia" },
     { tag: "", num: 9, name: "Petteri Hyytiäinen", pos: "C", shoots: "Left", nat: "Finland" },
     { tag: "", num: 11, name: "Alexander Samoylov", pos: "RW", shoots: "Right", nat: "Russia" },
@@ -447,6 +448,7 @@ const ROSTERS = {
     { tag: "", num: 17, name: "Jon Garrity", pos: "D", shoots: "Left", nat: "USA" },
     { tag: "", num: 18, name: "Chris Lesny", pos: "LW", shoots: "Left", nat: "Poland" },
     { tag: "A", num: 19, name: "Jared Penner", pos: "RW", shoots: "Right", nat: "Canada" },
+    { tag: "", num: 21, name: "Michal Dudzinski", pos: "RW", shoots: "Right", nat: "Poland" },
     { tag: "", num: 22, name: "George Harrington", pos: "LW", shoots: "Left", nat: "Canada" },
     { tag: "A", num: 27, name: "Jim Conboy", pos: "D", shoots: "Right", nat: "Canada" },
     { tag: "", num: 29, name: "Nils Klok", pos: "C", shoots: "Right", nat: "Netherlands" },
@@ -586,7 +588,7 @@ const SCHEDULE_DATA = {
     { date: "2025-03-09", opp: "Leiden Lions", home: true, status: "final", res: "W", gf: 14, ga: 9, time: "18:45", venue: "Jaap Edenhal, Amsterdam" },
   ],
   "2026-2027": [
-    { date: "2026-10-10", opp: "Warriors Leeuwarden", home: true, status: "upcoming", time: "18:00", venue: "Jaap Edenhal, Amsterdam" },
+    { date: "2026-10-10", opp: "Warriors Leeuwarden", home: true, status: "final", res: "W", gf: 4, ga: 1, time: "18:00", venue: "Jaap Edenhal, Amsterdam" },
     { date: "2026-11-01", opp: "Frisian Bears 1 Heerenveen", home: false, status: "upcoming", time: "17:30", venue: "Thialf, Heerenveen" },
     { date: "2026-11-07", opp: "Blue Mountain Cougars Hoorn 1", home: true, status: "upcoming", time: "20:15", venue: "Jaap Edenhal, Amsterdam" },
     { date: "2026-11-21", opp: "Amsterdam Tigers 6", home: false, status: "upcoming", time: "20:15", venue: "Jaap Edenhal, Amsterdam" },
@@ -4734,6 +4736,77 @@ const GAME_DETAILS = {
       },
     },
   },
+  "2026-2027": {
+    "2026-10-10": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-003",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["Jason Roberton", "Liam Schikler"],
+        scorer: "Anouk Maij",
+        timer: "Silas de Jong",
+      },
+      // Scorer/assists taken from BenchApp (source of truth per convention), not the
+      // gamesheet PDF, for 3 of these 4 goals -- a genuine conflict, not a numbering
+      // mixup, since every disputed player's jersey number matches between both
+      // sources. Gamesheet listed: 2nd assist on the 38:04 goal as 73 Dirk McLaughlin
+      // (BenchApp: 19 Jared Penner); sole assist on the 53:43 PP goal as 77 Jeremie
+      // Gould (BenchApp: 73 Dirk McLaughlin); 1st assist on the 54:06 goal as 77
+      // Jeremie Gould (BenchApp: 46 Daniel Watts). Flagged for Jeremie to confirm.
+      scoring: [
+        { period: 1, time: "16:05", team: "them", scorer: "Eddy Lord", assists: [], strength: "EQ", video: "https://youtu.be/7Xz8iMsBUDA" },
+        { period: 1, time: "18:07", team: "us", scorer: "George Harrington", assists: ["Jim Conboy", "Daniel Watts"], strength: "EQ", video: "https://youtu.be/0juUhFQnQws" },
+        { period: 2, time: "38:04", team: "us", scorer: "George Huber", assists: ["Alexander Samoylov", "Jared Penner"], strength: "EQ", video: "https://youtu.be/WSYUc57NEyQ" },
+        { period: 3, time: "53:43", team: "us", scorer: "Nils Klok", assists: ["Dirk McLaughlin"], strength: "PP", video: "https://youtu.be/T-1uAcrnzSs" },
+        { period: 3, time: "54:06", team: "us", scorer: "George Harrington", assists: ["Daniel Watts", "Brett Boss"], strength: "EQ", video: "https://youtu.be/-dp4ulWHDbw" },
+      ],
+      penalties: [
+        { period: 1, time: "03:36", team: "them", player: "Jeroen Juckers", code: "HOLD", min: 2 },
+        { period: 1, time: "09:51", team: "them", player: "Raymon Kaspers", code: "BOARD", min: 2 },
+        { period: 2, time: "23:03", team: "us", player: "George Huber", code: "HOOK", min: 2 },
+        { period: 2, time: "24:53", team: "us", player: "Sergey Baradyntsev", code: "TRIP", min: 2 },
+        { period: 2, time: "33:23", team: "us", player: "Jim Conboy", code: "HOOK", min: 2 },
+        { period: 3, time: "44:36", team: "us", player: "Michal Dudzinski", code: "INTRF", min: 2 },
+        { period: 3, time: "45:00", team: "them", player: "Arjen Dijkstra", code: "HOOK", min: 2 },
+        { period: 3, time: "50:00", team: "us", player: "Alexander Samoylov", code: "HOLD", min: 2 },
+        { period: 3, time: "52:06", team: "them", player: "Arjen Dijkstra", code: "HOOK", min: 2 },
+        { period: 3, time: "55:19", team: "them", player: "Raymon Kaspers", code: "TRIP", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 1, goalsThem: 1 },
+        { period: 2, goalsUs: 1, goalsThem: 0 },
+        { period: 3, goalsUs: 2, goalsThem: 0 },
+      ],
+      lineup: {
+        us: {
+          // Miles Bishop and Michal Dudzinski are now on the standing 2026-2027
+          // roster at #2 and #21 -- their jersey numbers here are BenchApp's, not
+          // the gamesheet's (1, 70), and match the roster entry. The 2026-2027
+          // ROSTERS entry also independently confirms George Harrington wears 22,
+          // matching BenchApp over the gamesheet's 80 for him. Flagged for Jeremie
+          // to confirm, since none of the three has an existing standing override.
+          // Alex Paquin was on the printed gamesheet roster (oddly as #6, not his
+          // usual 15) but not in BenchApp's Attended list, so excluded here as not
+          // dressed.
+          goalie: "2 Miles Bishop",
+          dressed: [
+            "11 Alexander Samoylov", "17 Jon Garrity", "19 Jared Penner", "21 Michal Dudzinski",
+            "22 George Harrington", "27 Jim Conboy", "29 Nils Klok", "46 Daniel Watts",
+            "47 Sergey Baradyntsev", "73 Dirk McLaughlin", "77 Jeremie Gould", "89 Brett Boss",
+            "91 George Huber",
+          ],
+        },
+        them: {
+          goalie: "24 Johan van der Werff",
+          dressed: [
+            "2 Diederik de Vink", "3 Dennis Schrage", "13 Raymon Kaspers", "22 Ludo Okkema",
+            "51 Arjen Dijkstra", "67 Robert Wetting", "68 Eddy Lord", "77 Emiel Rispens",
+            "78 Niels Brouwer", "88 Jeroen Juckers",
+          ],
+        },
+      },
+    },
+  },
 };
 
 const STANDINGS_DATA = {
@@ -5231,25 +5304,25 @@ const STANDINGS_DATA = {
     ],
   },
   "2026-2027": {
-    // No games played yet this season -- every stat is 0. North is Amsterdam
-    // Mustangs plus every opponent on the 2026-2027 schedule; South teams
-    // supplied directly by Jeremie.
+    // North is Amsterdam Mustangs plus every opponent on the 2026-2027
+    // schedule; South teams supplied directly by Jeremie. Every other row is
+    // still 0 -- only the 2026-10-10 Warriors Leeuwarden game has been played.
     north: [
-      { team: "Amsterdam Mustangs", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
-      { team: "Warriors Leeuwarden", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+      { team: "Amsterdam Mustangs", gp: 1, w: 1, l: 0, t: 0, gf: 4, ga: 1, gd: "+3", pts: 2 },
+      { team: "Warriors Leeuwarden", gp: 1, w: 0, l: 1, t: 0, gf: 1, ga: 4, gd: "-3", pts: 0 },
       { team: "Frisian Bears 1 Heerenveen", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
       { team: "Blue Mountain Cougars Hoorn 1", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
       { team: "Amsterdam Tigers 6", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
       { team: "Leiden Islanders", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
     ],
     south: [
-      { team: "Black Sheep Dordrecht", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+      { team: "Black Sheep Dordrecht", gp: 1, w: 1, l: 0, t: 0, gf: 12, ga: 5, gd: "+7", pts: 2 },
       { team: "Hijs Hokij Den Haag Bullets", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
-      { team: "Nijmegen Saints", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
-      { team: "Smoke Eaters Geleen 2", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
-      { team: "Red Eagles Den Bosch 2", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+      { team: "Nijmegen Saints", gp: 1, w: 0, l: 1, t: 0, gf: 5, ga: 12, gd: "-7", pts: 0 },
+      { team: "Smoke Eaters Geleen 2", gp: 1, w: 1, l: 0, t: 0, gf: 10, ga: 0, gd: "+10", pts: 2 },
+      { team: "Red Eagles Den Bosch 2", gp: 1, w: 1, l: 0, t: 0, gf: 12, ga: 0, gd: "+12", pts: 2 },
       { team: "Eindhoven Kemphanen Recreanten", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
-      { team: "Nijmegen Devils 2", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+      { team: "Nijmegen Devils 2", gp: 2, w: 0, l: 2, t: 0, gf: 0, ga: 22, gd: "-22", pts: 0 },
     ],
   },
 };
@@ -5647,40 +5720,50 @@ const STATS_DATA = {
     ],
   },
   "2026-2027": {
-    // No games played yet -- every stat is 0. Same skater group as
-    // 2025-2026, minus Krisztian Vizsy and Wyatt Southard (not playing this
-    // season) and goalie Bart Sasim (was a spare), plus George Harrington
-    // and Dirk McLaughlin added as skaters and Connor Harrington-Brandt
-    // added as a second goalie. Numbers/positions taken from the
-    // 2026-2027 ROSTERS entry where available; Duane Mattos, Alexander
-    // Samoylov, and Connor Harrington-Brandt aren't on that roster list, so
-    // their last-known numbers/positions were used instead.
+    // Same skater group as 2025-2026, minus Krisztian Vizsy and Wyatt
+    // Southard (not playing this season) and goalie Bart Sasim (was a
+    // spare), plus George Harrington and Dirk McLaughlin added as skaters
+    // and Connor Harrington-Brandt added as a second goalie. Numbers/
+    // positions taken from the 2026-2027 ROSTERS entry where available;
+    // Duane Mattos, Alexander Samoylov, and Connor Harrington-Brandt aren't
+    // on that roster list, so their last-known numbers/positions were used
+    // instead. Michal Dudzinski (skater) and Miles Bishop (goalie) are now
+    // on the standing 2026-2027 roster at #21 and #2, appended at the end
+    // of each list below -- same spot as George Harrington and Dirk
+    // McLaughlin were given when they were first added. Bishop's GA is
+    // taken as 1 (the only Warriors goal) on the assumption he played the
+    // full 60 minutes: the gamesheet shows no goalie substitution, but
+    // BenchApp's own shots/saves table for him was blank rather than
+    // populated, so this is inferred, not directly stated -- flagged for
+    // Jeremie to confirm.
     skaters: [
       { num: 97, name: "Miska Braun", pos: "RW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
       { num: 9, name: "Petteri Hyytiäinen", pos: "C", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 27, name: "Jim Conboy", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 27, name: "Jim Conboy", pos: "D", gp: 1, g: 0, a: 1, pts: 1, pim: 2 },
       { num: 16, name: "Christopher Price", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 17, name: "Jon Garrity", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 19, name: "Jared Penner", pos: "RW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 91, name: "George Huber", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 46, name: "Daniel Watts", pos: "C", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 17, name: "Jon Garrity", pos: "D", gp: 1, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 19, name: "Jared Penner", pos: "RW", gp: 1, g: 0, a: 1, pts: 1, pim: 0 },
+      { num: 91, name: "George Huber", pos: "LW", gp: 1, g: 1, a: 0, pts: 1, pim: 2 },
+      { num: 46, name: "Daniel Watts", pos: "C", gp: 1, g: 0, a: 2, pts: 2, pim: 0 },
       { num: 83, name: "Daniel Perrier", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 77, name: "Jeremie Gould", pos: "RW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 47, name: "Sergey Baradyntsev", pos: "C", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 77, name: "Jeremie Gould", pos: "RW", gp: 1, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 47, name: "Sergey Baradyntsev", pos: "C", gp: 1, g: 0, a: 0, pts: 0, pim: 2 },
       { num: 8, name: "Andrey Gushchin", pos: "RW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
       { num: 15, name: "Alex Paquin", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
       { num: 18, name: "Chris Lesny", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 89, name: "Brett Boss", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 29, name: "Nils Klok", pos: "C", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 89, name: "Brett Boss", pos: "D", gp: 1, g: 0, a: 1, pts: 1, pim: 0 },
+      { num: 29, name: "Nils Klok", pos: "C", gp: 1, g: 1, a: 0, pts: 1, pim: 0 },
       { num: 13, name: "Jeroen Valentijn", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
       { num: 96, name: "Duane Mattos", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 11, name: "Alexander Samoylov", pos: "RW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 22, name: "George Harrington", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 73, name: "Dirk McLaughlin", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
+      { num: 11, name: "Alexander Samoylov", pos: "RW", gp: 1, g: 0, a: 1, pts: 1, pim: 2 },
+      { num: 22, name: "George Harrington", pos: "LW", gp: 1, g: 2, a: 0, pts: 2, pim: 0 },
+      { num: 73, name: "Dirk McLaughlin", pos: "D", gp: 1, g: 0, a: 1, pts: 1, pim: 0 },
+      { num: 21, name: "Michal Dudzinski", pos: "RW", gp: 1, g: 0, a: 0, pts: 0, pim: 2 },
     ],
     goalies: [
       { num: 31, name: "Tori Holmes-Kirk", gp: 0, w: 0, l: 0, t: 0, ga: 0, gaa: "0.00", so: 0 },
       { num: 41, name: "Connor Harrington-Brandt", gp: 0, w: 0, l: 0, t: 0, ga: 0, gaa: "0.00", so: 0 },
+      { num: 2, name: "Miles Bishop", gp: 1, w: 1, l: 0, t: 0, ga: 1, gaa: "1.00", so: 0 },
     ],
   },
 };
