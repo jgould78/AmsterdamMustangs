@@ -5305,15 +5305,14 @@ const STANDINGS_DATA = {
   },
   "2026-2027": {
     // North is Amsterdam Mustangs plus every opponent on the 2026-2027
-    // schedule; South teams supplied directly by Jeremie. Every other row is
-    // still 0 -- only the 2026-10-10 Warriors Leeuwarden game has been played.
+    // schedule; South teams supplied directly by Jeremie.
     north: [
       { team: "Amsterdam Mustangs", gp: 1, w: 1, l: 0, t: 0, gf: 4, ga: 1, gd: "+3", pts: 2 },
       { team: "Warriors Leeuwarden", gp: 1, w: 0, l: 1, t: 0, gf: 1, ga: 4, gd: "-3", pts: 0 },
-      { team: "Frisian Bears 1 Heerenveen", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
-      { team: "Blue Mountain Cougars Hoorn 1", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
-      { team: "Amsterdam Tigers 6", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
-      { team: "Leiden Islanders", gp: 0, w: 0, l: 0, t: 0, gf: 0, ga: 0, gd: "0", pts: 0 },
+      { team: "Frisian Bears 1 Heerenveen", gp: 1, w: 0, l: 1, t: 0, gf: 2, ga: 6, gd: "-4", pts: 0 },
+      { team: "Blue Mountain Cougars Hoorn 1", gp: 1, w: 1, l: 0, t: 0, gf: 6, ga: 2, gd: "+4", pts: 2 },
+      { team: "Amsterdam Tigers 6", gp: 1, w: 0, l: 1, t: 0, gf: 3, ga: 4, gd: "-1", pts: 0 },
+      { team: "Leiden Islanders", gp: 1, w: 1, l: 0, t: 0, gf: 4, ga: 3, gd: "+1", pts: 2 },
     ],
     south: [
       { team: "Black Sheep Dordrecht", gp: 1, w: 1, l: 0, t: 0, gf: 12, ga: 5, gd: "+7", pts: 2 },
