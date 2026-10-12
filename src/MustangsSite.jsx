@@ -453,6 +453,7 @@ const ROSTERS = {
     { tag: "A", num: 27, name: "Jim Conboy", pos: "D", shoots: "Right", nat: "Canada" },
     { tag: "", num: 29, name: "Nils Klok", pos: "C", shoots: "Right", nat: "Netherlands" },
     { tag: "", num: 31, name: "Tori Holmes-Kirk", pos: "G", shoots: "Left", nat: "USA" },
+    { tag: "", num: 41, name: "Connor Harrington-Brandt", pos: "G", shoots: "Right", nat: "USA" },
     { tag: "", num: 46, name: "Daniel Watts", pos: "C", shoots: "Right", nat: "USA" },
     { tag: "", num: 47, name: "Sergey Baradyntsev", pos: "C", shoots: "Left", nat: "Belarus" },
     { tag: "", num: 73, name: "Dirk McLaughlin", pos: "D", shoots: "Right", nat: "Canada" },
@@ -5724,9 +5725,9 @@ const STATS_DATA = {
     // spare), plus George Harrington and Dirk McLaughlin added as skaters
     // and Connor Harrington-Brandt added as a second goalie. Numbers/
     // positions taken from the 2026-2027 ROSTERS entry where available;
-    // Duane Mattos, Alexander Samoylov, and Connor Harrington-Brandt aren't
-    // on that roster list, so their last-known numbers/positions were used
-    // instead. Michal Dudzinski (skater) and Miles Bishop (goalie) are now
+    // Duane Mattos and Alexander Samoylov aren't on that roster list, so
+    // their last-known numbers/positions were used instead. Michal
+    // Dudzinski (skater) and Miles Bishop (goalie) are now
     // on the standing 2026-2027 roster at #21 and #2, appended at the end
     // of each list below -- same spot as George Harrington and Dirk
     // McLaughlin were given when they were first added. Bishop's GA is
