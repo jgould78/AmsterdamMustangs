@@ -4747,6 +4747,17 @@ const GAME_DETAILS = {
         scorer: "Anouk Maij",
         timer: "Silas de Jong",
       },
+      gameSummary: {
+        headline: "Mustangs too strong for Leeuwarden, Harrington shines in Mustangs debut.",
+        body: [
+          "AMSTERDAM – The Amsterdam Mustangs won their home opener against Warriors Leeuwarden 4-1.",
+          "The match remained evenly matched for a long time. Leeuwarden took the lead after sixteen minutes of play with an unassisted goal from Eddy Lord. Two minutes later, George Harrington made it 1-1 by deking through a defender and beating the goalie on a breakaway. The goal was assisted by Jim Conboy and Daniel Watts. After twenty minutes of play, the score was 1-1. The Mustangs outshot the Warriors 29-9 in the first period.",
+          "While Leeuwarden outshot the Mustangs in the second period, George Huber put the Tigers ahead just before the second break, making the score 2-1, with assists from Alexander Samoylov and Jared Penner. After fourty minutes, the score was 2-1.",
+          "In the 3rd period, Nils Klok extended the lead to 3-1 on the power play with a shot from the corner that surprised the Warriors goalie. Just 23 seconds later, Harrington made it 4-1 ripping a shot top shelf on a rush, assisted by Watts and Brett Boss. That proved to be the final score.",
+          "Watts finished the night with two assists, complementing Harrington's standout two-goal performance while Miles Bishop was solid in goal for the Mustangs.",
+          "The Mustangs continue their season on November 1st in Heerenveen.",
+        ],
+      },
       // Scorer/assists taken from BenchApp (source of truth per convention), not the
       // gamesheet PDF, for 3 of these 4 goals -- a genuine conflict, not a numbering
       // mixup, since every disputed player's jersey number matches between both
@@ -4777,6 +4788,14 @@ const GAME_DETAILS = {
         { period: 1, goalsUs: 1, goalsThem: 1 },
         { period: 2, goalsUs: 1, goalsThem: 0 },
         { period: 3, goalsUs: 2, goalsThem: 0 },
+      ],
+      // Shots on goal, tracked starting this season (2026-2027) now that
+      // Jeremie has video for every game -- no historical data exists for
+      // earlier seasons, so this field is only added where it's available.
+      shotsOnGoal: [
+        { period: 1, shotsUs: 29, shotsThem: 9 },
+        { period: 2, shotsUs: 9, shotsThem: 16 },
+        { period: 3, shotsUs: 10, shotsThem: 9 },
       ],
       lineup: {
         us: {
@@ -5778,7 +5797,7 @@ const TABS = [
   { id: "media", label: "Media", icon: ImageIcon },
 ];
 
-function Badge({ children, tone = "neutral" }) {
+function Badge({ children, tone = "neutral", title }) {
   const tones = {
     win: { bg: "rgba(46,158,89,0.15)", color: "#5FD68A", border: "#1F6B41" },
     loss: { bg: "rgba(200,16,46,0.15)", color: "#FF7A8A", border: C.redDeep },
@@ -5788,6 +5807,7 @@ function Badge({ children, tone = "neutral" }) {
   const t = tones[tone];
   return (
     <span
+      title={title}
       className="text-xs font-bold px-2 py-1 rounded"
       style={{ background: t.bg, color: t.color, border: `1px solid ${t.border}`, fontFamily: FONTS.mono, letterSpacing: "0.05em" }}
     >
@@ -6239,6 +6259,13 @@ const INFRACTION_LABELS = {
   "HO-ST": "Holding the stick",
 };
 
+const STRENGTH_LABELS = {
+  PP: "Power Play",
+  SH: "Short Handed",
+  PS: "Penalty Shot",
+  EN: "Empty Net",
+};
+
 function PeriodLabel({ period }) {
   return period <= 3 ? `P${period}` : "OT";
 }
@@ -6316,11 +6343,30 @@ function GameDetailPage({ season, game, detail, onBack }) {
         <div style={{ color: C.muted }}>No box score added yet for this game.</div>
       ) : (
         <div className="flex flex-col gap-8">
+          {/* Game summary (recap article) */}
+          {detail.gameSummary && (
+            <div>
+              <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
+                GAME SUMMARY
+              </h3>
+              <div className="rounded-lg overflow-hidden" style={{ border: `1px solid ${C.line}`, background: C.surface, padding: "16px 20px" }}>
+                <p style={{ color: C.white, fontWeight: 700, fontSize: 14, marginBottom: 10 }}>
+                  {detail.gameSummary.headline}
+                </p>
+                {detail.gameSummary.body.map((para, i) => (
+                  <p key={i} style={{ color: C.muted, fontSize: 13, lineHeight: 1.6, marginTop: i > 0 ? 10 : 0 }}>
+                    {para}
+                  </p>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Period summary (goals by period) */}
           {detail.periodSummary && (
             <div>
               <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
-                PERIOD SUMMARY
+                PERIOD SUMMARY - SCORING
               </h3>
               <div className="rounded-lg overflow-x-auto" style={{ border: `1px solid ${C.line}` }}>
                 <div style={{ minWidth: 420 }}>
@@ -6352,6 +6398,50 @@ function GameDetailPage({ season, game, detail, onBack }) {
                       ))}
                       <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.red, fontWeight: 700 }}>
                         {detail.periodSummary.reduce((a, p) => a + p[row.key], 0)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Period summary (shots on goal by period) */}
+          {detail.shotsOnGoal && (
+            <div>
+              <h3 style={{ fontFamily: FONTS.mono, color: C.muted, fontSize: 12, letterSpacing: "0.1em", marginBottom: 10 }}>
+                PERIOD SUMMARY - SHOTS ON GOAL
+              </h3>
+              <div className="rounded-lg overflow-x-auto" style={{ border: `1px solid ${C.line}` }}>
+                <div style={{ minWidth: 420 }}>
+                  <div
+                    className="grid px-4 sm:px-5 py-2 text-xs"
+                    style={{ gridTemplateColumns: `2fr repeat(${detail.shotsOnGoal.length}, minmax(40px, 0.7fr)) minmax(40px, 0.7fr)`, background: C.surface2, color: C.muted, fontFamily: FONTS.mono, letterSpacing: "0.05em" }}
+                  >
+                    <span></span>
+                    {detail.shotsOnGoal.map((p) => (
+                      <span key={p.period} className="text-right">{PeriodLabel({ period: p.period })}</span>
+                    ))}
+                    <span className="text-right">TOT</span>
+                  </div>
+                  {[
+                    { label: awayTeam, key: game.home ? "shotsThem" : "shotsUs", logo: game.home ? opponentLogo(opp) : LOGO },
+                    { label: homeTeam, key: game.home ? "shotsUs" : "shotsThem", logo: game.home ? LOGO : opponentLogo(opp) },
+                  ].map((row, i) => (
+                    <div
+                      key={row.key}
+                      className="grid px-4 sm:px-5 py-2.5 text-sm items-center"
+                      style={{ gridTemplateColumns: `2fr repeat(${detail.shotsOnGoal.length}, minmax(40px, 0.7fr)) minmax(40px, 0.7fr)`, background: i % 2 ? C.surface : C.surface2, borderTop: `1px solid ${C.line}` }}
+                    >
+                      <span className="flex items-center gap-2 min-w-0">
+                        {row.logo && <img src={row.logo} alt="" aria-hidden className="w-7 h-7 object-contain shrink-0" />}
+                        <span className="truncate" style={{ color: C.white, fontWeight: 600 }}>{row.label}</span>
+                      </span>
+                      {detail.shotsOnGoal.map((p) => (
+                        <span key={p.period} className="text-right" style={{ fontFamily: FONTS.mono, color: C.muted }}>{p[row.key]}</span>
+                      ))}
+                      <span className="text-right" style={{ fontFamily: FONTS.mono, color: C.red, fontWeight: 700 }}>
+                        {detail.shotsOnGoal.reduce((a, p) => a + p[row.key], 0)}
                       </span>
                     </div>
                   ))}
@@ -6409,7 +6499,9 @@ function GameDetailPage({ season, game, detail, onBack }) {
                           </span>
                         </div>
                         <span className="shrink-0">
-                          {g.strength && g.strength !== "EQ" && <Badge tone="neutral">{g.strength}</Badge>}
+                          {g.strength && g.strength !== "EQ" && (
+                            <Badge tone="neutral" title={STRENGTH_LABELS[g.strength]}>{g.strength}</Badge>
+                          )}
                         </span>
                       </div>
                     ))}
