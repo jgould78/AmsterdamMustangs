@@ -588,7 +588,7 @@ const SCHEDULE_DATA = {
     { date: "2025-03-09", opp: "Leiden Lions", home: true, status: "final", res: "W", gf: 14, ga: 9, time: "18:45", venue: "Jaap Edenhal, Amsterdam" },
   ],
   "2026-2027": [
-    { date: "2026-10-10", opp: "Warriors Leeuwarden", home: true, status: "final", res: "W", gf: 4, ga: 1, time: "18:00", venue: "Jaap Edenhal, Amsterdam" },
+    { date: "2026-10-10", opp: "Warriors Leeuwarden", home: true, status: "final", res: "W", gf: 4, ga: 1, time: "18:00", venue: "Jaap Edenhal, Amsterdam", highlightVideo: "https://www.youtube.com/watch?v=qjx0Mg0WBBY" },
     { date: "2026-11-01", opp: "Frisian Bears 1 Heerenveen", home: false, status: "upcoming", time: "17:30", venue: "Thialf, Heerenveen" },
     { date: "2026-11-07", opp: "Blue Mountain Cougars Hoorn 1", home: true, status: "upcoming", time: "20:15", venue: "Jaap Edenhal, Amsterdam" },
     { date: "2026-11-21", opp: "Amsterdam Tigers 6", home: false, status: "upcoming", time: "20:15", venue: "Jaap Edenhal, Amsterdam" },
@@ -6292,10 +6292,22 @@ function GameDetailPage({ season, game, detail, onBack }) {
             <span className="text-center truncate w-full" style={{ color: C.white, fontSize: 18, fontWeight: 600 }}>{homeTeam}</span>
           </div>
         </div>
-        <div className="flex justify-center mt-5">
+        <div className="flex items-center justify-center gap-2 mt-5">
           <Badge tone={game.res === "W" ? "win" : game.res === "L" ? "loss" : "ot"}>
             {game.res === "W" ? "WIN" : game.res === "L" ? "LOSS" : "TIE"}
           </Badge>
+          {game.highlightVideo && (
+            <span
+              onClick={() => window.open(game.highlightVideo, "_blank", "noopener,noreferrer")}
+              role="link"
+              aria-label="Watch game highlights"
+              title="Game Highlights"
+              className="inline-flex items-center justify-center rounded-full"
+              style={{ width: 22, height: 22, background: C.surface2, border: `1px solid ${C.line}`, color: C.red, cursor: "pointer" }}
+            >
+              <Video size={11} />
+            </span>
+          )}
         </div>
       </div>
 
@@ -7196,6 +7208,21 @@ export default function MustangsSite() {
                           )}
                           <span style={{ fontFamily: FONTS.mono, color: C.white, fontSize: 14 }}>{g.gf}&ndash;{g.ga}</span>
                           <Badge tone={g.res === "W" ? "win" : g.res === "L" ? "loss" : "ot"}>{g.res}</Badge>
+                          {g.highlightVideo && (
+                            <span
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                window.open(g.highlightVideo, "_blank", "noopener,noreferrer");
+                              }}
+                              role="link"
+                              aria-label="Watch game highlights"
+                              title="Game Highlights"
+                              className="inline-flex items-center justify-center rounded-full"
+                              style={{ width: 22, height: 22, background: C.surface2, border: `1px solid ${C.line}`, color: C.red, cursor: "pointer" }}
+                            >
+                              <Video size={11} />
+                            </span>
+                          )}
                         </div>
                       ) : g.status === "cancelled" ? (
                         <span title={g.note || undefined}>
