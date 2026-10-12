@@ -323,7 +323,7 @@ const ROSTERS = {
     { tag: "", num: 6, name: "Alex Paquin", pos: "C", shoots: "Left", nat: "Canada" },
     { tag: "", num: 7, name: "Dzmitry Basenka", pos: "LW", shoots: "Right", nat: "Belarus" },
     { tag: "", num: 8, name: "Andrey Gushchin", pos: "RW", shoots: "Left", nat: "Russia" },
-    { tag: "", num: 11, name: "Alexander Samoylov", pos: "RW", shoots: "Right", nat: "Netherlands" },
+    { tag: "", num: 11, name: "Alexander Samoylov", pos: "RW", shoots: "Right", nat: "Russia" },
     { tag: "", num: 13, name: "Jeroen Valentijn", pos: "D", shoots: "Right", nat: "Netherlands" },
     { tag: "", num: 14, name: "Janne-Britt de Korte", pos: "RW", shoots: "Right", nat: "Netherlands" },
     { tag: "", num: 15, name: "Nikita Koutsman", pos: "LW", shoots: "Left", nat: "Russia" },
@@ -5755,29 +5755,31 @@ const STATS_DATA = {
     // BenchApp's own shots/saves table for him was blank rather than
     // populated, so this is inferred, not directly stated -- flagged for
     // Jeremie to confirm.
+    // +/- is tracked starting this season (2026-2027) -- no historical data
+    // exists for earlier seasons, so it's only shown here.
     skaters: [
-      { num: 97, name: "Miska Braun", pos: "RW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 9, name: "Petteri Hyytiäinen", pos: "C", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 27, name: "Jim Conboy", pos: "D", gp: 1, g: 0, a: 1, pts: 1, pim: 2 },
-      { num: 16, name: "Christopher Price", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 17, name: "Jon Garrity", pos: "D", gp: 1, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 19, name: "Jared Penner", pos: "RW", gp: 1, g: 0, a: 1, pts: 1, pim: 0 },
-      { num: 91, name: "George Huber", pos: "LW", gp: 1, g: 1, a: 0, pts: 1, pim: 2 },
-      { num: 46, name: "Daniel Watts", pos: "C", gp: 1, g: 0, a: 2, pts: 2, pim: 0 },
-      { num: 83, name: "Daniel Perrier", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 77, name: "Jeremie Gould", pos: "RW", gp: 1, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 47, name: "Sergey Baradyntsev", pos: "C", gp: 1, g: 0, a: 0, pts: 0, pim: 2 },
-      { num: 8, name: "Andrey Gushchin", pos: "RW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 15, name: "Alex Paquin", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 18, name: "Chris Lesny", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 89, name: "Brett Boss", pos: "D", gp: 1, g: 0, a: 1, pts: 1, pim: 0 },
-      { num: 29, name: "Nils Klok", pos: "C", gp: 1, g: 1, a: 0, pts: 1, pim: 0 },
-      { num: 13, name: "Jeroen Valentijn", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 96, name: "Duane Mattos", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0 },
-      { num: 11, name: "Alexander Samoylov", pos: "RW", gp: 1, g: 0, a: 1, pts: 1, pim: 2 },
-      { num: 22, name: "George Harrington", pos: "LW", gp: 1, g: 2, a: 0, pts: 2, pim: 0 },
-      { num: 73, name: "Dirk McLaughlin", pos: "D", gp: 1, g: 0, a: 1, pts: 1, pim: 0 },
-      { num: 21, name: "Michal Dudzinski", pos: "RW", gp: 1, g: 0, a: 0, pts: 0, pim: 2 },
+      { num: 97, name: "Miska Braun", pos: "RW", gp: 0, g: 0, a: 0, pts: 0, pim: 0, plusMinus: 0 },
+      { num: 9, name: "Petteri Hyytiäinen", pos: "C", gp: 0, g: 0, a: 0, pts: 0, pim: 0, plusMinus: 0 },
+      { num: 27, name: "Jim Conboy", pos: "D", gp: 1, g: 0, a: 1, pts: 1, pim: 2, plusMinus: 1 },
+      { num: 16, name: "Christopher Price", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0, plusMinus: 0 },
+      { num: 17, name: "Jon Garrity", pos: "D", gp: 1, g: 0, a: 0, pts: 0, pim: 0, plusMinus: 1 },
+      { num: 19, name: "Jared Penner", pos: "RW", gp: 1, g: 0, a: 1, pts: 1, pim: 0, plusMinus: 1 },
+      { num: 91, name: "George Huber", pos: "LW", gp: 1, g: 1, a: 0, pts: 1, pim: 2, plusMinus: 1 },
+      { num: 46, name: "Daniel Watts", pos: "C", gp: 1, g: 0, a: 2, pts: 2, pim: 0, plusMinus: 2 },
+      { num: 83, name: "Daniel Perrier", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0, plusMinus: 0 },
+      { num: 77, name: "Jeremie Gould", pos: "RW", gp: 1, g: 0, a: 0, pts: 0, pim: 0, plusMinus: 2 },
+      { num: 47, name: "Sergey Baradyntsev", pos: "C", gp: 1, g: 0, a: 0, pts: 0, pim: 2, plusMinus: -1 },
+      { num: 8, name: "Andrey Gushchin", pos: "RW", gp: 0, g: 0, a: 0, pts: 0, pim: 0, plusMinus: 0 },
+      { num: 15, name: "Alex Paquin", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0, plusMinus: 0 },
+      { num: 18, name: "Chris Lesny", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0, plusMinus: 0 },
+      { num: 89, name: "Brett Boss", pos: "D", gp: 1, g: 0, a: 1, pts: 1, pim: 0, plusMinus: 2 },
+      { num: 29, name: "Nils Klok", pos: "C", gp: 1, g: 1, a: 0, pts: 1, pim: 0, plusMinus: -1 },
+      { num: 13, name: "Jeroen Valentijn", pos: "D", gp: 0, g: 0, a: 0, pts: 0, pim: 0, plusMinus: 0 },
+      { num: 96, name: "Duane Mattos", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0, plusMinus: 0 },
+      { num: 11, name: "Alexander Samoylov", pos: "RW", gp: 1, g: 0, a: 1, pts: 1, pim: 2, plusMinus: 0 },
+      { num: 22, name: "George Harrington", pos: "LW", gp: 1, g: 2, a: 0, pts: 2, pim: 0, plusMinus: 2 },
+      { num: 73, name: "Dirk McLaughlin", pos: "D", gp: 1, g: 0, a: 1, pts: 1, pim: 0, plusMinus: 0 },
+      { num: 21, name: "Michal Dudzinski", pos: "RW", gp: 1, g: 0, a: 0, pts: 0, pim: 2, plusMinus: 0 },
     ],
     goalies: [
       { num: 31, name: "Tori Holmes-Kirk", gp: 0, w: 0, l: 0, t: 0, ga: 0, gaa: "0.00", so: 0 },
@@ -6268,6 +6270,10 @@ const STRENGTH_LABELS = {
 
 function PeriodLabel({ period }) {
   return period <= 3 ? `P${period}` : "OT";
+}
+
+function formatPlusMinus(n) {
+  return n > 0 ? `+${n}` : `${n}`;
 }
 
 function GameDetailPage({ season, game, detail, onBack }) {
@@ -7733,8 +7739,13 @@ export default function MustangsSite() {
                     { key: "a", label: "A" },
                     { key: "pts", label: "Pts" },
                     { key: "pim", label: "PIM" },
+                    ...(season === "2026-2027" ? [{ key: "plusMinus", label: "+/-" }] : []),
                   ]}
-                  rows={stats.skaters}
+                  rows={
+                    season === "2026-2027"
+                      ? stats.skaters.map((s) => ({ ...s, plusMinus: formatPlusMinus(s.plusMinus) }))
+                      : stats.skaters
+                  }
                   highlightKey="pts"
                   onNameClick={setSelectedPlayerName}
                   defaultSort={(a, b) => (b.pts - a.pts) || (b.g - a.g)}
