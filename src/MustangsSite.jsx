@@ -591,7 +591,7 @@ const SCHEDULE_DATA = {
   "2026-2027": [
     { date: "2026-10-10", opp: "Warriors Leeuwarden", home: true, status: "final", res: "W", gf: 4, ga: 1, time: "18:00", venue: "Jaap Edenhal, Amsterdam", highlightVideo: "https://www.youtube.com/watch?v=qjx0Mg0WBBY" },
     { date: "2026-11-01", opp: "Frisian Bears 1 Heerenveen", home: false, status: "final", res: "L", gf: 5, ga: 17, time: "17:30", venue: "Thialf, Heerenveen", highlightVideo: "https://www.youtube.com/watch?v=dnxOdWHuRIQ" },
-    { date: "2026-11-07", opp: "Blue Mountain Cougars Hoorn 1", home: true, status: "upcoming", time: "20:15", venue: "Jaap Edenhal, Amsterdam" },
+    { date: "2026-11-07", opp: "Blue Mountain Cougars Hoorn 1", home: true, status: "final", res: "T", gf: 3, ga: 3, time: "20:15", venue: "Jaap Edenhal, Amsterdam", highlightVideo: "https://www.youtube.com/watch?v=hYpfrylwPus" },
     { date: "2026-11-21", opp: "Amsterdam Tigers 6", home: false, status: "upcoming", time: "20:15", venue: "Jaap Edenhal, Amsterdam" },
     { date: "2026-12-11", opp: "Blue Mountain Cougars Hoorn 1", home: false, status: "upcoming", time: "21:00", venue: "Optisport de Westfries, Hoorn" },
     { date: "2026-12-20", opp: "Amsterdam Tigers 6", home: true, status: "upcoming", time: "18:45", venue: "Jaap Edenhal, Amsterdam" },
@@ -4919,6 +4919,88 @@ const GAME_DETAILS = {
         },
       },
     },
+    "2026-11-07": {
+      verified: true,
+      source: "Officieel Wedstrijdformulier IJshockey Nederland, wedstrijdnr 3DN-008",
+      venue: "Jaap Edenhal, Amsterdam",
+      officials: {
+        referees: ["Liam Campbell", "Elias Crepim"],
+        scorer: "Silas de Jong",
+        timer: "Nienke Hommes",
+      },
+      gameSummary: {
+        headline: "Late Power-Play Goal Caps Mustangs Comeback Draw vs. Hoorn",
+        body: [
+          "AMSTERDAM – The Amsterdam Mustangs staged a relentless late push to earn a 3-3 draw against Blue Mountain Cougars Hoorn 1 on Saturday. Despite launching an extraordinary barrage of 65 shots on goal compared to Hoorn's 12, the Mustangs found themselves chasing the game before Michal Dudzinski notched the game-tying power-play goal with under two minutes remaining in regulation.",
+          "The opening period saw Blue Mountain Cougars Hoorn 1 jump out to an early two-goal cushion despite Amsterdam applying consistent pressure in the offensive zone. Hoorn struck first when forward Danny van't Veer broke through unassisted at 04:33 into the first period to put the visitors ahead 1-0. Hoorn extended their lead when Onno Dolsma finished off a passing sequence setup by Jochem den Boer to double the advantage to 2-0.",
+          "Amsterdam came out firing in the second period, hemmed Hoorn into their defensive zone, and generated high-danger scoring chances. Hoorn goaltender Thom Zoey Deerenberg was tested repeatedly, turning aside multiple flurry attempts to keep the Mustangs at bay. The Mustangs finally broke through at 15:55 of the second period when Andrey Gushchin hammered home a setup pass from Michal Dudzinski also assisted by Jon Garrity to cut Hoorn's lead to 2-1.",
+          "The final period provided high-stakes drama as Amsterdam pressed for the equalizer while Hoorn looked to lock down the victory on defense.",
+          "Hoorn restored their two-goal cushion when Jochem den Boer (#13) found the back of the net from the point. Refusing to back down, the Mustangs maintained intense pressure on Hoorn’s net. The persistence paid off at 12:29 of the third period when Daniel Watts found the back of the net. Assisted by George Harrington and Jeremie Gould - Gould passed it to Harrington behind the goal and he then found Watts in the Hoorn slot for a one-touch wrister through the five hole.",
+          "Late in the third, Aleksei Katsman was whistled for elbowing, providing Amsterdam with a critical late power-play opportunity. The Mustangs capitalized on the man-advantage at 18:44 into the third period when Michal Dudzinski netted the game-tying power-play goal off rapid tic-tac-toe connection via Miska Braun and Jim Conboy.",
+          "The Mustangs held off a late push in the final seconds to secure the 3-3 tie.",
+          "The Mustangs season continues on November 21st with the first matchup against their cross-town rivals Amsterdam Tigers 6.",
+        ],
+      },
+      // Scorers and times agree between gamesheet and BenchApp. One assist conflict,
+      // BenchApp (source of truth) used: 58:44 PP goal, gamesheet 2nd assist = 17
+      // Jon Garrity (BenchApp: 27 Jim Conboy). Flagged for Jeremie to confirm.
+      // The gamesheet prints Dudzinski as #80 and Harrington as #70; they actually
+      // wore #70 and #80 respectively (the gamesheet's goal/assist numbers use the
+      // real jerseys). Stats are tracked under their standing numbers 21 and 22,
+      // which match BenchApp.
+      scoring: [
+        { period: 1, time: "04:33", team: "them", scorer: "Danny van 't Veer", assists: [], strength: "EQ" },
+        { period: 1, time: "11:10", team: "them", scorer: "Onno Dolsma", assists: ["Jochem den Boer"], strength: "EQ" },
+        { period: 2, time: "35:55", team: "us", scorer: "Andrey Gushchin", assists: ["Michal Dudzinski", "Jon Garrity"], strength: "EQ", video: "https://www.youtube.com/watch?v=HFYSvllPL5Y" },
+        { period: 3, time: "43:53", team: "them", scorer: "Jochem den Boer", assists: ["Mikael van der Dandonne"], strength: "EQ", video: "https://www.youtube.com/watch?v=DnCoSPIfQOA" },
+        { period: 3, time: "52:29", team: "us", scorer: "Daniel Watts", assists: ["George Harrington", "Jeremie Gould"], strength: "EQ", video: "https://www.youtube.com/watch?v=E978kBnRFaA" },
+        { period: 3, time: "58:44", team: "us", scorer: "Michal Dudzinski", assists: ["Miska Braun", "Jim Conboy"], strength: "PP", video: "https://www.youtube.com/watch?v=8RfyZ4PECoQ" },
+      ],
+      penalties: [
+        { period: 1, time: "01:48", team: "us", player: "Daniel Perrier", code: "ILL-H", min: 2 },
+        { period: 1, time: "16:01", team: "them", player: "Rombard Deerenberg", code: "HOOK", min: 2 },
+        { period: 1, time: "18:28", team: "them", player: "Ronald van de Geer", code: "TOO-M", min: 2 },
+        { period: 1, time: "19:34", team: "us", player: "Andrey Gushchin", code: "TOO-M", min: 2 },
+        { period: 2, time: "25:49", team: "them", player: "Rombard Deerenberg", code: "INTRF", min: 2 },
+        { period: 2, time: "29:32", team: "us", player: "Daniel Perrier", code: "ROUGH", min: 2 },
+        { period: 2, time: "32:40", team: "them", player: "Jochem den Boer", code: "BOARD", min: 2 },
+        { period: 2, time: "39:25", team: "them", player: "Onno Dolsma", code: "TRIP", min: 2 },
+        { period: 3, time: "56:45", team: "them", player: "Aleksei Katsman", code: "ELBOW", min: 2 },
+      ],
+      periodSummary: [
+        { period: 1, goalsUs: 0, goalsThem: 2 },
+        { period: 2, goalsUs: 1, goalsThem: 0 },
+        { period: 3, goalsUs: 2, goalsThem: 1 },
+      ],
+      shotsOnGoal: [
+        { period: 1, shotsUs: 18, shotsThem: 4 },
+        { period: 2, shotsUs: 22, shotsThem: 3 },
+        { period: 3, shotsUs: 25, shotsThem: 5 },
+      ],
+      lineup: {
+        us: {
+          // Jeroen Valentijn is on the gamesheet roster but did not play (confirmed by
+          // Jeremie, and absent from BenchApp's Attended list). Alex Paquin is printed
+          // as #6 on the gamesheet; BenchApp and his usual number are 15.
+          goalie: "31 Tori Holmes-Kirk",
+          dressed: [
+            "8 Andrey Gushchin", "15 Alex Paquin", "17 Jon Garrity", "19 Jared Penner",
+            "21 Michal Dudzinski", "22 George Harrington", "27 Jim Conboy", "29 Nils Klok",
+            "46 Daniel Watts", "47 Sergey Baradyntsev", "73 Dirk McLaughlin", "77 Jeremie Gould",
+            "83 Daniel Perrier", "97 Miska Braun",
+          ],
+        },
+        them: {
+          goalie: "91 Thom Zoey Deerenberg",
+          dressed: [
+            "1 Neon Beck", "4 Mark van 't Veer", "10 Aleksei Katsman", "11 Onno Dolsma",
+            "13 Jochem den Boer", "15 Mitchell Beukema", "25 Hessel van der Neut", "27 Rombard Deerenberg",
+            "33 Ronald van de Geer", "48 Jeroen Klappe", "61 Danny van 't Veer", "69 Bart Voet",
+            "83 Mikael van der Dandonne", "95 Fabrisio Koopmeiners",
+          ],
+        },
+      },
+    },
   },
 };
 
@@ -5402,7 +5484,7 @@ const STANDINGS_DATA = {
       { team: "Cool Mokum 2", gp: 15, w: 11, l: 3, t: 1, gf: 144, ga: 76, gd: "+68", pts: 23, promoted: true },
       { team: "Amsterdam Tigers 6", gp: 15, w: 10, l: 3, t: 2, gf: 120, ga: 75, gd: "+45", pts: 22 },
       { team: "Amsterdam Mustangs", gp: 15, w: 9, l: 5, t: 1, gf: 93, ga: 88, gd: "+5", pts: 19 },
-      { team: "Blue Mountain Cougars Hoorn 1", gp: 15, w: 18, l: 5, t: 2, gf: 109, ga: 106, gd: "+3", pts: 18 },
+      { team: "Blue Mountain Cougars Hoorn 1", gp: 15, w: 8, l: 5, t: 2, gf: 109, ga: 106, gd: "+3", pts: 18 },
       { team: "Leiden Islanders", gp: 15, w: 4, l: 11, t: 0, gf: 85, ga: 124, gd: "-39", pts: 8 },
       { team: "Amsterdam Snipers", gp: 15, w: 0, l: 15, t: 0, gf: 64, ga: 146, gd: "-82", pts: 0, relegated: true },
     ],
@@ -5420,19 +5502,19 @@ const STANDINGS_DATA = {
     // North is Amsterdam Mustangs plus every opponent on the 2026-2027
     // schedule; South teams supplied directly by Jeremie.
     north: [
-      { team: "Amsterdam Mustangs", gp: 2, w: 1, l: 1, t: 0, gf: 9, ga: 18, gd: "-9", pts: 2 },
+      { team: "Amsterdam Mustangs", gp: 3, w: 1, l: 1, t: 1, gf: 12, ga: 21, gd: "-9", pts: 3 },
       { team: "Warriors Leeuwarden", gp: 2, w: 1, l: 1, t: 0, gf: 10, ga: 7, gd: "+3", pts: 2 },
       { team: "Frisian Bears 1 Heerenveen", gp: 2, w: 1, l: 1, t: 0, gf: 19, ga: 11, gd: "+8", pts: 2 },
-      { team: "Blue Mountain Cougars Hoorn 1", gp: 2, w: 2, l: 0, t: 0, gf: 12, ga: 6, gd: "+6", pts: 4 },
+      { team: "Blue Mountain Cougars Hoorn 1", gp: 3, w: 2, l: 0, t: 1, gf: 15, ga: 9, gd: "+6", pts: 5 },
       { team: "Amsterdam Tigers 6", gp: 2, w: 0, l: 2, t: 0, gf: 6, ga: 13, gd: "-7", pts: 0 },
       { team: "Leiden Islanders", gp: 2, w: 1, l: 1, t: 0, gf: 8, ga: 9, gd: "-1", pts: 2 },
     ],
     south: [
-      { team: "Black Sheep Dordrecht", gp: 2, w: 1, l: 1, t: 0, gf: 18, ga: 13, gd: "+5", pts: 2 },
-      { team: "Hijs Hokij Den Haag Bullets", gp: 2, w: 2, l: 0, t: 0, gf: 14, ga: 9, gd: "+5", pts: 4 },
+      { team: "Black Sheep Dordrecht", gp: 3, w: 1, l: 2, t: 0, gf: 19, ga: 23, gd: "-4", pts: 2 },
+      { team: "Hijs Hokij Den Haag Bullets", gp: 3, w: 2, l: 1, t: 0, gf: 16, ga: 21, gd: "-5", pts: 4 },
       { team: "Nijmegen Saints", gp: 3, w: 0, l: 3, t: 0, gf: 7, ga: 32, gd: "-25", pts: 0 },
-      { team: "Smoke Eaters Geleen 2", gp: 2, w: 2, l: 0, t: 0, gf: 22, ga: 1, gd: "+21", pts: 4 },
-      { team: "Red Eagles Den Bosch 2", gp: 3, w: 3, l: 0, t: 0, gf: 25, ga: 3, gd: "+22", pts: 6 },
+      { team: "Smoke Eaters Geleen 2", gp: 3, w: 3, l: 0, t: 0, gf: 32, ga: 2, gd: "+30", pts: 6 },
+      { team: "Red Eagles Den Bosch 2", gp: 4, w: 4, l: 0, t: 0, gf: 37, ga: 5, gd: "+32", pts: 8 },
       { team: "Eindhoven Kemphanen Recreanten", gp: 2, w: 0, l: 2, t: 0, gf: 5, ga: 11, gd: "-6", pts: 0 },
       { team: "Nijmegen Devils 2", gp: 2, w: 0, l: 2, t: 0, gf: 0, ga: 22, gd: "-22", pts: 0 },
     ],
@@ -5853,32 +5935,34 @@ const STATS_DATA = {
     // 2026-11-01 at Frisian Bears (L 5-17): skater/goalie lines updated from
     // BenchApp. +/- is cumulative: each player's 2026-10-10 value plus the
     // per-game +/- Jeremie supplied for 2026-11-01.
+    // 2026-11-07 vs Hoorn (T 3-3): lines updated from BenchApp. +/- for this
+    // game added to each player's running total.
     skaters: [
-      { num: 97, name: "Miska Braun", pos: "RW", gp: 1, g: 0, a: 1, pts: 1, pim: 0, plusMinus: -4 },
+      { num: 97, name: "Miska Braun", pos: "RW", gp: 2, g: 0, a: 2, pts: 2, pim: 0, plusMinus: -4 },
       { num: 9, name: "Petteri Hyytiäinen", pos: "C", gp: 1, g: 0, a: 0, pts: 0, pim: 0, plusMinus: -5 },
-      { num: 27, name: "Jim Conboy", pos: "D", gp: 2, g: 0, a: 2, pts: 2, pim: 2, plusMinus: -4 },
+      { num: 27, name: "Jim Conboy", pos: "D", gp: 3, g: 0, a: 3, pts: 3, pim: 2, plusMinus: -3 },
       { num: 16, name: "Christopher Price", pos: "D", gp: 1, g: 0, a: 0, pts: 0, pim: 0, plusMinus: -5 },
-      { num: 17, name: "Jon Garrity", pos: "D", gp: 2, g: 0, a: 1, pts: 1, pim: 0, plusMinus: -2 },
-      { num: 19, name: "Jared Penner", pos: "RW", gp: 2, g: 1, a: 1, pts: 2, pim: 0, plusMinus: -4 },
+      { num: 17, name: "Jon Garrity", pos: "D", gp: 3, g: 0, a: 2, pts: 2, pim: 0, plusMinus: -1 },
+      { num: 19, name: "Jared Penner", pos: "RW", gp: 3, g: 1, a: 1, pts: 2, pim: 0, plusMinus: -5 },
       { num: 91, name: "George Huber", pos: "LW", gp: 1, g: 1, a: 0, pts: 1, pim: 2, plusMinus: 1 },
-      { num: 46, name: "Daniel Watts", pos: "C", gp: 2, g: 0, a: 2, pts: 2, pim: 0, plusMinus: 0 },
-      { num: 83, name: "Daniel Perrier", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0, plusMinus: 0 },
-      { num: 77, name: "Jeremie Gould", pos: "RW", gp: 2, g: 2, a: 1, pts: 3, pim: 0, plusMinus: -1 },
-      { num: 47, name: "Sergey Baradyntsev", pos: "C", gp: 1, g: 0, a: 0, pts: 0, pim: 2, plusMinus: -1 },
-      { num: 8, name: "Andrey Gushchin", pos: "RW", gp: 1, g: 1, a: 1, pts: 2, pim: 0, plusMinus: -4 },
-      { num: 15, name: "Alex Paquin", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0, plusMinus: 0 },
+      { num: 46, name: "Daniel Watts", pos: "C", gp: 3, g: 1, a: 2, pts: 3, pim: 0, plusMinus: 1 },
+      { num: 83, name: "Daniel Perrier", pos: "LW", gp: 1, g: 0, a: 0, pts: 0, pim: 4, plusMinus: -1 },
+      { num: 77, name: "Jeremie Gould", pos: "RW", gp: 3, g: 2, a: 2, pts: 4, pim: 0, plusMinus: 0 },
+      { num: 47, name: "Sergey Baradyntsev", pos: "C", gp: 2, g: 0, a: 0, pts: 0, pim: 2, plusMinus: -1 },
+      { num: 8, name: "Andrey Gushchin", pos: "RW", gp: 2, g: 2, a: 1, pts: 3, pim: 2, plusMinus: -5 },
+      { num: 15, name: "Alex Paquin", pos: "LW", gp: 1, g: 0, a: 0, pts: 0, pim: 0, plusMinus: -2 },
       { num: 18, name: "Chris Lesny", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0, plusMinus: 0 },
       { num: 89, name: "Brett Boss", pos: "D", gp: 2, g: 0, a: 2, pts: 2, pim: 0, plusMinus: -1 },
-      { num: 29, name: "Nils Klok", pos: "C", gp: 2, g: 1, a: 0, pts: 1, pim: 0, plusMinus: -6 },
+      { num: 29, name: "Nils Klok", pos: "C", gp: 3, g: 1, a: 0, pts: 1, pim: 0, plusMinus: -7 },
       { num: 13, name: "Jeroen Valentijn", pos: "D", gp: 1, g: 0, a: 0, pts: 0, pim: 0, plusMinus: -4 },
       { num: 96, name: "Duane Mattos", pos: "LW", gp: 0, g: 0, a: 0, pts: 0, pim: 0, plusMinus: 0 },
       { num: 11, name: "Alexander Samoylov", pos: "RW", gp: 1, g: 0, a: 1, pts: 1, pim: 2, plusMinus: 0 },
-      { num: 22, name: "George Harrington", pos: "LW", gp: 2, g: 3, a: 0, pts: 3, pim: 2, plusMinus: -1 },
-      { num: 73, name: "Dirk McLaughlin", pos: "D", gp: 2, g: 0, a: 2, pts: 2, pim: 0, plusMinus: -4 },
-      { num: 21, name: "Michal Dudzinski", pos: "RW", gp: 2, g: 0, a: 1, pts: 1, pim: 2, plusMinus: -4 },
+      { num: 22, name: "George Harrington", pos: "LW", gp: 3, g: 3, a: 1, pts: 4, pim: 2, plusMinus: 0 },
+      { num: 73, name: "Dirk McLaughlin", pos: "D", gp: 3, g: 0, a: 2, pts: 2, pim: 0, plusMinus: -4 },
+      { num: 21, name: "Michal Dudzinski", pos: "RW", gp: 3, g: 1, a: 2, pts: 3, pim: 2, plusMinus: -5 },
     ],
     goalies: [
-      { num: 31, name: "Tori Holmes-Kirk", gp: 1, w: 0, l: 1, t: 0, ga: 17, gaa: "17.00", so: 0 },
+      { num: 31, name: "Tori Holmes-Kirk", gp: 2, w: 0, l: 1, t: 1, ga: 20, gaa: "10.00", so: 0 },
       { num: 41, name: "Connor Harrington-Brandt", gp: 0, w: 0, l: 0, t: 0, ga: 0, gaa: "0.00", so: 0 },
       { num: 2, name: "Miles Bishop", gp: 1, w: 1, l: 0, t: 0, ga: 1, gaa: "1.00", so: 0 },
     ],
@@ -6355,6 +6439,7 @@ const INFRACTION_LABELS = {
   ABUSE: "Abuse of officials",
   KNEE: "Kneeing",
   "HO-ST": "Holding the stick",
+  ELBOW: "Elbowing",
 };
 
 const STRENGTH_LABELS = {
